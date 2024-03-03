@@ -1,26 +1,20 @@
 import {config} from '@gluestack-ui/config';
-import {GluestackUIProvider, VStack} from '@gluestack-ui/themed';
+import {GluestackUIProvider} from '@gluestack-ui/themed';
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import TextSemibold from './src/components/atoms/TextSemibold';
+import {NavigationContainer} from '@react-navigation/native';
+import HomeMain from './src/screens/Home/HomeMain';
+
+// const RootStack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaView>
-      <GluestackUIProvider config={config}>
-        <VStack
-          alignItems="center"
-          justifyContent="center"
-          bgColor="red"
-          height={'100%'}>
-          <TextSemibold
-            text="Hello"
-            bgColor="white"
-            padding={10}
-            color="black"
-          />
-        </VStack>
-      </GluestackUIProvider>
+      <NavigationContainer>
+        <GluestackUIProvider config={config}>
+          <HomeMain />
+        </GluestackUIProvider>
+      </NavigationContainer>
     </SafeAreaView>
   );
 }
