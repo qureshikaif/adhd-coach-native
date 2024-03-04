@@ -6,10 +6,9 @@ const HomeMain = () => {
     <VStack
       alignItems="center"
       justifyContent="center"
-      bg="red"
-      flex={1}
+      bg="$blueGray100"
       height={'100%'}>
-      <Text color="white">HomeMain</Text>
+      <Text color="black">Home main</Text>
     </VStack>
   );
 };
