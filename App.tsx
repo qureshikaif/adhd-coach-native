@@ -6,7 +6,6 @@ import {RootTabs} from './src/navigation/RootTabs';
 
 const config = createConfig({
   ...defaultConfig,
-
   tokens: {
     ...defaultConfig.tokens,
     fonts: [

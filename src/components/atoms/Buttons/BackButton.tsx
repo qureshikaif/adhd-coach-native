@@ -1,8 +1,8 @@
 import {Image, Pressable} from '@gluestack-ui/themed';
 import React from 'react';
-import {ButtonProps} from '../../types/ButtonProps';
+import {ButtonProps} from '../../../types/ButtonProps';
 
-const BackArrow = require('../../assets/images/BackArrow.png');
+const BackArrow = require('../../../assets/images/BackArrow.png');
 
 const BackButton = ({onPress}: ButtonProps) => {
   return (

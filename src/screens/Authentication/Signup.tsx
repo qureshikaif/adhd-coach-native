@@ -1,7 +1,6 @@
 import {
   View,
   ImageBackground,
-  Text,
   HStack,
   Center,
   Input,
@@ -11,7 +10,11 @@ import {
   Pressable,
 } from '@gluestack-ui/themed';
 import React from 'react';
-import BackButton from '../../components/atoms/BackButton';
+import BackButton from '../../components/atoms/Buttons/BackButton';
+import TextBold from '../../components/atoms/Text/TextBold';
+import TextRegular from '../../components/atoms/Text/TextRegular';
+import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import {colors} from '../../styles/colors';
 
 const BackgroundImage = require('../../assets/images/AuthBackground.png');
 
@@ -31,14 +34,11 @@ const Signup = () => {
             paddingBottom={'$5'}
             paddingHorizontal={'$5'}>
             <BackButton />
-            <Text fontSize={'$4xl'} color="black" fontFamily="Poppins-Bold">
-              Sign Up
-            </Text>
+            <TextBold text="Sign Up" fontSize={'$4xl'} />
             <View />
           </HStack>
-          <Text fontSize={'$3xl'} fontFamily="Poppins-Regular">
-            Create an account
-          </Text>
+          <TextRegular fontSize={'$3xl'} text="Create an account" />
+
           <Box height={'$5'} />
           <VStack width={'$full'} rowGap={'$4'}>
             <Input
@@ -106,10 +106,11 @@ const Signup = () => {
                 placeholderTextColor={'black'}
               />
             </Input>
-            <Text paddingHorizontal={'$2'} fontFamily="Poppins-Regular">
-              By Signing up, you agree to our Privacy Policy and Terms of
-              Service.
-            </Text>
+            <TextRegular
+              paddingHorizontal={'$2'}
+              text="By Signing up, you agree to our Privacy Policy and Terms of
+              Service."
+            />
           </VStack>
           <Box height={'$5'} />
           <Pressable
@@ -117,16 +118,12 @@ const Signup = () => {
             paddingHorizontal={'$8'}
             paddingVertical={'$2'}
             rounded={'$full'}>
-            <Text fontFamily="Poppins-SemiBold" fontSize={'$lg'}>
-              Sign Up
-            </Text>
+            <TextSemibold text="Sign Up" fontSize={'$lg'} />
           </Pressable>
           <HStack marginTop={'$3.5'}>
-            <Text fontFamily="Poppins-Regular">Already have an account? </Text>
+            <TextRegular text="Already have an account?" />
             <Pressable>
-              <Text color="#116CC8" fontFamily="Poppins-Bold">
-                Sign In
-              </Text>
+              <TextBold text="Sign In" color={colors['text-signup']} />
             </Pressable>
           </HStack>
         </Center>
