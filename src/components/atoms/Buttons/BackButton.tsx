@@ -1,13 +1,13 @@
-import {Image, Pressable} from '@gluestack-ui/themed';
 import React from 'react';
+import {Image, Pressable} from '@gluestack-ui/themed';
 import {ButtonProps} from '../../../types/ButtonProps';
 
 const BackArrow = require('../../../assets/images/BackArrow.png');
 
-const BackButton = ({onPress}: ButtonProps) => {
+const BackButton = ({onPress, buttonProps, imageProps}: ButtonProps) => {
   return (
-    <Pressable onPress={onPress}>
-      <Image source={BackArrow} alt="Back Arrow" width={50} height={50} />
+    <Pressable onPress={onPress} {...buttonProps}>
+      <Image source={BackArrow} alt="Back Arrow" {...imageProps} />
     </Pressable>
   );
 };

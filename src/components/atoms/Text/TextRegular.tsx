@@ -7,7 +7,7 @@ type TextSemiboldProps = ComponentProps<typeof Text> & {
 
 const TextRegular = ({text, ...props}: TextSemiboldProps) => {
   return (
-    <Text fontFamily="Poppins-Regular" {...props}>
+    <Text fontFamily="Poppins-Regular" color="black" {...props}>
       {text}
     </Text>
   );
