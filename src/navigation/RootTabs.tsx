@@ -39,21 +39,6 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
   );
 };
 
-// const TabBarStyle = (focused: boolean, routeName: string) => {
-//   return (
-//     <Text
-//       style={
-//         focused
-//           ? {...styles.tabBarLabel, ...styles.tabBarLabelFocused}
-//           : styles.tabBarLabel
-//       }
-//       ellipsizeMode="tail"
-//       numberOfLines={1}>
-//       {routeName}
-//     </Text>
-//   );
-// };
-
 const screens = [
   {name: 'Home', component: HomeStack},
   {name: 'Courses', component: CourseStack},

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {
   Button,
   HStack,
@@ -9,10 +9,17 @@ import {
 import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import TextRegular from '../../components/atoms/Text/TextRegular';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {tabBarStyle} from '../../navigation/RootTabs';
 
 const HomeImage = require('../../assets/images/home.png');
 const Avatar = require('../../assets/images/avatars/home.png');
 const HomeBackground = require('../../assets/images/home-bg.png');
+
+type NavigationType = {
+  Signin: undefined;
+  Signup: undefined;
+};
 
 const adhd = [
   {
@@ -34,6 +41,16 @@ const adhd = [
 ];
 
 const HomeMain = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
+
+  useLayoutEffect(() => {
+    navigation
+      .getParent()
+      ?.setOptions({tabBarStyle: {display: 'none'}, tabBarVisible: false});
+    return () =>
+      navigation.getParent()?.setOptions({tabBarStyle, tabBarVisible: true});
+  }, [navigation]);
+
   return (
     <ImageBackground minHeight={'$full'} source={HomeBackground}>
       <VStack height={'$full'} alignItems="center">
@@ -43,7 +60,7 @@ const HomeMain = () => {
           w={'$full'}
           h={'$1/3'}
         />
-        <HStack paddingTop={'$2'}>
+        <HStack paddingTop={'$4'}>
           {adhd.map((item, index) => (
             <TextBold
               key={index}
@@ -55,7 +72,7 @@ const HomeMain = () => {
           <TextBold text=" COACH" fontSize={'$3xl'} />
         </HStack>
         <TextSemibold text="Welcome" fontSize={'$2xl'} />
-        <Image source={Avatar} alt="Avatar" resizeMode="contain" size="lg" />
+        <Image source={Avatar} alt="Avatar" resizeMode="contain" size="xl" />
         <TextRegular
           text="Your Ultimate guide to cure everyday ADHD problems"
           textAlign="center"
@@ -63,9 +80,11 @@ const HomeMain = () => {
           fontSize={'$sm'}
           paddingVertical={'$4'}
         />
-        <VStack alignItems="center">
+        <VStack alignItems="center" rowGap={'$2'}>
           <HStack space="lg">
             <Button
+              android_ripple={{color: '#B9A173'}}
+              onPress={() => navigation.navigate('Signin')}
               hardShadow="3"
               size="xl"
               borderColor="black"
@@ -75,6 +94,7 @@ const HomeMain = () => {
               <TextBold text="Log In" />
             </Button>
             <Button
+              onPress={() => navigation.navigate('Signup')}
               hardShadow="3"
               size="xl"
               borderColor="black"
