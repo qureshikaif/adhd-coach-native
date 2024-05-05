@@ -14,6 +14,25 @@ const HomeImage = require('../../assets/images/home.png');
 const Avatar = require('../../assets/images/avatars/home.png');
 const HomeBackground = require('../../assets/images/home-bg.png');
 
+const adhd = [
+  {
+    title: 'A',
+    color: '#EB7E30',
+  },
+  {
+    title: 'D',
+    color: '#FF5555',
+  },
+  {
+    title: 'H',
+    color: '#EFA90F',
+  },
+  {
+    title: 'D',
+    color: '#FE5E5B',
+  },
+];
+
 const HomeMain = () => {
   return (
     <ImageBackground minHeight={'$full'} source={HomeBackground}>
@@ -25,11 +44,14 @@ const HomeMain = () => {
           h={'$1/3'}
         />
         <HStack paddingTop={'$2'}>
-          <TextBold text="A" color="#EB7E30" fontSize={'$3xl'} />
-          <TextBold text="D" color="#FF5555" fontSize={'$3xl'} />
-          <TextBold text="H" color="#EFA90F" fontSize={'$3xl'} />
-          <TextBold text="D" color="#FE5E5B" fontSize={'$3xl'} />
-
+          {adhd.map((item, index) => (
+            <TextBold
+              key={index}
+              text={item.title}
+              color={item.color}
+              fontSize={'$3xl'}
+            />
+          ))}
           <TextBold text=" COACH" fontSize={'$3xl'} />
         </HStack>
         <TextSemibold text="Welcome" fontSize={'$2xl'} />
