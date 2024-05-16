@@ -4,12 +4,17 @@ import {ButtonProps} from '../../../types/ButtonProps';
 import {useNavigation} from '@react-navigation/native';
 
 const BackArrow = require('../../../assets/images/BackArrow.png');
+const BackArrowWhite = require('../../../assets/images/icons/backarrow-white.png');
 
-const BackButton = ({buttonProps, imageProps}: ButtonProps) => {
+const BackButton = ({buttonProps, imageProps, variant}: ButtonProps) => {
   const navigation = useNavigation();
   return (
     <Pressable onPress={() => navigation.goBack()} {...buttonProps}>
-      <Image source={BackArrow} alt="Back Arrow" {...imageProps} />
+      <Image
+        source={variant === 'white' ? BackArrowWhite : BackArrow}
+        alt="Back Arrow"
+        {...imageProps}
+      />
     </Pressable>
   );
 };

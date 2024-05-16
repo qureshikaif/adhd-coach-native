@@ -1,4 +1,4 @@
-import React, {useLayoutEffect} from 'react';
+import React from 'react';
 import {
   Button,
   HStack,
@@ -10,7 +10,6 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {tabBarStyle} from '../../navigation/RootTabs';
 
 const HomeImage = require('../../assets/images/home.png');
 const Avatar = require('../../assets/images/avatars/home.png');
@@ -19,6 +18,7 @@ const HomeBackground = require('../../assets/images/home-bg.png');
 type NavigationType = {
   Signin: undefined;
   Signup: undefined;
+  ForgotPassword: undefined;
 };
 
 const adhd = [
@@ -43,13 +43,13 @@ const adhd = [
 const HomeMain = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
 
-  useLayoutEffect(() => {
-    navigation
-      .getParent()
-      ?.setOptions({tabBarStyle: {display: 'none'}, tabBarVisible: false});
-    return () =>
-      navigation.getParent()?.setOptions({tabBarStyle, tabBarVisible: true});
-  }, [navigation]);
+  // useLayoutEffect(() => {
+  //   navigation
+  //     .getParent()
+  //     ?.setOptions({tabBarStyle: {display: 'none'}, tabBarVisible: false});
+  //   return () =>
+  //     navigation.getParent()?.setOptions({tabBarStyle, tabBarVisible: true});
+  // }, [navigation]);
 
   return (
     <ImageBackground minHeight={'$full'} source={HomeBackground}>
@@ -84,7 +84,7 @@ const HomeMain = () => {
           <HStack space="lg">
             <Button
               android_ripple={{color: '#B9A173'}}
-              onPress={() => navigation.navigate('Signin')}
+              onPress={() => navigation.navigate('ForgotPassword')}
               hardShadow="3"
               size="xl"
               borderColor="black"

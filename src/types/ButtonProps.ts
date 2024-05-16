@@ -11,4 +11,5 @@ export type ButtonProps = {
     'Image'
   >;
   onPress?: () => void;
+  variant?: string;
 };
