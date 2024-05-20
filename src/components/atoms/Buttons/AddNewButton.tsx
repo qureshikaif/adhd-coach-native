@@ -17,6 +17,7 @@ const AddNewButton = ({
 }: AddNewButtonProps) => {
   return (
     <Pressable
+      android_ripple={{color: 'gray'}}
       onPress={onPress}
       {...buttonProps}
       bgColor="#D7E6ED"

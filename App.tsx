@@ -3,6 +3,9 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {RootTabs} from './src/navigation/RootTabs';
+import AdminMain from './src/screens/Admin/AdminMain';
+import Signin from './src/screens/Authentication/Signin';
+import TeacherCourse from './src/screens/Teacher/TeacherCourse';
 
 const config = createConfig({
   ...defaultConfig,
@@ -24,7 +27,9 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-        <RootTabs />
+        {/* <RootTabs /> */}
+        <TeacherCourse />
+        
       </GluestackUIProvider>
     </NavigationContainer>
   );
