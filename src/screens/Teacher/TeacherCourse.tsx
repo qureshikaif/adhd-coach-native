@@ -21,8 +21,7 @@ const TeacherCourse= () => {
     <View height={'$full'}>
       
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        
-      
+    
       <HStack 
        paddingHorizontal={'$4'}
        paddingVertical={'$4'}>

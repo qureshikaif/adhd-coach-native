@@ -27,8 +27,8 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-        {/* <RootTabs /> */}
-        <TeacherCourse />
+        <RootTabs />
+        {/* <TeacherCourse /> */}
         
       </GluestackUIProvider>
     </NavigationContainer>
