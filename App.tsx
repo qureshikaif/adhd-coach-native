@@ -6,6 +6,7 @@ import {RootTabs} from './src/navigation/RootTabs';
 import AdminMain from './src/screens/Admin/AdminMain';
 import Signin from './src/screens/Authentication/Signin';
 import TeacherCourse from './src/screens/Teacher/TeacherCourse';
+import TeacherProfile from './src/screens/Teacher/TeacherProfile';
 
 const config = createConfig({
   ...defaultConfig,
@@ -28,7 +29,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         <RootTabs />
-        {/* <TeacherCourse /> */}
+       
         
       </GluestackUIProvider>
     </NavigationContainer>

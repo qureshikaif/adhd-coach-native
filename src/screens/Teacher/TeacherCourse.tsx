@@ -22,21 +22,19 @@ const TeacherCourse= () => {
       
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
     
-      <HStack 
-       paddingHorizontal={'$4'}
-       paddingVertical={'$4'}>
-     
-         <BackButton
-        variant="black"
-        imageProps={{
-          size: 'xs',
-        }}
-        buttonProps={{}}
-      />
-      <View>
-     <TextBold  text="Course"  paddingRight={'$8'} fontSize={'$3xl'} /></View>
-
-      </HStack>
+      <HStack
+            alignItems="center"
+            width={'$full'}
+            justifyContent="space-between"
+            padding={'$4'}>
+            <BackButton
+              imageProps={{
+                size: 'xs',
+              }}
+            />
+            <TextBold text="Course" paddingRight={'$8'} fontSize={'$3xl'} />
+            <View />
+          </HStack>
        <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <AddNewButton text="Add a new lecture" />
@@ -47,10 +45,10 @@ const TeacherCourse= () => {
      <UploadButton text='lecture1'/> 
      <Box height={'$8'} />
      
-     <UploadButton text='lecture1'/> 
+     <UploadButton text='Assignment'/> 
      <Box height={'$8'} />
      
-     <UploadButton text='lecture1'/> 
+     <UploadButton text='lecture 2'/> 
         </ScrollView>
       </ImageBackground>
     </View>
