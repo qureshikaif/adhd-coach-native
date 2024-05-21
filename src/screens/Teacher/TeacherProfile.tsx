@@ -1,141 +1,100 @@
-import {
-    View,
-    ImageBackground,
-    HStack,
-    Center,
-    Input,
-    InputField,
-    VStack,
-    Box,
-    Pressable,
-    Image,
-  } from '@gluestack-ui/themed';
-  import React from 'react';
-  import BackButton from '../../components/atoms/Buttons/BackButton';
-  import TextBold from '../../components/atoms/Text/TextBold';
-  import TextRegular from '../../components/atoms/Text/TextRegular';
-  import TextSemibold from '../../components/atoms/Text/TextSemibold';
-  import {colors} from '../../styles/colors';
-  
-  const BackgroundImage = require('../../assets/images/signup-bg.png');
-  const Avatar = require('../../assets/images/avatars/login.png');
-  const EmailIcon = require('../../assets/images/icons/email.png');
-  const PasswordIcon = require('../../assets/images/icons/password.png');
-  const RoleIcon = require('../../assets/images/icons/chevron-down.png');
-  
-  const fields = [
+import {View, ImageBackground, ScrollView,Text, Box, Center, Image, HStack, Input, InputField, Button} from '@gluestack-ui/themed';
+import React from 'react';
+import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
+import TextBold from '../../components/atoms/Text/TextBold';
+import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
+import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
+import { VStack } from '@gluestack-ui/themed';
+import BackButton from '../../components/atoms/Buttons/BackButton';
+
+const BackgroundImage = require('../../assets/images/doctor-bg.png');
+const Avatar = require('../../assets/images/avatars/login.png');
+
+const fields = [
     {
       title: 'Email',
-      icon: EmailIcon,
+      placeholder: 'sanaD11@adhdcoach.com',
+      icon: '',
     },
+    {
+      title: 'Username',
+      placeholder: 'sanaD11',
+      icon: '',
+    },
+  
     {
       title: 'Password',
-      icon: PasswordIcon,
-    },
-  
-    {
-      title: 'Role',
-      icon: RoleIcon,
+      placeholder: 'Sana123',
+      icon: '',
     },
   ];
-  
-  const TeacherProfile = () => {
-    return (
-      <View height={'$full'}>
-        <ImageBackground
-          source={BackgroundImage}
-          minHeight={'$full'}
-          paddingHorizontal={'$4'}>
-          <Center>
-            <HStack
-              alignItems="center"
-              width={'$full'}
-              justifyContent="space-between"
-              padding={'$4'}>
-              <BackButton
-                imageProps={{
-                  size: 'xs',
-                }}
-              />
-              <TextBold text="Log In" paddingRight={'$8'} fontSize={'$3xl'} />
-              <View />
-            </HStack>
-            <TextRegular fontSize={'$5xl'} text="Welcome" fontStyle="italic" />
-            <Image
-              source={Avatar}
-              alt="Avatar"
-              size={'xl'}
-              resizeMode="contain"
-            />
-  
-            <Box height={'$5'} />
-            <VStack width={'$full'} rowGap={'$4'}>
-              {fields.map((field, index) => (
-                <HStack space="sm" key={index}>
-                  <Input
-                    bgColor="#DC9F72"
-                    height={'$12'}
-                    rounded={'$2xl'}
-                    width={'85%'}
-                    borderWidth={0}>
-                    <InputField
-                      type="text"
-                      fontFamily="Poppins-Regular"
-                      placeholder={field.title}
-                      paddingHorizontal={'$6'}
-                      placeholderTextColor={'black'}
-                    />
-                  </Input>
-                  <Box
-                    width={'13%'}
-                    borderRadius={'$full'}
-                    bg="#DC9F72"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center">
-                    <Image
-                      source={field.icon}
-                      alt="User Icon"
-                      resizeMode="contain"
-                      size="2xs"
-                    />
-                  </Box>
-                </HStack>
-              ))}
-  
-              <HStack justifyContent="space-between">
-                <HStack>
-                  <TextRegular text="New user?" fontSize={'$sm'} />
-                  <Pressable>
-                    <TextBold
-                      fontSize={'$sm'}
-                      text={`${' '}Sign Up`}
-                      color={colors['text-signup']}
-                    />
-                  </Pressable>
-                </HStack>
-                <Pressable>
-                  <TextBold
-                    fontSize={'$sm'}
-                    text="Forgot Password?"
-                    color={colors['text-signup']}
+// type NavigationType = {
+//   ForgotPasswordVerify: undefined;
+// };
+
+const TeacherProfile= () => {
+  //   const navigation = useNavigation<NavigationProp<NavigationType>>();
+  return (
+    <View height={'$full'}>
+    <ImageBackground source={BackgroundImage} minHeight={'$full'}>
+      <StatusBarDoctor text="Profile Settings" isSettingsVisible />
+      <Box height={'$8'} />
+      <ScrollView paddingHorizontal={'$4'}>
+      <Center>
+      <Image source={Avatar} alt='avatar icon' /> 
+      </Center>
+      {fields.map((field, index) => (
+              <VStack key={index}>
+                <TextSemibold text={field.title} fontSize={'$2xl'}/>
+                <Input
+                  bgColor="#DEADAD"
+                  height={'$12'}
+                  rounded={'$lg'}
+                  width={'95%'}
+                  borderWidth={0}>
+                  <InputField
+                    type="text"
+                    fontFamily="Poppins-Regular"
+                    placeholder={field.placeholder}
+                    paddingHorizontal={'$6'}
+                    placeholderTextColor={'black'}
                   />
-                </Pressable>
-              </HStack>
-            </VStack>
-            <Box height={'$10'} />
-            <Pressable
-              bgColor="#DC9F72"
-              paddingHorizontal={'$8'}
-              paddingVertical={'$2'}
-              rounded={'$2xl'}>
-              <TextSemibold text="Log In" fontSize={'$lg'} />
-            </Pressable>
-          </Center>
-        </ImageBackground>
-      </View>
-    );
-  };
-  
-  export default TeacherProfile;
-  
+                </Input>
+                <Box height={'$2'} />
+              </VStack>
+            ))}
+             <Box height={'$10'} />
+             <HStack space="lg">
+            <Button
+              android_ripple={{color: '#DEB5B5'}}
+            //   onPress={() => navigation.navigate('ForgotPassword')}
+              hardShadow="3"
+              size="xl"
+              borderColor="black"
+              bg={'#947C7C'}
+              borderWidth={1}
+              borderRadius={'$lg'}>
+              <TextBold text="Cancel" />
+            </Button>
+            <Button
+            //   onPress={() => navigation.navigate('Signup')}
+              hardShadow="3"
+              size="xl"
+              borderColor="black"
+              bg={'#DEB5B5'}
+              borderWidth={1}
+              borderRadius={'$lg'}>
+              <TextBold text="Save Changes" />
+            </Button>
+          </HStack>
+      </ScrollView>
+
+    </ImageBackground>
+
+  </View>
+);
+};
+
+
+export default TeacherProfile;

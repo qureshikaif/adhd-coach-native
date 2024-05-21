@@ -36,7 +36,6 @@ function App(): React.JSX.Element {
        
         
 
-        <RootTabs />
         {/* < DoctorProfile/> */}
 
       </GluestackUIProvider>
