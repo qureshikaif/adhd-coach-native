@@ -9,21 +9,17 @@ import {
   ButtonText,
   Center,
   Image,
-  VStack,
   HStack,
-  Input,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
 import TextSemibold from '../../atoms/Text/TextSemibold';
-import TextBold from '../../atoms/Text/TextBold';
 import TextRegular from '../../atoms/Text/TextRegular';
-import {InputField} from '@gluestack-ui/themed';
 
-const AddDoctorIcon = require('../../../assets/images/add-doctor.png');
+const WarningIcon = require('../../../assets/images/icons/warning.png');
 // const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
-const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
+const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
   return (
     <Center h={300}>
       <Modal
@@ -33,10 +29,10 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
         }}
         finalFocusRef={ref}>
         <ModalBackdrop />
-        <ModalContent bgColor="#A3BACD" rounded="$2xl">
+        <ModalContent bgColor="#A3BACD" rounded={'$2xl'}>
           <ModalHeader borderBottomWidth={1} borderBottomColor="#DDDDDD">
             <TextSemibold
-              text="Add Doctor"
+              text="Account Deletion"
               color="white"
               fontSize="$2xl"
               w="$full"
@@ -46,27 +42,19 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
           <ModalBody>
             <Center>
               <Image
-                source={AddDoctorIcon}
+                source={WarningIcon}
                 alt="Add Doctor Illustration"
-                w={'$3/5'}
-                h={'$40'}
+                w={'$1/3'}
+                h={'$24'}
                 marginVertical={'$4'}
                 resizeMode="cover"
               />
-              <VStack width={'$full'}>
-                <TextBold text="Doctor ID" fontSize={'$xl'} color="white" />
-                <Input width={'$full'} bgColor="#D7E6ED">
-                  <InputField
-                    display="flex"
-                    alignContent="center"
-                    type="text"
-                    fontFamily="Poppins-Regular"
-                    placeholder={'#29019254'}
-                    fontSize={'$xs'}
-                    placeholderTextColor={'black'}
-                  />
-                </Input>
-              </VStack>
+              <TextSemibold
+                text="Are you sure you want to delete this user?"
+                color="white"
+                fontSize="$xl"
+                textAlign="center"
+              />
             </Center>
           </ModalBody>
           <ModalFooter>
@@ -97,4 +85,4 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
   );
 };
 
-export default AddDoctor;
+export default AccountDeletion;

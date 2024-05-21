@@ -20,10 +20,10 @@ import TextBold from '../../atoms/Text/TextBold';
 import TextRegular from '../../atoms/Text/TextRegular';
 import {InputField} from '@gluestack-ui/themed';
 
-const AddDoctorIcon = require('../../../assets/images/add-doctor.png');
+const AddTeacherIcon = require('../../../assets/images/add-teacher.png');
 // const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
-const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
+const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
   return (
     <Center h={300}>
       <Modal
@@ -36,7 +36,7 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
         <ModalContent bgColor="#A3BACD" rounded="$2xl">
           <ModalHeader borderBottomWidth={1} borderBottomColor="#DDDDDD">
             <TextSemibold
-              text="Add Doctor"
+              text="Add Teacher"
               color="white"
               fontSize="$2xl"
               w="$full"
@@ -46,15 +46,15 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
           <ModalBody>
             <Center>
               <Image
-                source={AddDoctorIcon}
-                alt="Add Doctor Illustration"
+                source={AddTeacherIcon}
+                alt="Add Teacher Illustration"
                 w={'$3/5'}
                 h={'$40'}
                 marginVertical={'$4'}
                 resizeMode="cover"
               />
               <VStack width={'$full'}>
-                <TextBold text="Doctor ID" fontSize={'$xl'} color="white" />
+                <TextBold text="Teacher ID" fontSize={'$xl'} color="white" />
                 <Input width={'$full'} bgColor="#D7E6ED">
                   <InputField
                     display="flex"
@@ -97,4 +97,4 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
   );
 };
 
-export default AddDoctor;
+export default AddTeacher;

@@ -20,12 +20,27 @@ import TextBold from '../../atoms/Text/TextBold';
 import TextRegular from '../../atoms/Text/TextRegular';
 import {InputField} from '@gluestack-ui/themed';
 
-const AddDoctorIcon = require('../../../assets/images/add-doctor.png');
+const UserImage = require('../../../assets/images/user-image.png');
 // const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
-const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
+const fields = [
+  {
+    name: 'User ID',
+    placeholder: '#29019254',
+  },
+  {
+    name: 'Email',
+    placeholder: 'johndoe@gmail.com',
+  },
+  {
+    name: 'Role',
+    placeholder: 'Teacher',
+  },
+];
+
+const ProfilePreview = ({showModal, setShowModal, ref}: ModalProps) => {
   return (
-    <Center h={300}>
+    <Center>
       <Modal
         isOpen={showModal}
         onClose={() => {
@@ -36,7 +51,7 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
         <ModalContent bgColor="#A3BACD" rounded="$2xl">
           <ModalHeader borderBottomWidth={1} borderBottomColor="#DDDDDD">
             <TextSemibold
-              text="Add Doctor"
+              text="Kaif Qureshi"
               color="white"
               fontSize="$2xl"
               w="$full"
@@ -46,26 +61,34 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
           <ModalBody>
             <Center>
               <Image
-                source={AddDoctorIcon}
-                alt="Add Doctor Illustration"
-                w={'$3/5'}
-                h={'$40'}
+                source={UserImage}
+                alt="Add Teacher Illustration"
+                w={'$3/6'}
+                h={'$32'}
                 marginVertical={'$4'}
-                resizeMode="cover"
+                resizeMode="contain"
               />
-              <VStack width={'$full'}>
-                <TextBold text="Doctor ID" fontSize={'$xl'} color="white" />
-                <Input width={'$full'} bgColor="#D7E6ED">
-                  <InputField
-                    display="flex"
-                    alignContent="center"
-                    type="text"
-                    fontFamily="Poppins-Regular"
-                    placeholder={'#29019254'}
-                    fontSize={'$xs'}
-                    placeholderTextColor={'black'}
-                  />
-                </Input>
+              <VStack width={'$full'} space="md">
+                {fields.map((field, index) => (
+                  <VStack key={index}>
+                    <TextBold
+                      text={field.name}
+                      fontSize={'$xl'}
+                      color="white"
+                    />
+                    <Input width={'$full'} bgColor="#D7E6ED">
+                      <InputField
+                        display="flex"
+                        alignContent="center"
+                        type="text"
+                        fontFamily="Poppins-Regular"
+                        placeholder={field.placeholder}
+                        fontSize={'$xs'}
+                        placeholderTextColor={'black'}
+                      />
+                    </Input>
+                  </VStack>
+                ))}
               </VStack>
             </Center>
           </ModalBody>
@@ -97,4 +120,4 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
   );
 };
 
-export default AddDoctor;
+export default ProfilePreview;
