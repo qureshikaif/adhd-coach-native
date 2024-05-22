@@ -1,95 +1,70 @@
-import {View, ImageBackground, ScrollView,Text, Box, Center, Image, HStack, Input, InputField, Button} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView,Text, Box, Center, Image, HStack, Input, InputField, Button,} from '@gluestack-ui/themed';
 import React from 'react';
 import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
-import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 import { VStack } from '@gluestack-ui/themed';
 import BackButton from '../../components/atoms/Buttons/BackButton';
+import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
 
-const BackgroundImage = require('../../assets/images/doctor-bg.png');
+const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 const Avatar = require('../../assets/images/avatars/login.png');
+const BoxImage = require('../../assets/images/TeacherProfileSettings.png');
 
-const fields = [
-    {
-      title: 'Email',
-      placeholder: 'sanaD11@adhdcoach.com',
-      icon: '',
-    },
-    {
-      title: 'Username',
-      placeholder: 'sanaD11',
-      icon: '',
-    },
-  
-    {
-      title: 'Password',
-      placeholder: 'Sana123',
-      icon: '',
-    },
-  ];
-// type NavigationType = {
-//   ForgotPasswordVerify: undefined;
-// };
 
 const TeacherProfile= () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
     <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      <StatusBarDoctor text="Profile Settings" isSettingsVisible />
-      <Box height={'$8'} />
+      
+      <Box height={'$20'} />
       <ScrollView paddingHorizontal={'$4'}>
       <Center>
-      <Image source={Avatar} alt='avatar icon' /> 
-      </Center>
-      {fields.map((field, index) => (
-              <VStack key={index}>
-                <TextSemibold text={field.title} fontSize={'$2xl'}/>
-                <Input
-                  bgColor="#DEADAD"
-                  height={'$12'}
-                  rounded={'$lg'}
-                  width={'95%'}
-                  borderWidth={0}>
-                  <InputField
-                    type="text"
-                    fontFamily="Poppins-Regular"
-                    placeholder={field.placeholder}
-                    paddingHorizontal={'$6'}
-                    placeholderTextColor={'black'}
-                  />
-                </Input>
-                <Box height={'$2'} />
-              </VStack>
-            ))}
-             <Box height={'$10'} />
-             <HStack space="lg">
-            <Button
-              android_ripple={{color: '#DEB5B5'}}
-            //   onPress={() => navigation.navigate('ForgotPassword')}
-              hardShadow="3"
-              size="xl"
-              borderColor="black"
-              bg={'#947C7C'}
-              borderWidth={1}
-              borderRadius={'$lg'}>
-              <TextBold text="Cancel" />
-            </Button>
-            <Button
-            //   onPress={() => navigation.navigate('Signup')}
-              hardShadow="3"
-              size="xl"
-              borderColor="black"
-              bg={'#DEB5B5'}
-              borderWidth={1}
-              borderRadius={'$lg'}>
-              <TextBold text="Save Changes" />
-            </Button>
-          </HStack>
-      </ScrollView>
+  <Box
+  rounded={"$full"}
+    overflow="hidden"
+    width={100}
+    height={100}
+    borderWidth={2}
+    borderColor="gray.200"
+  >
+    <Image source={Avatar} alt="avatar icon" style={{ width: '100%', height: '100%' }} />
+  </Box>
+  <Text mt={4} fontFamily="Poppins-Regular" >
+   Mr ABUBAKAR
+  </Text>
+</Center>
+<Box height={'$20'} />
 
+<Box flex={1}>
+        <Box height={450} bgColor='#CDAAAA' justifyContent="flex-start" padding={20}>
+          <SideScreenButton text='Personal Info' />
+          <Box height={'$5'} />
+          <SideScreenButton text='Edit Peronal Info' />
+          <Box height={'$16'} />
+          <Button
+            android_ripple={{color: '#DEB5B5'}}
+              hardShadow="3"
+              
+              width={150}
+              borderColor="black"
+              bg={'#EDECD7'}
+              borderWidth={1}
+              borderRadius={20}>
+                
+              <TextBold text="Sign Out" />
+              
+            </Button>
+        </Box>
+      </Box>
+         
+
+          
+      </ScrollView>
+      
     </ImageBackground>
 
   </View>

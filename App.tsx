@@ -7,8 +7,7 @@ import AdminMain from './src/screens/Admin/AdminMain';
 import Signin from './src/screens/Authentication/Signin';
 import TeacherCourse from './src/screens/Teacher/TeacherCourse';
 import TeacherProfile from './src/screens/Teacher/TeacherProfile';
-
-import DoctorProfile from './src/screens/doctormodule/Profile';
+import TeacherProfileSetting from './src/screens/Teacher/TeacherProfileSetting';
 
 
 const config = createConfig({
@@ -33,10 +32,11 @@ function App(): React.JSX.Element {
       <GluestackUIProvider config={config}>
 
         <RootTabs />
-       
+        
+      
         
 
-        {/* < DoctorProfile/> */}
+       
 
       </GluestackUIProvider>
     </NavigationContainer>
