@@ -13,7 +13,7 @@ const AccountManagementParents = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <VStack space="xs">
           <TextSemibold text="View/Remove" fontSize={'$xl'} />
-          {Array.from({length: 10}).map((_, index) => (
+          {Array.from({length: 5}).map((_, index) => (
             <ViewOrRemove key={index} />
           ))}
         </VStack>
