@@ -6,7 +6,7 @@ import AdminSettingsButton from '../atoms/Buttons/AdminSettingsButton';
 
 type StatusBarAdminProps = {
   text: string;
-  isSettingsVisible: boolean;
+  isSettingsVisible?: boolean;
 };
 
 const StatusBarAdmin = ({text, isSettingsVisible}: StatusBarAdminProps) => {

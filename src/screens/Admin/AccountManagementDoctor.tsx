@@ -24,7 +24,7 @@ const AccountManagementDoctor = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarAdmin text="Admin Panel" isSettingsVisible />
+        <StatusBarAdmin text="Account Management" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <TextBold text="Dashboard" fontSize={'$2xl'} />
