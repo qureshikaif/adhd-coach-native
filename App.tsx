@@ -33,9 +33,9 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-        {/* <RootTabs /> */}
+        <RootTabs />
         {/* <AccountManagementDoctor /> */}
-        <AccountManagementMain />
+        {/* <AccountManagementMain /> */}
         {/* <TeacherProfileSetting /> */}
       </GluestackUIProvider>
     </NavigationContainer>

@@ -16,6 +16,7 @@ const TopTabs = ({doctors, teachers, students, parents}: TopTabsProps) => {
       screenOptions={{
         tabBarStyle: {
           backgroundColor: 'transparent',
+          marginVertical: 20,
         },
         tabBarScrollEnabled: true,
         tabBarItemStyle: {
