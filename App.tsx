@@ -9,6 +9,9 @@ import TeacherProfile from './src/screens/Teacher/TeacherProfile';
 import PersonalProfile from './src/screens/Doctor/PersonalProfile';
 import TeacherCourse from './src/screens/Teacher/TeacherCourse';
 import TeacherProfileSetting from './src/screens/Teacher/TeacherProfileSetting';
+import TopTabs from './src/navigation/TopTabs';
+import AccountManagementMain from './src/screens/Admin/AccountManagementMain';
+import AccountManagementDoctor from './src/screens/Admin/AccountManagementDoctor';
 
 const config = createConfig({
   ...defaultConfig,
@@ -30,8 +33,9 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-        <RootTabs />
-
+        {/* <RootTabs /> */}
+        {/* <AccountManagementDoctor /> */}
+        <AccountManagementMain />
         {/* <TeacherProfileSetting /> */}
       </GluestackUIProvider>
     </NavigationContainer>

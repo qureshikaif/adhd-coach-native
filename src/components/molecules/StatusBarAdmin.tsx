@@ -3,20 +3,27 @@ import BackButton from '../atoms/Buttons/BackButton';
 import TextBold from '../atoms/Text/TextBold';
 import React from 'react';
 import AdminSettingsButton from '../atoms/Buttons/AdminSettingsButton';
+import {GapValues} from '../../types/GapValues';
 
 type StatusBarAdminProps = {
   text: string;
   isSettingsVisible?: boolean;
+  gap?: GapValues;
 };
 
-const StatusBarAdmin = ({text, isSettingsVisible}: StatusBarAdminProps) => {
+const StatusBarAdmin = ({
+  text,
+  isSettingsVisible,
+  gap,
+}: StatusBarAdminProps) => {
   return (
     <HStack
       bgColor="#A3BACD"
       alignItems="center"
-      justifyContent="space-between"
+      justifyContent={gap ? 'flex-start' : 'space-between'}
       paddingHorizontal={'$4'}
-      paddingVertical={'$4'}>
+      paddingVertical={'$4'}
+      gap={gap ? gap : '$0'}>
       <BackButton
         variant="white"
         imageProps={{

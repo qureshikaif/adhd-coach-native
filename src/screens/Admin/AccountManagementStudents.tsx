@@ -6,7 +6,6 @@ import {
   VStack,
 } from '@gluestack-ui/themed';
 import React from 'react';
-import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import ViewOrRemove from '../../components/atoms/Buttons/ViewOrRemove';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 
@@ -16,11 +15,10 @@ const AccountManagementStudents = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarAdmin text="Account Management" />
         <Box height={'$8'} />
-        <ScrollView paddingHorizontal={'$4'}>
-          <VStack>
-            <TextSemibold text="View/Remove" />
+        <ScrollView>
+          <VStack space="sm">
+            <TextSemibold text="View/Remove" fontSize={'$xl'} />
             <ViewOrRemove />
             <ViewOrRemove />
             <ViewOrRemove />
