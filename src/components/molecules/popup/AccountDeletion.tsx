@@ -48,7 +48,7 @@ const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
                 w={'$1/3'}
                 h={'$24'}
                 marginVertical={'$4'}
-                resizeMode="cover"
+                resizeMode="contain"
               />
               <TextSemibold
                 text="Are you sure you want to delete this user?"

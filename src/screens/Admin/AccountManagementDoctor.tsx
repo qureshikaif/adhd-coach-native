@@ -13,7 +13,7 @@ const AccountManagementDoctor = () => {
   return (
     <ImageBackground source={BackgroundImage} minHeight={'$full'}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <VStack space="sm">
+        <VStack space="xs">
           <AddNewButton text="Add a new doctor" ModalComponent={AddDoctor} />
           <TextSemibold text="View/Remove" fontSize={'$xl'} />
           {Array.from({length: 10}).map((_, index) => (
