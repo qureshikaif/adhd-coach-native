@@ -47,7 +47,7 @@ const TeacherProfileSetting = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarTeacher text="Profile Settings" isSettingsVisible />
+        <StatusBarTeacher text="Profile Settings" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <Center>

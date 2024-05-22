@@ -30,9 +30,9 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-        {/* <RootTabs /> */}
+        <RootTabs />
 
-        <TeacherProfileSetting />
+        {/* <TeacherProfileSetting /> */}
       </GluestackUIProvider>
     </NavigationContainer>
   );

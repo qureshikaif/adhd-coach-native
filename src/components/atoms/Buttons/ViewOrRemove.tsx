@@ -12,7 +12,9 @@ const ViewOrRemove = () => {
       alignItems="center"
       bgColor="#D7E6ED"
       p={'$4'}
-      softShadow="4"
+      borderColor="gray"
+      borderWidth={0.5}
+      //   softShadow="4"
       rounded={'$3xl'}
       justifyContent="space-between">
       <HStack alignItems="center" space="lg">

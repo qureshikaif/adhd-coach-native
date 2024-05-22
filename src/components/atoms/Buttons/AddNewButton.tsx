@@ -48,13 +48,13 @@ const AddNewButton = ({
         </VStack>
       </Pressable>
       <AddDoctor showModal={showModal} setShowModal={setShowModal} ref={ref} />
-      {/* {ModalComponent && (
+      {ModalComponent && (
         <ModalComponent
           showModal={showModal}
           setShowModal={setShowModal}
           ref={ref}
         />
-      )} */}
+      )}
     </>
   );
 };

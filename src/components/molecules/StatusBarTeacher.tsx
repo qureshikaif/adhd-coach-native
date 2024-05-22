@@ -12,12 +12,10 @@ const StatusBarTeacher = ({text}: StatusBarTeacherProps) => {
     <HStack
       bgColor="#DBC9E1"
       alignItems="center"
-      // justifyContent="space-between"
       gap={'$12'}
       paddingHorizontal={'$4'}
       paddingVertical={'$4'}>
       <BackButton
-        // variant="white"
         imageProps={{
           size: 'xs',
         }}
