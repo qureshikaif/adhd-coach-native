@@ -1,21 +1,21 @@
 import {ImageBackground, ScrollView, Box, VStack} from '@gluestack-ui/themed';
 import React from 'react';
-import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
-import AddDoctor from '../../components/molecules/popup/AddDoctor';
-import ViewOrRemove from '../../components/atoms/Buttons/ViewOrRemove';
-import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import AddNewButton from '../../../components/atoms/Buttons/AddNewButton';
+import ViewOrRemove from '../../../components/atoms/Buttons/ViewOrRemove';
+import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import AddCourse from '../../../components/molecules/popup/AddCourse';
 
-const BackgroundImage = require('../../assets/images/admin-bg-main.png');
+const BackgroundImage = require('../../../assets/images/admin-content-bg.png');
 
-const AccountManagementDoctor = () => {
+const ContentManagementCourse = () => {
   const height = useBottomTabBarHeight();
   return (
     <ImageBackground source={BackgroundImage} minHeight={'$full'}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <VStack space="xs">
-          <AddNewButton text="Add a new doctor" ModalComponent={AddDoctor} />
-          <TextSemibold text="View/Remove" fontSize={'$xl'} />
+          <AddNewButton text="Add a new course" ModalComponent={AddCourse} />
+          <TextSemibold text="Modify" fontSize={'$xl'} />
           {Array.from({length: 10}).map((_, index) => (
             <ViewOrRemove key={index} />
           ))}
@@ -26,4 +26,4 @@ const AccountManagementDoctor = () => {
   );
 };
 
-export default AccountManagementDoctor;
+export default ContentManagementCourse;

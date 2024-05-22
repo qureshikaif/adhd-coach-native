@@ -1,14 +1,16 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AdminMain from '../../screens/Admin/AdminMain';
-import AccountManagementMain from '../../screens/Admin/AccountManagementMain';
+import AccountManagementMain from '../../screens/Admin/AccountManagement/AccountManagementMain';
+import ContentManagementMain from '../../screens/Admin/CourseManagement/ContentManagementMain';
+import AddNewArticle from '../../screens/Admin/CourseManagement/AddNewArticle';
 
 const Stack = createNativeStackNavigator();
 
 const CourseStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="AccountManagementMain"
+      initialRouteName="ContentManagementMain"
       screenOptions={{
         headerShown: false,
         statusBarColor: '#A3BACD',
@@ -19,6 +21,11 @@ const CourseStack = () => {
         name="AccountManagementMain"
         component={AccountManagementMain}
       />
+      <Stack.Screen
+        name="ContentManagementMain"
+        component={ContentManagementMain}
+      />
+      <Stack.Screen name="AddNewArticle" component={AddNewArticle} />
     </Stack.Navigator>
   );
 };

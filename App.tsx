@@ -10,8 +10,8 @@ import PersonalProfile from './src/screens/Doctor/PersonalProfile';
 import TeacherCourse from './src/screens/Teacher/TeacherCourse';
 import TeacherProfileSetting from './src/screens/Teacher/TeacherProfileSetting';
 import TopTabs from './src/navigation/TopTabs';
-import AccountManagementMain from './src/screens/Admin/AccountManagementMain';
-import AccountManagementDoctor from './src/screens/Admin/AccountManagementDoctor';
+import AccountManagementMain from './src/screens/Admin/AccountManagement/AccountManagementMain';
+import AccountManagementDoctor from './src/screens/Admin/AccountManagement/AccountManagementDoctor';
 
 const config = createConfig({
   ...defaultConfig,
