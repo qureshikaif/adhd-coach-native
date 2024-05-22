@@ -3,15 +3,6 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {RootTabs} from './src/navigation/RootTabs';
-import AdminMain from './src/screens/Admin/AdminMain';
-import TeacherEditPersonalInfo from './src/screens/Teacher/TeacherEditPersonalInfo';
-import TeacherProfile from './src/screens/Teacher/TeacherProfile';
-import PersonalProfile from './src/screens/Doctor/PersonalProfile';
-import TeacherCourse from './src/screens/Teacher/TeacherCourse';
-import TeacherProfileSetting from './src/screens/Teacher/TeacherProfileSetting';
-import TopTabs from './src/navigation/TopTabs';
-import AccountManagementMain from './src/screens/Admin/AccountManagement/AccountManagementMain';
-import AccountManagementDoctor from './src/screens/Admin/AccountManagement/AccountManagementDoctor';
 
 const config = createConfig({
   ...defaultConfig,
@@ -34,6 +25,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         <RootTabs />
+
         {/* <AccountManagementDoctor /> */}
         {/* <AccountManagementMain /> */}
         {/* <TeacherProfileSetting /> */}
