@@ -7,9 +7,9 @@ import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
 import { VStack } from '@gluestack-ui/themed';
 import BackButton from '../../components/atoms/Buttons/BackButton';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
-
+const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
-const Avatar = require('../../assets/images/avatars/login.png');
+
 
 const fields = [
     {
@@ -50,7 +50,7 @@ const TeacherProfileSetting= () => {
     borderWidth={2}
     borderColor="gray.200"
   >
-    <Image source={Avatar} alt="avatar icon" style={{ width: '100%', height: '100%' }} />
+    <Image source={TeacherPic} alt="Teacher Icon" style={{ width: '100%', height: '100%' }} />
   </Box>
   <Text mt={4} fontFamily="Poppins-Regular" >
    Mr ABUBAKAR

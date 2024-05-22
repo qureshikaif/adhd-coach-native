@@ -14,7 +14,7 @@ const Avatar = require('../../assets/images/avatars/login.png');
 const BoxImage = require('../../assets/images/TeacherProfileSettings.png');
 
 
-const TeacherProfile= () => {
+const PersonalProfile= () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
@@ -31,6 +31,7 @@ const TeacherProfile= () => {
     borderWidth={2}
     borderColor="gray.200"
   >
+    
     <Image source={TeacherPic} alt="Teacher pic" style={{ width: '100%', height: '100%' }} />
   </Box>
   <Text mt={4} fontFamily="Poppins-Regular" >
@@ -41,9 +42,9 @@ const TeacherProfile= () => {
 
 <Box flex={1}>
         <Box height={450} bgColor='#CDAAAA' justifyContent="flex-start" padding={20}>
-          <SideScreenButton text='Personal Info' />
+          <SideScreenButton text='Perofile info' />
           <Box height={'$5'} />
-          <SideScreenButton text='Edit Peronal Info' />
+          <SideScreenButton text='Perofile Setting' />
           <Box height={'$16'} />
           
           <Box flex={1} justifyContent="center" alignItems="center">
@@ -74,4 +75,4 @@ const TeacherProfile= () => {
 };
 
 
-export default TeacherProfile;
+export default PersonalProfile;
