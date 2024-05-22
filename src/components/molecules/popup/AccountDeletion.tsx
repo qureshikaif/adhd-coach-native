@@ -21,12 +21,13 @@ const WarningIcon = require('../../../assets/images/icons/warning.png');
 
 const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
   return (
-    <Center h={300}>
+    <Center>
       <Modal
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
         }}
+        size="lg"
         finalFocusRef={ref}>
         <ModalBackdrop />
         <ModalContent bgColor="#A3BACD" rounded={'$2xl'}>

@@ -3,6 +3,7 @@ import {Center, Image, Pressable, VStack} from '@gluestack-ui/themed';
 import {ButtonProps} from '../../../types/ButtonProps';
 import TextSemibold from '../Text/TextSemibold';
 import {ModalProps} from '../../../types/ModalProps';
+import AddDoctor from '../../molecules/popup/AddDoctor';
 
 const PlusIcon = require('../../../assets/images/icons/plus-dark.png');
 
@@ -29,7 +30,7 @@ const AddNewButton = ({
         {...buttonProps}
         bgColor="#D7E6ED"
         p={'$5'}
-        ref={ref}
+        // ref={ref}
         hardShadow="3"
         softShadow="4"
         rounded={'$lg'}>
@@ -46,14 +47,14 @@ const AddNewButton = ({
           </Center>
         </VStack>
       </Pressable>
-
-      {ModalComponent && (
+      <AddDoctor showModal={showModal} setShowModal={setShowModal} ref={ref} />
+      {/* {ModalComponent && (
         <ModalComponent
           showModal={showModal}
           setShowModal={setShowModal}
           ref={ref}
         />
-      )}
+      )} */}
     </>
   );
 };

@@ -5,7 +5,6 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
 import AddDoctor from '../../components/molecules/popup/AddDoctor';
-import ViewOrRemove from '../../components/atoms/Buttons/ViewOrRemove';
 
 const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
@@ -13,7 +12,7 @@ const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 //   ForgotPasswordVerify: undefined;
 // };
 
-const AdminMain = () => {
+const AccountManagementStudents = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
@@ -24,7 +23,6 @@ const AdminMain = () => {
           <TextBold text="Dashboard" fontSize={'$2xl'} />
           <TextSemibold text="App Analytics" fontSize={'$xl'} />
           <AddNewButton text="Add a new doctor" ModalComponent={AddDoctor} />
-          <ViewOrRemove />
           {/* <AddNewButton text="Add a new teacher" ModalComponent={AddTeacher} /> */}
         </ScrollView>
       </ImageBackground>
@@ -32,4 +30,4 @@ const AdminMain = () => {
   );
 };
 
-export default AdminMain;
+export default AccountManagementStudents;
