@@ -8,16 +8,16 @@ import {
   Image,
   Button,
 } from '@gluestack-ui/themed';
-import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
 import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
+import React from 'react';
 
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 // const Avatar = require('../../assets/images/avatars/login.png');
 // const BoxImage = require('../../assets/images/TeacherProfileSettings.png');
 
-const TeacherProfile = () => {
+const PersonalProfile = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
@@ -51,9 +51,9 @@ const TeacherProfile = () => {
               bgColor="#CDAAAA"
               justifyContent="flex-start"
               padding={20}>
-              <SideScreenButton text="Personal Info" />
+              <SideScreenButton text="Profile info" />
               <Box height={'$5'} />
-              <SideScreenButton text="Edit Peronal Info" />
+              <SideScreenButton text="Profile Setting" />
               <Box height={'$16'} />
 
               <Box flex={1} justifyContent="center" alignItems="center">
@@ -76,4 +76,4 @@ const TeacherProfile = () => {
   );
 };
 
-export default TeacherProfile;
+export default PersonalProfile;

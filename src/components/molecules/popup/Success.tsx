@@ -6,7 +6,6 @@ import {
   ModalContent,
   ModalHeader,
   Button,
-  ButtonText,
   Center,
   Image,
   HStack,
@@ -16,10 +15,10 @@ import {ModalProps} from '../../../types/ModalProps';
 import TextSemibold from '../../atoms/Text/TextSemibold';
 import TextRegular from '../../atoms/Text/TextRegular';
 
-const WarningIcon = require('../../../assets/images/icons/warning.png');
+const SuccessIcon = require('../../../assets/images/icons/success.png');
 // const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
-const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
+const Success = ({showModal, setShowModal, ref}: ModalProps) => {
   return (
     <Center>
       <Modal
@@ -43,15 +42,15 @@ const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
           <ModalBody>
             <Center>
               <Image
-                source={WarningIcon}
-                alt="Add Doctor Illustration"
+                source={SuccessIcon}
+                alt="Success Icon"
                 w={'$1/3'}
                 h={'$24'}
                 marginVertical={'$4'}
                 resizeMode="contain"
               />
               <TextSemibold
-                text="Are you sure you want to delete this user?"
+                text="Article added successfully"
                 color="white"
                 fontSize="$xl"
                 textAlign="center"
@@ -67,9 +66,9 @@ const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                <ButtonText>Cancel</ButtonText>
+                <TextRegular text="Close" color="white" />
               </Button>
-              <Button
+              {/* <Button
                 flex={1}
                 bgColor="#648DA0"
                 rounded={'$lg'}
@@ -77,7 +76,7 @@ const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
                   setShowModal(false);
                 }}>
                 <TextRegular text="Confirm" color="white" />
-              </Button>
+              </Button> */}
             </HStack>
           </ModalFooter>
         </ModalContent>
@@ -86,4 +85,4 @@ const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
   );
 };
 
-export default AccountDeletion;
+export default Success;

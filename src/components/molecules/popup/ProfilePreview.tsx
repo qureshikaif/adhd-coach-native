@@ -46,6 +46,7 @@ const ProfilePreview = ({showModal, setShowModal, ref}: ModalProps) => {
         onClose={() => {
           setShowModal(false);
         }}
+        size="lg"
         finalFocusRef={ref}>
         <ModalBackdrop />
         <ModalContent bgColor="#A3BACD" rounded="$2xl">

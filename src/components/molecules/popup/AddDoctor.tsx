@@ -25,12 +25,13 @@ const AddDoctorIcon = require('../../../assets/images/add-doctor.png');
 
 const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
   return (
-    <Center h={300}>
+    <Center>
       <Modal
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
         }}
+        size="lg"
         finalFocusRef={ref}>
         <ModalBackdrop />
         <ModalContent bgColor="#A3BACD" rounded="$2xl">
