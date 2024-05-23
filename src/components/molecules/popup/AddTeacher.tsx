@@ -25,12 +25,13 @@ const AddTeacherIcon = require('../../../assets/images/add-teacher.png');
 
 const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
   return (
-    <Center h={300}>
+    <Center>
       <Modal
         isOpen={showModal}
         onClose={() => {
           setShowModal(false);
         }}
+        size="lg"
         finalFocusRef={ref}>
         <ModalBackdrop />
         <ModalContent bgColor="#A3BACD" rounded="$2xl">

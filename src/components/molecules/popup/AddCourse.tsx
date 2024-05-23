@@ -9,17 +9,35 @@ import {
   ButtonText,
   Center,
   Image,
+  VStack,
   HStack,
+  Input,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
 import TextSemibold from '../../atoms/Text/TextSemibold';
+import TextBold from '../../atoms/Text/TextBold';
 import TextRegular from '../../atoms/Text/TextRegular';
+import {InputField} from '@gluestack-ui/themed';
 
-const WarningIcon = require('../../../assets/images/icons/warning.png');
-// const CloseIcon = require('../../../assets/images/icons/close-white.png');
+const AddCourseIcon = require('../../../assets/images/add-course.png');
 
-const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
+const fields = [
+  {
+    name: 'Name',
+    placeholder: 'Mathematics',
+  },
+  {
+    name: 'Description',
+    placeholder: 'Which topics this course contains',
+  },
+  {
+    name: 'Instructor',
+    placeholder: 'Ahmed = 443201',
+  },
+];
+
+const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
   return (
     <Center>
       <Modal
@@ -30,10 +48,10 @@ const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
         size="lg"
         finalFocusRef={ref}>
         <ModalBackdrop />
-        <ModalContent bgColor="#A3BACD" rounded={'$2xl'}>
+        <ModalContent bgColor="#A3BACD" rounded="$2xl">
           <ModalHeader borderBottomWidth={1} borderBottomColor="#DDDDDD">
             <TextSemibold
-              text="Account Deletion"
+              text="Add Course"
               color="white"
               fontSize="$2xl"
               w="$full"
@@ -43,19 +61,35 @@ const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
           <ModalBody>
             <Center>
               <Image
-                source={WarningIcon}
-                alt="Add Doctor Illustration"
-                w={'$1/3'}
-                h={'$24'}
+                source={AddCourseIcon}
+                alt="Add Course Illustration"
+                w={'$3/6'}
+                h={'$32'}
                 marginVertical={'$4'}
                 resizeMode="contain"
               />
-              <TextSemibold
-                text="Are you sure you want to delete this user?"
-                color="white"
-                fontSize="$xl"
-                textAlign="center"
-              />
+              <VStack width={'$full'} space="md">
+                {fields.map((field, index) => (
+                  <VStack key={index}>
+                    <TextBold
+                      text={field.name}
+                      fontSize={'$xl'}
+                      color="white"
+                    />
+                    <Input width={'$full'} bgColor="#D7E6ED">
+                      <InputField
+                        display="flex"
+                        alignContent="center"
+                        type="text"
+                        fontFamily="Poppins-Regular"
+                        placeholder={field.placeholder}
+                        fontSize={'$xs'}
+                        placeholderTextColor={'black'}
+                      />
+                    </Input>
+                  </VStack>
+                ))}
+              </VStack>
             </Center>
           </ModalBody>
           <ModalFooter>
@@ -86,4 +120,4 @@ const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
   );
 };
 
-export default AccountDeletion;
+export default AddCourse;
