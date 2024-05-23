@@ -4,6 +4,7 @@ import AdminMain from '../../screens/Admin/AdminMain';
 import AccountManagementMain from '../../screens/Admin/AccountManagement/AccountManagementMain';
 import ContentManagementMain from '../../screens/Admin/CourseManagement/ContentManagementMain';
 import AddNewArticle from '../../screens/Admin/CourseManagement/AddNewArticle';
+import AdminProfile from '../../screens/Admin/AdminProfile';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ const CourseStack = () => {
         component={ContentManagementMain}
       />
       <Stack.Screen name="AddNewArticle" component={AddNewArticle} />
+      <Stack.Screen name="AdminProfile" component={AdminProfile} />
     </Stack.Navigator>
   );
 };

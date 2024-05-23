@@ -15,6 +15,7 @@ import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import {VStack} from '@gluestack-ui/themed';
 import React from 'react';
+import TextRegular from '../../components/atoms/Text/TextRegular';
 
 const BackgroundImage = require('../../assets/images/admin-bg-profile.png');
 const Avatar = require('../../assets/images/user-image.png');
@@ -43,20 +44,22 @@ const AdminProfile = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarAdmin text="Profile Settings" isSettingsVisible />
+        <StatusBarAdmin text="Profile Settings" gap="$16" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <Center>
-            <Image source={Avatar} alt="avatar icon" />
+            <Image source={Avatar} alt="avatar icon" size="xl" />
+            <TextSemibold text="Admin" fontSize={'$xl'} />
           </Center>
+          <Box height={'$5'} />
           {fields.map((field, index) => (
             <VStack key={index}>
-              <TextSemibold text={field.title} fontSize={'$2xl'} />
+              <TextSemibold text={field.title} fontSize={'$xl'} />
               <Input
                 bgColor="#D7E6ED"
                 height={'$12'}
                 rounded={'$lg'}
-                borderWidth={'$1'}
+                borderWidth={0.5}
                 borderColor="black">
                 <InputField
                   type="text"
@@ -64,33 +67,32 @@ const AdminProfile = () => {
                   placeholder={field.placeholder}
                   paddingHorizontal={'$6'}
                   placeholderTextColor={'black'}
+                  fontSize={'$sm'}
                 />
               </Input>
-              <Box height={'$2'} />
+              <Box height={'$3'} />
             </VStack>
           ))}
-          <Box height={'$10'} />
+          <Box height={'$5'} />
           <HStack space="lg">
             <Button
+              flex={1}
               android_ripple={{color: '#DEB5B5'}}
-              //   onPress={() => navigation.navigate('ForgotPassword')}
               hardShadow="3"
               size="xl"
               borderColor="black"
               bg={'#666666'}
-              borderWidth={1}
               borderRadius={'$lg'}>
-              <TextBold text="Cancel" color="white" />
+              <TextRegular text="Cancel" color="white" />
             </Button>
             <Button
-              //   onPress={() => navigation.navigate('Signup')}
+              flex={1}
               hardShadow="3"
               size="xl"
               borderColor="black"
               bg={'#648DA0'}
-              borderWidth={1}
               borderRadius={'$lg'}>
-              <TextBold text="Save Changes" color="white" />
+              <TextRegular text="Save Changes" color="white" />
             </Button>
           </HStack>
         </ScrollView>
