@@ -8,20 +8,30 @@ import { VStack } from '@gluestack-ui/themed';
 import BackButton from '../../components/atoms/Buttons/BackButton';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
-const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
+const TeacherPic = require('../../assets/images/icons/ProfilePicSana.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 const Avatar = require('../../assets/images/avatars/login.png');
-const BoxImage = require('../../assets/images/TeacherProfileSettings.png');
 
 
-const TeacherProfile= () => {
+
+const ParentPersonalProfile= () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
     <ImageBackground source={BackgroundImage} minHeight={'$full'}>
+    <ScrollView paddingHorizontal={'$4'}>
+      <HStack justifyContent='center' alignItems='center'>
+   
+    <TextSemibold text="Profile "paddingRight={'$8'} fontSize={'$3xl'} />
+    </HStack>
+<Box height={'$10'} />
+
+<Box flex={1}>
+        <Box height={650} bgColor='#F3E3E3' justifyContent="flex-start" padding={20} borderRadius={20}>
+        
       
-      <Box height={'$20'} />
-      <ScrollView paddingHorizontal={'$4'}>
+      <Box height={'$5'} />
+     
       <Center>
   <Box
   rounded={"$full"}
@@ -30,20 +40,20 @@ const TeacherProfile= () => {
     height={100}
     borderWidth={2}
     borderColor="gray.200"
-  >
-    <Image source={TeacherPic} alt="Teacher pic" style={{ width: '100%', height: '100%' }} />
+  > 
+    <Image source={TeacherPic} alt="Teacher pic" style={{ width: '100%', height: '100%',  }} />
   </Box>
   <Text mt={4} fontFamily="Poppins-Regular" >
-   Mr ABUBAKAR
+   Sana Zehra
   </Text>
 </Center>
-<Box height={'$20'} />
-
-<Box flex={1}>
-        <Box height={450} bgColor='#CDAAAA' justifyContent="flex-start" padding={20}>
-          <SideScreenButton text='Personal Info' />
+<Box height={'$10'} />
+          <SideScreenButton text='Profile info' />
+          
           <Box height={'$5'} />
-          <SideScreenButton text='Edit Personal Info' />
+          <SideScreenButton text='child Info' />
+          <Box height={'$5'} />
+          <SideScreenButton text='Profile Setting' />
           <Box height={'$16'} />
           
           <Box flex={1} justifyContent="center" alignItems="center">
@@ -73,5 +83,4 @@ const TeacherProfile= () => {
 );
 };
 
-
-export default TeacherProfile;
+export default ParentPersonalProfile;

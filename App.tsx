@@ -7,6 +7,12 @@ import AdminMain from './src/screens/Admin/AdminMain';
 import TeacherEditPersonalInfo from './src/screens/Teacher/TeacherEditPersonalInfo';
 import TeacherProfile from './src/screens/Teacher/TeacherProfile';
 import PersonalProfile from './src/screens/Doctor/PersonalProfile';
+import PersonalInfo from './src/screens/Doctor/PersonalInfo.';
+import ParentProfileSetting from './src/screens/ParentModule/ProfileSetting';
+import DoctorProfile from './src/screens/Doctor/ProfileSetting';
+import ParentPersonalInfo from './src/screens/ParentModule/ParentPersonalInfo';
+import ChildInfo from './src/screens/ParentModule/ChildInfo';
+import ParentPersonalProfile from './src/screens/ParentModule/ParentPersonaProfile';
 
 
 const config = createConfig({
@@ -31,9 +37,9 @@ function App(): React.JSX.Element {
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
        
-        
-
-       <PersonalProfile/>
+        {/* <ParentPersonalInfo/> */}
+<DoctorProfile/>
+     
 
       </GluestackUIProvider>
     </NavigationContainer>
