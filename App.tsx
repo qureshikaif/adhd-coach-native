@@ -4,6 +4,8 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {RootTabs} from './src/navigation/RootTabs';
 import AdminProfile from './src/screens/Admin/AdminProfile';
+import DoctorMain from './src/screens/Doctor/DoctorMain';
+import PatientProfileHistory from './src/screens/Doctor/PatientHistoryProfile';
 
 const config = createConfig({
   ...defaultConfig,
@@ -25,10 +27,9 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-        <RootTabs />
-
+      <PatientProfileHistory/>
+        {/*<RootTabs />*/}
         {/* <AdminProfile /> */}
-
         {/* <AccountManagementDoctor /> */}
         {/* <AccountManagementMain /> */}
         {/* <TeacherProfileSetting /> */}
