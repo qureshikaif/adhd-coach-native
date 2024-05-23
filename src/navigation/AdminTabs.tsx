@@ -1,20 +1,20 @@
 import React from 'react';
 import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeStack from '../../src/navigation/stacks/HomeStack';
-import CourseStack from './stacks/CourseStack';
-import GameStack from './stacks/GameStack';
-import ProfileStack from './stacks/ProfileStack';
-import SettingStack from './stacks/SettingStack';
+import AdminContentManagement from './stacks/Admin/AdminContentManagement';
+import AdminAppAnalytics from './stacks/Admin/AdminAppAnalytics';
+import AdminFeedback from './stacks/Admin/AdminFeedback';
+import AdminAccountManagement from './stacks/Admin/AdminAccountManagement';
+import AdminMain from '../screens/Admin/AdminMain';
 
 const Tab = createBottomTabNavigator();
 
 const icons: {[index: string]: any} = {
-  Home: require('../assets/images/navigation/Home.png'),
-  Courses: require('../assets/images/navigation/Courses.png'),
-  Games: require('../assets/images/navigation/Games.png'),
-  Profile: require('../assets/images/navigation/Profile.png'),
-  Settings: require('../assets/images/navigation/Settings.png'),
+  AdminHome: require('../assets/images/navigation/Home.png'),
+  AdminContentManagement: require('../assets/images/navigation/Courses.png'),
+  AdminAppAnalytics: require('../assets/images/navigation/Games.png'),
+  AdminFeedback: require('../assets/images/navigation/Profile.png'),
+  AdminAccountManagement: require('../assets/images/navigation/Settings.png'),
 };
 
 export const tabBarStyle = {
@@ -40,17 +40,17 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
 };
 
 const screens = [
-  {name: 'AdminHome', component: HomeStack},
-  {name: 'AdminContentManagement', component: CourseStack},
-  {name: 'AdminAppAnalytics', component: ProfileStack},
-  {name: 'AdminFeedback', component: GameStack},
-  {name: 'AdminAccountManagement', component: SettingStack},
+  {name: 'AdminHome', component: AdminMain},
+  {name: 'AdminContentManagement', component: AdminContentManagement},
+  {name: 'AdminAppAnalytics', component: AdminAppAnalytics},
+  {name: 'AdminFeedback', component: AdminFeedback},
+  {name: 'AdminAccountManagement', component: AdminAccountManagement},
 ];
 
 export const AdminTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="AdminHome"
       screenOptions={({route}) => ({
         tabBarIcon: ({focused}) => TabBarIcon(focused, route.name),
         tabBarShowLabel: false,

@@ -11,7 +11,7 @@ import HomeStack from './stacks/HomeStack';
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   const user = {
     role: 'admin',
   };
