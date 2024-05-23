@@ -10,12 +10,12 @@ import {
   InputField,
   Button,
 } from '@gluestack-ui/themed';
-import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import {VStack} from '@gluestack-ui/themed';
 import React from 'react';
 import TextRegular from '../../components/atoms/Text/TextRegular';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const BackgroundImage = require('../../assets/images/admin-bg-profile.png');
 const Avatar = require('../../assets/images/user-image.png');
@@ -39,14 +39,18 @@ const fields = [
   },
 ];
 
+type NavigationType = {
+  AppAnalytics: undefined;
+};
+
 const AdminProfile = () => {
-  //   const navigation = useNavigation<NavigationProp<NavigationType>>();
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
         <StatusBarAdmin text="Profile Settings" gap="$16" />
         <Box height={'$8'} />
-        <ScrollView paddingHorizontal={'$4'}>
+        <ScrollView paddingHorizontal={'$5'}>
           <Center>
             <Image source={Avatar} alt="avatar icon" size="xl" />
             <TextSemibold text="Admin" fontSize={'$xl'} />
@@ -86,13 +90,14 @@ const AdminProfile = () => {
               <TextRegular text="Cancel" color="white" />
             </Button>
             <Button
+              onPress={() => navigation.navigate('AppAnalytics')}
               flex={1}
               hardShadow="3"
               size="xl"
               borderColor="black"
               bg={'#648DA0'}
               borderRadius={'$lg'}>
-              <TextRegular text="Save Changes" color="white" />
+              <TextRegular text="Save" color="white" />
             </Button>
           </HStack>
         </ScrollView>

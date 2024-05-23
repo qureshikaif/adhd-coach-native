@@ -5,6 +5,7 @@ import AccountManagementMain from '../../screens/Admin/AccountManagement/Account
 import ContentManagementMain from '../../screens/Admin/CourseManagement/ContentManagementMain';
 import AddNewArticle from '../../screens/Admin/CourseManagement/AddNewArticle';
 import AdminProfile from '../../screens/Admin/AdminProfile';
+import AppAnalytics from '../../screens/Admin/AppAnalytics';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ const CourseStack = () => {
       />
       <Stack.Screen name="AddNewArticle" component={AddNewArticle} />
       <Stack.Screen name="AdminProfile" component={AdminProfile} />
+      <Stack.Screen name="AppAnalytics" component={AppAnalytics} />
     </Stack.Navigator>
   );
 };
