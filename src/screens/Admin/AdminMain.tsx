@@ -8,10 +8,11 @@ import {
 import React from 'react';
 import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import TextBold from '../../components/atoms/Text/TextBold';
-import TextSemibold from '../../components/atoms/Text/TextSemibold';
-import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
-import AddDoctor from '../../components/molecules/popup/AddDoctor';
-import ViewOrRemove from '../../components/atoms/Buttons/ViewOrRemove';
+import AppStatistics from '../../components/molecules/AppStatistics';
+import RecentFeedbacks from '../../components/molecules/RecentFeedbacks';
+import CourseStatistics from '../../components/molecules/CourseStatistics';
+import TotalStudentsEnrolled from '../../components/molecules/TotalStudentsEnrolled';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
 const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
@@ -22,16 +23,14 @@ const AdminMain = () => {
         <StatusBarAdmin text="Admin Panel" isSettingsVisible />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
-          <TextBold text="Dashboard" fontSize={'$2xl'} />
-          <TextSemibold text="App Analytics" fontSize={'$xl'} />
-          <VStack space="sm">
-            <AddNewButton text="Add a new doctor" ModalComponent={AddDoctor} />
-            <ViewOrRemove />
-            <ViewOrRemove />
-            <ViewOrRemove />
-            <ViewOrRemove />
+          <VStack space="lg">
+            <TextBold text="Dashboard" fontSize={'$2xl'} />
+            <AppStatistics />
+            <TotalStudentsEnrolled />
+            <RecentFeedbacks />
+            <CourseStatistics />
           </VStack>
-          {/* <AddNewButton text="Add a new teacher" ModalComponent={AddTeacher} /> */}
+          <Box height={useBottomTabBarHeight() * 2} />
         </ScrollView>
       </ImageBackground>
     </View>

@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 const CourseStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="ContentManagementMain"
+      initialRouteName="AdminMain"
       screenOptions={{
         headerShown: false,
         statusBarColor: '#A3BACD',
