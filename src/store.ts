@@ -1,13 +1,17 @@
 import {create} from 'zustand';
 
-type Store = {
-  count: number;
-  increaseCount: () => void;
-  decreaseCount: () => void;
+type Authentication = {
+  role: string | null;
+  setRole: (role: string) => void;
+  isAuthenticated: boolean;
+  setAuthenticated: (isAuthenticated: boolean) => void;
 };
 
+export type Store = Authentication;
+
 export const useStore = create<Store>(set => ({
-  count: 0,
-  increaseCount: () => set(state => ({count: state.count + 1})),
-  decreaseCount: () => set(state => ({count: state.count - 1})),
+  role: null,
+  isAuthenticated: false,
+  setRole: role => set(() => ({role})),
+  setAuthenticated: isAuthenticated => set(() => ({isAuthenticated})),
 }));

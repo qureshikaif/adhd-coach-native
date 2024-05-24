@@ -29,6 +29,7 @@ import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {ChevronDown, Lock, Mail, User} from 'lucide-react-native';
+import {useStore} from '../../store';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/login.png');
@@ -50,7 +51,14 @@ type NavigationType = {
 };
 
 const Signin = () => {
+  const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
+
+  const handleLogin = () => {
+    store.setAuthenticated(true);
+  };
+  const handleRole = (role: string) => store.setRole(role);
+
   return (
     <View height={'$full'}>
       <ImageBackground
@@ -102,7 +110,7 @@ const Signin = () => {
                 </Input>
               </HStack>
             ))}
-            <Select>
+            <Select onValueChange={handleRole}>
               <SelectTrigger
                 bgColor="#DC9F72"
                 height={'$12'}
@@ -157,6 +165,7 @@ const Signin = () => {
           </VStack>
           <Box height={'$10'} />
           <Pressable
+            onPress={handleLogin}
             bgColor="#DC9F72"
             paddingHorizontal={'$8'}
             paddingVertical={'$2'}

@@ -7,25 +7,24 @@ import {ParentTabs} from './ParentTabs';
 import {DoctorTabs} from './DoctorTabs';
 import {TeacherTabs} from './TeacherTabs';
 import HomeStack from './stacks/HomeStack';
+import {useStore} from '../store';
 
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
-  const isAuthenticated = false;
-  const user = {
-    role: 'admin',
-  };
+  const store = useStore();
+
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      {!isAuthenticated ? (
+      {!store.isAuthenticated ? (
         <Stack.Screen name="Main" component={HomeStack} />
-      ) : user.role === 'admin' ? (
+      ) : store.role === 'admin' ? (
         <Stack.Screen name="Admin" component={AdminTabs} />
-      ) : user.role === 'student' ? (
+      ) : store.role === 'student' ? (
         <Stack.Screen name="Student" component={StudentTabs} />
-      ) : user.role === 'parent' ? (
+      ) : store.role === 'parent' ? (
         <Stack.Screen name="Parents" component={ParentTabs} />
-      ) : user.role === 'doctor' ? (
+      ) : store.role === 'doctor' ? (
         <Stack.Screen name="Doctor" component={DoctorTabs} />
       ) : (
         <Stack.Screen name="Teacher" component={TeacherTabs} />
