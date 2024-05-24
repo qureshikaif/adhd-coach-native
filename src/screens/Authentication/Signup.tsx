@@ -30,22 +30,27 @@ const fields = [
   {
     title: 'Full name',
     icon: User,
+    type: 'text',
   },
   {
     title: 'Email',
     icon: Mail,
+    type: 'text',
   },
   {
     title: 'Password',
     icon: Lock,
+    type: 'password',
   },
   {
     title: 'Confirm password',
     icon: Lock,
+    type: 'password',
   },
   {
     title: 'Role',
     icon: Shield,
+    type: 'text',
   },
 ];
 
@@ -91,7 +96,7 @@ const Signup = () => {
                     <field.icon size={25} color="black" />
                   </InputSlot>
                   <InputField
-                    type="text"
+                    type={field.type as 'text' | 'password'}
                     fontFamily="Poppins-Regular"
                     placeholder={field.title}
                     paddingHorizontal={'$6'}
