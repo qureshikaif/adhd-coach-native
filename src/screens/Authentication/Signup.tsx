@@ -9,6 +9,7 @@ import {
   Box,
   Pressable,
   Image,
+  InputSlot,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import BackButton from '../../components/atoms/Buttons/BackButton';
@@ -16,6 +17,7 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
+import {Lock, Mail, Shield, User} from 'lucide-react-native';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/signup.png');
@@ -27,23 +29,23 @@ const RoleIcon = require('../../assets/images/icons/chevron-down.png');
 const fields = [
   {
     title: 'Full name',
-    icon: UserIcon,
+    icon: User,
   },
   {
     title: 'Email',
-    icon: EmailIcon,
+    icon: Mail,
   },
   {
     title: 'Password',
-    icon: PasswordIcon,
+    icon: Lock,
   },
   {
     title: 'Confirm password',
-    icon: PasswordIcon,
+    icon: Lock,
   },
   {
     title: 'Role',
-    icon: RoleIcon,
+    icon: Shield,
   },
 ];
 
@@ -85,6 +87,9 @@ const Signup = () => {
                   rounded={'$2xl'}
                   width={'$full'}
                   borderWidth={0}>
+                  <InputSlot pl="$4">
+                    <field.icon size={25} color="black" />
+                  </InputSlot>
                   <InputField
                     type="text"
                     fontFamily="Poppins-Regular"

@@ -18,26 +18,24 @@ import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {Lock, Mail, User} from 'lucide-react-native';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/login.png');
-const EmailIcon = require('../../assets/images/icons/email.png');
-const PasswordIcon = require('../../assets/images/icons/password.png');
-const UserIcon = require('../../assets/images/icons/user.png');
 
 const fields = [
   {
     title: 'Email',
-    icon: EmailIcon,
+    icon: Mail,
   },
   {
     title: 'Password',
-    icon: PasswordIcon,
+    icon: Lock,
   },
 
   {
     title: 'Role',
-    icon: UserIcon,
+    icon: User,
   },
 ];
 
@@ -87,13 +85,7 @@ const Signin = () => {
                   width={'$full'}
                   borderWidth={0}>
                   <InputSlot pl="$4">
-                    <Image
-                      source={field.icon}
-                      alt="Field Icons"
-                      resizeMode="contain"
-                      width={30}
-                      height={30}
-                    />
+                    <field.icon size={25} color={'black'} />
                   </InputSlot>
                   <InputField
                     type="text"
