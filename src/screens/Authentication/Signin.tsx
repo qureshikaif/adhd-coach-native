@@ -16,6 +16,7 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/login.png');
@@ -39,7 +40,13 @@ const fields = [
   },
 ];
 
+type NavigationType = {
+  Signup: undefined;
+  ForgotPassword: undefined;
+};
+
 const Signin = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
       <ImageBackground
@@ -106,7 +113,7 @@ const Signin = () => {
             <HStack justifyContent="space-between">
               <HStack>
                 <TextRegular text="New user?" fontSize={'$sm'} />
-                <Pressable>
+                <Pressable onPress={() => navigation.navigate('Signup')}>
                   <TextBold
                     fontSize={'$sm'}
                     text={`${' '}Sign Up`}
@@ -114,7 +121,7 @@ const Signin = () => {
                   />
                 </Pressable>
               </HStack>
-              <Pressable>
+              <Pressable onPress={() => navigation.navigate('ForgotPassword')}>
                 <TextBold
                   fontSize={'$sm'}
                   text="Forgot Password?"

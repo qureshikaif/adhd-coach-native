@@ -24,14 +24,7 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-        {/* <PatientProfileHistory /> */}
         <MainNavigator />
-
-        {/*<RootTabs />*/}
-        {/* <AdminProfile /> */}
-        {/* <AccountManagementDoctor /> */}
-        {/* <AccountManagementMain /> */}
-        {/* <TeacherProfileSetting /> */}
       </GluestackUIProvider>
     </NavigationContainer>
   );
