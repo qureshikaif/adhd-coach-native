@@ -10,7 +10,7 @@ const AdminFeedback = () => {
       initialRouteName="AdminFeedbackMain"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#8D5A39',
+        statusBarColor: '#A3BACD',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="AdminFeedbackMain" component={AppAnalytics} />

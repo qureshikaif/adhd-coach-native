@@ -1,4 +1,4 @@
-import {HStack} from '@gluestack-ui/themed';
+import {Box, HStack} from '@gluestack-ui/themed';
 import BackButton from '../atoms/Buttons/BackButton';
 import TextBold from '../atoms/Text/TextBold';
 import React from 'react';
@@ -32,13 +32,15 @@ const StatusBarAdmin = ({
         buttonProps={{}}
       />
       <TextBold text={text} fontSize={'$2xl'} color="white" />
-      {isSettingsVisible && (
+      {isSettingsVisible ? (
         <AdminSettingsButton
           imageProps={{
             width: 35,
             height: 35,
           }}
         />
+      ) : (
+        <Box w={40} h={'$full'} />
       )}
     </HStack>
   );

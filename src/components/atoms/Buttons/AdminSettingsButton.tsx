@@ -6,14 +6,14 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 const SettingsIcon = require('../../../assets/images/icons/settings-white.png');
 
 type NavigationType = {
-  AdminProfile: undefined;
+  AdminProfileSettings: undefined;
 };
 
 const AdminSettingsButton = ({buttonProps, imageProps}: ButtonProps) => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <Pressable
-      onPress={() => navigation.navigate('AdminProfile')}
+      onPress={() => navigation.navigate('AdminProfileSettings')}
       {...buttonProps}>
       <Image source={SettingsIcon} alt="Settings Icon" {...imageProps} />
     </Pressable>

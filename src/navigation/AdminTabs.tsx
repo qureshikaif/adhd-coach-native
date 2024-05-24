@@ -5,16 +5,16 @@ import AdminContentManagement from './stacks/Admin/AdminContentManagement';
 import AdminAppAnalytics from './stacks/Admin/AdminAppAnalytics';
 import AdminFeedback from './stacks/Admin/AdminFeedback';
 import AdminAccountManagement from './stacks/Admin/AdminAccountManagement';
-import AdminMain from '../screens/Admin/AdminMain';
+import AdminHome from './stacks/Admin/AdminHome';
 
 const Tab = createBottomTabNavigator();
 
 const icons: {[index: string]: any} = {
   AdminHome: require('../assets/images/navigation/Home.png'),
   AdminContentManagement: require('../assets/images/navigation/Courses.png'),
-  AdminAppAnalytics: require('../assets/images/navigation/Games.png'),
-  AdminFeedback: require('../assets/images/navigation/Profile.png'),
-  AdminAccountManagement: require('../assets/images/navigation/Settings.png'),
+  AdminAppAnalytics: require('../assets/images/navigation/Analytics.png'),
+  AdminFeedback: require('../assets/images/navigation/Feedback.png'),
+  AdminAccountManagement: require('../assets/images/navigation/Profile.png'),
 };
 
 export const tabBarStyle = {
@@ -29,7 +29,7 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
   const iconSource = icons[routeName];
   if (focused) {
     return (
-      <View bg="#8D5A39" rounded={'$full'} padding={'$2'}>
+      <View bg="#A3BACD" rounded={'$full'} padding={'$2'}>
         <Image source={iconSource} alt="Tab Bar Icons" width={30} height={30} />
       </View>
     );
@@ -40,7 +40,7 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
 };
 
 const screens = [
-  {name: 'AdminHome', component: AdminMain},
+  {name: 'AdminHome', component: AdminHome},
   {name: 'AdminContentManagement', component: AdminContentManagement},
   {name: 'AdminAppAnalytics', component: AdminAppAnalytics},
   {name: 'AdminFeedback', component: AdminFeedback},
