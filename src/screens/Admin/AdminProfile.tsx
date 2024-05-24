@@ -48,7 +48,7 @@ const AdminProfile = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarAdmin text="Profile Settings" gap="$16" />
+        <StatusBarAdmin text="Profile Settings" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$5'}>
           <Center>
