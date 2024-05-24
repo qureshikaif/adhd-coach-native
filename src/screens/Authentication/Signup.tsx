@@ -21,10 +21,6 @@ import {Lock, Mail, Shield, User} from 'lucide-react-native';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/signup.png');
-const UserIcon = require('../../assets/images/icons/user.png');
-const EmailIcon = require('../../assets/images/icons/email.png');
-const PasswordIcon = require('../../assets/images/icons/password.png');
-const RoleIcon = require('../../assets/images/icons/chevron-down.png');
 
 const fields = [
   {
@@ -103,6 +99,7 @@ const Signup = () => {
                     placeholderTextColor={'black'}
                   />
                 </Input>
+
                 {/* <Box
                   width={'13%'}
                   borderRadius={'$full'}

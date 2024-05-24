@@ -10,6 +10,16 @@ import {
   Pressable,
   Image,
   InputSlot,
+  SelectTrigger,
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import BackButton from '../../components/atoms/Buttons/BackButton';
@@ -18,7 +28,7 @@ import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {Lock, Mail, User} from 'lucide-react-native';
+import {ChevronDown, Lock, Mail, User} from 'lucide-react-native';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/login.png');
@@ -31,11 +41,6 @@ const fields = [
   {
     title: 'Password',
     icon: Lock,
-  },
-
-  {
-    title: 'Role',
-    icon: User,
   },
 ];
 
@@ -95,22 +100,40 @@ const Signin = () => {
                     placeholderTextColor={'black'}
                   />
                 </Input>
-                {/* <Box
-                  width={'13%'}
-                  borderRadius={'$full'}
-                  bg="#DC9F72"
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center">
-                  <Image
-                    source={field.icon}
-                    alt="User Icon"
-                    resizeMode="contain"
-                    size="2xs"
-                  />
-                </Box> */}
               </HStack>
             ))}
+            <Select>
+              <SelectTrigger
+                bgColor="#DC9F72"
+                height={'$12'}
+                paddingStart={'$4'}
+                paddingEnd={'$3'}
+                rounded={'$2xl'}
+                width={'$full'}>
+                <User size={25} color={'black'} />
+                <SelectInput
+                  paddingStart={'$5'}
+                  mt={'$1'}
+                  placeholder="Role"
+                  fontFamily="Poppins-Regular"
+                  placeholderTextColor={'black'}
+                />
+                <SelectIcon as={ChevronDown} size={'xl'} color="black" />
+              </SelectTrigger>
+              <SelectPortal>
+                <SelectBackdrop />
+                <SelectContent bg="whitesmoke">
+                  <SelectDragIndicatorWrapper>
+                    <SelectDragIndicator />
+                  </SelectDragIndicatorWrapper>
+                  <SelectItem label="Admin" value="admin" />
+                  <SelectItem label="Doctor" value="doctor" />
+                  <SelectItem label="Teacher" value="teacher" />
+                  <SelectItem label="Parent" value="parent" />
+                  <SelectItem label="Student" value="student" />
+                </SelectContent>
+              </SelectPortal>
+            </Select>
 
             <HStack justifyContent="space-between">
               <HStack>
