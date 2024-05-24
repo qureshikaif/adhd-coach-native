@@ -76,14 +76,14 @@ const Signup = () => {
           />
 
           <Box height={'$5'} />
-          <VStack width={'$full'} rowGap={'$2'}>
+          <VStack width={'$full'} rowGap={'$3'}>
             {fields.map((field, index) => (
               <HStack space="sm" key={index}>
                 <Input
                   bgColor="#DC9F72"
                   height={'$12'}
                   rounded={'$2xl'}
-                  width={'85%'}
+                  width={'$full'}
                   borderWidth={0}>
                   <InputField
                     type="text"
@@ -93,7 +93,7 @@ const Signup = () => {
                     placeholderTextColor={'black'}
                   />
                 </Input>
-                <Box
+                {/* <Box
                   width={'13%'}
                   borderRadius={'$full'}
                   bg="#DC9F72"
@@ -106,7 +106,7 @@ const Signup = () => {
                     resizeMode="contain"
                     size="2xs"
                   />
-                </Box>
+                </Box> */}
               </HStack>
             ))}
 

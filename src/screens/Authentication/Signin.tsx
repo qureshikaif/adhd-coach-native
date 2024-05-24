@@ -9,6 +9,7 @@ import {
   Box,
   Pressable,
   Image,
+  InputSlot,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import BackButton from '../../components/atoms/Buttons/BackButton';
@@ -22,7 +23,7 @@ const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/login.png');
 const EmailIcon = require('../../assets/images/icons/email.png');
 const PasswordIcon = require('../../assets/images/icons/password.png');
-const RoleIcon = require('../../assets/images/icons/chevron-down.png');
+const UserIcon = require('../../assets/images/icons/user.png');
 
 const fields = [
   {
@@ -36,7 +37,7 @@ const fields = [
 
   {
     title: 'Role',
-    icon: RoleIcon,
+    icon: UserIcon,
   },
 ];
 
@@ -83,8 +84,17 @@ const Signin = () => {
                   bgColor="#DC9F72"
                   height={'$12'}
                   rounded={'$2xl'}
-                  width={'85%'}
+                  width={'$full'}
                   borderWidth={0}>
+                  <InputSlot pl="$4">
+                    <Image
+                      source={field.icon}
+                      alt="Field Icons"
+                      resizeMode="contain"
+                      width={30}
+                      height={30}
+                    />
+                  </InputSlot>
                   <InputField
                     type="text"
                     fontFamily="Poppins-Regular"
@@ -93,7 +103,7 @@ const Signin = () => {
                     placeholderTextColor={'black'}
                   />
                 </Input>
-                <Box
+                {/* <Box
                   width={'13%'}
                   borderRadius={'$full'}
                   bg="#DC9F72"
@@ -106,7 +116,7 @@ const Signin = () => {
                     resizeMode="contain"
                     size="2xs"
                   />
-                </Box>
+                </Box> */}
               </HStack>
             ))}
 
