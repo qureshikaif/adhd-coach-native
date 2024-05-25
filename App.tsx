@@ -2,7 +2,9 @@ import {config as defaultConfig} from '@gluestack-ui/config';
 import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
+import DoctorMain from './src/screens/Doctor/DoctorMain';
 import MainNavigator from './src/navigation/MainNavigator';
+
 
 const config = createConfig({
   ...defaultConfig,
@@ -24,7 +26,9 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-        <MainNavigator />
+        <DoctorMain/>
+      {/*<PatientProfileHistory/>*/}
+        {/*<RootTabs/>*/}
       </GluestackUIProvider>
     </NavigationContainer>
   );
