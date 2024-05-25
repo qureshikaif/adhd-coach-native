@@ -4,6 +4,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {RootTabs} from './src/navigation/RootTabs';
 import FeedbackAndSupport from './src/screens/Admin/FeedbackAndSupport';
+import AccountManagementDoctor from './src/screens/Admin/AccountManagementDoctor';
 
 const config = createConfig({
   ...defaultConfig,
@@ -27,7 +28,8 @@ function App(): React.JSX.Element {
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
 
-        < FeedbackAndSupport/>
+<AccountManagementDoctor/>
+        {/* < FeedbackAndSupport/> */}
       </GluestackUIProvider>
     </NavigationContainer>
   );
