@@ -32,7 +32,7 @@ const Success = ({showModal, setShowModal, ref}: ModalProps) => {
         <ModalContent bgColor="#A3BACD" rounded={'$2xl'}>
           <ModalHeader borderBottomWidth={1} borderBottomColor="#DDDDDD">
             <TextSemibold
-              text="Account Deletion"
+              text="Success"
               color="white"
               fontSize="$2xl"
               w="$full"
@@ -52,7 +52,7 @@ const Success = ({showModal, setShowModal, ref}: ModalProps) => {
               <TextSemibold
                 text="Article added successfully"
                 color="white"
-                fontSize="$xl"
+                fontSize="$2xl"
                 textAlign="center"
               />
             </Center>
@@ -61,6 +61,7 @@ const Success = ({showModal, setShowModal, ref}: ModalProps) => {
             <HStack space="sm">
               <Button
                 flex={1}
+                h={'$12'}
                 bgColor="#666666"
                 rounded={'$lg'}
                 onPress={() => {
@@ -68,15 +69,6 @@ const Success = ({showModal, setShowModal, ref}: ModalProps) => {
                 }}>
                 <TextRegular text="Close" color="white" />
               </Button>
-              {/* <Button
-                flex={1}
-                bgColor="#648DA0"
-                rounded={'$lg'}
-                onPress={() => {
-                  setShowModal(false);
-                }}>
-                <TextRegular text="Confirm" color="white" />
-              </Button> */}
             </HStack>
           </ModalFooter>
         </ModalContent>

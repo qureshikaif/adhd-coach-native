@@ -45,35 +45,38 @@ const TeacherProfile = () => {
           </Center>
           <Box height={'$20'} />
 
-          <Box flex={1}>
-            <Box
-              height={450}
-              bgColor="#CDAAAA"
-              justifyContent="flex-start"
-              padding={20}>
-              <SideScreenButton text="Personal Info" />
-              <Box height={'$5'} />
-              <SideScreenButton text="Edit Peronal Info" />
-              <Box height={'$16'} />
+<Box flex={1}>
+        <Box height={450} bgColor='#CDAAAA' justifyContent="flex-start" padding={20}>
+          <SideScreenButton text='Personal Info' />
+          <Box height={'$5'} />
+          <SideScreenButton text='Edit Peronal Info' />
+          <Box height={'$16'} />
+          
+          <Box flex={1} justifyContent="center" alignItems="center">
+    <Button
+        android_ripple={{ color: '#DEB5B5' }}
+        hardShadow="3"
+        width={120}
+        borderColor="black"
+        bg={'#EDECD7'}
+        borderWidth={1}
+        borderRadius={20}
+    >
+        <TextBold text="Sign Out" />
+    </Button>
+</Box>
 
-              <Box flex={1} justifyContent="center" alignItems="center">
-                <Button
-                  android_ripple={{color: '#DEB5B5'}}
-                  hardShadow="3"
-                  width={120}
-                  borderColor="black"
-                  bg={'#EDECD7'}
-                  borderWidth={1}
-                  borderRadius={20}>
-                  <TextBold text="Sign Out" />
-                </Button>
-              </Box>
-            </Box>
-          </Box>
-        </ScrollView>
-      </ImageBackground>
-    </View>
-  );
+        </Box>
+      </Box>
+         
+
+          
+      </ScrollView>
+      
+    </ImageBackground>
+
+  </View>
+);
 };
 
 export default TeacherProfile;

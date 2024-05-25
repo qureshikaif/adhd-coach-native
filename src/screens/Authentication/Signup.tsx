@@ -9,6 +9,7 @@ import {
   Box,
   Pressable,
   Image,
+  InputSlot,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import BackButton from '../../components/atoms/Buttons/BackButton';
@@ -16,34 +17,36 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
+import {Lock, Mail, Shield, User} from 'lucide-react-native';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/signup.png');
-const UserIcon = require('../../assets/images/icons/user.png');
-const EmailIcon = require('../../assets/images/icons/email.png');
-const PasswordIcon = require('../../assets/images/icons/password.png');
-const RoleIcon = require('../../assets/images/icons/chevron-down.png');
 
 const fields = [
   {
     title: 'Full name',
-    icon: UserIcon,
+    icon: User,
+    type: 'text',
   },
   {
     title: 'Email',
-    icon: EmailIcon,
+    icon: Mail,
+    type: 'text',
   },
   {
     title: 'Password',
-    icon: PasswordIcon,
+    icon: Lock,
+    type: 'password',
   },
   {
     title: 'Confirm password',
-    icon: PasswordIcon,
+    icon: Lock,
+    type: 'password',
   },
   {
     title: 'Role',
-    icon: RoleIcon,
+    icon: Shield,
+    type: 'text',
   },
 ];
 
@@ -76,24 +79,28 @@ const Signup = () => {
           />
 
           <Box height={'$5'} />
-          <VStack width={'$full'} rowGap={'$2'}>
+          <VStack width={'$full'} rowGap={'$3'}>
             {fields.map((field, index) => (
               <HStack space="sm" key={index}>
                 <Input
                   bgColor="#DC9F72"
                   height={'$12'}
                   rounded={'$2xl'}
-                  width={'85%'}
+                  width={'$full'}
                   borderWidth={0}>
+                  <InputSlot pl="$4">
+                    <field.icon size={25} color="black" />
+                  </InputSlot>
                   <InputField
-                    type="text"
+                    type={field.type as 'text' | 'password'}
                     fontFamily="Poppins-Regular"
                     placeholder={field.title}
                     paddingHorizontal={'$6'}
                     placeholderTextColor={'black'}
                   />
                 </Input>
-                <Box
+
+                {/* <Box
                   width={'13%'}
                   borderRadius={'$full'}
                   bg="#DC9F72"
@@ -106,7 +113,7 @@ const Signup = () => {
                     resizeMode="contain"
                     size="2xs"
                   />
-                </Box>
+                </Box> */}
               </HStack>
             ))}
 

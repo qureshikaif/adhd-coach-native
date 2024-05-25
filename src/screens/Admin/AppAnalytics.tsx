@@ -7,28 +7,20 @@ import {
 } from '@gluestack-ui/themed';
 import React from 'react';
 import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
-import TextBold from '../../components/atoms/Text/TextBold';
-import AppStatistics from '../../components/molecules/AppStatistics';
-import RecentFeedbacks from '../../components/molecules/RecentFeedbacks';
-import CourseStatistics from '../../components/molecules/CourseStatistics';
-import TotalStudentsEnrolled from '../../components/molecules/TotalStudentsEnrolled';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import LastWeekStatistics from '../../components/molecules/LastWeekStatistics';
 
 const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
-const AdminMain = () => {
+const AppAnalytics = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarAdmin text="Admin Panel" isSettingsVisible />
+        <StatusBarAdmin text="App Analytics" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <VStack space="lg">
-            <TextBold text="Dashboard" fontSize={'$2xl'} />
-            <AppStatistics />
-            <TotalStudentsEnrolled />
-            <RecentFeedbacks />
-            <CourseStatistics />
+            <LastWeekStatistics />
           </VStack>
           <Box height={useBottomTabBarHeight() * 2} />
         </ScrollView>
@@ -37,4 +29,4 @@ const AdminMain = () => {
   );
 };
 
-export default AdminMain;
+export default AppAnalytics;

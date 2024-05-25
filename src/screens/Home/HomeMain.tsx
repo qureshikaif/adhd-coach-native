@@ -84,7 +84,7 @@ const HomeMain = () => {
           <HStack space="lg">
             <Button
               android_ripple={{color: '#B9A173'}}
-              onPress={() => navigation.navigate('ForgotPassword')}
+              onPress={() => navigation.navigate('Signin')}
               hardShadow="3"
               size="xl"
               borderColor="black"

@@ -6,26 +6,27 @@ import { VStack } from '@gluestack-ui/themed';
 import BackButton from '../../components/atoms/Buttons/BackButton';
 
 import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
-import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
+import SideBackButton from '../../components/atoms/Buttons/SideBackButton';
+import StatusBarParent from '../../components/molecules/StatusBarParent';
 
-const BackgroundImage = require('../../assets/images/doctor-bg.png');
+
+const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 
 
 
-const PersonalInfo= () => {
+const ChildInfo= () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
     <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-
-    <StatusBarDoctor text="Profile Information" isSettingsVisible />
-      <Box height={'$7'} />
+<StatusBarParent text="Child Information" isSettingsVisible />
+      <Box height={'$2'} />
       <ScrollView paddingHorizontal={'$4'}>
       <Box flexDirection="row" alignItems="center">
     < Box flex={1}>
-    <Box height={770} bgColor='#FADFDF' justifyContent="flex-start" padding={20}>
-    <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 30 }}>
+    <Box height={750} bgColor='#F0D9F3' justifyContent="flex-start" padding={20} borderRadius={20}>
+    <View style={{  alignItems: 'center' }}>
             <Box
                  rounded={"$full"}
                 overflow="hidden"
@@ -37,30 +38,26 @@ const PersonalInfo= () => {
                 <Image source={TeacherPic} alt="Teacher" style={{ width: '100%', height: '100%' }} />
             </Box>
             <Text style={{ marginTop: 0, marginLeft: 15, fontFamily: 'Poppins-Regular' }}>
-                joined 2 years ago
+                Mrs Ahmed
             </Text>
         </View>
+        <Box height={'$5'} />
     <Text mt={4} fontFamily="Poppins-Regular">
-        Personal Information:{"\n"}
-Full Name: Dr. Sana Zehra{"\n"}
-ID: sanaD11{"\n"}
-Gender: Female{"\n"}
-Date of Birth: 01-18-1990{"\n"}
-Phone Number: +9234-34224387{"\n"}
-Email: Drsana@gmail.com{"\n"}
-Address: 168 Falcon{"\n"}
-Medical License Number: GcDr8521{"\n"}
-{"\n"}
-Professional Information:{"\n"}
-Area of Expertise: Psychiatric Evaluation and Diagnosis{"\n"}
-Medical Degree: MD (Doctor of Medicine){"\n"}
-Board Certification: 58493rw{"\n"}
-Years of Practice Experience: 10{"\n"}
-Affiliated Hospital or Clinic: ClearView Psychiatry{"\n"}
-{"\n"}
-Educational Background:{"\n"}
-Medical School Attended: Johns Hopkins University{"\n"}
-Graduation Year: 2012{"\n"}
+    Name : Ali Ahmed  Age: 7{"\n"}
+Gender : Male  Blood Group: A+{"\n"}
+Father Name: M. Ahmed{"\n"}
+Father Phone no: +9232-34321344{"\n"}
+Mother name : Zehra Ahmed{"\n"}
+Mother Phone No: +9232-34321344{"\n"}
+Address: House# 120 Lane 2 Falcon{"\n"}
+Diagnosis: ADHD at 7{"\n"}
+Symptoms: Difficulty concentrating, impulsivity, hyperactivity{"\n"}
+Treatment Plan: Combination of behavioral therapy and medication{"\n"}
+Medication: [Specify medication name, dosage, and frequency]{"\n"}
+Ongoing Monitoring: Regular check-ups with healthcare providers to adjust treatment as needed
+
+
+
         </Text>
 </Box>
 <Box height={'$5'} />     
@@ -75,4 +72,4 @@ Graduation Year: 2012{"\n"}
 };
 
 
-export default PersonalInfo;
+export default ChildInfo;

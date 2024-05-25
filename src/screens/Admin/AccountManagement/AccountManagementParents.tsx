@@ -1,10 +1,10 @@
 import {ImageBackground, ScrollView, Box, VStack} from '@gluestack-ui/themed';
 import React from 'react';
-import ViewOrRemove from '../../components/atoms/Buttons/ViewOrRemove';
-import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import ViewOrRemove from '../../../components/atoms/Buttons/ViewOrRemove';
+import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
-const BackgroundImage = require('../../assets/images/admin-bg-main.png');
+const BackgroundImage = require('../../../assets/images/admin-bg-main.png');
 
 const AccountManagementParents = () => {
   const height = useBottomTabBarHeight();
