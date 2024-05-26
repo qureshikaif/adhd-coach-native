@@ -43,7 +43,6 @@ const fields = [
 
 type NavigationType = {
   AppAnalytics: undefined;
-  Main: undefined;
 };
 
 const AdminProfile = () => {
@@ -52,7 +51,6 @@ const AdminProfile = () => {
 
   const handleLogout = () => {
     store.setAuthenticated(false);
-    // navigation.navigate('Main');
   };
 
   return (

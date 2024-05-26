@@ -1,23 +1,21 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import AdminMain from '../../../screens/Admin/AdminMain';
-import AdminProfile from '../../../screens/Admin/AdminProfile';
+import DoctorMain from '../../../screens/Doctor/DoctorMain';
 
 const Stack = createNativeStackNavigator();
 
-const AdminHome = () => {
+const DoctorHome = () => {
   return (
     <Stack.Navigator
-      initialRouteName="AdminPanel"
+      initialRouteName="DoctorMain"
       screenOptions={{
         headerShown: false,
         statusBarColor: '#A3BACD',
         statusBarStyle: 'light',
       }}>
-      <Stack.Screen name="AdminPanel" component={AdminMain} />
-      <Stack.Screen name="AdminProfileSettings" component={AdminProfile} />
+      <Stack.Screen name="DoctorMain" component={DoctorMain} />
     </Stack.Navigator>
   );
 };
 
-export default AdminHome;
+export default DoctorHome;
