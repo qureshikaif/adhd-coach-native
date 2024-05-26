@@ -18,6 +18,7 @@ import TextRegular from '../../components/atoms/Text/TextRegular';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {useStore} from '../../store';
+import {handleLogout} from '../../helpers/handleLogout';
 
 const BackgroundImage = require('../../assets/images/admin-bg-profile.png');
 const Avatar = require('../../assets/images/user-image.png');
@@ -48,10 +49,6 @@ type NavigationType = {
 const AdminProfile = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
-
-  const handleLogout = () => {
-    store.setAuthenticated(false);
-  };
 
   return (
     <View height={'$full'}>
@@ -108,7 +105,7 @@ const AdminProfile = () => {
           </HStack>
           <Box height={'$3'} />
           <Button
-            onPress={handleLogout}
+            onPress={() => handleLogout(store)}
             flex={1}
             hardShadow="3"
             size="xl"
