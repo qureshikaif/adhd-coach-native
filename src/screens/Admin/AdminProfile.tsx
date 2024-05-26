@@ -17,6 +17,7 @@ import React from 'react';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {useStore} from '../../store';
 
 const BackgroundImage = require('../../assets/images/admin-bg-profile.png');
 const Avatar = require('../../assets/images/user-image.png');
@@ -42,11 +43,17 @@ const fields = [
 
 type NavigationType = {
   AppAnalytics: undefined;
-  Main: {screen: string};
 };
 
 const AdminProfile = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
+  const store = useStore();
+
+  const handleLogout = async () => {
+    await store.setAuthenticated(false);
+    navigation.navigate('Main');
+  };
+
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
@@ -102,7 +109,7 @@ const AdminProfile = () => {
           </HStack>
           <Box height={'$3'} />
           <Button
-            onPress={() => navigation.navigate('Main', {screen: 'Home Main'})}
+            onPress={handleLogout}
             flex={1}
             hardShadow="3"
             size="xl"
