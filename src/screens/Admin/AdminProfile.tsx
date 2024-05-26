@@ -16,6 +16,7 @@ import {VStack} from '@gluestack-ui/themed';
 import React from 'react';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
 const BackgroundImage = require('../../assets/images/admin-bg-profile.png');
 const Avatar = require('../../assets/images/user-image.png');
@@ -41,6 +42,7 @@ const fields = [
 
 type NavigationType = {
   AppAnalytics: undefined;
+  Main: {screen: string};
 };
 
 const AdminProfile = () => {
@@ -55,7 +57,7 @@ const AdminProfile = () => {
             <Image source={Avatar} alt="avatar icon" size="xl" />
             <TextSemibold text="Admin" fontSize={'$xl'} />
           </Center>
-          <Box height={'$5'} />
+          <Box height={'$2'} />
           {fields.map((field, index) => (
             <VStack key={index}>
               <TextSemibold text={field.title} fontSize={'$xl'} />
@@ -77,12 +79,11 @@ const AdminProfile = () => {
               <Box height={'$3'} />
             </VStack>
           ))}
-          <Box height={'$5'} />
+          <Box height={'$2'} />
           <HStack space="lg">
             <Button
               flex={1}
               android_ripple={{color: '#DEB5B5'}}
-              hardShadow="3"
               size="xl"
               borderColor="black"
               bg={'#666666'}
@@ -92,7 +93,6 @@ const AdminProfile = () => {
             <Button
               onPress={() => navigation.navigate('AppAnalytics')}
               flex={1}
-              hardShadow="3"
               size="xl"
               borderColor="black"
               bg={'#648DA0'}
@@ -100,6 +100,18 @@ const AdminProfile = () => {
               <TextRegular text="Save" color="white" />
             </Button>
           </HStack>
+          <Box height={'$3'} />
+          <Button
+            onPress={() => navigation.navigate('Main', {screen: 'Home Main'})}
+            flex={1}
+            hardShadow="3"
+            size="xl"
+            borderColor="black"
+            bg={'#A3BACD'}
+            borderRadius={'$lg'}>
+            <TextRegular text="Sign Out" color="white" />
+          </Button>
+          <Box height={useBottomTabBarHeight()} />
         </ScrollView>
       </ImageBackground>
     </View>
