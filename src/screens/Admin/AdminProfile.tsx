@@ -43,15 +43,16 @@ const fields = [
 
 type NavigationType = {
   AppAnalytics: undefined;
+  Main: undefined;
 };
 
 const AdminProfile = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
 
-  const handleLogout = async () => {
-    await store.setAuthenticated(false);
-    navigation.navigate('Main');
+  const handleLogout = () => {
+    store.setAuthenticated(false);
+    // navigation.navigate('Main');
   };
 
   return (
