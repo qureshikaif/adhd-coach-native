@@ -7,7 +7,8 @@ import FeedbackAndSupport from './src/screens/Admin/FeedbackAndSupport';
 // import AccountManagementDoctor from './src/screens/Admin/AccountManagementDoctor';
 import DoctorMain from './src/screens/Doctor/DoctorMain';
 import MainNavigator from './src/navigation/MainNavigator';
-
+import ParentMain from './src/screens/ParentModule/ParentMain';
+import ChildProgressReport from './src/screens/ParentModule/ChildProgressReport';
 
 const config = createConfig({
   ...defaultConfig,
@@ -32,7 +33,7 @@ function App(): React.JSX.Element {
         {/* <RootTabs /> */}
 
 {/* <AccountManagementDoctor/> */}
-        < FeedbackAndSupport/>
+        < ChildProgressReport/>
         {/* <DoctorMain/> */}
       {/*<PatientProfileHistory/>*/}
         {/*<RootTabs/>*/}
