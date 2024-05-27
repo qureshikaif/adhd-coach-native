@@ -3,6 +3,8 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
+// import StudentCourses from './src/screens/StudentModule/StudentCourses';
+// import StudentActivity from './src/screens/StudentModule/StudentActivity';
 
 const config = createConfig({
   ...defaultConfig,
