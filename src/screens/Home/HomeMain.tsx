@@ -19,6 +19,7 @@ type NavigationType = {
   Signin: undefined;
   Signup: undefined;
   ForgotPassword: undefined;
+  Assessment: undefined;
 };
 
 const adhd = [
@@ -106,6 +107,7 @@ const HomeMain = () => {
           </HStack>
           <TextBold text="OR" fontSize={'$2xl'} />
           <Button
+            onPress={() => navigation.navigate('Assessment')}
             hardShadow="5"
             size="xl"
             borderColor="black"
