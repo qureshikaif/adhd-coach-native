@@ -26,6 +26,7 @@ function App(): React.JSX.Element {
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
         <MainNavigator />
+        {/* <GrandAssessment /> */}
         {/* <AccountManagementDoctor/> */}
         {/* <DoctorMain/> */}
         {/*<PatientProfileHistory/>*/}

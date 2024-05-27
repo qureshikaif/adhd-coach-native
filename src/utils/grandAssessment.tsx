@@ -1,0 +1,108 @@
+export const grandAssessment = [
+  {
+    id: 1,
+    question: 'Hello, What is my name and what color am I?',
+    isQuestionImage: true,
+    questionImage: '',
+    isOptionImage: false,
+    optionImage: ['', '', '', ''],
+    options: [
+      'Circle - Blue',
+      'Rectangle - Blue',
+      'Triangle - Red',
+      'Square - Blue',
+    ],
+  },
+  {
+    id: 2,
+    question:
+      'Match the alphabets with the object starting with the same starting alphabet.',
+    isQuestionImage: true,
+    questionImage: '',
+    isOptionImage: false,
+    optionImage: ['', '', '', ''],
+    options: ['A', 'R', 'F', 'S'],
+  },
+  {
+    id: 3,
+    question: 'Calculate the answer.',
+    isQuestionImage: true,
+    questionImage: '',
+    isOptionImage: true,
+    optionImage: ['', '', '', ''],
+    options: ['', '', '', ''],
+  },
+  {
+    id: 4,
+    question: 'What is my color and what shape am I?',
+    isQuestionImage: true,
+    questionImage: 'Illustration of a red triangle with eyes and a mouth',
+    isOptionImage: false,
+    optionImage: ['', '', '', ''],
+    options: [
+      'Yellow - Circle',
+      'Red - Triangle',
+      'Blue - Octagon',
+      'Green - Square',
+    ],
+  },
+  {
+    id: 5,
+    question:
+      'Add all the fingers up; what will the resulting number be if we divide this same number with itself?',
+    isQuestionImage: true,
+    questionImage:
+      'Four pairs of hands holding up fingers corresponding to numbers one through four',
+    isOptionImage: true,
+    optionImage: ['One', 'Two', 'Three', 'Four'],
+    options: ['', '', '', ''],
+  },
+  {
+    id: 6,
+    question: 'What is my name?',
+    isQuestionImage: true,
+    questionImage: 'Illustration of a green square with eyes and a mouth',
+    isOptionImage: true,
+    optionImage: ['Triangle', 'Circle', 'Ellipse', 'Octagon'],
+    options: ['', '', '', ''],
+  },
+  {
+    id: 7,
+    question: 'Match the object that starts with the given letter.',
+    isQuestionImage: true,
+    questionImage: 'Three images: an elephant, a monkey, and a penguin',
+    isOptionImage: true,
+    optionImage: ['Elephant', 'Monkey', 'Penguin'],
+    options: ['', '', ''],
+  },
+  {
+    id: 8,
+    question: 'Match the object which matches with the given color.',
+    isQuestionImage: true,
+    questionImage: 'Three images: a star, a cat, and a red arrow',
+    isOptionImage: true,
+    optionImage: ['Star', 'Cat', 'Red Arrow'],
+    options: ['', '', ''],
+  },
+  {
+    id: 9,
+    question: 'Subtract the second number from the first.',
+    isQuestionImage: true,
+    questionImage:
+      'Two sets of hands; the first set shows three hands with all five fingers extended, indicating the number 15. The second set shows one hand with four fingers extended.',
+    isOptionImage: true,
+    optionImage: ['11', '12', '13', '14'],
+    options: ['', '', '', ''],
+  },
+  {
+    id: 10,
+    question: "Match the object starting with the same letter as 'penguin'.",
+    isQuestionImage: true,
+    questionImage: 'An image of a penguin',
+    isOptionImage: true,
+    optionImage: ['Kite (K)', 'Xylophone (X)', 'Octopus (O)', 'Tent (T)'],
+    options: ['', '', '', ''],
+  },
+];
+
+export default grandAssessment;

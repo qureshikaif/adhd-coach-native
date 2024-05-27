@@ -42,7 +42,6 @@ const Assessment = ({route}: AssessmentProps) => {
     if (questionIndex < assessmentMain.length - 1) {
       navigation.navigate('Assessment', {questionIndex: questionIndex + 1});
     } else {
-      // Handle the end of the assessment
       console.log('Assessment completed');
     }
   };
