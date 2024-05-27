@@ -51,10 +51,11 @@ const fieldstextarea = [
 
 const AddNewArticle = () => {
   const [showModal, setShowModal] = React.useState(false);
+  const ref = React.useRef(null);
   return (
     <>
       <ImageBackground h={'$full'} source={BackgroundIcon}>
-        <StatusBarAdmin text="New Article" gap="$5" />
+        <StatusBarAdmin text="New Article" />
         <ScrollView paddingHorizontal={'$4'}>
           <Box height={'$8'} />
           {fields.map((field, index) => (
@@ -64,7 +65,7 @@ const AddNewArticle = () => {
                 bgColor="#D7E6ED"
                 height={'$12'}
                 rounded={'$lg'}
-                borderWidth={'$1'}
+                borderWidth={0.5}
                 borderColor="black">
                 <InputField
                   type="text"
@@ -72,6 +73,7 @@ const AddNewArticle = () => {
                   placeholder={field.placeholder}
                   paddingHorizontal={'$6'}
                   placeholderTextColor={'black'}
+                  fontSize="$sm"
                 />
               </Input>
               <Box height={'$2'} />
@@ -84,7 +86,7 @@ const AddNewArticle = () => {
                 bgColor="#D7E6ED"
                 height={'$32'}
                 rounded={'$lg'}
-                borderWidth={'$1'}
+                borderWidth={0.5}
                 borderColor="black"
                 isReadOnly={false}
                 isInvalid={false}
@@ -92,6 +94,7 @@ const AddNewArticle = () => {
                 <TextareaInput
                   fontFamily="Poppins-Regular"
                   placeholder={fieldtextarea.placeholder}
+                  fontSize={'$sm'}
                 />
               </Textarea>
               <Box height={'$2'} />
@@ -114,7 +117,7 @@ const AddNewArticle = () => {
           </HStack>
           <Box height={useBottomTabBarHeight()} />
         </ScrollView>
-        <Success showModal={showModal} setShowModal={setShowModal} />
+        <Success showModal={showModal} setShowModal={setShowModal} ref={ref} />
       </ImageBackground>
     </>
   );

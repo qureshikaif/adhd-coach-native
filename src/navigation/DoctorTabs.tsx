@@ -1,20 +1,20 @@
 import React from 'react';
 import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeStack from '../../src/navigation/stacks/HomeStack';
-import CourseStack from './stacks/CourseStack';
-import GameStack from './stacks/GameStack';
-import ProfileStack from './stacks/ProfileStack';
-import SettingStack from './stacks/SettingStack';
+import AdminAppAnalytics from './stacks/Admin/AdminAppAnalytics';
+import AdminFeedback from './stacks/Admin/AdminFeedback';
+import AdminAccountManagement from './stacks/Admin/AdminAccountManagement';
+import DoctorHome from './stacks/Doctor/DoctorHome';
+import DoctorPatientProfile from './stacks/Doctor/DoctorPatientProfile';
 
 const Tab = createBottomTabNavigator();
 
 const icons: {[index: string]: any} = {
-  Home: require('../assets/images/navigation/Home.png'),
-  Courses: require('../assets/images/navigation/Courses.png'),
-  Games: require('../assets/images/navigation/Games.png'),
-  Profile: require('../assets/images/navigation/Profile.png'),
-  Settings: require('../assets/images/navigation/Settings.png'),
+  DoctorHome: require('../assets/images/navigation/Home.png'),
+  DoctorPatientProfile: require('../assets/images/navigation/Courses.png'),
+  DoctorPatientPrescription: require('../assets/images/navigation/Analytics.png'),
+  DoctorChat: require('../assets/images/navigation/Feedback.png'),
+  DoctorProfile: require('../assets/images/navigation/Profile.png'),
 };
 
 export const tabBarStyle = {
@@ -29,7 +29,7 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
   const iconSource = icons[routeName];
   if (focused) {
     return (
-      <View bg="#8D5A39" rounded={'$full'} padding={'$2'}>
+      <View bg="#A3BACD" rounded={'$full'} padding={'$2'}>
         <Image source={iconSource} alt="Tab Bar Icons" width={30} height={30} />
       </View>
     );
@@ -40,17 +40,17 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
 };
 
 const screens = [
-  {name: 'Home', component: HomeStack},
-  {name: 'Courses', component: CourseStack},
-  {name: 'Games', component: GameStack},
-  {name: 'Profile', component: ProfileStack},
-  {name: 'Settings', component: SettingStack},
+  {name: 'DoctorHome', component: DoctorHome},
+  {name: 'DoctorPatientProfile', component: DoctorPatientProfile},
+  {name: 'DoctorPatientPrescription', component: AdminAppAnalytics},
+  {name: 'DoctorChat', component: AdminFeedback},
+  {name: 'DoctorProfile', component: AdminAccountManagement},
 ];
 
 export const DoctorTabs = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="DoctorHome"
       screenOptions={({route}) => ({
         tabBarIcon: ({focused}) => TabBarIcon(focused, route.name),
         tabBarShowLabel: false,

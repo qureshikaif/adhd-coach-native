@@ -19,6 +19,7 @@ type NavigationType = {
   Signin: undefined;
   Signup: undefined;
   ForgotPassword: undefined;
+  Assessment: undefined;
 };
 
 const adhd = [
@@ -84,7 +85,7 @@ const HomeMain = () => {
           <HStack space="lg">
             <Button
               android_ripple={{color: '#B9A173'}}
-              onPress={() => navigation.navigate('ForgotPassword')}
+              onPress={() => navigation.navigate('Signin')}
               hardShadow="3"
               size="xl"
               borderColor="black"
@@ -106,6 +107,7 @@ const HomeMain = () => {
           </HStack>
           <TextBold text="OR" fontSize={'$2xl'} />
           <Button
+            onPress={() => navigation.navigate('Assessment')}
             hardShadow="5"
             size="xl"
             borderColor="black"

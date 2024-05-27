@@ -6,6 +6,7 @@ import Signin from '../../screens/Authentication/Signin';
 import ForgotPassword from '../../screens/Authentication/ForgotPassword/ForgotPassword';
 import ForgotPasswordVerify from '../../screens/Authentication/ForgotPassword/ForgotPasswordVerify';
 import ForgotPasswordLast from '../../screens/Authentication/ForgotPassword/ForgotPasswordLast';
+import Assessment from '../../screens/Assessment';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,11 @@ const HomeStack = () => {
         component={ForgotPasswordVerify}
       />
       <Stack.Screen name="ForgotPasswordLast" component={ForgotPasswordLast} />
+      <Stack.Screen
+        name="Assessment"
+        component={Assessment}
+        initialParams={{questionIndex: 0}}
+      />
     </Stack.Navigator>
   );
 };

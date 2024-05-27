@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import AppAnalytics from '../../../screens/Admin/AppAnalytics';
+import FeedbackAndSupport from '../../../screens/Admin/FeedbackAndSupport';
 
 const Stack = createNativeStackNavigator();
 
@@ -10,10 +10,10 @@ const AdminFeedback = () => {
       initialRouteName="AdminFeedbackMain"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#8D5A39',
+        statusBarColor: '#A3BACD',
         statusBarStyle: 'light',
       }}>
-      <Stack.Screen name="AdminFeedbackMain" component={AppAnalytics} />
+      <Stack.Screen name="AdminFeedbackMain" component={FeedbackAndSupport} />
     </Stack.Navigator>
   );
 };

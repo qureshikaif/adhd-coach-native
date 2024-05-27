@@ -9,6 +9,17 @@ import {
   Box,
   Pressable,
   Image,
+  InputSlot,
+  SelectTrigger,
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import BackButton from '../../components/atoms/Buttons/BackButton';
@@ -16,30 +27,38 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {ChevronDown, Lock, Mail, User} from 'lucide-react-native';
+import {useStore} from '../../store';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/login.png');
-const EmailIcon = require('../../assets/images/icons/email.png');
-const PasswordIcon = require('../../assets/images/icons/password.png');
-const RoleIcon = require('../../assets/images/icons/chevron-down.png');
 
 const fields = [
   {
     title: 'Email',
-    icon: EmailIcon,
+    icon: Mail,
   },
   {
     title: 'Password',
-    icon: PasswordIcon,
-  },
-
-  {
-    title: 'Role',
-    icon: RoleIcon,
+    icon: Lock,
   },
 ];
 
+type NavigationType = {
+  Signup: undefined;
+  ForgotPassword: undefined;
+};
+
 const Signin = () => {
+  const store = useStore();
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
+
+  const handleLogin = () => {
+    store.setAuthenticated(true);
+  };
+  const handleRole = (role: string) => store.setRole(role);
+
   return (
     <View height={'$full'}>
       <ImageBackground
@@ -76,8 +95,11 @@ const Signin = () => {
                   bgColor="#DC9F72"
                   height={'$12'}
                   rounded={'$2xl'}
-                  width={'85%'}
+                  width={'$full'}
                   borderWidth={0}>
+                  <InputSlot pl="$4">
+                    <field.icon size={25} color={'black'} />
+                  </InputSlot>
                   <InputField
                     type="text"
                     fontFamily="Poppins-Regular"
@@ -86,27 +108,45 @@ const Signin = () => {
                     placeholderTextColor={'black'}
                   />
                 </Input>
-                <Box
-                  width={'13%'}
-                  borderRadius={'$full'}
-                  bg="#DC9F72"
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center">
-                  <Image
-                    source={field.icon}
-                    alt="User Icon"
-                    resizeMode="contain"
-                    size="2xs"
-                  />
-                </Box>
               </HStack>
             ))}
+            <Select onValueChange={handleRole}>
+              <SelectTrigger
+                bgColor="#DC9F72"
+                height={'$12'}
+                paddingStart={'$4'}
+                paddingEnd={'$3'}
+                rounded={'$2xl'}
+                width={'$full'}>
+                <User size={25} color={'black'} />
+                <SelectInput
+                  paddingStart={'$5'}
+                  mt={'$1'}
+                  placeholder="Role"
+                  fontFamily="Poppins-Regular"
+                  placeholderTextColor={'black'}
+                />
+                <SelectIcon as={ChevronDown} size={'xl'} color="black" />
+              </SelectTrigger>
+              <SelectPortal>
+                <SelectBackdrop />
+                <SelectContent bg="whitesmoke">
+                  <SelectDragIndicatorWrapper>
+                    <SelectDragIndicator />
+                  </SelectDragIndicatorWrapper>
+                  <SelectItem label="Admin" value="admin" />
+                  <SelectItem label="Doctor" value="doctor" />
+                  <SelectItem label="Teacher" value="teacher" />
+                  <SelectItem label="Parent" value="parent" />
+                  <SelectItem label="Student" value="student" />
+                </SelectContent>
+              </SelectPortal>
+            </Select>
 
             <HStack justifyContent="space-between">
               <HStack>
                 <TextRegular text="New user?" fontSize={'$sm'} />
-                <Pressable>
+                <Pressable onPress={() => navigation.navigate('Signup')}>
                   <TextBold
                     fontSize={'$sm'}
                     text={`${' '}Sign Up`}
@@ -114,7 +154,7 @@ const Signin = () => {
                   />
                 </Pressable>
               </HStack>
-              <Pressable>
+              <Pressable onPress={() => navigation.navigate('ForgotPassword')}>
                 <TextBold
                   fontSize={'$sm'}
                   text="Forgot Password?"
@@ -125,6 +165,7 @@ const Signin = () => {
           </VStack>
           <Box height={'$10'} />
           <Pressable
+            onPress={handleLogin}
             bgColor="#DC9F72"
             paddingHorizontal={'$8'}
             paddingVertical={'$2'}
