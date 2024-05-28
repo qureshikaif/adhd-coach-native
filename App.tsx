@@ -9,6 +9,9 @@ import MathsCourses from './src/screens/StudentModule/MathsCourses';
 import EnglishCourses from './src/screens/StudentModule/EnglishCourses';
 // import FeedbackAndSupport from './src/screens/Admin/FeedbackAndSupport';
 import ChatSupport from './src/screens/Admin/ChatSupport';
+import ForgotPassword from './src/screens/Authentication/ForgotPassword/ForgotPassword';
+import ForgotPasswordVerify from './src/screens/Authentication/ForgotPassword/ForgotPasswordVerify';
+import ForgotPasswordLast from './src/screens/Authentication/ForgotPassword/ForgotPasswordLast';
 // import StudentCourses from './src/screens/StudentModule/StudentCourses';
 // import StudentActivity from './src/screens/StudentModule/StudentActivity';
 
@@ -35,11 +38,12 @@ function App(): React.JSX.Element {
         {/* <RootTabs /> */}
         {/* <EnglishCourses/> */}
         {/* <ChatSupport/> */}
-        <ChatSupport />
+        {/* <ChatSupport /> */}
         {/* <GrandAssessment /> */}
         {/* <AccountManagementDoctor/> */}
         {/* <DoctorMain/> */}
         {/*<PatientProfileHistory/>*/}
+        <ForgotPasswordLast/>
         {/*<RootTabs/>*/}
       </GluestackUIProvider>
     </NavigationContainer>

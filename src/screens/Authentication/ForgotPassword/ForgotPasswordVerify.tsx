@@ -15,6 +15,9 @@ import TextRegular from '../../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import React from 'react';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import TextBold from '../../../components/atoms/Text/TextBold';
+import { colors } from '../../../styles/colors';
+
 
 const BackgroundImage = require('../../../assets/images/signup-bg.png');
 const Avatar = require('../../../assets/images/avatars/forgotpassword.png');
@@ -31,6 +34,7 @@ const fields = [
 
 type NavigationType = {
   ForgotPasswordLast: undefined;
+  Resend: undefined;
 };
 
 const ForgotPasswordVerify = () => {
@@ -80,22 +84,60 @@ const ForgotPasswordVerify = () => {
               <Box height={'$5'} />
               <VStack width={'$full'} rowGap={'$4'}>
                 {fields.map((field, index) => (
-                  <HStack space="sm" key={index}>
+                  <HStack space="sm" key={index} justifyContent='center'>
                     <Input
                       bgColor="#DC9F72"
-                      height={'$12'}
+                      height={'$16'}
                       rounded={'$2xl'}
-                      width={'85%'}
+                      width={'20%'}
                       borderWidth={0}>
                       <InputField
                         type="text"
                         fontFamily="Poppins-Regular"
-                        placeholder={field.title}
-                        paddingHorizontal={'$6'}
+                        paddingHorizontal={'$10'}
                         placeholderTextColor={'black'}
                       />
                     </Input>
-                    <Box
+                    <Input
+                      bgColor="#DC9F72"
+                      height={'$16'}
+                      rounded={'$2xl'}
+                      width={'20%'}
+                      borderWidth={0}>
+                      <InputField
+                        type="text"
+                        fontFamily="Poppins-Regular"
+                        paddingHorizontal={'$10'}
+                        placeholderTextColor={'black'}
+                      />
+                    </Input>
+                    <Input
+                      bgColor="#DC9F72"
+                      height={'$16'}
+                      rounded={'$2xl'}
+                      width={'20%'}
+                      borderWidth={0}>
+                      <InputField
+                        type="text"
+                        fontFamily="Poppins-Regular"
+                        paddingHorizontal={'$10'}
+                        placeholderTextColor={'black'}
+                      />
+                    </Input>
+                    <Input
+                      bgColor="#DC9F72"
+                      height={'$16'}
+                      rounded={'$2xl'}
+                      width={'20%'}
+                      borderWidth={0}>
+                      <InputField
+                        type="text"
+                        fontFamily="Poppins-Regular"
+                        paddingHorizontal={'$10'}
+                        placeholderTextColor={'black'}
+                      />
+                    </Input>
+                    {/* <Box
                       width={'13%'}
                       borderRadius={'$full'}
                       bg="#DC9F72"
@@ -108,10 +150,19 @@ const ForgotPasswordVerify = () => {
                         resizeMode="contain"
                         size="2xs"
                       />
-                    </Box>
+                    </Box> */}
                   </HStack>
                 ))}
-
+               <VStack>
+                <TextRegular text="Didnt Receive it?" fontSize={'$sm'} />
+                <HStack>
+                  <Pressable onPress={() => navigation.navigate('Resend')}>
+                  <TextBold
+                    fontSize={'$sm'}
+                    text={`${' '}Resend`}/>
+                </Pressable>
+                </HStack>
+              </VStack>
                 {/* <HStack justifyContent="space-between">
                 <HStack>
                   <TextRegular text="New user?" fontSize={'$sm'} />
