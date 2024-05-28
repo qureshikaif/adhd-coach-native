@@ -3,9 +3,12 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
-import DoctorProfile from './src/screens/Doctor/ProfileSetting';
-import AdminProfile from './src/screens/Admin/AdminProfile';
-import TeacherEditPersonalInfo from './src/screens/Teacher/TeacherEditPersonalInfo';
+import { RootTabs } from './src/navigation/RootTabs';
+import DoctorMain from './src/screens/Doctor/DoctorMain';
+import TeacherCourse from './src/screens/Teacher/TeacherCourse';
+import FeedbackAndSupport from './src/screens/Admin/FeedbackAndSupport';
+import AppAnalytics from './src/screens/Admin/AppAnalytics';
+import AdminAppAnalytics from './src/navigation/stacks/Admin/AdminAppAnalytics';
 
 const config = createConfig({
   ...defaultConfig,
@@ -27,23 +30,8 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-<<<<<<< HEAD
-        {/* <PatientProfileHistory /> */}
-        {/* <MainNavigator /> */}
-<TeacherEditPersonalInfo/>
-        {/*<RootTabs />*/}
-        {/* <AdminProfile/> */}
-        {/* <AccountManagementDoctor /> */}
-        {/* <AccountManagementMain /> */}
-        {/* <TeacherProfileSetting /> */}
-=======
         {/* <RootTabs /> */}
-        <MainNavigator />
-        {/* <AccountManagementDoctor/> */}
-        {/* <DoctorMain/> */}
-        {/*<PatientProfileHistory/>*/}
-        {/*<RootTabs/>*/}
->>>>>>> 3f08f6206195834bd94b2b6a65a5fbcebd8ce7d4
+      <AdminAppAnalytics/>
       </GluestackUIProvider>
     </NavigationContainer>
   );
