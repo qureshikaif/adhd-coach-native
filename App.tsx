@@ -3,17 +3,6 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
-import Assessment from './src/screens/Assessment';
-import GrandAssessment from './src/screens/GrandAssessment';
-import ParentMain from './src/screens/Parent/ParentMain';
-import ChildReportTable from './src/components/molecules/ChildReportTable';
-import ChildProgressReport from './src/screens/Parent/ChildProgressReport';
-import ParentArticle from './src/screens/Parent/ParentArticle';
-
-import ChatBox from './src/screens/Parent/ParentChat';
-import CircleRowScrollView from './src/screens/Parent/ParentChat';
-import ParentChatbox from './src/screens/Parent/ParentChat';
-import ChatScreen from './src/screens/Parent/ParentChatOpen';
 
 const config = createConfig({
   ...defaultConfig,
@@ -35,12 +24,9 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-        {/* <RootTabs /> */}
-        <ChatScreen/>
-        {/* <AccountManagementDoctor/> */}
-        {/* <DoctorMain/> */}
-        {/*<PatientProfileHistory/>*/}
-        {/*<RootTabs/>*/}
+     
+        <MainNavigator />
+       
       </GluestackUIProvider>
     </NavigationContainer>
   );
