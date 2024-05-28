@@ -3,12 +3,11 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
-import { RootTabs } from './src/navigation/RootTabs';
-import DoctorMain from './src/screens/Doctor/DoctorMain';
-import TeacherCourse from './src/screens/Teacher/TeacherCourse';
-import FeedbackAndSupport from './src/screens/Admin/FeedbackAndSupport';
-import AppAnalytics from './src/screens/Admin/AppAnalytics';
-import AdminAppAnalytics from './src/navigation/stacks/Admin/AdminAppAnalytics';
+import Assessment from './src/screens/Assessment';
+import GrandAssessment from './src/screens/GrandAssessment';
+import ParentMain from './src/screens/Parent/ParentMain';
+import ChildReportTable from './src/components/molecules/ChildReportTable';
+import ChildProgressReport from './src/screens/Parent/ChildProgressReport';
 
 const config = createConfig({
   ...defaultConfig,
@@ -31,7 +30,11 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
-      <AdminAppAnalytics/>
+        <ChildProgressReport/>
+        {/* <AccountManagementDoctor/> */}
+        {/* <DoctorMain/> */}
+        {/*<PatientProfileHistory/>*/}
+        {/*<RootTabs/>*/}
       </GluestackUIProvider>
     </NavigationContainer>
   );

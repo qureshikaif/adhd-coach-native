@@ -7,6 +7,7 @@ import ForgotPassword from '../../screens/Authentication/ForgotPassword/ForgotPa
 import ForgotPasswordVerify from '../../screens/Authentication/ForgotPassword/ForgotPasswordVerify';
 import ForgotPasswordLast from '../../screens/Authentication/ForgotPassword/ForgotPasswordLast';
 import Assessment from '../../screens/Assessment';
+import GrandAssessment from '../../screens/GrandAssessment';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,14 @@ const HomeStack = () => {
         name="Assessment"
         component={Assessment}
         initialParams={{questionIndex: 0}}
+      />
+      <Stack.Screen
+        options={{
+          statusBarColor: '#A3BACD',
+          statusBarStyle: 'light',
+        }}
+        name="GrandAssessment"
+        component={GrandAssessment}
       />
     </Stack.Navigator>
   );
