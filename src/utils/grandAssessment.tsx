@@ -1,9 +1,34 @@
+const Question1 = require('../assets/images/assessment/question-1-ga.png');
+const Question2 = require('../assets/images/assessment/question-2-ga.png');
+const Question3 = require('../assets/images/assessment/question-3-ga.png');
+const Question4 = require('../assets/images/assessment/question-4-ga.png');
+const Question5 = require('../assets/images/assessment/question-5-ga.png');
+const Question6 = require('../assets/images/assessment/question-6-ga.png');
+const Question7 = require('../assets/images/assessment/question-7-ga.png');
+const Question8 = require('../assets/images/assessment/question-8-ga.png');
+const Question9 = require('../assets/images/assessment/question-9-ga.png');
+const Question10 = require('../assets/images/assessment/question-10-ga.png');
+
+const Question3Option1 = require('../assets/images/assessment/question-3-1.png');
+const Question3Option2 = require('../assets/images/assessment/question-3-2.png');
+const Question3Option3 = require('../assets/images/assessment/question-3-3.png');
+const Question3Option4 = require('../assets/images/assessment/question-3-4.png');
+
+const Question7Option1 = require('../assets/images/assessment/question-7-1.png');
+const Question7Option2 = require('../assets/images/assessment/question-7-2.png');
+const Question7Option3 = require('../assets/images/assessment/question-7-3.png');
+const Question7Option4 = require('../assets/images/assessment/question-7-4.png');
+
+const Question8Option1 = require('../assets/images/assessment/question-8-1.png');
+const Question8Option2 = require('../assets/images/assessment/question-8-2.png');
+const Question8Option3 = require('../assets/images/assessment/question-8-3.png');
+const Question8Option4 = require('../assets/images/assessment/question-8-4.png');
+
 export const grandAssessment = [
   {
     id: 1,
     question: 'Hello, What is my name and what color am I?',
-    isQuestionImage: true,
-    questionImage: '',
+    questionImage: Question1,
     isOptionImage: false,
     optionImage: ['', '', '', ''],
     options: [
@@ -17,8 +42,7 @@ export const grandAssessment = [
     id: 2,
     question:
       'Match the alphabets with the object starting with the same starting alphabet.',
-    isQuestionImage: true,
-    questionImage: '',
+    questionImage: Question2,
     isOptionImage: false,
     optionImage: ['', '', '', ''],
     options: ['A', 'R', 'F', 'S'],
@@ -26,82 +50,98 @@ export const grandAssessment = [
   {
     id: 3,
     question: 'Calculate the answer.',
-    isQuestionImage: true,
-    questionImage: '',
+    questionImage: Question3,
     isOptionImage: true,
-    optionImage: ['', '', '', ''],
+    optionImage: [
+      Question3Option1,
+      Question3Option2,
+      Question3Option3,
+      Question3Option4,
+    ],
     options: ['', '', '', ''],
   },
   {
     id: 4,
     question: 'What is my color and what shape am I?',
-    isQuestionImage: true,
-    questionImage: 'Illustration of a red triangle with eyes and a mouth',
+    questionImage: Question4,
     isOptionImage: false,
     optionImage: ['', '', '', ''],
     options: [
-      'Yellow - Circle',
+      'Green - Circle',
       'Red - Triangle',
       'Blue - Octagon',
-      'Green - Square',
+      'Yellow - Square',
     ],
   },
   {
     id: 5,
     question:
-      'Add all the fingers up; what will the resulting number be if we divide this same number with itself?',
-    isQuestionImage: true,
-    questionImage:
-      'Four pairs of hands holding up fingers corresponding to numbers one through four',
+      'What will the resulting number be, if we add this same number with itself?',
+    questionImage: Question5,
     isOptionImage: true,
-    optionImage: ['One', 'Two', 'Three', 'Four'],
+    optionImage: [
+      Question3Option1,
+      Question3Option2,
+      Question3Option3,
+      Question3Option4,
+    ],
     options: ['', '', '', ''],
   },
   {
     id: 6,
     question: 'What is my name?',
-    isQuestionImage: true,
-    questionImage: 'Illustration of a green square with eyes and a mouth',
-    isOptionImage: true,
-    optionImage: ['Triangle', 'Circle', 'Ellipse', 'Octagon'],
-    options: ['', '', '', ''],
+    questionImage: Question6,
+    isOptionImage: false,
+    optionImage: ['', '', '', ''],
+    options: ['Triangle', 'Hexagon', 'Ellipse', 'Octagon'],
   },
   {
     id: 7,
     question: 'Match the object that starts with the given letter.',
-    isQuestionImage: true,
-    questionImage: 'Three images: an elephant, a monkey, and a penguin',
+    questionImage: Question7,
     isOptionImage: true,
-    optionImage: ['Elephant', 'Monkey', 'Penguin'],
+    optionImage: [
+      Question7Option1,
+      Question7Option2,
+      Question7Option3,
+      Question7Option4,
+    ],
     options: ['', '', ''],
   },
   {
     id: 8,
     question: 'Match the object which matches with the given color.',
-    isQuestionImage: true,
-    questionImage: 'Three images: a star, a cat, and a red arrow',
+    questionImage: Question8,
     isOptionImage: true,
-    optionImage: ['Star', 'Cat', 'Red Arrow'],
+    optionImage: [
+      Question8Option1,
+      Question8Option2,
+      Question8Option3,
+      Question8Option4,
+    ],
     options: ['', '', ''],
   },
   {
     id: 9,
-    question: 'Subtract the second number from the first.',
-    isQuestionImage: true,
-    questionImage:
-      'Two sets of hands; the first set shows three hands with all five fingers extended, indicating the number 15. The second set shows one hand with four fingers extended.',
+    question: 'Calculate the answer.',
+    questionImage: Question9,
     isOptionImage: true,
-    optionImage: ['11', '12', '13', '14'],
+    optionImage: [
+      Question3Option1,
+      Question3Option4,
+      Question3Option3,
+      Question3Option2,
+    ],
     options: ['', '', '', ''],
   },
   {
     id: 10,
-    question: "Match the object starting with the same letter as 'penguin'.",
-    isQuestionImage: true,
-    questionImage: 'An image of a penguin',
-    isOptionImage: true,
-    optionImage: ['Kite (K)', 'Xylophone (X)', 'Octopus (O)', 'Tent (T)'],
-    options: ['', '', '', ''],
+    question:
+      'Match the alphabets with the object starting with the same starting alphabet.',
+    questionImage: Question10,
+    isOptionImage: false,
+    optionImage: ['', '', '', ''],
+    options: ['K', 'X', 'P', 'T'],
   },
 ];
 

@@ -3,6 +3,7 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
+import GrandAssessment from './src/screens/GrandAssessment';
 // import StudentCourses from './src/screens/StudentModule/StudentCourses';
 // import StudentActivity from './src/screens/StudentModule/StudentActivity';
 
@@ -27,8 +28,8 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
-        <MainNavigator />
-        {/* <GrandAssessment /> */}
+        {/* <MainNavigator /> */}
+        <GrandAssessment />
         {/* <AccountManagementDoctor/> */}
         {/* <DoctorMain/> */}
         {/*<PatientProfileHistory/>*/}
