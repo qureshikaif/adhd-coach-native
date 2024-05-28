@@ -8,6 +8,12 @@ import GrandAssessment from './src/screens/GrandAssessment';
 import ParentMain from './src/screens/Parent/ParentMain';
 import ChildReportTable from './src/components/molecules/ChildReportTable';
 import ChildProgressReport from './src/screens/Parent/ChildProgressReport';
+import ParentArticle from './src/screens/Parent/ParentArticle';
+
+import ChatBox from './src/screens/Parent/ParentChat';
+import CircleRowScrollView from './src/screens/Parent/ParentChat';
+import ParentChatbox from './src/screens/Parent/ParentChat';
+import ChatScreen from './src/screens/Parent/ParentChatOpen';
 
 const config = createConfig({
   ...defaultConfig,
@@ -30,7 +36,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
-        <ChildProgressReport/>
+        <ChatScreen/>
         {/* <AccountManagementDoctor/> */}
         {/* <DoctorMain/> */}
         {/*<PatientProfileHistory/>*/}
