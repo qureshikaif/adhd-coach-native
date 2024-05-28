@@ -2,11 +2,8 @@ import {config as defaultConfig} from '@gluestack-ui/config';
 import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import MainNavigator from './src/navigation/MainNavigator';
-import GrandAssessment from './src/screens/GrandAssessment';
-import StudentHome from './src/screens/StudentModule/StudentHome';
-import StudentActivity from './src/screens/StudentModule/StudentActivity';
-import StudentCourses from './src/screens/StudentModule/StudentCourses';
+// import FeedbackAndSupport from './src/screens/Admin/FeedbackAndSupport';
+import ChatSupport from './src/screens/Admin/ChatSupport';
 // import StudentCourses from './src/screens/StudentModule/StudentCourses';
 // import StudentActivity from './src/screens/StudentModule/StudentActivity';
 
@@ -31,7 +28,8 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
-        <StudentActivity />
+        {/* <ChatSupport/> */}
+        <ChatSupport />
         {/* <GrandAssessment /> */}
         {/* <AccountManagementDoctor/> */}
         {/* <DoctorMain/> */}
