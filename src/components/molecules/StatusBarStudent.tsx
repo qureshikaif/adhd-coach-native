@@ -6,25 +6,35 @@ import {GapValues} from '../../types/GapValues';
 
 type StatusBarStudentProps = {
   text: string;
+  bgColor?: string;
+  textColor?: string;
+  variant?: 'white' | 'black';
   gap?: GapValues;
 };
 
-const StatusBarStudent = ({text, gap}: StatusBarStudentProps) => {
+const StatusBarStudent = ({
+  text,
+  gap,
+  bgColor,
+  textColor,
+  variant,
+}: StatusBarStudentProps) => {
   return (
     <HStack
-      bgColor="#D1A973"
+      bgColor={bgColor ? bgColor : '#D1A973'}
       alignItems="center"
       justifyContent={gap ? 'flex-start' : 'space-between'}
       paddingHorizontal={'$4'}
       paddingVertical={'$4'}
       gap={gap ? gap : '$0'}>
       <BackButton
+        variant={variant}
         imageProps={{
           size: 'xs',
         }}
         buttonProps={{}}
       />
-      <TextBold text={text} fontSize={'$2xl'} />
+      <TextBold text={text} fontSize={'$2xl'} color={textColor} />
       <Box w={40} h={'$full'} />
     </HStack>
   );

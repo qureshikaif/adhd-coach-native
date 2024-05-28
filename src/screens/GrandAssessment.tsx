@@ -15,7 +15,7 @@ import {
 import TextBold from '../components/atoms/Text/TextBold';
 import TextSemibold from '../components/atoms/Text/TextSemibold';
 import TextRegular from '../components/atoms/Text/TextRegular';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+// import {NavigationProp, useNavigation} from '@react-navigation/native';
 import StatusBarStudent from '../components/molecules/StatusBarStudent';
 import grandAssessment from '../utils/grandAssessment';
 import {Button} from '@gluestack-ui/themed';
@@ -23,15 +23,15 @@ import {Button} from '@gluestack-ui/themed';
 const BackgroundImage = require('../assets/images/grand-assessment-bg.png');
 const Clock = require('../assets/images/assessment/clock.png');
 
-type NavigationType = {
-  Signin: undefined;
-  Signup: undefined;
-  ForgotPassword: undefined;
-  GrandAssessment: {questionIndex: number};
-};
+// type NavigationType = {
+//   Signin: undefined;
+//   Signup: undefined;
+//   ForgotPassword: undefined;
+//   GrandAssessment: {questionIndex: number};
+// };
 
 const GrandAssessment = () => {
-  const navigation = useNavigation<NavigationProp<NavigationType>>();
+  // const navigation = useNavigation<NavigationProp<NavigationType>>();
 
   const renderOptions = (question: any) => {
     if (question.isOptionImage) {
