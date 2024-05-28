@@ -1,8 +1,9 @@
 import {ImageBackground, ScrollView, Box, VStack, HStack, Image} from '@gluestack-ui/themed';
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TextInput } from 'react-native';
 
 import StatusBarChat from '../../components/molecules/StatusBarChat';
+  import ChatInput from '../../components/molecules/ChatInput';
 
 const BackgroundImage = require('../../assets/images/admin-content-bg.png');
 
@@ -40,6 +41,8 @@ const ChatSupport: React.FC = () => {
             keyExtractor={item => item.id}
             contentContainerStyle={styles.chatContainer}
           />
+        {/* Add the ChatInput component below the FlatList */}
+        <ChatInput />
         </ImageBackground>
       );
     };

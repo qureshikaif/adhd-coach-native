@@ -33,7 +33,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
-        <EnglishCourses/>
+        {/* <EnglishCourses/> */}
         {/* <ChatSupport/> */}
         <ChatSupport />
         {/* <GrandAssessment /> */}
