@@ -11,7 +11,6 @@ import {
   Image,
 } from '@gluestack-ui/themed';
 import BackButton from '../../../components/atoms/Buttons/BackButton';
-import TextRegular from '../../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import React from 'react';
 
@@ -71,12 +70,6 @@ const ForgotPasswordLast = () => {
                 fontSize={'$xl'}
                 color="#E16565"
               />
-              <TextRegular
-                text="Please enter a 4 digit verification code that is sent to your email address"
-                fontSize={'$sm'}
-                paddingHorizontal={'$4'}
-                textAlign="center"
-              />
 
               <Box height={'$5'} />
               <VStack width={'$full'} rowGap={'$4'}>
@@ -89,7 +82,7 @@ const ForgotPasswordLast = () => {
                       width={'85%'}
                       borderWidth={0}>
                       <InputField
-                        type="text"
+                        type="password"
                         fontFamily="Poppins-Regular"
                         placeholder={field.title}
                         paddingHorizontal={'$6'}
@@ -112,28 +105,8 @@ const ForgotPasswordLast = () => {
                     </Box>
                   </HStack>
                 ))}
-
-                {/* <HStack justifyContent="space-between">
-                  <HStack>
-                    <TextRegular text="New user?" fontSize={'$sm'} />
-                    <Pressable>
-                      <TextBold
-                        fontSize={'$sm'}
-                        text={`${' '}Sign Up`}
-                        color={colors['text-signup']}
-                      />
-                    </Pressable>
-                  </HStack>
-                  <Pressable>
-                    <TextBold
-                      fontSize={'$sm'}
-                      text="Forgot Password?"
-                      color={colors['text-signup']}
-                    />
-                  </Pressable>
-                </HStack> */}
               </VStack>
-              
+
               <Box height={'$10'} />
               <Pressable
                 bgColor="#DC9F72"
