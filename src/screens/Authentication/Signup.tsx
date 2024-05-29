@@ -22,6 +22,7 @@ import {
   SelectInput,
   SelectItem,
   SelectPortal,
+  ButtonSpinner,
 } from '@gluestack-ui/themed';
 import BackButton from '../../components/atoms/Buttons/BackButton';
 import TextBold from '../../components/atoms/Text/TextBold';
@@ -81,7 +82,7 @@ const Signup = () => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: {errors, isSubmitting},
   } = useForm();
 
   const onSubmit = (data: any) => {
@@ -220,7 +221,14 @@ const Signup = () => {
             paddingVertical={'$2'}
             rounded={'$2xl'}
             onPress={handleSubmit(onSubmit)}>
-            <TextSemibold text="Sign Up" fontSize={'$lg'} />
+            <HStack>
+              {isSubmitting && <ButtonSpinner color="black" />}
+              <TextSemibold
+                text="Sign Up"
+                fontSize={'$lg'}
+                ml={isSubmitting ? '$2' : '$0'}
+              />
+            </HStack>
           </Pressable>
           <HStack marginTop={'$3.5'}>
             <TextRegular fontSize={'$sm'} text="Already have an account?" />
