@@ -1,7 +1,7 @@
 import React from 'react';
 import {HStack, Image, Input, InputField, View} from '@gluestack-ui/themed';
 
-const MicIcon = require('../../assets/images/icons/mic.png');
+// const MicIcon = require('../../assets/images/icons/mic.png');
 const CameraIcon = require('../../assets/images/icons/camera.png');
 const PlusIcon = require('../../assets/images/icons/plus-white.png');
 
