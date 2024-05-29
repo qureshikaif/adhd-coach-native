@@ -1,49 +1,53 @@
-import React, { useState } from 'react';
-import { View, TextInput, FlatList, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import {
+  View,
+  ImageBackground,
+  ScrollView,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
+import { Box, HStack } from '@gluestack-ui/themed';
+import StatusBarChat from '../../components/molecules/StatusBarChat';
 
+const BackgroundImage = require('../../assets/images/doctor-bg.png');
+const LeftImage = require('../../assets/images/icons/Gallery.png');
+const RightImage1 = require('../../assets/images/icons/Mic.png');
+const RightImage2 = require('../../assets/images/icons/Camera.png');
 
-const ChatScreen = () => {
-  const [messages, setMessages] = useState<string[]>([]);
-  const [newMessage, setNewMessage] = useState<string>('');
-
-  const sendMessage = () => {
-    if (newMessage.trim() !== '') {
-      setMessages([...messages, newMessage]);
-      setNewMessage('');
-    }
-  };
-
+const ChatBox: React.FC = () => {
   return (
-    <View style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
-      <FlatList
-        data={messages}
-        renderItem={({ item }) => (
-          <Text style={{ padding: 10, marginBottom: 5, borderRadius: 10, backgroundColor: '#fff' }}>
-            {item}
-          </Text>
-        )}
-        keyExtractor={(item) => item}
-        inverted
-      />
-      <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', padding: 10 }}>
-        <TextInput
-          style={{ flex: 1, fontSize: 16, paddingHorizontal: 10, borderWidth: 1, borderColor: 'black', borderRadius: 5 }}
-          placeholder="Type your message..."
-          onChangeText={setNewMessage}
-          value={newMessage}
-        />
-        <TouchableOpacity style={{ marginLeft: 10 }}>
-        
-        </TouchableOpacity>
-        <TouchableOpacity style={{ marginLeft: 10 }}>
-         
-        </TouchableOpacity>
-        <TouchableOpacity onPress={sendMessage} style={{ marginLeft: 10 }}>
-          
-        </TouchableOpacity>
-      </View>
+    <View style={{ flex: 1 }}>
+      <StatusBarChat text="Sana" isSettingsVisible={true} />
+      <ImageBackground source={BackgroundImage} style={{ flex: 1 }}>
+        <Box height={8} />
+        <ScrollView style={{ paddingHorizontal: 16 }}>
+          {/* Chat messages go here */}
+        </ScrollView>
+        <HStack alignItems="center" padding={4} space={'sm'}>
+          <Image source={LeftImage} style={{ width: 40, height: 40, borderRadius: 20 }} />
+          <TextInput
+            style={{
+              flex: 1,
+              height: 40,
+              borderColor: '#ccc',
+              borderWidth: 1,
+              borderRadius: 20,
+              paddingHorizontal: 16,
+              marginRight: 8,
+            }}
+            placeholder="Type a message"
+          />
+          <TouchableOpacity>
+            <Text style={{ color: '#007AFF', fontSize: 16 }}>Send</Text>
+          </TouchableOpacity>
+          <Image source={RightImage1} style={{ width: 40, height: 40, borderRadius: 20, marginLeft: 8 }} />
+          <Image source={RightImage2} style={{ width: 40, height: 40, borderRadius: 20, marginLeft: 8 }} />
+        </HStack>
+      </ImageBackground>
     </View>
   );
 };
 
-export default ChatScreen;
+export default ChatBox;

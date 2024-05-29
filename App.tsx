@@ -3,6 +3,7 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
+import ChatScreen from './src/screens/Parent/ParentChatOpen';
 
 const config = createConfig({
   ...defaultConfig,
@@ -25,7 +26,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
      
-        <MainNavigator />
+        <ChatScreen />
        
       </GluestackUIProvider>
     </NavigationContainer>
