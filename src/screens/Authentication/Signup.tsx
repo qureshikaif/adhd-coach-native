@@ -32,6 +32,7 @@ import {colors} from '../../styles/colors';
 import {Lock, Mail, User, ChevronDown} from 'lucide-react-native';
 import {useStore} from '../../store';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import axios from 'axios';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/signup.png');
@@ -86,7 +87,26 @@ const Signup = () => {
   } = useForm();
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    axios
+      .post(`http://192.168.0.107:8080/auth/signup`, {
+        fullName: data.fullname,
+        email: data.email,
+        password: data.password,
+        role: data.role,
+      })
+      .then(res => console.log(res.data))
+      .catch(err => {
+        if (err.response) {
+          console.log('Error Response Data:', err.response.data);
+          console.log('Error Response Status:', err.response.status);
+          console.log('Error Response Headers:', err.response.headers);
+        } else if (err.request) {
+          console.log('Error Request:', err.request);
+        } else {
+          console.log('Error Message:', err.message);
+        }
+        console.log('Error Config:', err.config);
+      });
   };
 
   return (
