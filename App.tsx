@@ -3,6 +3,7 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
+import ChatSupport from './src/screens/Admin/ChatSupport';
 // import ChatSupport from './src/screens/Admin/ChatSupport';
 
 const config = createConfig({
@@ -26,8 +27,8 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
-        <MainNavigator />
-        {/* <ChatSupport /> */}
+        {/* <MainNavigator /> */}
+        <ChatSupport />
         {/* <StudentActivity /> */}
         {/* <GrandAssessment /> */}
         {/* <AccountManagementDoctor/> */}
