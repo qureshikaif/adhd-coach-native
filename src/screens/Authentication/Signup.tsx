@@ -98,8 +98,6 @@ const Signup = () => {
       .catch(err => {
         if (err.response) {
           console.log('Error Response Data:', err.response.data);
-          console.log('Error Response Status:', err.response.status);
-          console.log('Error Response Headers:', err.response.headers);
         } else if (err.request) {
           console.log('Error Request:', err.request);
         } else {
