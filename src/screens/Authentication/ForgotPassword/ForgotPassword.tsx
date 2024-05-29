@@ -142,7 +142,7 @@ const ForgotPassword = () => {
                 paddingHorizontal={'$8'}
                 paddingVertical={'$2'}
                 rounded={'$2xl'}>
-                <TextSemibold text="Continue" fontSize={'$lg'} />
+                <TextSemibold text="Recover" fontSize={'$lg'} />
               </Pressable>
             </Center>
           </VStack>
