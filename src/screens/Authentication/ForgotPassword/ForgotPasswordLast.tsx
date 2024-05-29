@@ -17,14 +17,18 @@ import React from 'react';
 
 const BackgroundImage = require('../../../assets/images/signup-bg.png');
 const Avatar = require('../../../assets/images/avatars/forgotpassword.png');
-const EmailIcon = require('../../../assets/images/icons/email.png');
+const LockIcon = require('../../../assets/images/icons/Lock.png');
 // const PasswordIcon = require('../../assets/images/icons/password.png');
 // const RoleIcon = require('../../assets/images/icons/chevron-down.png');
 
 const fields = [
   {
-    title: 'Email',
-    icon: EmailIcon,
+    title: 'Enter New Password',
+    icon: LockIcon,
+  },
+  {
+    title: 'Re-Enter New Password',
+    icon: LockIcon,
   },
 ];
 
@@ -129,6 +133,7 @@ const ForgotPasswordLast = () => {
                   </Pressable>
                 </HStack> */}
               </VStack>
+              
               <Box height={'$10'} />
               <Pressable
                 bgColor="#DC9F72"
