@@ -94,7 +94,10 @@ const Signup = () => {
         password: data.password,
         role: data.role,
       })
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log('Response Data:', res.data);
+        navigation.navigate('Signin');
+      })
       .catch(err => {
         if (err.response) {
           console.log('Error Response Data:', err.response.data);

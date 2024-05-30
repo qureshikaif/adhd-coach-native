@@ -28,7 +28,7 @@ import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {ChevronDown, Lock, Mail, User} from 'lucide-react-native';
+import {ChevronDown, Key, Lock, Mail, User} from 'lucide-react-native';
 import {useStore} from '../../store';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
@@ -58,6 +58,7 @@ const Signin = () => {
     store.setAuthenticated(true);
   };
   const handleRole = (role: string) => store.setRole(role);
+  console.log(store.role);
 
   return (
     <View height={'$full'}>
@@ -142,6 +143,30 @@ const Signin = () => {
                 </SelectContent>
               </SelectPortal>
             </Select>
+
+            {(store.role === 'doctor' || store.role === 'teacher') && (
+              <HStack space="sm">
+                <Input
+                  bgColor="#DC9F72"
+                  height={'$12'}
+                  rounded={'$2xl'}
+                  width={'$full'}
+                  borderWidth={0}>
+                  <InputSlot pl="$4">
+                    <Key size={25} color={'black'} />
+                  </InputSlot>
+                  <InputField
+                    type="text"
+                    fontFamily="Poppins-Regular"
+                    placeholder={
+                      store.role === 'doctor' ? 'Doctor ID' : 'Teacher ID'
+                    }
+                    paddingHorizontal={'$6'}
+                    placeholderTextColor={'black'}
+                  />
+                </Input>
+              </HStack>
+            )}
 
             <HStack justifyContent="space-between">
               <HStack>
