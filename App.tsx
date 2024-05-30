@@ -4,7 +4,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
 // import ChatSupport from './src/screens/Admin/ChatSupport';
-import MathsCounting from './src/screens/StudentModule/MathsCounting';
+// import MathsCounting from './src/screens/StudentModule/MathsCounting';
 const config = createConfig({
   ...defaultConfig,
   tokens: {
@@ -26,7 +26,8 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
-        <MathsCounting />
+        {/* <MathsCounting /> */}
+        <MainNavigator />
         {/* <ChatSupport /> */}
         {/* <StudentActivity /> */}
         {/* <GrandAssessment /> */}
