@@ -1,3 +1,5 @@
+import React from 'react';
+import {useForm, Controller} from 'react-hook-form';
 import {
   View,
   ImageBackground,
@@ -21,14 +23,13 @@ import {
   SelectItem,
   SelectPortal,
 } from '@gluestack-ui/themed';
-import React from 'react';
 import BackButton from '../../components/atoms/Buttons/BackButton';
 import TextBold from '../../components/atoms/Text/TextBold';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {ChevronDown, Lock, Mail, User} from 'lucide-react-native';
+import {ChevronDown, Key, Lock, Mail, User} from 'lucide-react-native';
 import {useStore} from '../../store';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
@@ -38,10 +39,15 @@ const fields = [
   {
     title: 'Email',
     icon: Mail,
+    validation: {
+      required: 'Email is required',
+      pattern: {value: /^\S+@\S+$/i, message: 'Invalid email address'},
+    },
   },
   {
     title: 'Password',
     icon: Lock,
+    validation: {required: 'Password is required'},
   },
 ];
 
@@ -53,11 +59,19 @@ type NavigationType = {
 const Signin = () => {
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
 
-  const handleLogin = () => {
-    store.setAuthenticated(true);
-  };
   const handleRole = (role: string) => store.setRole(role);
+
+  const onSubmit = async (data: any) => {
+    console.log(data);
+  };
+
+  console.log(store.role);
 
   return (
     <View height={'$full'}>
@@ -91,6 +105,84 @@ const Signin = () => {
           <VStack width={'$full'} rowGap={'$4'}>
             {fields.map((field, index) => (
               <HStack space="sm" key={index}>
+                <Controller
+                  control={control}
+                  name={field.title.replace(' ', '').toLowerCase()}
+                  rules={field.validation}
+                  render={({field: {onChange, onBlur, value}}) => (
+                    <Input
+                      bgColor="#DC9F72"
+                      height={'$12'}
+                      rounded={'$2xl'}
+                      width={'$full'}
+                      borderWidth={0}
+                      isInvalid={Boolean(
+                        errors[field.title.replace(' ', '').toLowerCase()],
+                      )}>
+                      <InputSlot pl="$4">
+                        <field.icon size={25} color={'black'} />
+                      </InputSlot>
+                      <InputField
+                        type="text"
+                        fontFamily="Poppins-Regular"
+                        placeholder={field.title}
+                        paddingHorizontal={'$6'}
+                        placeholderTextColor={'black'}
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                      />
+                    </Input>
+                  )}
+                />
+              </HStack>
+            ))}
+            <Controller
+              control={control}
+              name="role"
+              render={({field: {onChange, value}}) => (
+                <Select
+                  onValueChange={selectedRole => {
+                    onChange(selectedRole);
+                    handleRole(selectedRole);
+                  }}>
+                  <SelectTrigger
+                    bgColor="#DC9F72"
+                    height={'$12'}
+                    paddingStart={'$4'}
+                    paddingEnd={'$3'}
+                    rounded={'$2xl'}
+                    width={'$full'}>
+                    <User size={25} color={'black'} />
+                    <SelectInput
+                      paddingStart={'$5'}
+                      mt={'$1'}
+                      placeholder="Role"
+                      fontFamily="Poppins-Regular"
+                      placeholderTextColor={'black'}
+                      value={value}
+                    />
+                    <SelectIcon as={ChevronDown} size={'xl'} color="black" />
+                  </SelectTrigger>
+                  <SelectPortal>
+                    <SelectBackdrop />
+                    <SelectContent bg="whitesmoke">
+                      <SelectDragIndicatorWrapper>
+                        <SelectDragIndicator />
+                      </SelectDragIndicatorWrapper>
+                      <SelectItem label="Admin" value="Admin" />
+                      <SelectItem label="Doctor" value="Doctor" />
+                      <SelectItem label="Teacher" value="Teacher" />
+                      <SelectItem label="Parent" value="Parent" />
+                      <SelectItem label="Student" value="Student" />
+                    </SelectContent>
+                  </SelectPortal>
+                </Select>
+              )}
+            />
+
+            {(store.role === 'Doctor' || store.role === 'Teacher') && (
+              <HStack space="sm">
                 <Input
                   bgColor="#DC9F72"
                   height={'$12'}
@@ -98,50 +190,20 @@ const Signin = () => {
                   width={'$full'}
                   borderWidth={0}>
                   <InputSlot pl="$4">
-                    <field.icon size={25} color={'black'} />
+                    <Key size={25} color={'black'} />
                   </InputSlot>
                   <InputField
                     type="text"
                     fontFamily="Poppins-Regular"
-                    placeholder={field.title}
+                    placeholder={
+                      store.role === 'Doctor' ? 'Doctor ID' : 'Teacher ID'
+                    }
                     paddingHorizontal={'$6'}
                     placeholderTextColor={'black'}
                   />
                 </Input>
               </HStack>
-            ))}
-            <Select onValueChange={handleRole}>
-              <SelectTrigger
-                bgColor="#DC9F72"
-                height={'$12'}
-                paddingStart={'$4'}
-                paddingEnd={'$3'}
-                rounded={'$2xl'}
-                width={'$full'}>
-                <User size={25} color={'black'} />
-                <SelectInput
-                  paddingStart={'$5'}
-                  mt={'$1'}
-                  placeholder="Role"
-                  fontFamily="Poppins-Regular"
-                  placeholderTextColor={'black'}
-                />
-                <SelectIcon as={ChevronDown} size={'xl'} color="black" />
-              </SelectTrigger>
-              <SelectPortal>
-                <SelectBackdrop />
-                <SelectContent bg="whitesmoke">
-                  <SelectDragIndicatorWrapper>
-                    <SelectDragIndicator />
-                  </SelectDragIndicatorWrapper>
-                  <SelectItem label="Admin" value="admin" />
-                  <SelectItem label="Doctor" value="doctor" />
-                  <SelectItem label="Teacher" value="teacher" />
-                  <SelectItem label="Parent" value="parent" />
-                  <SelectItem label="Student" value="student" />
-                </SelectContent>
-              </SelectPortal>
-            </Select>
+            )}
 
             <HStack justifyContent="space-between">
               <HStack>
@@ -165,7 +227,7 @@ const Signin = () => {
           </VStack>
           <Box height={'$10'} />
           <Pressable
-            onPress={handleLogin}
+            onPress={handleSubmit(onSubmit)}
             bgColor="#DC9F72"
             paddingHorizontal={'$8'}
             paddingVertical={'$2'}
