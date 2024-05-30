@@ -5,7 +5,10 @@ import {NavigationContainer} from '@react-navigation/native';
 // import MainNavigator from './src/navigation/MainNavigator';
 import ChatSupport from './src/screens/Admin/ChatSupport';
 import MainNavigator from './src/navigation/MainNavigator';
-import ChatSupport from './src/screens/Admin/ChatSupport';
+import EnglishCourses from './src/screens/StudentModule/EnglishCourses';
+import ShapesEnglish from './src/screens/StudentModule/ShapesEnglish';
+import ShapesStart from './src/screens/StudentModule/ShapesStart';
+// import ChatSupport from './src/screens/Admin/ChatSupport';
 // import ChatSupport from './src/screens/Admin/ChatSupport';
 
 const config = createConfig({
@@ -29,10 +32,12 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
+        {/* <EnglishCourses/> */}
+        <ShapesStart/>
         {/* <MainNavigator /> */}
-        <ChatSupport />
+        {/* <ChatSupport /> */}
         {/* <MainNavigator /> */}
-        <ChatSupport />
+        {/* <ChatSupport /> */}
         {/* <StudentActivity /> */}
         {/* <GrandAssessment /> */}
         {/* <AccountManagementDoctor/> */}
