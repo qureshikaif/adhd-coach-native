@@ -1,4 +1,4 @@
-import {View, ImageBackground, ScrollView, Box,Image, HStack} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView, Box,Image, HStack, VStack} from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';

@@ -3,17 +3,8 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
-// import ChatSupport from './src/screens/Admin/ChatSupport';
-// import MathsCounting from './src/screens/StudentModule/MathsCounting';
-// import MainNavigator from './src/navigation/MainNavigator';
-import ChatSupport from './src/screens/Admin/ChatSupport';
-import MainNavigator from './src/navigation/MainNavigator';
-import EnglishCourses from './src/screens/StudentModule/EnglishCourses';
-import ShapesEnglish from './src/screens/StudentModule/ShapesEnglish';
 import ShapesStart from './src/screens/StudentModule/ShapesStart';
-// import ChatSupport from './src/screens/Admin/ChatSupport';
-// import ChatSupport from './src/screens/Admin/ChatSupport';
-
+import ShapesEnglish from './src/screens/StudentModule/ShapesEnglish';
 const config = createConfig({
   ...defaultConfig,
   tokens: {
@@ -36,10 +27,9 @@ function App(): React.JSX.Element {
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
         {/* <MathsCounting /> */}
-        <MainNavigator />
         {/* <ChatSupport /> */}
         {/* <EnglishCourses/> */}
-        <ShapesStart/>
+        <ShapesEnglish/>
         {/* <MainNavigator /> */}
         {/* <ChatSupport /> */}
         {/* <MainNavigator /> */}
