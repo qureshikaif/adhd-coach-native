@@ -14,7 +14,7 @@ const MathsCounting = () => {
         <Box/>
         <StatusBarStudent text="Maths" bgColor="#FFA360" />
         
-        <Box height={'$12'} />
+        <Box height={'$8'} />
 
         <Box  
             paddingHorizontal={'$10'}
@@ -25,13 +25,11 @@ const MathsCounting = () => {
             borderRadius={'$2xl'}
             borderWidth={'$1'}
             marginLeft={'$10'}>
-
+              <Center>
             <TextBold
               text="Counting"
-              fontSize={'$2xl'}
-              marginLeft={'$16'}
-              padding={'$1'} />
-      
+              fontSize={'$2xl'}/>
+              </Center>
           </Box>
           <Box height={'$4'} />
         <Image source={MathsImage} alt='MathsImage' h='$56' w = '$full'/>
@@ -40,8 +38,8 @@ const MathsCounting = () => {
           <ScrollView>
           <MathsCount />
           </ScrollView>
-          <Box height={'$12'} />
-          <Box height={'$4'} />
+          <Box height={'$12'} bgColor='pink'/>
+          <Box height={'$8'} />
       </ImageBackground>
     </View>
   );
