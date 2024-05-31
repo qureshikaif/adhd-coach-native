@@ -3,6 +3,8 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MathsCounting from './src/screens/StudentModule/MathsCounting';
+import MathsCourses from './src/screens/StudentModule/MathsCourses';
+
 const config = createConfig({
   ...defaultConfig,
   tokens: {
@@ -24,7 +26,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <GluestackUIProvider config={config}>
         {/* <RootTabs /> */}
-        <MathsCounting/>
+        <MathsCourses/>
         {/*<RootTabs/>*/}
       </GluestackUIProvider>
     </NavigationContainer>

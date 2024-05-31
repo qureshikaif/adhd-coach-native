@@ -13,9 +13,7 @@ const MathsCounting = () => {
       <ImageBackground source={BackgroundImage} h="$full">
         <Box/>
         <StatusBarStudent text="Maths" bgColor="#FFA360" />
-        
-        <Box height={'$8'} />
-
+        <Box height={'$6'} />
         <Box  
             paddingHorizontal={'$10'}
             marginRight={'$12'}
@@ -33,7 +31,7 @@ const MathsCounting = () => {
           </Box>
           <Box height={'$4'} />
         <Image source={MathsImage} alt='MathsImage' h='$56' w = '$full'/>
-          <Box height={'$12'} />
+          <Box height={'$8'} />
 
           <ScrollView>
           <MathsCount />

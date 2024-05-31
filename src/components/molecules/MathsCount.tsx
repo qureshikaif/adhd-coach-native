@@ -1,8 +1,6 @@
 import {View, ImageBackground, ScrollView, Box,Image, HStack, VStack, Center} from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../atoms/Text/TextSemibold';
-import StatusBarStudent from './StatusBarStudent';
-import TextBold from '../atoms/Text/TextBold';
 
 const count1 = require('../../assets/images/count-1.png');
 const count2 = require('../../assets/images/count-2.png');
