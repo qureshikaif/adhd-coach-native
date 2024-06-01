@@ -3,21 +3,14 @@ import React from 'react';
 import TextSemibold from '../Text/TextSemibold';
 import ProfilePreview from '../../molecules/popup/ProfilePreview';
 import AccountDeletion from '../../molecules/popup/AccountDeletion';
+import {User} from '../../../types/User';
 
 const UserIcon = require('../../../assets/images/icons/user.png');
 const ExternalIcon = require('../../../assets/images/icons/external.png');
 const RemoveIcon = require('../../../assets/images/icons/remove.png');
 
-export type Student = {
-  id: number;
-  full_name: string;
-  email: string;
-  password: string;
-  id_assigned: number;
-};
-
 type ViewOrRemoveProps = {
-  user?: Student;
+  user?: User;
 };
 
 const ViewOrRemove = ({user}: ViewOrRemoveProps) => {
@@ -77,6 +70,7 @@ const ViewOrRemove = ({user}: ViewOrRemoveProps) => {
         showModal={showView}
         setShowModal={setShowView}
         ref={refView}
+        user={user}
       />
       <AccountDeletion
         showModal={showRemove}

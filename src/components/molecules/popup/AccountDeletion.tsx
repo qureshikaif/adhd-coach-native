@@ -15,11 +15,19 @@ import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
 import TextSemibold from '../../atoms/Text/TextSemibold';
 import TextRegular from '../../atoms/Text/TextRegular';
+import {User} from '../../../types/User';
 
 const WarningIcon = require('../../../assets/images/icons/warning.png');
-// const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
-const AccountDeletion = ({showModal, setShowModal, ref}: ModalProps) => {
+interface AccountDeletionProps extends ModalProps {
+  user?: User;
+}
+
+const AccountDeletion = ({
+  showModal,
+  setShowModal,
+  ref,
+}: AccountDeletionProps) => {
   return (
     <Center>
       <Modal

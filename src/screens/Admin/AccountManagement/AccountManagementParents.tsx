@@ -1,13 +1,12 @@
 import {ImageBackground, ScrollView, Box, VStack} from '@gluestack-ui/themed';
 import React from 'react';
-import ViewOrRemove, {
-  Student,
-} from '../../../components/atoms/Buttons/ViewOrRemove';
+import ViewOrRemove from '../../../components/atoms/Buttons/ViewOrRemove';
 import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
 import Loading from '../../Loading';
+import {User} from '../../../types/User';
 
 const BackgroundImage = require('../../../assets/images/admin-bg-main.png');
 
@@ -33,7 +32,7 @@ const AccountManagementParents = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <VStack space="xs">
           <TextSemibold text="View/Remove" fontSize={'$xl'} />
-          {parents.map((parent: Student, index: number) => (
+          {parents.map((parent: User, index: number) => (
             <ViewOrRemove key={index} user={parent} />
           ))}
         </VStack>
