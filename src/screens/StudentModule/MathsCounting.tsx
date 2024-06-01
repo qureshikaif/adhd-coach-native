@@ -1,43 +1,50 @@
-import {View, ImageBackground, ScrollView, Box,Image, HStack, VStack, Center} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView, Box,Image, HStack} from '@gluestack-ui/themed';
 import React from 'react';
+import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 import TextBold from '../../components/atoms/Text/TextBold';
 import MathsCount from '../../components/molecules/MathsCount';
 
+const Counting = require('../../assets/images/counting.png')
 const BackgroundImage = require('../../assets/images/MathsCounting-img.png');
-const MathsImage = require('../../assets/images/counting-maths-img.png');
+// const MathsImage = require('../../assets/images/couting-maths-img.png');
 
 const MathsCounting = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h="$full">
-        <Box/>
         <StatusBarStudent text="Maths" bgColor="#FFA360" />
-        <Box height={'$6'} />
-        <Box  
-            paddingHorizontal={'$10'}
-            marginRight={'$12'}
+        <ScrollView
+          paddingHorizontal={'$8'}>
+
+          <Box height={'$10'} />
+
+          <Box
             bgColor="#FFA360"
-            height={63}
+            height={70}
+            width={'$full'}
             padding={'$2'}
             borderRadius={'$2xl'}
             borderWidth={'$1'}
-            marginLeft={'$10'}>
-              <Center>
+            justifyContent='center'
+            alignItems='center'>
             <TextBold
               text="Counting"
-              fontSize={'$2xl'}/>
-              </Center>
-          </Box>
-          <Box height={'$4'} />
-        <Image source={MathsImage} alt='MathsImage' h='$56' w = '$full'/>
-          <Box height={'$8'} />
+              fontSize={'$2xl'} 
+              padding={'$1'} />
 
-          <ScrollView>
+          </Box>
+          <Box height={'$6'} />
+          <Box>
+              <HStack justifyContent='center' alignItems='center' paddingHorizontal={'$32'}>
+                <Image source={Counting} alt='couting' paddingHorizontal={'$20'} />
+              </HStack>
+            </Box>
+            <Box height={'$6'} />
           <MathsCount />
-          </ScrollView>
-          <Box height={'$12'} bgColor='pink'/>
-          <Box height={'$8'} />
+          <Box height={'$6'} />
+
+        </ScrollView>
       </ImageBackground>
     </View>
   );

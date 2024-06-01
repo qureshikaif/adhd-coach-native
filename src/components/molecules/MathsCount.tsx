@@ -1,41 +1,58 @@
-import {View, ImageBackground, ScrollView, Box,Image, HStack, VStack, Center} from '@gluestack-ui/themed';
+import { View, ImageBackground, ScrollView, Box, Image, HStack, VStack, Center } from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../atoms/Text/TextSemibold';
+import StatusBarStudent from './StatusBarStudent';
+import TextBold from '../atoms/Text/TextBold';
 
-const count1 = require('../../assets/images/count-1.png');
-const count2 = require('../../assets/images/count-2.png');
-const count3 = require('../../assets/images/count-3.png');
-const count4 = require('../../assets/images/count-4.png');
-const count5 = require('../../assets/images/count-5.png');
-const count6 = require('../../assets/images/count-6.png');
-const count7 = require('../../assets/images/count-7.png');
-const count8 = require('../../assets/images/count-8.png');
-const count9 = require('../../assets/images/count-9.png');
-const count0 = require('../../assets/images/count-0.png');
+const BackgroundImage = require('../../assets/images/MathsCounting-img.png');
+// const MathsImage = require('../../assets/images/couting-maths-img.png');
 
-const MathsCount = () => {
+type CountProps = {
+  isSettingsVisible?: boolean;
+}
+
+
+const MathsCount = ({
+  isSettingsVisible }: CountProps) => {
   return (
     <View height={'$full'}>
-        <Box/>
-         <Box
+      <VStack>
+
+        <HStack space='xs'>
+          <Box
             bgColor="#FFA360"
             height={65}
             padding={'$1'}
             borderRadius={'$3xl'}
             borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-             
+            width={65}
+            alignItems='center'
+            justifyContent='center'>
+
             <TextSemibold
-              text="1     ONE"
+              text="1"
               fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$2'}
-              paddingTop={'$1'}/>
-               
+            />
           </Box>
           <Box height={'$4'} />
-          <Center><Image source={count1} alt='count1' h='$24' w = '$24'/></Center>
+          <Box
+            bgColor="#FFA360"
+            height={65}
+            padding={'$1'}
+            borderRadius={'$3xl'}
+            borderWidth={'$2'}
+            width={65}
+            alignItems='center'
+            justifyContent='center'
+          >
+
+            <TextSemibold
+              text="2"
+              fontSize={'$2xl'}
+
+            />
+          </Box>
+
           <Box height={'$4'} />
 
           <Box
@@ -44,18 +61,17 @@ const MathsCount = () => {
             padding={'$1'}
             borderRadius={'$3xl'}
             borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-            
+            width={65}
+            alignItems='center'
+            justifyContent='center'
+          >
+
             <TextSemibold
-              text="2     TWO"
+              text="3"
               fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$2'}
-              paddingTop={'$1'}/>
+            />
           </Box>
-          <Box height={'$4'} />
-          <Center><Image source={count2} alt='count2' h='$24' w = '$24'/></Center>
+
           <Box height={'$4'} />
 
           <Box
@@ -64,77 +80,110 @@ const MathsCount = () => {
             padding={'$1'}
             borderRadius={'$3xl'}
             borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-            
+            width={65}
+            alignItems='center'
+            justifyContent='center'
+          >
+
             <TextSemibold
-              text="3     THREE"
+              text="4"
               fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$2'}
-              paddingTop={'$1'}/>
-              
+            />
           </Box>
+        </HStack>
+        <Box height={'$4'} />
+        <HStack space='xs'>
+          <Box
+            bgColor="#FFA360"
+            height={65}
+            padding={'$1'}
+            borderRadius={'$3xl'}
+            borderWidth={'$2'}
+            width={65}
+            alignItems='center'
+            justifyContent='center'
+          >
+
+            <TextSemibold
+              text="5"
+              fontSize={'$2xl'}
+            />
+          </Box>
+
           <Box height={'$4'} />
-          <Center><Image source={count3} alt='count3' h='$24' w = '$24'/></Center>
+          <Box
+            bgColor="#FFA360"
+            height={65}
+            padding={'$1'}
+            borderRadius={'$3xl'}
+            borderWidth={'$2'}
+            width={65}
+            alignItems='center'
+            justifyContent='center'
+          >
+
+            <TextSemibold
+              text="6 "
+              fontSize={'$2xl'}
+            />
+          </Box>
+          
           <Box height={'$4'} />
+
+          <Box
+            bgColor="#FFA360"
+            height={65}
+            padding={'$1'}
+            borderRadius={'$3xl'}
+            borderWidth={'$2'}
+            width={65}
+            alignItems='center'
+            justifyContent='center'
+          >
+
+            <TextSemibold
+              text="7"
+              fontSize={'$2xl'}
+            />
+          </Box>
+         
+          <Box height={'$4'} />
+
+          <Box
+            bgColor="#FFA360"
+            height={65}
+            padding={'$1'}
+            borderRadius={'$3xl'}
+            borderWidth={'$2'}
+            width={65}
+            alignItems='center'
+            justifyContent='center'
+          >
+
+            <TextSemibold
+              text="8"
+              fontSize={'$2xl'}
+            />
+          </Box>
+        </HStack>
+        <Box height={'$4'} />
+        <HStack space='xs' justifyContent='center'>
+          <Box
+            bgColor="#FFA360"
+            height={65}
+            padding={'$1'}
+            borderRadius={'$3xl'}
+            borderWidth={'$2'}
+            width={65}
+            alignItems='center'
+            justifyContent='center'>
+
+            <TextSemibold
+              text="9"
+              fontSize={'$2xl'}
+            />
+          </Box>
         
-          <Box
-            bgColor="#FFA360"
-            height={65}
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-            
-            <TextSemibold
-              text="4     FOUR"
-              fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$2'}
-              paddingTop={'$1'}/>
-          </Box>
-          <Box height={'$4'} />
-          <Center><Image source={count4} alt='count4' h='$24' w = '$24'/></Center>
-          <Box height={'$4'} />
-          <Box
-            bgColor="#FFA360"
-            height={65}
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-       
-            <TextSemibold
-              text="5     FIVE"
-              fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$2'}
-              paddingTop={'$1'}/>
-          </Box>
-          <Box height={'$4'} />
-          <Center><Image source={count5} alt='count5' h='$24' w = '$24'/></Center>
-          <Box height={'$4'} />
-        <Box
-            bgColor="#FFA360"
-            height={65}
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-            
-            <TextSemibold
-              text="6     SIX"
-              fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$2'}
-              paddingTop={'$1'}/>
-          </Box>
-          <Box height={'$4'} />
-          <Center><Image source={count6} alt='count6' h='$24' w = '$24'/></Center>
           <Box height={'$4'} />
 
           <Box
@@ -143,79 +192,18 @@ const MathsCount = () => {
             padding={'$1'}
             borderRadius={'$3xl'}
             borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-            
-            <TextSemibold
-              text="7     SEVEN"
-              fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$2'}
-              paddingTop={'$1'}/>
-          </Box>
-          <Box height={'$4'} />
-          <Center><Image source={count7} alt='count7' h='$24' w = '$24'/></Center>
-          <Box height={'$4'} />
+            width={65}
+            alignItems='center'
+            justifyContent='center'>
 
-          <Box
-            bgColor="#FFA360"
-            height={65}
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-            
             <TextSemibold
-              text="8     EIGHT"
+              text="0"
               fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$2'}
-              paddingTop={'$1'}/>
+            />
           </Box>
-          <Box height={'$4'} />
-          <Center><Image source={count8} alt='count8' h='$24' w = '$24'/></Center>
-          <Box height={'$4'} />
+        </HStack>
 
-          <Box
-            bgColor="#FFA360"
-            height={65}
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-            
-            <TextSemibold
-              text="9     NINE"
-              fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$2'}
-              paddingTop={'$1'}/>
-          </Box>
-          <Box height={'$4'} />
-          <Center><Image source={count9} alt='count9' h='$24' w = '$24'/></Center>
-          <Box height={'$4'} />
-
-          <Box
-            bgColor="#FFA360"
-            height={65}
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$2'}
-            marginRight={'$48'}
-            marginLeft={'$16'}>
-            
-            <TextSemibold
-              text="0     ZERO"
-              fontSize={'$2xl'}
-              marginLeft={'$4'}
-              padding-left={'$1'}
-              paddingTop={'$1'}/>
-          </Box>
-          <Box height={'$4'} />
-          <Center><Image source={count0} alt='count0' h='$24' w = '$24'/></Center>
-          <Box height={'$4'} />
+      </VStack>
     </View>
   );
 };
