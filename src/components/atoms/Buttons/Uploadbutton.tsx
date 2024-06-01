@@ -21,7 +21,7 @@ const UploadButton = ({
   onPress={onPress}
   {...buttonProps}
   bgColor="#edecd7"
-  p={'$4'}
+  p={'$1'}
   hardShadow="3"
   softShadow="4"
   

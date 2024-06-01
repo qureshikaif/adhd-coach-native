@@ -35,13 +35,13 @@ const TeacherCourse = () => {
         <ScrollView paddingHorizontal={'$4'}>
           <AddNewButton text="Add a new lecture" />
           <Box height={'$8'} />
-          <AddNewButton text="Add a new Assignment" />
+          <AddNewButton text="Add Quiz" />
           <Box height={'$8'} />
 
           <UploadButton text="lecture1" />
           <Box height={'$8'} />
 
-          <UploadButton text="Assignment" />
+          <UploadButton text="Quiz 1" />
           <Box height={'$8'} />
 
           <UploadButton text="lecture 2" />

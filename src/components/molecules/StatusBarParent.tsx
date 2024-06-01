@@ -5,6 +5,7 @@ import SideBackButton from '../atoms/Buttons/SideBackButton';
 
 type StatusBarParentProps = {
   text: string;
+  isSettingsVisible?: boolean;
 };
 
 const StatusBarParent = ({text}: StatusBarParentProps) => {

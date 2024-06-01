@@ -1,28 +1,23 @@
+import { View, ImageBackground, ScrollView, Box, VStack, Button, HStack } from '@gluestack-ui/themed';
+import { TextInput } from 'react-native';
 import React from 'react';
-import { View, TextInput, Text } from 'react-native';
+import TextBold from '../../components/atoms/Text/TextBold';
+import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 
-const InputTable: React.FC = () => {
-  const rows = 4;
-  const columns = 4;
+const BackgroundImage = require('../../assets/images/patienthistory.png');
 
+const PatientMedicalHistory = () => {
   return (
-    <View style={{ flexDirection: 'column', borderWidth: 1, borderColor: '#000' }}>
-      {[...Array(rows)].map((_, rowIndex) => (
-        <View key={rowIndex} style={{ flexDirection: 'row' }}>
-          <View style={{ justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#000', padding: 10, width: 50 }}>
-            <Text style={{ textAlign: 'center' }}>{rowIndex + 1}</Text>
-          </View>
-          {[...Array(columns - 1)].map((_, colIndex) => (
-            <TextInput
-              key={colIndex}
-              style={{ borderWidth: 1, borderColor: '#000', padding: 10, flex: 1, textAlign: 'center' }}
-              placeholder={`R${rowIndex + 1}C${colIndex + 2}`}
-            />
-          ))}
-        </View>
-      ))}
+    <View style={{ flex: 1 }}>
+      <ImageBackground source={BackgroundImage} style={{ flex: 1 }}>
+       
+        <ScrollView contentContainerStyle={{ padding: 10 }}>
+       
+         
+        </ScrollView>
+      </ImageBackground>
     </View>
   );
 };
 
-export default InputTable;
+export default PatientMedicalHistory;
