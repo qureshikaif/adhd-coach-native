@@ -15,11 +15,13 @@ import TotalStudentsEnrolled from '../../components/molecules/TotalStudentsEnrol
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
+import Loading from '../Loading';
 
 const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
 const AdminMain = () => {
-  const {data: count} = useQuery({
+  const height = useBottomTabBarHeight();
+  const {data: count, isLoading} = useQuery({
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
@@ -28,12 +30,17 @@ const AdminMain = () => {
       return data;
     },
   });
+
+  if (isLoading) {
+    return <Loading bgImage={BackgroundImage} />;
+  }
+
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
         <StatusBarAdmin text="Admin Panel" isSettingsVisible />
-        <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
+          <Box height={'$8'} />
           <VStack space="lg">
             <TextBold text="Dashboard" fontSize={'$2xl'} />
             <AppStatistics />
@@ -41,7 +48,7 @@ const AdminMain = () => {
             <RecentFeedbacks />
             <CourseStatistics />
           </VStack>
-          <Box height={useBottomTabBarHeight() * 2} />
+          <Box height={height * 2} />
         </ScrollView>
       </ImageBackground>
     </View>
