@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Radio,
   RadioGroup,
+  RadioIcon,
   RadioIndicator,
   RadioLabel,
   VStack,
@@ -19,6 +20,8 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import assessmentMain from '../utils/assessmentMain';
+import {Circle} from 'lucide-react-native';
+import {useStore} from '../store';
 
 const BackgroundImage = require('../assets/images/assessment-bg.png');
 
@@ -26,6 +29,7 @@ type NavigationType = {
   Signin: undefined;
   Signup: undefined;
   ForgotPassword: undefined;
+  AssessmentCompleted: undefined;
   Assessment: {questionIndex: number};
 };
 
@@ -37,14 +41,18 @@ const Assessment = ({route}: AssessmentProps) => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const {questionIndex} = route.params;
   const question = assessmentMain[questionIndex];
+  const [selectedValue, setSelectedValue] = React.useState('');
+  const {setAnswer} = useStore();
 
   const handleNext = () => {
+    setAnswer(question.id, selectedValue);
     if (questionIndex < assessmentMain.length - 1) {
       navigation.navigate('Assessment', {questionIndex: questionIndex + 1});
     } else {
-      console.log('Assessment completed');
+      navigation.navigate('AssessmentCompleted');
     }
   };
+  console.log(selectedValue);
 
   return (
     <ImageBackground h="$full" source={BackgroundImage}>
@@ -72,10 +80,15 @@ const Assessment = ({route}: AssessmentProps) => {
           />
           <TextRegular text={question.question} />
           <Box height={'$10'} />
-          <RadioGroup gap={'$3'}>
+          <RadioGroup
+            gap={'$3'}
+            value={selectedValue}
+            onChange={setSelectedValue}>
             {question.options.map((option: any, index: any) => (
               <Radio key={index} value={option} size="sm">
-                <RadioIndicator mr={'$2'} borderColor="black" />
+                <RadioIndicator mr={'$2'} borderColor="black" p={'$2'}>
+                  <RadioIcon as={Circle} bgColor="black" />
+                </RadioIndicator>
                 <RadioLabel fontFamily="Poppins-Regular" color="black">
                   {option}
                 </RadioLabel>

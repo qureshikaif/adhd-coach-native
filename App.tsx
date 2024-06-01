@@ -4,14 +4,7 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
-import TicTacToeGame from './src/screens/StudentModule/TicTacToeGame';
-import PatientProfileHistory from './src/screens/Doctor/PatientProfileHistory';
-import StudentProfileView from './src/screens/Teacher/StudentProfileView';
-import ParentArticleView from './src/screens/Parent/PrentArticle';
-import TeacherCourse from './src/screens/Teacher/TeacherCourse';
-import InputTable from './src/screens/Doctor/PatientPrescription';
-import PatientMedicalHistory from './src/screens/Doctor/PatientMedicalHistory';
-import AddQuiz from './src/screens/Teacher/AddQuiz';
+
 
 const config = createConfig({
   ...defaultConfig,
@@ -35,7 +28,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-          <AddQuiz/>
+          <MainNavigator/>
           {/* <TicTacToeGame /> */}
         </GluestackUIProvider>
       </QueryClientProvider>

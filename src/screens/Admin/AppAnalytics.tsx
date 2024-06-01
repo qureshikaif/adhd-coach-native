@@ -11,11 +11,13 @@ import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import LastWeekStatistics from '../../components/molecules/LastWeekStatistics';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
+import Loading from '../Loading';
 
 const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
 const AppAnalytics = () => {
-  const {data: studentCount} = useQuery({
+  const height = useBottomTabBarHeight();
+  const {data: studentCount, isLoading} = useQuery({
     queryKey: ['studentCount'],
     queryFn: async () => {
       const {data} = await axios.get(
@@ -33,6 +35,11 @@ const AppAnalytics = () => {
       return data;
     },
   });
+
+  if (isLoading) {
+    return <Loading bgImage={BackgroundImage} />;
+  }
+
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
@@ -45,7 +52,7 @@ const AppAnalytics = () => {
               teacherCount={teacherCount}
             />
           </VStack>
-          <Box height={useBottomTabBarHeight() * 2} />
+          <Box height={height * 2} />
         </ScrollView>
       </ImageBackground>
     </View>
