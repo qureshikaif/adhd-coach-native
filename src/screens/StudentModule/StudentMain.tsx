@@ -28,7 +28,12 @@ const StudentMain = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h={'$full'}>
-        <StatusBarStudent text="Home" bgColor="#FFA360" textColor="black" />
+        <StatusBarStudent
+          text="Home"
+          bgColor="#FFA360"
+          textColor="black"
+          isLogoutVisible
+        />
 
         <ScrollView paddingHorizontal={'$5'}>
           <Box height={'$16'} />

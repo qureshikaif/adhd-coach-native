@@ -4,7 +4,6 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
-import TicTacToeGame from './src/screens/StudentModule/TicTacToeGame';
 
 const config = createConfig({
   ...defaultConfig,

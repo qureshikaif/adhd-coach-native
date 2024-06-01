@@ -204,40 +204,6 @@ const Signin = () => {
               )}
             />
 
-            {/* {(store.role === 'Doctor' || store.role === 'Teacher') && (
-              <HStack space="sm">
-                <Controller
-                  control={control}
-                  name={'id'}
-                  rules={{required: `${store.role} ID is required`}}
-                  render={({field: {onChange, onBlur, value}}) => (
-                    <Input
-                      bgColor="#DC9F72"
-                      height={'$12'}
-                      rounded={'$2xl'}
-                      width={'$full'}
-                      borderWidth={0}>
-                      <InputSlot pl="$4">
-                        <Key size={25} color={'black'} />
-                      </InputSlot>
-                      <InputField
-                        type="text"
-                        fontFamily="Poppins-Regular"
-                        placeholder={
-                          store.role === 'Doctor' ? 'Doctor ID' : 'Teacher ID'
-                        }
-                        paddingHorizontal={'$6'}
-                        placeholderTextColor={'black'}
-                        onBlur={onBlur}
-                        onChangeText={onChange}
-                        value={value}
-                      />
-                    </Input>
-                  )}
-                />
-              </HStack>
-            )} */}
-
             <HStack justifyContent="space-between">
               <HStack>
                 <TextRegular text="New user?" fontSize={'$sm'} />

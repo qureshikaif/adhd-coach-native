@@ -1,8 +1,11 @@
-import {Box, HStack} from '@gluestack-ui/themed';
+import {Box, HStack, Pressable} from '@gluestack-ui/themed';
 import BackButton from '../atoms/Buttons/BackButton';
 import TextBold from '../atoms/Text/TextBold';
 import React from 'react';
 import {GapValues} from '../../types/GapValues';
+import {LogOut} from 'lucide-react-native';
+import {handleLogout} from '../../helpers/handleLogout';
+import {useStore} from '../../store';
 
 type StatusBarStudentProps = {
   text: string;
@@ -10,6 +13,7 @@ type StatusBarStudentProps = {
   textColor?: string;
   variant?: 'white' | 'black';
   gap?: GapValues;
+  isLogoutVisible?: boolean;
 };
 
 const StatusBarStudent = ({
@@ -18,7 +22,9 @@ const StatusBarStudent = ({
   bgColor,
   textColor,
   variant,
+  isLogoutVisible,
 }: StatusBarStudentProps) => {
+  const store = useStore();
   return (
     <HStack
       bgColor={bgColor ? bgColor : '#D1A973'}
@@ -35,7 +41,13 @@ const StatusBarStudent = ({
         buttonProps={{}}
       />
       <TextBold text={text} fontSize={'$2xl'} color={textColor} />
-      <Box w={40} h={'$full'} />
+      {isLogoutVisible ? (
+        <Pressable onPress={() => handleLogout(store)}>
+          <LogOut size={30} color={'black'} />
+        </Pressable>
+      ) : (
+        <Box w={40} h={'$full'} />
+      )}
     </HStack>
   );
 };
