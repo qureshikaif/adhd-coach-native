@@ -24,7 +24,7 @@ const StudentHome = () => {
               <TextBold text="TIP OF THE DAY" fontSize={'$2xl'} padding={'$1.5'} />
               <TextRegular text="Eating Bananas is a natural cure to reduce the effects of stress and anxiety." fontSize={'$xl'} padding={'$1'} />
               <VStack>
-                <Image source={TipOfTheDay} alt='counting' />
+                <Image source={TipOfTheDay} alt='tip of the day' />
                 </VStack>
             </Box>
             <Box height={'$10'} />
