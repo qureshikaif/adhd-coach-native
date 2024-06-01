@@ -50,7 +50,7 @@ const fieldstextarea = [
   },
 ];
 
-const AddNewArticle = () => {
+const Add = () => {
   const [showModal, setShowModal] = React.useState(false);
   const ref = React.useRef(null);
 
@@ -179,4 +179,4 @@ const AddNewArticle = () => {
   );
 };
 
-export default AddNewArticle;
+export default Add;

@@ -12,13 +12,12 @@ import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
 import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
 import {useStore} from '../../store';
-import {handleLogout} from '../../helpers/handleLogout';
 
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
 const TeacherProfile = () => {
-  const store = useStore();
+ 
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
@@ -59,7 +58,7 @@ const TeacherProfile = () => {
 
               <Box flex={1} justifyContent="center" alignItems="center">
                 <Button
-                  onPress={() => handleLogout(store)}
+                  
                   android_ripple={{color: '#DEB5B5'}}
                   hardShadow="3"
                   width={120}
