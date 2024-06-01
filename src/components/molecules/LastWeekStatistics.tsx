@@ -3,7 +3,15 @@ import React from 'react';
 import TextSemibold from '../atoms/Text/TextSemibold';
 import TextBold from '../atoms/Text/TextBold';
 
-const LastWeekStatistics = () => {
+type LastWeekStatisticsProps = {
+  studentCount: string;
+  teacherCount: string;
+};
+
+const LastWeekStatistics = ({
+  studentCount,
+  teacherCount,
+}: LastWeekStatisticsProps) => {
   return (
     <View>
       <TextSemibold text="Last Week Statistics" fontSize={'$xl'} pb={'$2'} />
@@ -22,10 +30,11 @@ const LastWeekStatistics = () => {
               alignItems="center"
               justifyContent="center"
               rounded={'$full'}
-              p="$4"
+              w={'$32'}
+              h={'$32'}
               borderColor="#46A2CD">
               <TextBold
-                text="20+"
+                text={`${studentCount}+`}
                 color="#46A2CD"
                 fontSize={'$4xl'}
                 mt={'$1'}
@@ -41,10 +50,11 @@ const LastWeekStatistics = () => {
               alignItems="center"
               justifyContent="center"
               rounded={'$full'}
-              p="$4"
+              w={'$32'}
+              h={'$32'}
               borderColor="#46A2CD">
               <TextBold
-                text="30+"
+                text={`${teacherCount}+`}
                 color="#46A2CD"
                 fontSize={'$4xl'}
                 mt={'$1'}
