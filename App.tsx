@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
 import MathsCounting from './src/screens/StudentModule/MathsCounting';
+import StudentHome from './src/screens/StudentModule/StudentHome';
 
 const config = createConfig({
   ...defaultConfig,
@@ -29,7 +30,8 @@ function App(): React.JSX.Element {
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
           {/* <MainNavigator /> */}
-          <MathsCounting />
+          {/* <MathsCounting /> */}
+          <StudentHome />
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>
