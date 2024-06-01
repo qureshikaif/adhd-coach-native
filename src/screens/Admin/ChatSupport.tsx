@@ -1,9 +1,15 @@
-import {ImageBackground} from '@gluestack-ui/themed';
-import React from 'react';
-import {View, Text, StyleSheet, FlatList, Platform} from 'react-native';
-import {KeyboardAvoidingView} from '@gluestack-ui/themed';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  KeyboardAvoidingView,
+  ImageBackground,
+} from '@gluestack-ui/themed';
+import {StyleSheet, Platform, Keyboard, FlatList} from 'react-native';
 import StatusBarChat from '../../components/molecules/StatusBarChat';
 import ChatInput from '../../components/molecules/ChatInput';
+import {useNavigation} from '@react-navigation/native';
+import {tabBarStyle} from '../../navigation/AdminTabs';
 
 const BackgroundImage = require('../../assets/images/admin-content-bg.png');
 
@@ -51,30 +57,63 @@ const messages: Message[] = [
     text: 'Will do. Thanks for your support!',
     time: '4:44 pm',
   },
- 
+  {
+    id: '7',
+    sender: 'mom',
+    text: 'Will do. Thanks for your support!',
+    time: '4:44 pm',
+  },
 ];
 
 const ChatSupport: React.FC = () => {
-  const renderItem = ({item}: {item: Message}) => (
-    <View
-      style={[
-        styles.messageContainer,
-        item.sender === 'teacher' ? styles.teacherMessage : styles.momMessage,
-      ]}>
-      <Text style={styles.messageText}>{item.text}</Text>
-      <Text style={styles.timeText}>{item.time}</Text>
-    </View>
-  );
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation
+      .getParent()
+      ?.setOptions({tabBarStyle: {display: 'none'}, tabBarVisible: false});
+    return () =>
+      navigation.getParent()?.setOptions({tabBarStyle, tabBarVisible: true});
+  }, [navigation]);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => setKeyboardVisible(true),
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => setKeyboardVisible(false),
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
 
   return (
     <KeyboardAvoidingView
       h={'$full'}
+      paddingBottom={keyboardVisible ? '$12' : 0}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
         <StatusBarChat text="Sana Zehra" />
         <FlatList
           data={messages}
-          renderItem={renderItem}
+          renderItem={({item}) => (
+            <View
+              style={[
+                styles.messageContainer,
+                item.sender === 'teacher'
+                  ? styles.teacherMessage
+                  : styles.momMessage,
+              ]}>
+              <Text style={styles.messageText}>{item.text}</Text>
+              <Text style={styles.timeText}>{item.time}</Text>
+            </View>
+          )}
           keyExtractor={item => item.id}
           contentContainerStyle={styles.chatContainer}
         />

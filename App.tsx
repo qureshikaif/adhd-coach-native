@@ -4,7 +4,6 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
-// import ChatSupport from './src/screens/Admin/ChatSupport';
 
 const config = createConfig({
   ...defaultConfig,

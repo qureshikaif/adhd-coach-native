@@ -1,13 +1,20 @@
-import {HStack, Image, View, VStack} from '@gluestack-ui/themed';
+import {HStack, Image, VStack} from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../atoms/Text/TextSemibold';
+import {Pressable} from 'react-native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const SideIcon = require('../../assets/images/icons/side.png');
 const MsgIcon = require('../../assets/images/icons/grp-msg.png');
 
+type NavigationType = {
+  ChatSupport: undefined;
+};
+
 const ViewAllMsg = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
-    <View>
+    <Pressable onPress={() => navigation.navigate('ChatSupport')}>
       <VStack
         bg="#C0D9E5"
         w="$full"
@@ -27,7 +34,7 @@ const ViewAllMsg = () => {
           </HStack>
         </HStack>
       </VStack>
-    </View>
+    </Pressable>
   );
 };
 

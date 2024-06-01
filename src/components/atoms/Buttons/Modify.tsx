@@ -5,7 +5,7 @@ import ProfilePreview from '../../molecules/popup/ProfilePreview';
 import AccountDeletion from '../../molecules/popup/AccountDeletion';
 
 const CourseIcon = require('../../../assets/images/icons/course-dark.png');
-const EditIcon = require('../../../assets/images/icons/edit.png');
+// const EditIcon = require('../../../assets/images/icons/edit.png');
 const RemoveIcon = require('../../../assets/images/icons/remove.png');
 
 const Modify = () => {
@@ -28,7 +28,7 @@ const Modify = () => {
           <TextSemibold text="Voice Recognition" fontSize={'$xl'} />
         </HStack>
         <HStack alignItems="center" space="md">
-          <Pressable
+          {/* <Pressable
             android_ripple={{color: 'gray', radius: 100}}
             onPress={() => setShowView(true)}>
             <Image
@@ -38,7 +38,7 @@ const Modify = () => {
               height={35}
               resizeMode="contain"
             />
-          </Pressable>
+          </Pressable> */}
           <Pressable
             android_ripple={{color: 'red'}}
             onPress={() => setShowRemove(true)}>

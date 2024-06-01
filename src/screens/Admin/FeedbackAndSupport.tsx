@@ -5,6 +5,7 @@ import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import ChatSupport1 from '../../components/molecules/ChatSupport1';
 import ChatSupport2 from '../../components/molecules/ChatSupport2';
 import Reviews from '../../components/molecules/Reviews';
+import ViewAllMsg from '../../components/molecules/ViewAllMsg';
 
 const BackgroundImage = require('../../assets/images/admin-content-bg.png');
 
@@ -33,6 +34,7 @@ const FeedbackAndSupport = () => {
           {Array.from({length: 1}).map((_, index) => (
             <ChatSupport2 key={index} />
           ))}
+          <ViewAllMsg />
         </VStack>
       </ScrollView>
     </ImageBackground>

@@ -112,15 +112,6 @@ const ProfilePreview = ({
                 }}>
                 <TextRegular text="Close" color="white" />
               </Button>
-              {/* <Button
-                flex={1}
-                bgColor="#648DA0"
-                rounded={'$lg'}
-                onPress={() => {
-                  setShowModal(false);
-                }}>
-                <TextRegular text="Confirm" color="white" />
-              </Button> */}
             </HStack>
           </ModalFooter>
         </ModalContent>

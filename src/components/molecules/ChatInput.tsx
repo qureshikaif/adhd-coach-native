@@ -1,16 +1,13 @@
 import React from 'react';
-import {HStack, Image, Input, InputField, View} from '@gluestack-ui/themed';
-
-const MicIcon = require('../../assets/images/icons/mic.png');
-const CameraIcon = require('../../assets/images/icons/camera.png');
-const PlusIcon = require('../../assets/images/icons/plus-white.png');
+import {HStack, Input, InputField, View} from '@gluestack-ui/themed';
+import {Camera, Plus} from 'lucide-react-native';
 
 const ChatInput = () => {
   return (
     <View>
       <HStack bg="#000000" w="$full" h="$16" p="$4">
         <HStack alignItems="center" space="md">
-          <Image source={PlusIcon} alt="Attach Icon" width={20} height={20} />
+          <Plus color={'white'} size={30} />
           <Input
             bgColor="white"
             height={'$11'}
@@ -26,7 +23,7 @@ const ChatInput = () => {
             />
           </Input>
         </HStack>
-        <Image source={CameraIcon} w={'$7'} h={'$7'} alt="cameraicon" />
+        <Camera color={'white'} size={30} />
       </HStack>
     </View>
   );
