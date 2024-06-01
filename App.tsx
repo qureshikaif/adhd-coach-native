@@ -1,7 +1,8 @@
+import React from 'react';
 import {config as defaultConfig} from '@gluestack-ui/config';
 import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
-import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
 
 const config = createConfig({
@@ -21,11 +22,14 @@ const config = createConfig({
 });
 
 function App(): React.JSX.Element {
+  const queryClient = new QueryClient();
   return (
     <NavigationContainer>
-      <GluestackUIProvider config={config}>
-        <MainNavigator />
-      </GluestackUIProvider>
+      <QueryClientProvider client={queryClient}>
+        <GluestackUIProvider config={config}>
+          <MainNavigator />
+        </GluestackUIProvider>
+      </QueryClientProvider>
     </NavigationContainer>
   );
 }

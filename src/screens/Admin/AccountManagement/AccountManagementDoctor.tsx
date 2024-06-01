@@ -2,22 +2,41 @@ import {ImageBackground, ScrollView, Box, VStack} from '@gluestack-ui/themed';
 import React from 'react';
 import AddNewButton from '../../../components/atoms/Buttons/AddNewButton';
 import AddDoctor from '../../../components/molecules/popup/AddDoctor';
-import ViewOrRemove from '../../../components/atoms/Buttons/ViewOrRemove';
+import ViewOrRemove, {
+  Student,
+} from '../../../components/atoms/Buttons/ViewOrRemove';
 import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import axios from 'axios';
+import {useQuery} from '@tanstack/react-query';
+import Loading from '../../Loading';
 
 const BackgroundImage = require('../../../assets/images/admin-bg-main.png');
 
 const AccountManagementDoctor = () => {
   const height = useBottomTabBarHeight();
+
+  const {data: doctors, isLoading} = useQuery({
+    queryKey: ['doctors'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.0.107:8080/doctor/get-doctors',
+      );
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading bgImage={BackgroundImage} />;
+  }
   return (
     <ImageBackground source={BackgroundImage} minHeight={'$full'}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <VStack space="xs">
           <AddNewButton text="Add a new doctor" ModalComponent={AddDoctor} />
           <TextSemibold text="View/Remove" fontSize={'$xl'} />
-          {Array.from({length: 10}).map((_, index) => (
-            <ViewOrRemove key={index} />
+          {doctors.map((doctor: Student, index: number) => (
+            <ViewOrRemove key={index} user={doctor} />
           ))}
         </VStack>
         <Box height={height * 2.5} />

@@ -8,7 +8,19 @@ const UserIcon = require('../../../assets/images/icons/user.png');
 const ExternalIcon = require('../../../assets/images/icons/external.png');
 const RemoveIcon = require('../../../assets/images/icons/remove.png');
 
-const ViewOrRemove = () => {
+export type Student = {
+  id: number;
+  full_name: string;
+  email: string;
+  password: string;
+  id_assigned: number;
+};
+
+type ViewOrRemoveProps = {
+  user?: Student;
+};
+
+const ViewOrRemove = ({user}: ViewOrRemoveProps) => {
   const [showView, setShowView] = React.useState(false);
   const [showRemove, setShowRemove] = React.useState(false);
   const refView = React.useRef(null);
@@ -25,7 +37,16 @@ const ViewOrRemove = () => {
         justifyContent="space-between">
         <HStack alignItems="center" space="lg">
           <Image source={UserIcon} alt="User Icon" width={20} height={20} />
-          <TextSemibold text="John Doe" fontSize={'$xl'} />
+          <TextSemibold
+            text={
+              user
+                ? user.full_name == null || user.full_name === ''
+                  ? 'Name not assigned'
+                  : user.full_name
+                : 'John Doe'
+            }
+            fontSize={'$xl'}
+          />
         </HStack>
         <HStack alignItems="center" space="md">
           <Pressable
