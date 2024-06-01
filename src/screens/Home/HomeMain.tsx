@@ -95,6 +95,7 @@ const HomeMain = () => {
               <TextBold text="Log In" />
             </Button>
             <Button
+              android_ripple={{color: '#B9A173'}}
               onPress={() => navigation.navigate('Signup')}
               hardShadow="3"
               size="xl"
@@ -107,6 +108,7 @@ const HomeMain = () => {
           </HStack>
           <TextBold text="OR" fontSize={'$2xl'} />
           <Button
+            android_ripple={{color: '#B9A173'}}
             onPress={() => navigation.navigate('Assessment')}
             hardShadow="5"
             size="xl"

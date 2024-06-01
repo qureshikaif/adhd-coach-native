@@ -18,13 +18,13 @@ const MainNavigator = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {!store.isAuthenticated ? (
         <Stack.Screen name="Main" component={HomeStack} />
-      ) : store.role === 'admin' ? (
+      ) : store.role === 'Admin' ? (
         <Stack.Screen name="Admin" component={AdminTabs} />
-      ) : store.role === 'student' ? (
+      ) : store.role === 'Student' ? (
         <Stack.Screen name="Student" component={StudentTabs} />
-      ) : store.role === 'parent' ? (
+      ) : store.role === 'Parent' ? (
         <Stack.Screen name="Parents" component={ParentTabs} />
-      ) : store.role === 'doctor' ? (
+      ) : store.role === 'Doctor' ? (
         <Stack.Screen name="Doctor" component={DoctorTabs} />
       ) : (
         <Stack.Screen name="Teacher" component={TeacherTabs} />

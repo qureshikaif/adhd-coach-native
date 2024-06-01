@@ -3,21 +3,7 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import MainNavigator from './src/navigation/MainNavigator';
-import GrandAssessment from './src/screens/GrandAssessment';
-import StudentHome from './src/screens/StudentModule/StudentHome';
-import StudentActivity from './src/screens/StudentModule/StudentActivity';
-import StudentCourses from './src/screens/StudentModule/StudentCourses';
-import ChatSupport from './src/screens/Admin/ChatSupport';
-import ParentChatbox from './src/screens/Parent/ParentChat';
-import ChatBox from './src/screens/Parent/ParentChatOpen';
-import DoctorChatbox from './src/screens/Doctor/DoctorChat';
-import DoctorChatBoxOpen from './src/screens/Doctor/DoctorChatOpen';
-import TeacherChatbox from './src/screens/Teacher/TeacherChat';
-import TeacherChatBoxOpen from './src/screens/Teacher/TeacherChatBoxOpen';
-import AdminChatbox from './src/screens/Admin/AdminChat';
-import { RootTabs } from './src/navigation/RootTabs';
-// import StudentCourses from './src/screens/StudentModule/StudentCourses';
-// import StudentActivity from './src/screens/StudentModule/StudentActivity';
+// import ChatSupport from './src/screens/Admin/ChatSupport';
 
 const config = createConfig({
   ...defaultConfig,
@@ -39,9 +25,15 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config}>
-    <RootTabs/>
-       
-      
+        {/* <RootTabs /> */}
+        <MainNavigator />
+        {/* <ChatSupport /> */}
+        {/* <StudentActivity /> */}
+        {/* <GrandAssessment /> */}
+        {/* <AccountManagementDoctor/> */}
+        {/* <DoctorMain/> */}
+        {/*<PatientProfileHistory/>*/}
+        {/*<RootTabs/>*/}
       </GluestackUIProvider>
     </NavigationContainer>
   );

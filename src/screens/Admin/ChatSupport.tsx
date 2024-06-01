@@ -1,7 +1,7 @@
 import {ImageBackground} from '@gluestack-ui/themed';
 import React from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
-
+import {View, Text, StyleSheet, FlatList, Platform} from 'react-native';
+import {KeyboardAvoidingView} from '@gluestack-ui/themed';
 import StatusBarChat from '../../components/molecules/StatusBarChat';
 import ChatInput from '../../components/molecules/ChatInput';
 
@@ -51,7 +51,12 @@ const messages: Message[] = [
     text: 'Will do. Thanks for your support!',
     time: '4:44 pm',
   },
-
+  {
+    id: '7',
+    sender: 'teacher',
+    text: 'Of course, we’re here to help Ali succeed!',
+    time: '4:45 pm',
+  },
 ];
 
 const ChatSupport: React.FC = () => {
@@ -67,22 +72,31 @@ const ChatSupport: React.FC = () => {
   );
 
   return (
-    <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      <StatusBarChat text="Sana Zehra" />
-      <FlatList
-        data={messages}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.chatContainer}
-      />
-      <ChatInput />
-    </ImageBackground>
+    <KeyboardAvoidingView
+      h={'$full'}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
+        <StatusBarChat text="Sana Zehra" />
+        <FlatList
+          data={messages}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          contentContainerStyle={styles.chatContainer}
+        />
+        <ChatInput />
+      </ImageBackground>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+  },
   chatContainer: {
     padding: 10,
+    flexGrow: 1,
+    justifyContent: 'flex-end',
   },
   messageContainer: {
     marginVertical: 5,
