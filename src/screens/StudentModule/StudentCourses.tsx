@@ -1,4 +1,4 @@
-import {View, ImageBackground, ScrollView, Box} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView, Box, Center} from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
@@ -6,8 +6,8 @@ import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
 
 /* Change images path */
-//const MathsImage = require('../../assets/images/Stud-course-bg.png');
-//const EnglishImage = require('../../assets/images/Stud-course-bg.png');
+const MathsImage = require('../../assets/images/Stud-course-bg.png');
+const EnglishImage = require('../../assets/images/Stud-course-bg.png');
 
 const StudentCourses = () => {
   return (
@@ -37,7 +37,8 @@ const StudentCourses = () => {
             />
           </Box>
           <Box height={'$32'} />
-          <Box height={'$32'} />
+          <Center>
+          </Center>
 
           <Box
             bgColor="#FFA360"

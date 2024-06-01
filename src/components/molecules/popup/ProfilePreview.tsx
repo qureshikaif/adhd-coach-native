@@ -6,7 +6,6 @@ import {
   ModalContent,
   ModalHeader,
   Button,
-  ButtonText,
   Center,
   Image,
   VStack,
@@ -19,26 +18,35 @@ import TextSemibold from '../../atoms/Text/TextSemibold';
 import TextBold from '../../atoms/Text/TextBold';
 import TextRegular from '../../atoms/Text/TextRegular';
 import {InputField} from '@gluestack-ui/themed';
+import {User} from '../../../types/User';
 
 const UserImage = require('../../../assets/images/user-image.png');
-// const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
-const fields = [
-  {
-    name: 'User ID',
-    placeholder: '#29019254',
-  },
-  {
-    name: 'Email',
-    placeholder: 'johndoe@gmail.com',
-  },
-  {
-    name: 'Role',
-    placeholder: 'Teacher',
-  },
-];
+interface ProfilePreviewProps extends ModalProps {
+  user?: User;
+}
 
-const ProfilePreview = ({showModal, setShowModal, ref}: ModalProps) => {
+const ProfilePreview = ({
+  showModal,
+  setShowModal,
+  ref,
+  user,
+}: ProfilePreviewProps) => {
+  const fields = [
+    {
+      name: 'User ID',
+      placeholder: user?.id_assigned,
+    },
+    {
+      name: 'Email',
+      placeholder: user?.email,
+    },
+    {
+      name: 'Role',
+      placeholder: user?.role,
+    },
+  ];
+
   return (
     <Center>
       <Modal
@@ -52,7 +60,7 @@ const ProfilePreview = ({showModal, setShowModal, ref}: ModalProps) => {
         <ModalContent bgColor="#A3BACD" rounded="$2xl">
           <ModalHeader borderBottomWidth={1} borderBottomColor="#DDDDDD">
             <TextSemibold
-              text="Kaif Qureshi"
+              text={user?.full_name}
               color="white"
               fontSize="$2xl"
               w="$full"
@@ -83,7 +91,7 @@ const ProfilePreview = ({showModal, setShowModal, ref}: ModalProps) => {
                         alignContent="center"
                         type="text"
                         fontFamily="Poppins-Regular"
-                        placeholder={field.placeholder}
+                        placeholder={String(field.placeholder)}
                         fontSize={'$xs'}
                         placeholderTextColor={'black'}
                       />
@@ -102,9 +110,9 @@ const ProfilePreview = ({showModal, setShowModal, ref}: ModalProps) => {
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                <ButtonText>Cancel</ButtonText>
+                <TextRegular text="Close" color="white" />
               </Button>
-              <Button
+              {/* <Button
                 flex={1}
                 bgColor="#648DA0"
                 rounded={'$lg'}
@@ -112,7 +120,7 @@ const ProfilePreview = ({showModal, setShowModal, ref}: ModalProps) => {
                   setShowModal(false);
                 }}>
                 <TextRegular text="Confirm" color="white" />
-              </Button>
+              </Button> */}
             </HStack>
           </ModalFooter>
         </ModalContent>

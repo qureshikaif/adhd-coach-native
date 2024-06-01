@@ -23,7 +23,7 @@ const ParentMain = () => {
           <Box height={'$12'}  />
           <TextSemibold text="“EDUCATION, LIKE NEUROSIS, BEGINS AT HOME”" fontSize={'$xl'} />
           <Box height={'$12'} />
-          <ParentMainTable/>
+          <ParentMainTable />
           
           {/* <AddNewButton text="Add a new teacher" ModalComponent={AddTeacher} /> */}
         </ScrollView>

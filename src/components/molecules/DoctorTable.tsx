@@ -2,36 +2,34 @@ import React from 'react';
 import { View, Text,FlatList,StyleSheet } from 'react-native';
 
 
-interface Patient {
-  Time: string;
-  Name: string;
-  Age: number;
-  Reason: string;
-  Notes: string;
+
+interface Students {
+  SR: string;
+  Course: string;
+  Teacher: string;
+  Lesson: string;
   Username: string;
 }
 
-const data: Patient[] = [
-  { Time: '1:30', Name: 'Kaif', Age: 17, Reason: 'ADHD', Notes: 'Medical', Username: 'Kaif123' },
-  { Time: '2:30', Name: 'Abu Bakar', Age: 17, Reason: 'ADHD', Notes: 'Medical', Username: 'Abu911' },
-  { Time: '3:30', Name: 'Sana', Age: 17, Reason: 'ADHD', Notes: 'Medical', Username: 'Sana011' },
-  { Time: '4:30', Name: 'Aleena', Age: 17, Reason: 'ADHD', Notes: 'Medical', Username: 'Aleena332' },
-  { Time: '6:30', Name: 'Ahmed', Age: 17, Reason: 'ADHD', Notes: 'Medical', Username: 'Ahmed04' },
+const data: Students[] = [
+  { SR: '1', Course: 'Maths', Teacher: 'Kaif Qureshi', Lesson: 'Counting', Username: 'Kaif123' },
+  { SR: '2', Course: 'English', Teacher: 'Ahmed Suhaib', Lesson: 'Alphabets', Username: 'Ahmed123'},
+  { SR: '3', Course: 'Activity', Teacher: 'Sana   Zehra', Lesson: 'Make A Face', Username: 'Teacher911'}
+
 ];
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
-    paddingVertical: 20,
-    paddingHorizontal: 20,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
   },
   headerTopBar: {
-    backgroundColor: '#EAC5C5',
+    backgroundColor: '#6953F5',
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   headerTopBarText: {
     color: '#fff',
@@ -42,7 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
-    backgroundColor: '#E0E0E0',
+    backgroundColor: '#B98CED',
     borderRadius: 8,
     marginBottom: 10,
   },
@@ -59,10 +57,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 10,
     backgroundColor: '#fff',
-    elevation: 2,
+    elevation: 1,
   },
   alternateRow: {
-    backgroundColor: '#F9F9F9',
+    backgroundColor: '#fff',
   },
   cell: {
     fontSize: 15,
@@ -75,29 +73,29 @@ const styles = StyleSheet.create({
 });
 
 const Table: React.FC = () => {
-  const renderItem = ({ item, index }: { item: Patient; index: number }) => (
+  const renderItem = ({ item, index }: { item: Students; index: number }) => (
     <View style={[styles.row, index % 2 === 0 ? styles.alternateRow : null]}>
-      <Text style={styles.cell}>{item.Time}</Text>
-      <Text style={styles.cell}>{item.Name}</Text>
-      <Text style={styles.cell}>{item.Reason}</Text>
-      <Text style={styles.cell}>{item.Notes}</Text>
+      <Text style={styles.cell}>{item.SR}</Text>
+      <Text style={styles.cell}>{item.Course}</Text>
+      <Text style={styles.cell}>{item.Teacher}</Text>
+      <Text style={styles.cell}>{item.Lesson}</Text>
     </View>
   );
 
   return (
     <View style={styles.container}>
       <View style={styles.headerTopBar}>
-        <Text style={styles.headerTopBarText}>Patients</Text>
+        <Text style={styles.headerTopBarText}>Courses Enrolled</Text>
       </View>
       <View style={styles.header}>
-        <Text style={styles.heading}>Time</Text>
-        <Text style={styles.heading}>Name</Text>
-        <Text style={styles.heading}>Reason</Text>
-        <Text style={styles.heading}>Notes</Text>
+        <Text style={styles.heading}>SR</Text>
+        <Text style={styles.heading}>Course</Text>
+        <Text style={styles.heading}>Teacher</Text>
+        <Text style={styles.heading}>Lesson</Text>
       </View>
       <FlatList
         data={data}
-        keyExtractor={(item) => item.Time}
+        keyExtractor={(item) => item.SR}
         renderItem={renderItem}
       />
     </View>

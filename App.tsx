@@ -1,24 +1,9 @@
+import React from 'react';
 import {config as defaultConfig} from '@gluestack-ui/config';
 import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
-import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import MathsCounting from './src/screens/StudentModule/MathsCounting';
-import MathsCourses from './src/screens/StudentModule/MathsCourses';
-// import MainNavigator from './src/navigation/MainNavigator';
-// import ChatSupport from './src/screens/Admin/ChatSupport';
-// import MathsCounting from './src/screens/StudentModule/MathsCounting';
-// import MainNavigator from './src/navigation/MainNavigator';
-import ChatSupport from './src/screens/Admin/ChatSupport';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
-import EnglishCourses from './src/screens/StudentModule/EnglishCourses';
-import ShapesEnglish from './src/screens/StudentModule/ShapesEnglish';
-import ShapesStart from './src/screens/StudentModule/ShapesStart';
-// import MathsCourses from './src/screens/StudentModule/MathsCourses';
-import MathsCount from './src/components/molecules/MathsCount';
-// import MathsCounting from './src/screens/StudentModule/MathsCounting';
-import StudentActivity from './src/screens/StudentModule/StudentActivity';
-import StudentHome from './src/screens/StudentModule/StudentHome';
-// import ChatSupport from './src/screens/Admin/ChatSupport';
 // import ChatSupport from './src/screens/Admin/ChatSupport';
 
 const config = createConfig({
@@ -38,28 +23,14 @@ const config = createConfig({
 });
 
 function App(): React.JSX.Element {
+  const queryClient = new QueryClient();
   return (
     <NavigationContainer>
-      <GluestackUIProvider config={config}>
-        {/* <RootTabs /> */}
-        {/* <MathsCourses/> */}
-        {/* <MathsCounting /> */}
-        {/* <MainNavigator /> */}
-        {/* <ChatSupport /> */}
-        {/* <EnglishCourses/> */}
-        <StudentHome/>
-        {/* <ShapesStart/> */}
-        {/* <MainNavigator /> */}
-        {/* <ChatSupport /> */}
-        {/* <MainNavigator /> */}
-        {/* <ChatSupport /> */}
-        {/* <StudentActivity /> */}
-        {/* <GrandAssessment /> */}
-        {/* <AccountManagementDoctor/> */}
-        {/* <DoctorMain/> */}
-        {/*<PatientProfileHistory/>*/}
-        {/*<RootTabs/>*/}
-      </GluestackUIProvider>
+      <QueryClientProvider client={queryClient}>
+        <GluestackUIProvider config={config}>
+          <MainNavigator />
+        </GluestackUIProvider>
+      </QueryClientProvider>
     </NavigationContainer>
   );
 }

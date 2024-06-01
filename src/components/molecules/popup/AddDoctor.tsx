@@ -6,7 +6,6 @@ import {
   ModalContent,
   ModalHeader,
   Button,
-  ButtonText,
   Center,
   Image,
   VStack,
@@ -19,11 +18,26 @@ import TextSemibold from '../../atoms/Text/TextSemibold';
 import TextBold from '../../atoms/Text/TextBold';
 import TextRegular from '../../atoms/Text/TextRegular';
 import {InputField} from '@gluestack-ui/themed';
+import axios from 'axios';
 
 const AddDoctorIcon = require('../../../assets/images/add-doctor.png');
-// const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
 const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
+  const [doctorId, setDoctorId] = React.useState('' as string);
+
+  const handleDoctorId = (text: string) => setDoctorId(text);
+
+  const onSubmit = () => {
+    axios
+      .post('http://192.168.0.107:8080/admin/doctor', {
+        doctorId,
+      })
+      .then(res => {
+        console.log(res.data.message);
+        setShowModal(false);
+      })
+      .catch(err => console.log(err));
+  };
   return (
     <Center>
       <Modal
@@ -58,11 +72,12 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
                 <TextBold text="Doctor ID" fontSize={'$xl'} color="white" />
                 <Input width={'$full'} bgColor="#D7E6ED">
                   <InputField
+                    onChange={e => handleDoctorId(e.nativeEvent.text)}
                     display="flex"
                     alignContent="center"
                     type="text"
                     fontFamily="Poppins-Regular"
-                    placeholder={'#29019254'}
+                    placeholder={'9019254'}
                     fontSize={'$xs'}
                     placeholderTextColor={'black'}
                   />
@@ -79,15 +94,13 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                <ButtonText>Cancel</ButtonText>
+                <TextRegular text="Cancel" color="white" />
               </Button>
               <Button
+                onPress={onSubmit}
                 flex={1}
                 bgColor="#648DA0"
-                rounded={'$lg'}
-                onPress={() => {
-                  setShowModal(false);
-                }}>
+                rounded={'$lg'}>
                 <TextRegular text="Confirm" color="white" />
               </Button>
             </HStack>

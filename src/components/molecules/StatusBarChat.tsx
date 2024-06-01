@@ -3,9 +3,10 @@ import BackButton from '../atoms/Buttons/BackButton';
 import React from 'react';
 import {GapValues} from '../../types/GapValues';
 import TextSemibold from '../atoms/Text/TextSemibold';
-
+const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const ProfilePic = require('../../assets/images//icons/ProfilePicSana.png');
 const PhoneIcon = require('../../assets/images/icons/phone.png');
+const CallPic = require('../../assets/images/icons/call.png');
 
 type StatusBarChatProps = {
   text: string;
@@ -24,6 +25,7 @@ const StatusBarChat = ({text, gap}: StatusBarChatProps) => {
       gap={gap ? gap : '$0'}>
       <BackButton
         variant="white"
+
         imageProps={{
           size: 'xs',
         }}
@@ -43,6 +45,7 @@ const StatusBarChat = ({text, gap}: StatusBarChatProps) => {
           <Image source={PhoneIcon} w={'$6'} h={'$6'} alt="Phone Icon" />
         </HStack>
       </HStack>
+
     </HStack>
   );
 };

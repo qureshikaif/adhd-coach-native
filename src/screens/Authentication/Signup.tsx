@@ -29,7 +29,7 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
-import {Lock, Mail, User, ChevronDown} from 'lucide-react-native';
+import {Lock, Mail, User, ChevronDown, Key} from 'lucide-react-native';
 import {useStore} from '../../store';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import axios from 'axios';
@@ -83,16 +83,27 @@ const Signup = () => {
   const {
     control,
     handleSubmit,
-    formState: {errors, isSubmitting},
+    formState: {errors, isLoading},
   } = useForm();
 
   const onSubmit = (data: any) => {
+    let id = '';
+
+    if (
+      store.role === 'Doctor' ||
+      store.role === 'Teacher' ||
+      store.role === 'Parent'
+    ) {
+      id = data.id;
+    }
+
     axios
-      .post(`http://192.168.0.107:8080/auth/signup`, {
+      .post('http://192.168.0.107:8080/auth/signup', {
         fullName: data.fullname,
         email: data.email,
         password: data.password,
         role: data.role,
+        id,
       })
       .then(res => {
         console.log('Response Data:', res.data);
@@ -228,6 +239,45 @@ const Signup = () => {
                 </Select>
               )}
             />
+            {(store.role === 'Doctor' ||
+              store.role === 'Teacher' ||
+              store.role === 'Parent') && (
+              <HStack space="sm">
+                <Controller
+                  control={control}
+                  name={'id'}
+                  rules={{required: `${store.role} ID is required`}}
+                  render={({field: {onChange, onBlur, value}}) => (
+                    <Input
+                      bgColor="#DC9F72"
+                      height={'$12'}
+                      rounded={'$2xl'}
+                      width={'$full'}
+                      borderWidth={0}>
+                      <InputSlot pl="$4">
+                        <Key size={25} color={'black'} />
+                      </InputSlot>
+                      <InputField
+                        type="text"
+                        fontFamily="Poppins-Regular"
+                        placeholder={
+                          store.role === 'Doctor'
+                            ? 'Doctor ID'
+                            : store.role === 'Teacher'
+                            ? 'Teacher ID'
+                            : 'Children ID'
+                        }
+                        paddingHorizontal={'$6'}
+                        placeholderTextColor={'black'}
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                      />
+                    </Input>
+                  )}
+                />
+              </HStack>
+            )}
 
             <TextRegular
               fontSize={'$xs'}
@@ -243,11 +293,11 @@ const Signup = () => {
             rounded={'$2xl'}
             onPress={handleSubmit(onSubmit)}>
             <HStack>
-              {isSubmitting && <ButtonSpinner color="black" />}
+              {isLoading && <ButtonSpinner color="black" />}
               <TextSemibold
                 text="Sign Up"
                 fontSize={'$lg'}
-                ml={isSubmitting ? '$2' : '$0'}
+                ml={isLoading ? '$2' : '$0'}
               />
             </HStack>
           </Pressable>
