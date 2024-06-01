@@ -3,16 +3,16 @@ import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import StudentHome from './stacks/Student/StudentHome';
 import StudentCourse from './stacks/Student/StudentCourse';
-import StudentGames from './stacks/Student/StudentGames';
 import StudentQuiz from './stacks/Student/StudentQuiz';
 import StudentHealth from './stacks/Student/StudentHealth';
+import StudentActivities from './stacks/Student/StudentActivities';
 
 const Tab = createBottomTabNavigator();
 
 const icons: {[index: string]: any} = {
   Home: require('../assets/images/navigation/Home.png'),
   Courses: require('../assets/images/navigation/Courses.png'),
-  Games: require('../assets/images/navigation/Games.png'),
+  Activities: require('../assets/images/navigation/Games.png'),
   Quizzes: require('../assets/images/navigation/Profile.png'),
   Health: require('../assets/images/navigation/Settings.png'),
 };
@@ -42,7 +42,7 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
 const screens = [
   {name: 'Home', component: StudentHome},
   {name: 'Courses', component: StudentCourse},
-  {name: 'Games', component: StudentGames},
+  {name: 'Activities', component: StudentActivities},
   {name: 'Quizzes', component: StudentQuiz},
   {name: 'Health', component: StudentHealth},
 ];

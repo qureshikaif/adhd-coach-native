@@ -1,10 +1,11 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import StudentActivity from '../../../screens/StudentModule/StudentActivity';
+import TicTacToeGame from '../../../screens/StudentModule/TicTacToeGame';
 
 const Stack = createNativeStackNavigator();
 
-const StudentGames = () => {
+const StudentActivities = () => {
   return (
     <Stack.Navigator
       initialRouteName="StudentActivity"
@@ -14,8 +15,9 @@ const StudentGames = () => {
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="StudentActivity" component={StudentActivity} />
+      <Stack.Screen name="TicTacToe" component={TicTacToeGame} />
     </Stack.Navigator>
   );
 };
 
-export default StudentGames;
+export default StudentActivities;
