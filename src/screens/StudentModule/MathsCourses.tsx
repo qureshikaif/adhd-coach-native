@@ -38,24 +38,10 @@ const MathsCourses = () => {
             </Box>
 
             <Box height={'$4'} />
-            <Box
-            bgColor="#FFA360"
-            height={45}
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$1'}
-            marginLeft={'$64'}>
-            
-            <Center>
-            <TextSemibold
-              text="Quiz"
-              fontSize={'$xl'}/>
-           </Center>
 
-          </Box>
           <Box height={'$4'} />
           <Image source={BasicOpt} alt='BasicOpt' h='$32' w = '$32' marginLeft={'$50%'}/>
-          <Box height={'$4'} />
+          <Box height={'$10'} />
 
           <Box
             bgColor="#FFA360"
@@ -72,22 +58,6 @@ const MathsCourses = () => {
               padding={'$1.5'}/>
 
             <Box height={'$4'} />
-
-            <Box
-            bgColor="#FFA360"
-            height={45}
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$1'}
-            marginLeft={'$64'}>
-            
-            <Center>
-            <TextSemibold
-              text="Quiz"
-              fontSize={'$xl'}/>
-           </Center>
-
-          </Box>
 
           </Box>
         </ScrollView>
