@@ -51,12 +51,7 @@ const messages: Message[] = [
     text: 'Will do. Thanks for your support!',
     time: '4:44 pm',
   },
-  {
-    id: '7',
-    sender: 'teacher',
-    text: 'Of course, we’re here to help Ali succeed!',
-    time: '4:45 pm',
-  },
+ 
 ];
 
 const ChatSupport: React.FC = () => {
