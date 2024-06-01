@@ -2,22 +2,27 @@ import {View, ImageBackground, ScrollView, Box,Image, HStack, VStack, Center} fr
 import React from 'react';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 import TextBold from '../../components/atoms/Text/TextBold';
-import MathsCount from '../../components/molecules/MathsCount';
+import MathsBasicAdd from '../../components/molecules/MathsBasicAdd';
+import MathsBasicSub from '../../components/molecules/MathsBasicSub';
 
-const BackgroundImage = require('../../assets/images/MathsCounting-img.png');
-const MathsImage = require('../../assets/images/counting-maths-img.png');
+const BackgroundImage = require('../../assets/images/basic-opt-bg.png');
+const BasicOpt = require('../../assets/images/Basic-opt.png');
+const HappyKid = require('../../assets/images/happy-kid.png');
 
-const MathsCounting = () => {
+const MathsBasicOpt = () => {
   return (
     <View height={'$full'}>
+        
       <ImageBackground source={BackgroundImage} h="$full">
+      
         <Box/>
         <StatusBarStudent text="Maths" bgColor="#FFA360" />
         <Box height={'$6'} />
+        <ScrollView>
         <Box  
             paddingHorizontal={'$10'}
             marginRight={'$12'}
-            bgColor="#FFA360"
+            bgColor="#EC8E49"
             height={63}
             padding={'$2'}
             borderRadius={'$2xl'}
@@ -25,22 +30,29 @@ const MathsCounting = () => {
             marginLeft={'$10'}>
               <Center>
             <TextBold
-              text="Counting"
+              text="Basic Operations"
               fontSize={'$2xl'}/>
               </Center>
           </Box>
-          <Box height={'$4'} />
-        <Image source={MathsImage} alt='MathsImage' h='$56' w = '$full'/>
-          <Box height={'$8'} />
 
-          <ScrollView>
-          <MathsCount />
-          </ScrollView>
-          <Box height={'$12'} bgColor='pink'/>
+          <Box height={'$4'} />
+          <Center>
+          <Image source={BasicOpt} alt='BasicOpt' h='$32' w = '$32'/>
+          </Center>
           <Box height={'$8'} />
+            <HStack>
+          <MathsBasicAdd/> 
+          </HStack>
+          <Box height={'$8'} />   
+          <HStack>
+          <MathsBasicSub/>
+          </HStack> 
+          <Box height={'$32'}/>
+
+          </ScrollView>
       </ImageBackground>
     </View>
-  );
+  )
 };
 
-export default MathsCounting;
+export default MathsBasicOpt;
