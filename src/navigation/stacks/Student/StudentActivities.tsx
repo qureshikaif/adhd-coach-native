@@ -2,6 +2,8 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import StudentActivity from '../../../screens/StudentModule/StudentActivity';
 import TicTacToeGame from '../../../screens/StudentModule/TicTacToeGame';
+import EnglishCourses from '../../../screens/StudentModule/EnglishCourses';
+import MathsCourses from '../../../screens/StudentModule/MathsCourses';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +18,8 @@ const StudentActivities = () => {
       }}>
       <Stack.Screen name="StudentActivity" component={StudentActivity} />
       <Stack.Screen name="TicTacToe" component={TicTacToeGame} />
+      <Stack.Screen name="EnglishCourses" component={EnglishCourses} />
+      <Stack.Screen name="MathsCourses" component={MathsCourses} />
     </Stack.Navigator>
   );
 };

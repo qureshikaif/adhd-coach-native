@@ -12,7 +12,7 @@ import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 
 const BackgroundImage = require('../../assets/images/tictactoe-bg.png');
 const MathsImage = require('../../assets/images/TicTacToe-img.png');
-const HappyKid = require('../../assets/images/happy-kid.png');
+// const HappyKid = require('../../assets/images/happy-kid.png');
 
 const TicTacToe = () => {
   return (

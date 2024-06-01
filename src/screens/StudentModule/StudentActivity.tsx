@@ -14,6 +14,8 @@ const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
 
 type NavigationType = {
   TicTacToe: undefined;
+  EnglishCourses: undefined;
+  MathsCourses: undefined;
 };
 
 const StudentActivity = () => {
@@ -32,7 +34,8 @@ const StudentActivity = () => {
         <Box height={'$10'} />
 
         {/* Tic Tace Toe */}
-        <Box
+        <Pressable
+          onPress={() => navigation.navigate('EnglishCourses')}
           bgColor="#FFA169"
           height={60}
           w={'$3/4'}
@@ -47,10 +50,11 @@ const StudentActivity = () => {
             marginLeft={'$12'}
             padding={'$1.5'}
           />
-        </Box>
+        </Pressable>
         <Box height={'$10'} />
         {/* Make A Face */}
-        <Box
+        <Pressable
+          onPress={() => navigation.navigate('MathsCourses')}
           bgColor="#FFA169"
           height={60}
           w={'$3/4'}
@@ -65,7 +69,7 @@ const StudentActivity = () => {
             marginLeft={'$12'}
             padding={'$1.5'}
           />
-        </Box>
+        </Pressable>
 
         <Box height={'$12'} />
 
