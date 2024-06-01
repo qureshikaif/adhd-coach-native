@@ -29,8 +29,9 @@ import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {colors} from '../../styles/colors';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {ChevronDown, Key, Lock, Mail, User} from 'lucide-react-native';
+import {ChevronDown, Lock, Mail, User} from 'lucide-react-native';
 import {useStore} from '../../store';
+import axios from 'axios';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/login.png');
@@ -69,9 +70,28 @@ const Signin = () => {
 
   const onSubmit = async (data: any) => {
     console.log(data);
-  };
 
-  console.log(store.role);
+    await axios
+      .post('http://192.168.0.107:8080/auth/signin', {
+        email: data.email,
+        password: data.password,
+        role: data.role,
+      })
+      .then(res => {
+        console.log(res.data);
+        store.setAuthenticated(true);
+      })
+      .catch(err => {
+        if (err.response) {
+          console.log('Error Response Data:', err.response.data);
+        } else if (err.request) {
+          console.log('Error Request:', err.request);
+        } else {
+          console.log('Error Message:', err.message);
+        }
+        console.log('Error Config:', err.config);
+      });
+  };
 
   return (
     <View height={'$full'}>
@@ -181,29 +201,39 @@ const Signin = () => {
               )}
             />
 
-            {(store.role === 'Doctor' || store.role === 'Teacher') && (
+            {/* {(store.role === 'Doctor' || store.role === 'Teacher') && (
               <HStack space="sm">
-                <Input
-                  bgColor="#DC9F72"
-                  height={'$12'}
-                  rounded={'$2xl'}
-                  width={'$full'}
-                  borderWidth={0}>
-                  <InputSlot pl="$4">
-                    <Key size={25} color={'black'} />
-                  </InputSlot>
-                  <InputField
-                    type="text"
-                    fontFamily="Poppins-Regular"
-                    placeholder={
-                      store.role === 'Doctor' ? 'Doctor ID' : 'Teacher ID'
-                    }
-                    paddingHorizontal={'$6'}
-                    placeholderTextColor={'black'}
-                  />
-                </Input>
+                <Controller
+                  control={control}
+                  name={'id'}
+                  rules={{required: `${store.role} ID is required`}}
+                  render={({field: {onChange, onBlur, value}}) => (
+                    <Input
+                      bgColor="#DC9F72"
+                      height={'$12'}
+                      rounded={'$2xl'}
+                      width={'$full'}
+                      borderWidth={0}>
+                      <InputSlot pl="$4">
+                        <Key size={25} color={'black'} />
+                      </InputSlot>
+                      <InputField
+                        type="text"
+                        fontFamily="Poppins-Regular"
+                        placeholder={
+                          store.role === 'Doctor' ? 'Doctor ID' : 'Teacher ID'
+                        }
+                        paddingHorizontal={'$6'}
+                        placeholderTextColor={'black'}
+                        onBlur={onBlur}
+                        onChangeText={onChange}
+                        value={value}
+                      />
+                    </Input>
+                  )}
+                />
               </HStack>
-            )}
+            )} */}
 
             <HStack justifyContent="space-between">
               <HStack>
