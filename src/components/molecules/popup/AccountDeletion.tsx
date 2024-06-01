@@ -6,7 +6,6 @@ import {
   ModalContent,
   ModalHeader,
   Button,
-  ButtonText,
   Center,
   Image,
   HStack,
@@ -75,7 +74,7 @@ const AccountDeletion = ({
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                <ButtonText>Cancel</ButtonText>
+                <TextRegular text="Cancel" color="white" />
               </Button>
               <Button
                 flex={1}

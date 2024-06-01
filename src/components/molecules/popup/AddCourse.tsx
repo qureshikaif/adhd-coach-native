@@ -6,7 +6,6 @@ import {
   ModalContent,
   ModalHeader,
   Button,
-  ButtonText,
   Center,
   Image,
   VStack,
@@ -24,7 +23,7 @@ const AddCourseIcon = require('../../../assets/images/add-course.png');
 
 const fields = [
   {
-    name: 'Name',
+    name: 'Title',
     placeholder: 'Mathematics',
   },
   {
@@ -101,7 +100,7 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                <ButtonText>Cancel</ButtonText>
+                <TextRegular text="Cancel" color="white" />
               </Button>
               <Button
                 flex={1}

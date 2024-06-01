@@ -3,12 +3,18 @@ import React from 'react';
 import TextSemibold from '../Text/TextSemibold';
 import ProfilePreview from '../../molecules/popup/ProfilePreview';
 import AccountDeletion from '../../molecules/popup/AccountDeletion';
+import {Article} from '../../../types/Article';
+import {Course} from '../../../types/Course';
 
 const CourseIcon = require('../../../assets/images/icons/course-dark.png');
 // const EditIcon = require('../../../assets/images/icons/edit.png');
 const RemoveIcon = require('../../../assets/images/icons/remove.png');
 
-const Modify = () => {
+type ModifyProps = {
+  content?: Article | Course;
+};
+
+const Modify = ({content}: ModifyProps) => {
   const [showView, setShowView] = React.useState(false);
   const [showRemove, setShowRemove] = React.useState(false);
   const refView = React.useRef(null);
@@ -25,7 +31,10 @@ const Modify = () => {
         justifyContent="space-between">
         <HStack alignItems="center" space="lg">
           <Image source={CourseIcon} alt="User Icon" width={30} height={30} />
-          <TextSemibold text="Voice Recognition" fontSize={'$xl'} />
+          <TextSemibold
+            text={content?.title ? content?.title : 'Voice Recognition'}
+            fontSize={'$xl'}
+          />
         </HStack>
         <HStack alignItems="center" space="md">
           {/* <Pressable

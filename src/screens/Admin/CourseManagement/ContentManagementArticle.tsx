@@ -6,6 +6,10 @@ import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import Modify from '../../../components/atoms/Buttons/Modify';
+import axios from 'axios';
+import {useQuery} from '@tanstack/react-query';
+import Loading from '../../Loading';
+import {Article} from '../../../types/Article';
 
 const BackgroundImage = require('../../../assets/images/admin-content-bg.png');
 
@@ -16,6 +20,21 @@ type NavigationType = {
 const ContentManagementArticle = () => {
   const height = useBottomTabBarHeight();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
+
+  const {data: articles, isLoading} = useQuery({
+    queryKey: ['articles'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.0.107:8080/admin/get-articles',
+      );
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading bgImage={BackgroundImage} />;
+  }
+
   return (
     <ImageBackground source={BackgroundImage} minHeight={'$full'}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -26,8 +45,8 @@ const ContentManagementArticle = () => {
             onPress={() => navigation.navigate('AddNewArticle')}
           />
           <TextSemibold text="Modify" fontSize={'$xl'} />
-          {Array.from({length: 3}).map((_, index) => (
-            <Modify key={index} />
+          {articles.map((article: Article, index: number) => (
+            <Modify key={index} content={article} />
           ))}
         </VStack>
         <Box height={height * 2.5} />
