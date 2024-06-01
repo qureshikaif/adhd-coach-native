@@ -1,21 +1,21 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import StudentActivity from '../../../screens/StudentModule/StudentActivity';
+import StudentQuiz from '../../../screens/StudentModule/StudentQuiz';
 
 const Stack = createNativeStackNavigator();
 
-const StudentQuiz = () => {
+const StudentQuizzes = () => {
   return (
     <Stack.Navigator
       initialRouteName="StudentQuiz"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#FFA360',
         statusBarStyle: 'light',
       }}>
-      <Stack.Screen name="StudentQuiz" component={StudentActivity} />
+      <Stack.Screen name="StudentQuiz" component={StudentQuiz} />
     </Stack.Navigator>
   );
 };
 
-export default StudentQuiz;
+export default StudentQuizzes;

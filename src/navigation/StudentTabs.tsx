@@ -3,9 +3,9 @@ import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import StudentHome from './stacks/Student/StudentHome';
 import StudentCourse from './stacks/Student/StudentCourse';
-import StudentQuiz from './stacks/Student/StudentQuiz';
 import StudentHealth from './stacks/Student/StudentHealth';
 import StudentActivities from './stacks/Student/StudentActivities';
+import StudentQuizzes from './stacks/Student/StudentQuizzes';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +43,7 @@ const screens = [
   {name: 'Home', component: StudentHome},
   {name: 'Courses', component: StudentCourse},
   {name: 'Activities', component: StudentActivities},
-  {name: 'Quizzes', component: StudentQuiz},
+  {name: 'Quizzes', component: StudentQuizzes},
   {name: 'Health', component: StudentHealth},
 ];
 
