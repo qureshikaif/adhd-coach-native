@@ -143,7 +143,10 @@ const Signin = () => {
                         <field.icon size={25} color={'black'} />
                       </InputSlot>
                       <InputField
-                        type="text"
+                        autoCapitalize={
+                          field.title === 'Email' ? 'none' : 'sentences'
+                        }
+                        type={field.title === 'Password' ? 'password' : 'text'}
                         fontFamily="Poppins-Regular"
                         placeholder={field.title}
                         paddingHorizontal={'$6'}

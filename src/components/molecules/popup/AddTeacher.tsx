@@ -19,11 +19,26 @@ import TextSemibold from '../../atoms/Text/TextSemibold';
 import TextBold from '../../atoms/Text/TextBold';
 import TextRegular from '../../atoms/Text/TextRegular';
 import {InputField} from '@gluestack-ui/themed';
+import axios from 'axios';
 
 const AddTeacherIcon = require('../../../assets/images/add-teacher.png');
-// const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
 const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
+  const [teacherId, setTeacherId] = React.useState('' as string);
+
+  const handleTeacherId = (text: string) => setTeacherId(text);
+
+  const onSubmit = () => {
+    axios
+      .post('http://192.168.0.107:8080/admin/teacher', {
+        teacherId,
+      })
+      .then(res => {
+        console.log(res.data.message);
+        setShowModal(false);
+      })
+      .catch(err => console.log(err));
+  };
   return (
     <Center>
       <Modal
@@ -58,11 +73,12 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
                 <TextBold text="Teacher ID" fontSize={'$xl'} color="white" />
                 <Input width={'$full'} bgColor="#D7E6ED">
                   <InputField
+                    onChange={e => handleTeacherId(e.nativeEvent.text)}
                     display="flex"
                     alignContent="center"
                     type="text"
                     fontFamily="Poppins-Regular"
-                    placeholder={'#29019254'}
+                    placeholder={'29019254'}
                     fontSize={'$xs'}
                     placeholderTextColor={'black'}
                   />
@@ -82,12 +98,10 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
                 <ButtonText>Cancel</ButtonText>
               </Button>
               <Button
+                onPress={onSubmit}
                 flex={1}
                 bgColor="#648DA0"
-                rounded={'$lg'}
-                onPress={() => {
-                  setShowModal(false);
-                }}>
+                rounded={'$lg'}>
                 <TextRegular text="Confirm" color="white" />
               </Button>
             </HStack>
