@@ -1,18 +1,18 @@
 import React from 'react';
 import { ScrollView, View, Image, Text, Pressable } from 'react-native';
 
-const CircleRowScrollView: React.FC = () => {
+const TeacherTop: React.FC = () => {
   const handlePress = (name: string) => {
     console.log(`${name} pressed`);
   };
 
-
   const circles = [
-    { name: 'Kaif', image: require('../../assets/images/icons/kaifPic.png') },
-    { name: 'Sana', image: require('../../assets/images/icons/ProfilePicSana.png') },
-    { name: 'Abubakar', image: require('../../assets/images/icons/AbubakarPic.png') },
-    { name: 'Ahmed', image: require('../../assets/images/icons/AleenaPic.png') },
+    { name: 'Ali P', image: require('../../assets/images/icons/AliParents.png') },
+    { name: 'Abdullah P', image: require('../../assets/images/icons/AbdullahParents.png') },
+    { name: 'Junaid P', image: require('../../assets/images/icons/JunaidParents.png') },
+    { name: 'Hassan P', image: require('../../assets/images/icons/HassanParents.png') },
   ];
+
   return (
     <ScrollView horizontal>
       <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 15 }}>
@@ -43,4 +43,4 @@ const CircleRowScrollView: React.FC = () => {
   );
 };
 
-export default CircleRowScrollView;
+export default TeacherTop;

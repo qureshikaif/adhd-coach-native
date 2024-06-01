@@ -1,11 +1,11 @@
-import {ImageBackground} from '@gluestack-ui/themed';
 import React from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
-
-import StatusBarChat from '../../components/molecules/StatusBarChat';
+import { View, ImageBackground, Text, StyleSheet, FlatList } from 'react-native';
+import { Box } from '@gluestack-ui/themed';
+import StatusBarChatDoctor from '../../components/molecules/StatusBarChat';
+import ChatBoxBottom from '../../components/ChatDialogueboxAlternative';
 import ChatInput from '../../components/molecules/ChatInput';
 
-const BackgroundImage = require('../../assets/images/admin-content-bg.png');
+const BackgroundImage = require('../../assets/images/DoctorChatOpen.png');
 
 interface Message {
   id: string;
@@ -18,13 +18,13 @@ const messages: Message[] = [
   {
     id: '1',
     sender: 'mom',
-    text: 'Good Afternoon! Ms. Sana, this is Ali’s mom. I hope you’re doing well.',
+    text: 'Good Afternoon!  Ms. Sana,  this is Ali’s mom. I hope you re doing well.',
     time: '4:34 pm',
   },
   {
     id: '2',
     sender: 'mom',
-    text: 'I want to discuss my child’s progress. How are they doing in your class?',
+    text: ' I want to discuss my childs progress. How are they doing in your class?',
     time: '4:35 pm',
   },
   {
@@ -45,17 +45,12 @@ const messages: Message[] = [
     text: 'They’re doing well in activities like Rock Paper Scissors. However, they struggle more with recognizing tasks like shape recognition. Make sure he does practice exercises.',
     time: '4:44 pm',
   },
-  {
-    id: '6',
-    sender: 'mom',
-    text: 'Will do. Thanks for your support!',
-    time: '4:44 pm',
-  },
-
+ 
 ];
 
-const ChatSupport: React.FC = () => {
-  const renderItem = ({item}: {item: Message}) => (
+const DoctorChatBoxOpen: React.FC = () => {
+
+  const renderItem = ({ item }: { item: Message }) => (
     <View
       style={[
         styles.messageContainer,
@@ -67,34 +62,37 @@ const ChatSupport: React.FC = () => {
   );
 
   return (
-    <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      <StatusBarChat text="Sana Zehra" />
-      <FlatList
-        data={messages}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.chatContainer}
-      />
-      <ChatInput />
-    </ImageBackground>
+    <View style={{ flex: 1 }}>
+      <ImageBackground source={BackgroundImage} style={{ flex: 1 }}>
+        <StatusBarChatDoctor text="Sana Zehra" isSettingsVisible />
+        <Box height={8} />
+        <FlatList
+          data={messages}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          contentContainerStyle={styles.chatContainer}
+        />
+        <ChatInput/>
+      </ImageBackground>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   chatContainer: {
-    padding: 10,
+    paddingHorizontal: 10,
   },
   messageContainer: {
     marginVertical: 5,
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   teacherMessage: {
-    backgroundColor: '#A3BACD',
+    backgroundColor: '#AEA3B4',
     alignSelf: 'flex-start',
   },
   momMessage: {
-    backgroundColor: '#A3BACD',
+    backgroundColor: '#CEA4CC',
     alignSelf: 'flex-end',
   },
   messageText: {
@@ -108,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChatSupport;
+export default DoctorChatBoxOpen;

@@ -1,11 +1,10 @@
 import React from 'react';
 import { ScrollView, View, Image, Text, Pressable } from 'react-native';
 
-const CircleRowScrollView: React.FC = () => {
+const AdminTop: React.FC = () => {
   const handlePress = (name: string) => {
     console.log(`${name} pressed`);
   };
-
 
   const circles = [
     { name: 'Kaif', image: require('../../assets/images/icons/kaifPic.png') },
@@ -13,6 +12,7 @@ const CircleRowScrollView: React.FC = () => {
     { name: 'Abubakar', image: require('../../assets/images/icons/AbubakarPic.png') },
     { name: 'Ahmed', image: require('../../assets/images/icons/AleenaPic.png') },
   ];
+
   return (
     <ScrollView horizontal>
       <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 15 }}>
@@ -43,4 +43,4 @@ const CircleRowScrollView: React.FC = () => {
   );
 };
 
-export default CircleRowScrollView;
+export default AdminTop;

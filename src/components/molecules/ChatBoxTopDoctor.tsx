@@ -1,18 +1,18 @@
 import React from 'react';
 import { ScrollView, View, Image, Text, Pressable } from 'react-native';
 
-const CircleRowScrollView: React.FC = () => {
+const DoctorTop: React.FC = () => {
   const handlePress = (name: string) => {
     console.log(`${name} pressed`);
   };
 
-
   const circles = [
-    { name: 'Kaif', image: require('../../assets/images/icons/kaifPic.png') },
-    { name: 'Sana', image: require('../../assets/images/icons/ProfilePicSana.png') },
-    { name: 'Abubakar', image: require('../../assets/images/icons/AbubakarPic.png') },
-    { name: 'Ahmed', image: require('../../assets/images/icons/AleenaPic.png') },
+    { name: 'ALI P', image: require('../../assets/images/icons/D1.png') },
+    { name: 'HASSAN P', image: require('../../assets/images/icons/D2.png') },
+    { name: 'ABDULLAH P', image: require('../../assets/images/icons/D3.png') },
+    { name: 'ABBAS P', image: require('../../assets/images/icons/D4.png') },
   ];
+
   return (
     <ScrollView horizontal>
       <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 15 }}>
@@ -43,4 +43,4 @@ const CircleRowScrollView: React.FC = () => {
   );
 };
 
-export default CircleRowScrollView;
+export default DoctorTop;

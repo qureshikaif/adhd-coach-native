@@ -1,22 +1,23 @@
 import { View, ImageBackground, ScrollView, Text } from '@gluestack-ui/themed';
 import React from 'react';
-import CircleRowScrollView from '../../components/molecules/ChatBoxtop';
+
 import TextBold from '../../components/atoms/Text/TextBold';
-import ImageTextBox from '../../components/ChatDialoguebox';
-import ChatBox from '../../components/ChatDialoguebox';
 
-const BackgroundImage = require('../../assets/images/TeacherProfile.png');
-const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
+import ChatBoxNew from '../../components/ChatBoxNew';
+import TeacherTop from '../../components/molecules/ChatBoxTopTeacher';
 
-const ParentChatbox = () => {
+const BackgroundImage = require('../../assets/images/TeacherChat.png');
+
+
+const TeacherChatbox = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
         <ScrollView style={{ paddingHorizontal: 16 }}>
           <TextBold text="Chat" fontSize={32} style={{ padding: 20 }} />
-          <CircleRowScrollView />
+          <TeacherTop/>
           {Array.from({length: 1}).map((_, index) => (
-            <ChatBox key={index} />
+            <ChatBoxNew key={index} />
           ))}
         </ScrollView>
       </ImageBackground>
@@ -24,4 +25,4 @@ const ParentChatbox = () => {
   );
 };
 
-export default ParentChatbox;
+export default TeacherChatbox;
