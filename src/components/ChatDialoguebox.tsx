@@ -1,11 +1,4 @@
-import {
-  HStack,
-  Image,
-  VStack,
-  Pressable,
-  Text,
-  View,
-} from '@gluestack-ui/themed';
+import {HStack, Image, VStack, Pressable, View} from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from './atoms/Text/TextSemibold';
 import TextRegular from './atoms/Text/TextRegular';
