@@ -67,7 +67,11 @@ const GrandAssessment = () => {
 
   return (
     <ImageBackground source={BackgroundImage} h={'$full'}>
-      <StatusBarStudent text="Grand Assessment" />
+      <StatusBarStudent
+        text="Grand Assessment"
+        textColor="black"
+        bgColor="#FFA360"
+      />
       <ScrollView paddingHorizontal={'$5'} showsVerticalScrollIndicator={false}>
         <HStack alignItems="center" space="3xl" paddingVertical={'$10'}>
           <Image source={Clock} alt="Clock" size="lg" />

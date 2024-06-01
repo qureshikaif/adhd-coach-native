@@ -1,4 +1,10 @@
-import {View, ImageBackground, ScrollView, Box, Center} from '@gluestack-ui/themed';
+import {
+  View,
+  ImageBackground,
+  ScrollView,
+  Box,
+  Center,
+} from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
@@ -14,7 +20,7 @@ const StudentCourses = () => {
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h="$full">
         <Box />
-        <StatusBarStudent text="Courses" bgColor="#FFA360" />
+        <StatusBarStudent text="Courses" bgColor="#FFA360" textColor="black" />
         <ScrollView
           paddingHorizontal={'$10'}
           marginRight={'$16'}
@@ -37,8 +43,7 @@ const StudentCourses = () => {
             />
           </Box>
           <Box height={'$32'} />
-          <Center>
-          </Center>
+          <Center></Center>
 
           <Box
             bgColor="#FFA360"

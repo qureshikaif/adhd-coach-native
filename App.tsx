@@ -28,7 +28,8 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-          <TicTacToeGame />
+          <MainNavigator />
+          {/* <TicTacToeGame /> */}
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>

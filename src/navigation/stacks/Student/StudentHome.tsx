@@ -1,6 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import StudentMain from '../../../screens/StudentModule/StudentMain';
+import GrandAssessment from '../../../screens/GrandAssessment';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ const StudentHome = () => {
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="StudentMain" component={StudentMain} />
+      <Stack.Screen name="GrandAssessment" component={GrandAssessment} />
     </Stack.Navigator>
   );
 };
