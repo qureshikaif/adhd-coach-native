@@ -5,15 +5,22 @@ import {
   Box,
   Image,
   HStack,
+  Pressable,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 const AbcImage = require('../../assets/images/kids-abc.png');
 const ShapesImage = require('../../assets/images/kids-shapes.png');
 const BackgroundImage = require('../../assets/images/English-course-bg.png');
 
+type NavigationType = {
+  ShapesEnglish: undefined;
+};
+
 const EnglishCourses = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h="$full">
@@ -44,7 +51,8 @@ const EnglishCourses = () => {
 
           <Box height={'$10'} />
 
-          <Box
+          <Pressable
+            onPress={() => navigation.navigate('ShapesEnglish')}
             bgColor="#C5977A"
             height={70}
             width={'$full'}
@@ -58,7 +66,7 @@ const EnglishCourses = () => {
               marginLeft={'$10'}
               padding={'$1.5'}
             />
-          </Box>
+          </Pressable>
           <HStack paddingLeft={100}>
             <Image source={ShapesImage} alt="Shape kid" w={'$full'} h={'$48'} />
           </HStack>

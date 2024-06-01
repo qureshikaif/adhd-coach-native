@@ -4,6 +4,9 @@ import StudentActivity from '../../../screens/StudentModule/StudentActivity';
 import TicTacToeGame from '../../../screens/StudentModule/TicTacToeGame';
 import EnglishCourses from '../../../screens/StudentModule/EnglishCourses';
 import MathsCourses from '../../../screens/StudentModule/MathsCourses';
+import MathsCounting from '../../../screens/StudentModule/MathsCounting';
+import MathsBasicOpt from '../../../screens/StudentModule/MathsBasicOperations';
+import ShapesEnglish from '../../../screens/StudentModule/ShapesEnglish';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +23,9 @@ const StudentActivities = () => {
       <Stack.Screen name="TicTacToe" component={TicTacToeGame} />
       <Stack.Screen name="EnglishCourses" component={EnglishCourses} />
       <Stack.Screen name="MathsCourses" component={MathsCourses} />
+      <Stack.Screen name="MathsCounting" component={MathsCounting} />
+      <Stack.Screen name="MathsBasicOperation" component={MathsBasicOpt} />
+      <Stack.Screen name="ShapesEnglish" component={ShapesEnglish} />
     </Stack.Navigator>
   );
 };

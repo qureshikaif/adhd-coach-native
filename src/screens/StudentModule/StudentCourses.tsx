@@ -5,6 +5,8 @@ import {
   Box,
   Center,
   Image,
+  VStack,
+  HStack,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
@@ -29,39 +31,28 @@ const StudentCourses = () => {
           <Box height={'$10'} />
           <Box height={'$10'} />
 
-          <Box
+          <HStack
             bgColor="#FFA360"
-            height={70}
+            height={60}
+            alignItems="center"
             padding={'$1'}
             borderRadius={'$3xl'}
             borderWidth={'$2'}
             marginRight={'$16'}>
-            <TextSemibold
-              text="English"
-              fontSize={'$2xl'}
-              marginLeft={'$12'}
-              padding={'$1.5'}
-            />
-          </Box>
-          <Box height={'$32'} />
-          <Center>
-            <Image source={EnglishImage} alt="EnglishImage" h="$32" w="$40" />
-          </Center>
+            <TextSemibold text="English" fontSize={'$2xl'} marginLeft={'$12'} />
+          </HStack>
+          <Box height={'$16'} />
 
-          <Box
+          <HStack
+            alignItems="center"
             bgColor="#FFA360"
-            height={70}
+            height={60}
             padding={'$1'}
             borderRadius={'$3xl'}
             borderWidth={'$2'}
             marginRight={'$16'}>
-            <TextSemibold
-              text="Maths"
-              fontSize={'$2xl'}
-              marginLeft={'$12'}
-              padding={'$1.5'}
-            />
-          </Box>
+            <TextSemibold text="Maths" fontSize={'$2xl'} marginLeft={'$12'} />
+          </HStack>
         </ScrollView>
       </ImageBackground>
     </View>
