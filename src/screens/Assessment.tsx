@@ -21,6 +21,7 @@ import {
 } from '@react-navigation/native';
 import assessmentMain from '../utils/assessmentMain';
 import {Circle} from 'lucide-react-native';
+import {useStore} from '../store';
 
 const BackgroundImage = require('../assets/images/assessment-bg.png');
 
@@ -28,6 +29,7 @@ type NavigationType = {
   Signin: undefined;
   Signup: undefined;
   ForgotPassword: undefined;
+  AssessmentCompleted: undefined;
   Assessment: {questionIndex: number};
 };
 
@@ -40,12 +42,14 @@ const Assessment = ({route}: AssessmentProps) => {
   const {questionIndex} = route.params;
   const question = assessmentMain[questionIndex];
   const [selectedValue, setSelectedValue] = React.useState('');
+  const {setAnswer} = useStore();
 
   const handleNext = () => {
+    setAnswer(question.id, selectedValue);
     if (questionIndex < assessmentMain.length - 1) {
       navigation.navigate('Assessment', {questionIndex: questionIndex + 1});
     } else {
-      console.log('Assessment completed');
+      navigation.navigate('AssessmentCompleted');
     }
   };
   console.log(selectedValue);
