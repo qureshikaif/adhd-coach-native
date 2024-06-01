@@ -3,13 +3,16 @@ import React from 'react';
 import StatusBarStudent from './StatusBarStudent';
 import TextBold from '../atoms/Text/TextBold';
 
-const BasicOpt = require('../../assets/images/Basic-opt.png');
+const HappyKid = require('../../assets/images/happy-kid.png');
 
 const MathsBasicAdd = () => {
   return (
     <View height={'$full'}>
 
         <Box height={'$2'} />
+        <Center> 
+            <Image source={HappyKid} alt='HappyKid' h='$32' w = '$32'/>
+            </Center>
         <Box  
             paddingHorizontal={'$10'}
             marginRight={'$20'}

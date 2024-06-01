@@ -4,12 +4,15 @@ import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 import TextBold from '../../components/atoms/Text/TextBold';
 
 const BasicOpt = require('../../assets/images/Basic-opt.png');
-
+const HappyKidd = require('../../assets/images/happyyKid.png');
 const MathsBasicSub = () => {
   return (
     <View height={'$full'}>
 
-        <Box height={'$2'} />
+        
+        <Center> 
+            <Image source={HappyKidd} alt='HappyyKid' h='$32' w = '$32'/>
+            </Center>
         <Box  
             paddingHorizontal={'$10'}
             marginRight={'$20'}

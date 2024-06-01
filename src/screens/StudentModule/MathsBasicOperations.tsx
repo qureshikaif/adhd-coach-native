@@ -7,6 +7,7 @@ import MathsBasicSub from '../../components/molecules/MathsBasicSub';
 
 const BackgroundImage = require('../../assets/images/basic-opt-bg.png');
 const BasicOpt = require('../../assets/images/Basic-opt.png');
+const HappyKid = require('../../assets/images/happy-kid.png');
 
 const MathsBasicOpt = () => {
   return (
@@ -45,7 +46,7 @@ const MathsBasicOpt = () => {
           <Box height={'$8'} />   
           <HStack>
           <MathsBasicSub/>
-          </HStack>
+          </HStack> 
           <Box height={'$32'}/>
 
           </ScrollView>
