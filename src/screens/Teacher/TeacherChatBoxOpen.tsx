@@ -1,11 +1,11 @@
-import {ImageBackground} from '@gluestack-ui/themed';
 import React from 'react';
-import {View, Text, StyleSheet, FlatList, Platform} from 'react-native';
-import {KeyboardAvoidingView} from '@gluestack-ui/themed';
-import StatusBarChat from '../../components/molecules/StatusBarChat';
+import { View, ImageBackground, Text, StyleSheet, FlatList } from 'react-native';
+import { Box } from '@gluestack-ui/themed';
+import StatusBarChatTeacher from '../../components/molecules/StatusBarChatTeacher';
+import ChatBoxBottom from '../../components/ChatDialogueboxAlternative';
 import ChatInput from '../../components/molecules/ChatInput';
 
-const BackgroundImage = require('../../assets/images/admin-content-bg.png');
+const BackgroundImage = require('../../assets/images/TeacherChatBox.png');
 
 interface Message {
   id: string;
@@ -18,13 +18,13 @@ const messages: Message[] = [
   {
     id: '1',
     sender: 'mom',
-    text: 'Good Afternoon! Ms. Sana, this is Ali’s mom. I hope you’re doing well.',
+    text: 'Good Afternoon!  Ms. Sana,  this is Ali’s mom. I hope you re doing well.',
     time: '4:34 pm',
   },
   {
     id: '2',
     sender: 'mom',
-    text: 'I want to discuss my child’s progress. How are they doing in your class?',
+    text: ' I want to discuss my childs progress. How are they doing in your class?',
     time: '4:35 pm',
   },
   {
@@ -39,23 +39,13 @@ const messages: Message[] = [
     text: 'Thanks for the update. Are there any areas they’re excelling in or struggling with?',
     time: '4:43 pm',
   },
-  {
-    id: '5',
-    sender: 'teacher',
-    text: 'They’re doing well in activities like Rock Paper Scissors. However, they struggle more with recognizing tasks like shape recognition. Make sure he does practice exercises.',
-    time: '4:44 pm',
-  },
-  {
-    id: '6',
-    sender: 'mom',
-    text: 'Will do. Thanks for your support!',
-    time: '4:44 pm',
-  },
+
  
 ];
 
-const ChatSupport: React.FC = () => {
-  const renderItem = ({item}: {item: Message}) => (
+const TeacherChatBoxOpen: React.FC = () => {
+
+  const renderItem = ({ item }: { item: Message }) => (
     <View
       style={[
         styles.messageContainer,
@@ -67,43 +57,37 @@ const ChatSupport: React.FC = () => {
   );
 
   return (
-    <KeyboardAvoidingView
-      h={'$full'}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <ImageBackground source={BackgroundImage} style={styles.backgroundImage}>
-        <StatusBarChat text="Sana Zehra" />
+    <View style={{ flex: 1 }}>
+      <ImageBackground source={BackgroundImage} style={{ flex: 1 }}>
+        <StatusBarChatTeacher text="Juanid par" isSettingsVisible />
+        <Box height={8} />
         <FlatList
           data={messages}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           contentContainerStyle={styles.chatContainer}
         />
-        <ChatInput />
+        <ChatInput/>
       </ImageBackground>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-  },
   chatContainer: {
-    padding: 10,
-    flexGrow: 1,
-    justifyContent: 'flex-end',
+    paddingHorizontal: 10,
   },
   messageContainer: {
     marginVertical: 5,
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
   },
   teacherMessage: {
-    backgroundColor: '#A3BACD',
+    backgroundColor: '#749D9E',
     alignSelf: 'flex-start',
   },
   momMessage: {
-    backgroundColor: '#A3BACD',
+    backgroundColor: 'grey',
     alignSelf: 'flex-end',
   },
   messageText: {
@@ -117,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChatSupport;
+export default TeacherChatBoxOpen;

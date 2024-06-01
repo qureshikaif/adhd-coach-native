@@ -17,7 +17,7 @@ type StatusBarChatProps = {
 const StatusBarChat = ({text, gap}: StatusBarChatProps) => {
   return (
     <HStack
-      bgColor="#A3BACD"
+      bgColor="#EAC5C5"
       alignItems="center"
       justifyContent={gap ? 'flex-start' : 'space-between'}
       paddingHorizontal={'$4'}

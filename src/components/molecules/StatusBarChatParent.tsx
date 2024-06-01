@@ -3,6 +3,7 @@ import BackButton from '../atoms/Buttons/BackButton';
 import React from 'react';
 import {GapValues} from '../../types/GapValues';
 import TextSemibold from '../atoms/Text/TextSemibold';
+import SideBackButton from '../atoms/Buttons/SideBackButton';
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const ProfilePic = require('../../assets/images//icons/ProfilePicSana.png');
 const PhoneIcon = require('../../assets/images/icons/phone.png');
@@ -14,16 +15,16 @@ type StatusBarChatProps = {
   gap?: GapValues;
 };
 
-const StatusBarChat = ({text, gap}: StatusBarChatProps) => {
+const StatusBarChatParent = ({text, gap}: StatusBarChatProps) => {
   return (
     <HStack
-      bgColor="#A3BACD"
+      bgColor="#E0C4DF"
       alignItems="center"
       justifyContent={gap ? 'flex-start' : 'space-between'}
       paddingHorizontal={'$4'}
       paddingVertical={'$4'}
       gap={gap ? gap : '$0'}>
-      <BackButton
+      <SideBackButton
         variant="white"
 
         imageProps={{
@@ -50,4 +51,4 @@ const StatusBarChat = ({text, gap}: StatusBarChatProps) => {
   );
 };
 
-export default StatusBarChat;
+export default StatusBarChatParent;
