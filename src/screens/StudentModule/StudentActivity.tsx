@@ -1,21 +1,26 @@
-import {ImageBackground, ScrollView, Box} from '@gluestack-ui/themed';
+import {
+  ImageBackground,
+  ScrollView,
+  Box,
+  Pressable,
+} from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
-// const BackgroundImage = require('../../assets/images/stud-activity.png');
 const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
 
-/* Change images path */
-//const MathsImage = require('../../assets/images/Stud-course-bg.png');
-//const EnglishImage = require('../../assets/images/Stud-course-bg.png');
+type NavigationType = {
+  TicTacToe: undefined;
+};
 
 const StudentActivity = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <ImageBackground source={BackgroundImage} h="$full" w={'$full'}>
       <StatusBarStudent text="Activities" bgColor="#FFA169" textColor="black" />
-
       <ScrollView>
         <Box height={'$10'} />
         <TextSemibold
@@ -71,7 +76,8 @@ const StudentActivity = () => {
           fontSize={'$2xl'}
         />
         <Box height={'$10'} />
-        <Box
+        <Pressable
+          onPress={() => navigation.navigate('TicTacToe')}
           bgColor="#FFA169"
           height={60}
           w={'$3/4'}
@@ -86,7 +92,7 @@ const StudentActivity = () => {
             marginLeft={'$12'}
             padding={'$1.5'}
           />
-        </Box>
+        </Pressable>
         <Box height={'$10'} />
         {/* Make A Face */}
         <Box
