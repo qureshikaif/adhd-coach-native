@@ -6,7 +6,8 @@ import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 const Counting = require('../../assets/images/counting.png')
 const Operations = require('../../assets/images/plus-minus.png')
 const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
-// const MathsImage = require('../../assets/images/couting-maths-img.png');
+const MathsImage = require('../../assets/images/counting-maths-img.png'); 
+const BasicOpt = require('../../assets/images/Basic-opt.png'); 
 
 const MathsCourses = () => {
   return (
@@ -14,6 +15,9 @@ const MathsCourses = () => {
       <ImageBackground source={BackgroundImage} h="$full">
 
         <StatusBarStudent text="Maths" bgColor="#FFA360" />
+        <Box height={'$3'} />
+        <Image source={MathsImage} alt='MathsImage' h='$25%' w = '$full'/>
+        
         <ScrollView
           paddingHorizontal={'$10'}
           marginRight={'$16'}

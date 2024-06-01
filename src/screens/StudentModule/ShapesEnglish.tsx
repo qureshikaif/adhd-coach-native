@@ -18,11 +18,6 @@ import React from 'react';
 const BackgroundImage = require('../../assets/images/shapes-bg.png');
 const Triangle = require('../../assets/images/triangle-red.png');
 const CircleCartoon= require('../../assets/images/cartoon-circle.png');
-// const LockIcon = require('../../assets/images/icons/Lock.png');
-// const PasswordIcon = require('../../assets/images/icons/password.png');
-// const RoleIcon = require('../../assets/images/icons/chevron-down.png');
-
-
 
 const ShapesEnglish = () => {
   return (
@@ -64,10 +59,10 @@ const ShapesEnglish = () => {
                 <Box
                   rounded={'$2xl'}
                   bgColor="#DEB5B5"
-                  h={'$11'}
+                  h={'$12'}
                   w={'$56'}>
                   <HStack justifyContent='center' alignItems='center' space='lg'>
-                    <TextSemibold text="Shape: Triangle" fontSize={'$2xl'} />
+                    <TextSemibold text="Shape: Triangle" fontSize={'$2xl'} padding={'$1'}/>
                   </HStack>
                 </Box>
               </VStack>
@@ -76,10 +71,10 @@ const ShapesEnglish = () => {
                 <Box
                   rounded={'$2xl'}
                   bgColor="#DEB5B5"
-                  h={'$11'}
+                  h={'$12'}
                   w={'$56'}>
                   <HStack justifyContent='center' alignItems='center' space='lg'>
-                    <TextSemibold text="Color: RED " fontSize={'$2xl'} color='$red600' />
+                    <TextSemibold text="Color: RED " fontSize={'$2xl'} color='$red600' padding={'$1'}/>
                   </HStack>
                 </Box>
               </VStack>

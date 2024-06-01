@@ -15,10 +15,6 @@ import TextBold from '../../components/atoms/Text/TextBold';
   const BackgroundImage = require('../../assets/images/shapes-bg.png');
   const ShapesKid = require('../../assets/images/kids-shapes.png');
   const CircleCartoon= require('../../assets/images/cartoon-circle.png');
-  // const LockIcon = require('../../assets/images/icons/Lock.png');
-  // const PasswordIcon = require('../../assets/images/icons/password.png');
-  // const RoleIcon = require('../../assets/images/icons/chevron-down.png');
-
   
   const ShapesStart = () => {
     return (
@@ -36,7 +32,6 @@ import TextBold from '../../components/atoms/Text/TextBold';
   
               <View />
             </HStack>
-            {/* <TextRegular fontSize={'$5xl'} text="Welcome" fontStyle="italic" /> */}
             <VStack h={'85%'} justifyContent="center" alignItems="center">
               <Center>
                 <Box height={'$32'}/>
@@ -67,7 +62,7 @@ import TextBold from '../../components/atoms/Text/TextBold';
                 <VStack width={'$full'} rowGap={'$4'}>
                   <Box
                   h={10}>
-                <Image source={CircleCartoon} alt='cartoon circle'/>
+                {/*<Image source={CircleCartoon} alt='cartoon circle'/>*/}
                 </Box>
                 </VStack>
               </Center>
