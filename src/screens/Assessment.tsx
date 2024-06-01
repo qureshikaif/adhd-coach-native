@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Radio,
   RadioGroup,
+  RadioIcon,
   RadioIndicator,
   RadioLabel,
   VStack,
@@ -19,6 +20,7 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import assessmentMain from '../utils/assessmentMain';
+import {Circle} from 'lucide-react-native';
 
 const BackgroundImage = require('../assets/images/assessment-bg.png');
 
@@ -37,6 +39,7 @@ const Assessment = ({route}: AssessmentProps) => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const {questionIndex} = route.params;
   const question = assessmentMain[questionIndex];
+  const [selectedValue, setSelectedValue] = React.useState('');
 
   const handleNext = () => {
     if (questionIndex < assessmentMain.length - 1) {
@@ -45,6 +48,7 @@ const Assessment = ({route}: AssessmentProps) => {
       console.log('Assessment completed');
     }
   };
+  console.log(selectedValue);
 
   return (
     <ImageBackground h="$full" source={BackgroundImage}>
@@ -72,10 +76,15 @@ const Assessment = ({route}: AssessmentProps) => {
           />
           <TextRegular text={question.question} />
           <Box height={'$10'} />
-          <RadioGroup gap={'$3'}>
+          <RadioGroup
+            gap={'$3'}
+            value={selectedValue}
+            onChange={setSelectedValue}>
             {question.options.map((option: any, index: any) => (
               <Radio key={index} value={option} size="sm">
-                <RadioIndicator mr={'$2'} borderColor="black" />
+                <RadioIndicator mr={'$2'} borderColor="black" p={'$2'}>
+                  <RadioIcon as={Circle} bgColor="black" />
+                </RadioIndicator>
                 <RadioLabel fontFamily="Poppins-Regular" color="black">
                   {option}
                 </RadioLabel>
