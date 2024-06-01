@@ -1,11 +1,11 @@
 import React from 'react';
 import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeStack from './stacks/HomeStack';
-import CourseStack from './stacks/CourseStack';
-import GameStack from './stacks/GameStack';
-import ProfileStack from './stacks/ProfileStack';
-import SettingStack from './stacks/SettingStack';
+import StudentHome from './stacks/Student/StudentHome';
+import StudentCourse from './stacks/Student/StudentCourse';
+import StudentGames from './stacks/Student/StudentGames';
+import StudentQuiz from './stacks/Student/StudentQuiz';
+import StudentHealth from './stacks/Student/StudentHealth';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,8 +13,8 @@ const icons: {[index: string]: any} = {
   Home: require('../assets/images/navigation/Home.png'),
   Courses: require('../assets/images/navigation/Courses.png'),
   Games: require('../assets/images/navigation/Games.png'),
-  Profile: require('../assets/images/navigation/Profile.png'),
-  Settings: require('../assets/images/navigation/Settings.png'),
+  Quizzes: require('../assets/images/navigation/Profile.png'),
+  Health: require('../assets/images/navigation/Settings.png'),
 };
 
 export const tabBarStyle = {
@@ -40,11 +40,11 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
 };
 
 const screens = [
-  {name: 'Home', component: HomeStack},
-  {name: 'Courses', component: CourseStack},
-  {name: 'Games', component: GameStack},
-  {name: 'Profile', component: ProfileStack},
-  {name: 'Settings', component: SettingStack},
+  {name: 'Home', component: StudentHome},
+  {name: 'Courses', component: StudentCourse},
+  {name: 'Games', component: StudentGames},
+  {name: 'Quizzes', component: StudentQuiz},
+  {name: 'Health', component: StudentHealth},
 ];
 
 export const StudentTabs = () => {

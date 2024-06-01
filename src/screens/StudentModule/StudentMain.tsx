@@ -17,7 +17,7 @@ import TextSemibold from '../../components/atoms/Text/TextSemibold';
 const TipOfTheDay = require('../../assets/images/tip-home.png');
 const BackgroundImage = require('../../assets/images/stud-main-bg.png');
 
-const StudentHome = () => {
+const StudentMain = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h={'$full'}>
@@ -62,4 +62,4 @@ const StudentHome = () => {
   );
 };
 
-export default StudentHome;
+export default StudentMain;
