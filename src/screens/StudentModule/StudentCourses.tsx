@@ -4,6 +4,7 @@ import {
   ScrollView,
   Box,
   Center,
+  Image,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
@@ -43,7 +44,9 @@ const StudentCourses = () => {
             />
           </Box>
           <Box height={'$32'} />
-          <Center></Center>
+          <Center>
+            <Image source={EnglishImage} alt="EnglishImage" h="$32" w="$40" />
+          </Center>
 
           <Box
             bgColor="#FFA360"

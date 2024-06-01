@@ -15,8 +15,8 @@ const StudentActivity = () => {
       <ImageBackground source={BackgroundImage} h="$full">
         <StatusBarStudent
           text="Activities"
-          bgColor="transparent"
-          variant="white"
+          bgColor="#FFA169"
+          textColor="black"
         />
 
         <ScrollView
