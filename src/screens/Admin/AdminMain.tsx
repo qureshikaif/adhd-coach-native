@@ -13,10 +13,21 @@ import RecentFeedbacks from '../../components/molecules/RecentFeedbacks';
 import CourseStatistics from '../../components/molecules/CourseStatistics';
 import TotalStudentsEnrolled from '../../components/molecules/TotalStudentsEnrolled';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {useQuery} from '@tanstack/react-query';
+import axios from 'axios';
 
 const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
 const AdminMain = () => {
+  const {data: count} = useQuery({
+    queryKey: ['totalStudentsEnrolled'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.0.107:8080/student/get-number',
+      );
+      return data;
+    },
+  });
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
@@ -26,7 +37,7 @@ const AdminMain = () => {
           <VStack space="lg">
             <TextBold text="Dashboard" fontSize={'$2xl'} />
             <AppStatistics />
-            <TotalStudentsEnrolled />
+            <TotalStudentsEnrolled count={count} />
             <RecentFeedbacks />
             <CourseStatistics />
           </VStack>
