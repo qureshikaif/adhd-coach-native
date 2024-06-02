@@ -37,6 +37,7 @@ export const grandAssessment = [
       'Triangle - Red',
       'Square - Blue',
     ],
+    answer: '4',
   },
   {
     id: 2,
@@ -46,6 +47,7 @@ export const grandAssessment = [
     isOptionImage: false,
     optionImage: ['', '', '', ''],
     options: ['A', 'R', 'F', 'S'],
+    answer: '3',
   },
   {
     id: 3,
@@ -59,6 +61,7 @@ export const grandAssessment = [
       Question3Option4,
     ],
     options: ['', '', '', ''],
+    answer: '1',
   },
   {
     id: 4,
@@ -72,6 +75,7 @@ export const grandAssessment = [
       'Blue - Octagon',
       'Yellow - Square',
     ],
+    answer: '2',
   },
   {
     id: 5,
@@ -86,6 +90,7 @@ export const grandAssessment = [
       Question3Option4,
     ],
     options: ['', '', '', ''],
+    answer: '2',
   },
   {
     id: 6,
@@ -94,6 +99,7 @@ export const grandAssessment = [
     isOptionImage: false,
     optionImage: ['', '', '', ''],
     options: ['Triangle', 'Hexagon', 'Ellipse', 'Octagon'],
+    answer: '2',
   },
   {
     id: 7,
@@ -107,6 +113,7 @@ export const grandAssessment = [
       Question7Option4,
     ],
     options: ['', '', ''],
+    answer: '1',
   },
   {
     id: 8,
@@ -120,6 +127,7 @@ export const grandAssessment = [
       Question8Option4,
     ],
     options: ['', '', ''],
+    answer: '4',
   },
   {
     id: 9,
@@ -133,6 +141,7 @@ export const grandAssessment = [
       Question3Option2,
     ],
     options: ['', '', '', ''],
+    answer: '3',
   },
   {
     id: 10,
@@ -142,6 +151,7 @@ export const grandAssessment = [
     isOptionImage: false,
     optionImage: ['', '', '', ''],
     options: ['K', 'X', 'P', 'T'],
+    answer: '3',
   },
 ];
 

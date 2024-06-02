@@ -19,6 +19,10 @@ import TextRegular from '../components/atoms/Text/TextRegular';
 import StatusBarStudent from '../components/molecules/StatusBarStudent';
 import grandAssessment from '../utils/grandAssessment';
 import {Button} from '@gluestack-ui/themed';
+import {Alert} from 'react-native';
+import {RadioIcon} from '@gluestack-ui/themed';
+import {Circle} from 'lucide-react-native';
+import {useStore} from '../store';
 
 const BackgroundImage = require('../assets/images/grand-assessment-bg.png');
 const Clock = require('../assets/images/assessment/clock.png');
@@ -31,15 +35,47 @@ const Clock = require('../assets/images/assessment/clock.png');
 // };
 
 const GrandAssessment = () => {
+  const [timeLeft, setTimeLeft] = React.useState(900);
+  const {grandAssessmentAnswers, setGrandAssessmentAnswer} = useStore();
+
   // const navigation = useNavigation<NavigationProp<NavigationType>>();
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => {
+        if (prevTime > 0) {
+          return prevTime - 1;
+        } else {
+          clearInterval(timer);
+          Alert.alert("Oops. Time's up");
+          return 0;
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(
+      remainingSeconds,
+    ).padStart(2, '0')}`;
+  };
 
   const renderOptions = (question: any) => {
     if (question.isOptionImage) {
       return (
-        <RadioGroup gap={'$3'}>
+        <RadioGroup
+          gap={'$3'}
+          value={grandAssessmentAnswers[question.id]}
+          onChange={value => setGrandAssessmentAnswer(question.id, value)}>
           {question.optionImage.map((option: any, index: number) => (
-            <Radio key={index} value={option} size="sm">
-              <RadioIndicator mr={'$2'} borderColor="black" />
+            <Radio key={index} value={(index + 1).toString()} size="sm">
+              <RadioIndicator mr={'$2'} borderColor="black" p={'$2'}>
+                <RadioIcon as={Circle} bgColor="black" />
+              </RadioIndicator>
               <Image
                 source={option}
                 resizeMode="contain"
@@ -51,10 +87,15 @@ const GrandAssessment = () => {
       );
     } else {
       return (
-        <RadioGroup gap={'$3'}>
+        <RadioGroup
+          gap={'$3'}
+          value={grandAssessmentAnswers[question.id]}
+          onChange={value => setGrandAssessmentAnswer(question.id, value)}>
           {question.options.map((option: any, index: number) => (
-            <Radio key={index} value={option} size="sm">
-              <RadioIndicator mr={'$2'} borderColor="black" />
+            <Radio key={index} value={(index + 1).toString()} size="sm">
+              <RadioIndicator mr={'$2'} borderColor="black" p={'$2'}>
+                <RadioIcon as={Circle} bgColor="black" />
+              </RadioIndicator>
               <RadioLabel fontFamily="Poppins-Regular" color="black">
                 {option}
               </RadioLabel>
@@ -77,7 +118,7 @@ const GrandAssessment = () => {
           <Image source={Clock} alt="Clock" size="lg" />
           <VStack>
             <TextSemibold text="Time Left:" fontSize={'$xl'} />
-            <TextBold text="00:00:00" fontSize={'$2xl'} />
+            <TextBold text={formatTime(timeLeft)} fontSize={'$2xl'} />
           </VStack>
         </HStack>
         <VStack flex={1} justifyContent="space-between" paddingBottom={'$10'}>
@@ -103,6 +144,15 @@ const GrandAssessment = () => {
             </Box>
           ))}
           <Button
+            onPress={() => {
+              let score = 0;
+              grandAssessment.forEach(question => {
+                if (grandAssessmentAnswers[question.id] === question.answer) {
+                  score += 1;
+                }
+              });
+              console.log(`Score: ${score} out of 10`);
+            }}
             size="xl"
             borderColor="black"
             bg="#FFB579"
