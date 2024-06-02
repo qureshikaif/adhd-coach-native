@@ -10,15 +10,24 @@ import {
 import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
 import TextSemibold from '../../atoms/Text/TextSemibold';
+import TextRegular from '../../atoms/Text/TextRegular';
 
 const WarningIcon = require('../../../assets/images/icons/warning.png');
 
 interface ErrorProps extends ModalProps {
   text?: string;
   bgColor?: string;
+  heading?: string;
 }
 
-const Error = ({showModal, setShowModal, ref, text, bgColor}: ErrorProps) => {
+const Error = ({
+  showModal,
+  setShowModal,
+  ref,
+  text,
+  bgColor,
+  heading,
+}: ErrorProps) => {
   return (
     <Center>
       <Modal
@@ -32,9 +41,9 @@ const Error = ({showModal, setShowModal, ref, text, bgColor}: ErrorProps) => {
         <ModalContent bgColor={bgColor ? bgColor : '#A3BACD'} rounded={'$2xl'}>
           <ModalHeader borderBottomWidth={1} borderBottomColor="#DDDDDD">
             <TextSemibold
-              text="An error occured"
+              text={heading ? heading : 'Error'}
               color="white"
-              fontSize="$xl"
+              fontSize="$2xl"
               w="$full"
               textAlign="center"
             />
@@ -49,10 +58,10 @@ const Error = ({showModal, setShowModal, ref, text, bgColor}: ErrorProps) => {
                 marginVertical={'$4'}
                 resizeMode="contain"
               />
-              <TextSemibold
+              <TextRegular
                 text={text}
                 color="white"
-                fontSize="$xl"
+                fontSize="$lg"
                 textAlign="center"
               />
             </Center>

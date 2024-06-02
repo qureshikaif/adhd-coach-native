@@ -87,7 +87,6 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
     axios
       .post('http://192.168.0.107:8080/admin/course', {
         title: data.Title,
@@ -102,6 +101,7 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
       .catch(err => {
         console.log(err);
         setError(err.response.data.message);
+        setShowError(true);
       });
   };
 
