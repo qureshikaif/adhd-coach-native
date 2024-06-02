@@ -28,13 +28,13 @@ const TeacherCourse = () => {
           />
           <Box height={'$8'} />
 
-          <UploadButton text="lecture1" />
-          <Box height={'$8'} />
+          <UploadButton text="Lecture 1" />
+          <Box height={'$4'} />
 
           <UploadButton text="Quiz 1" />
-          <Box height={'$8'} />
+          <Box height={'$4'} />
 
-          <UploadButton text="lecture 2" />
+          <UploadButton text="Lecture 2" />
         </ScrollView>
       </ImageBackground>
     </View>

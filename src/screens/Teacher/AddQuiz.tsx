@@ -23,8 +23,8 @@ interface QuizInputProps {
 
 const AddQuiz = () => {
   return (
-    <View style={{flex: 1}}>
-      <ImageBackground source={BackgroundImage} style={{flex: 1}}>
+    <View h={'$full'}>
+      <ImageBackground source={BackgroundImage} h={'$full'}>
         <StatusBarTeacher text="Add Quiz " />
         <ScrollView contentContainerStyle={{padding: 20}}>
           <QuizInput label="Question:" placeholder="Enter your question here" />

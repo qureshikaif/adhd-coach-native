@@ -11,12 +11,20 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import SideButton from '../../components/atoms/Buttons/SideButton';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
 // const BackgroundImage = require('../../assets/images/TeacherMain.png');
 const BackgroundImage = require('../../assets/images/teachercourse.png');
 
 const TeacherMain = () => {
-  const enrolledStudents = [1, 2, 3, 4];
+  const height = useBottomTabBarHeight();
+  const enrolledStudents = [
+    'Kaif Qureshi',
+    'Aleena Ahmed',
+    'Sana Zehra',
+    'Ahmed Siddiqui',
+    'Abubakar',
+  ];
 
   return (
     <View height={'$full'}>
@@ -24,20 +32,19 @@ const TeacherMain = () => {
         <StatusBarTeacher text="Home" />
         <Box height={'$10'} />
         <ScrollView paddingHorizontal={'$5'}>
-          <TextBold text="Morning" fontSize={'$2xl'} />
-          <Box height={'$2'} />
-          <TextSemibold text="Abubakar" fontSize={'$xl'} />
-          <Box height={'$12'} />
-          <TextBold text="Courses" fontSize={'$xl'} />
+          <TextSemibold text="Good Morning," fontSize={'$3xl'} />
+          <TextSemibold text="Abubakar" fontSize={'$2xl'} />
           <Box height={'$8'} />
+          <TextSemibold text="Your Courses" fontSize={'$2xl'} />
+          <Box height={'$4'} />
 
           <VStack space={'2xl'}>
-            <SideButton text="Course 1" />
-            <SideButton text="Course 2" />
+            <SideButton text="English" />
+            <SideButton text="Maths" />
           </VStack>
 
           <Box height={'$8'} />
-          <TextBold text="Enrolled Students" fontSize={'$xl'} />
+          <TextSemibold text="Enrolled Students" fontSize={'$2xl'} />
           <Box height={'$2'} />
 
           <VStack space={'md'}>
@@ -46,13 +53,14 @@ const TeacherMain = () => {
                 key={index}
                 padding={'$3'}
                 backgroundColor={'#f0f0f0'}
-                borderRadius={15} // Adjust border radius
+                borderRadius={15}
                 borderWidth={1}
                 borderColor={'#ccc'}>
                 <TextSemibold text={student} fontSize={'$md'} />
               </Box>
             ))}
           </VStack>
+          <Box height={height * 2} />
         </ScrollView>
       </ImageBackground>
     </View>
