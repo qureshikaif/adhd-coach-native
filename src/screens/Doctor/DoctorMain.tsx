@@ -12,12 +12,14 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {Button} from '@gluestack-ui/themed';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
+import TotalPatientsEnrolled from '../../components/molecules/TotalPatientsEnrolled';
+import {useQuery} from '@tanstack/react-query';
+import Loading from '../Loading';
+import axios from 'axios';
 
 const BackgroundImage = require('../../assets/images/DoctorMain.png');
 
 const DoctorMain = () => {
-  const enrolledStudents = [1, 2, 3];
-
   const [feedbackRating, setFeedbackRating] = useState<string>('');
 
   const handleFeedbackChange = (text: string) => {
@@ -26,6 +28,20 @@ const DoctorMain = () => {
       setFeedbackRating(text);
     }
   };
+
+  const {data: count, isLoading} = useQuery({
+    queryKey: ['totalStudentsEnrolled'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.0.107:8080/student/get-number',
+      );
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading bgImage={BackgroundImage} />;
+  }
 
   return (
     <View height={'$full'}>
@@ -40,10 +56,10 @@ const DoctorMain = () => {
             fontSize={'$2xs'}
           />
           <Box height={'$12'} />
-          <TextBold text="Patient Enrolled" fontSize={'$xl'} />
+          <TextBold text="Total Patients Enrolled" fontSize={'$xl'} />
           <Box height={'$2'} />
-
-          <VStack space={'md'}>
+          <TotalPatientsEnrolled count={count} />
+          {/* <VStack space={'md'}>
             {enrolledStudents.map((student, index) => (
               <Box
                 key={index}
@@ -55,7 +71,7 @@ const DoctorMain = () => {
                 <TextSemibold text={student} fontSize={'$md'} />
               </Box>
             ))}
-          </VStack>
+          </VStack> */}
 
           <Box height={'$8'} />
           <TextBold text="Feedback" fontSize={'$xl'} />

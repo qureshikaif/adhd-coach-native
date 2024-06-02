@@ -78,6 +78,7 @@ const PatientPrescription = () => {
 
           <HStack space="lg">
             <Button
+              flex={1}
               android_ripple={{color: 'grey'}}
               //   onPress={() => navigation.navigate('ForgotPassword')}
               hardShadow="3"
@@ -91,6 +92,7 @@ const PatientPrescription = () => {
               <TextBold text="Add new" />
             </Button>
             <Button
+              flex={1}
               android_ripple={{color: 'grey'}}
               //   onPress={() => navigation.navigate('ForgotPassword')}
               hardShadow="3"
@@ -99,7 +101,7 @@ const PatientPrescription = () => {
               bg={'#EAC5C5'}
               borderWidth={1}
               borderRadius={'$lg'}>
-              <TextBold text="save Changes " />
+              <TextBold text="Save" />
             </Button>
           </HStack>
         </ScrollView>

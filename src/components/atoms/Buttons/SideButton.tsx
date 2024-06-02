@@ -20,7 +20,6 @@ const SideButton = ({
   text,
   onPress,
   content,
-  isPatient,
 }: AddNewButtonProps) => {
   return (
     <Pressable
@@ -37,10 +36,7 @@ const SideButton = ({
         alignItems="center"
         paddingVertical={'$2'}
         paddingHorizontal={'$3'}>
-        <TextSemibold
-          text={isPatient ? isPatient : text ? text : content?.title}
-          fontSize={'$xl'}
-        />
+        <TextSemibold text={text ? text : content?.title} fontSize={'$xl'} />
         <Image
           source={sideIcon}
           alt={text ? text : content?.title}

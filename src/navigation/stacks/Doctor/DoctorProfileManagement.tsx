@@ -1,8 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import DoctorProfile from '../../../screens/Doctor/ProfileSetting';
 import PersonalInfo from '../../../screens/Doctor/PersonalInfo.';
 import ProfileSetting from '../../../screens/Doctor/ProfileSetting';
+import PersonalProfile from '../../../screens/Doctor/PersonalProfile';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +15,7 @@ const DoctorProfileManagement = () => {
         statusBarColor: '#DEB5B5',
         statusBarStyle: 'light',
       }}>
-      <Stack.Screen name="DoctorProfileMain" component={DoctorProfile} />
+      <Stack.Screen name="DoctorProfileMain" component={PersonalProfile} />
       <Stack.Screen name="DoctorPersonalInfo" component={PersonalInfo} />
       <Stack.Screen name="DoctorProfileSettings" component={ProfileSetting} />
     </Stack.Navigator>

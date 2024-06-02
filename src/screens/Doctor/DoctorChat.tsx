@@ -1,6 +1,11 @@
-import { View, ImageBackground, ScrollView, Text } from '@gluestack-ui/themed';
+import {
+  View,
+  ImageBackground,
+  ScrollView,
+  Text,
+  Box,
+} from '@gluestack-ui/themed';
 import React from 'react';
-import CircleRowScrollView from '../../components/molecules/ChatBoxtop';
 import TextBold from '../../components/atoms/Text/TextBold';
 import ImageTextBox from '../../components/ChatDialoguebox';
 import ChatBoxAlternative from '../../components/ChatDialogueboxAlternative';
@@ -8,17 +13,15 @@ import DoctorTop from '../../components/molecules/ChatBoxTopDoctor';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 
 const BackgroundImage = require('../../assets/images/DoctorChat.png');
-const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 
 const DoctorChatbox = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      <StatusBarDoctor text='Home' isSettingsVisible/>
-        <ScrollView style={{ paddingHorizontal: 16 }}>
-
-          <TextBold text="Chat" fontSize={32} style={{ padding: 20 }} />
-          <DoctorTop/>
+        <StatusBarDoctor text="Chat" />
+        <ScrollView style={{paddingHorizontal: 16}}>
+          <Box height={'$4'} />
+          <DoctorTop />
           {Array.from({length: 1}).map((_, index) => (
             <ChatBoxAlternative key={index} />
           ))}
