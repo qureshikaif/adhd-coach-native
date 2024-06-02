@@ -10,7 +10,7 @@ const TeacherHome = () => {
       initialRouteName="TeacherMain"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#F0CCCC',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="TeacherMain" component={TeacherMain} />

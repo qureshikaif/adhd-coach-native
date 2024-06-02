@@ -2,16 +2,17 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TeacherProfileSetting from '../../../screens/Teacher/TeacherProfileSetting';
 import TeacherEditPersonalInfo from '../../../screens/Teacher/TeacherEditPersonalInfo';
+import TeacherProfile from '../../../screens/Teacher/TeacherProfile';
 
 const Stack = createNativeStackNavigator();
 
-const TeacherProfile = () => {
+const TeacherProfileManagement = () => {
   return (
     <Stack.Navigator
       initialRouteName="TeacherProfile"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#F0CCCC',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="TeacherProfile" component={TeacherProfile} />
@@ -27,4 +28,4 @@ const TeacherProfile = () => {
   );
 };
 
-export default TeacherProfile;
+export default TeacherProfileManagement;

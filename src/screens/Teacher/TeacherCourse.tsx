@@ -19,7 +19,7 @@ const TeacherCourse = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      <StatusBarTeacher text='Course' />
+        <StatusBarTeacher text="Course" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <AddNewButton text="Add a new lecture" />

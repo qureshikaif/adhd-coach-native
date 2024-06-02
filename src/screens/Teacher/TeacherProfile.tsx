@@ -18,12 +18,11 @@ const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
 const TeacherProfile = () => {
- 
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      <StatusBarTeacher text=' Profile' />
+        <StatusBarTeacher text=" Profile" />
         <Box height={'$20'} />
         <ScrollView paddingHorizontal={'$4'}>
           <Center>
@@ -60,7 +59,6 @@ const TeacherProfile = () => {
 
               <Box flex={1} justifyContent="center" alignItems="center">
                 <Button
-                  
                   android_ripple={{color: '#DEB5B5'}}
                   hardShadow="3"
                   width={120}

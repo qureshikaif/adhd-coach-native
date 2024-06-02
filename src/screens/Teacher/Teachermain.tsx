@@ -12,7 +12,8 @@ import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import SideButton from '../../components/atoms/Buttons/SideButton';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
-const BackgroundImage = require('../../assets/images/TeacherMain.png');
+// const BackgroundImage = require('../../assets/images/TeacherMain.png');
+const BackgroundImage = require('../../assets/images/teachercourse.png');
 
 const TeacherMain = () => {
   const enrolledStudents = [1, 2, 3, 4];
@@ -31,8 +32,8 @@ const TeacherMain = () => {
           <Box height={'$8'} />
 
           <VStack space={'2xl'}>
-            <SideButton text="course 1" />
-            <SideButton text="course 2" />
+            <SideButton text="Course 1" />
+            <SideButton text="Course 2" />
           </VStack>
 
           <Box height={'$8'} />

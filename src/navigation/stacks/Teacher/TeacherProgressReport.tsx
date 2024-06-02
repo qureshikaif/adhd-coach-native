@@ -10,7 +10,7 @@ const TeacherProgressReport = () => {
       initialRouteName="TeacherRemarks"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#F0CCCC',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="TeacherRemarks" component={TeacherRemarks} />

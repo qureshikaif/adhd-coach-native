@@ -5,13 +5,13 @@ import TeacherChatBoxOpen from '../../../screens/Teacher/TeacherChatBoxOpen';
 
 const Stack = createNativeStackNavigator();
 
-const TeacherProgressReport = () => {
+const TeacherChats = () => {
   return (
     <Stack.Navigator
       initialRouteName="TeacherChat"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#F0CCCC',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="TeacherChat" component={TeacherChatbox} />
@@ -20,4 +20,4 @@ const TeacherProgressReport = () => {
   );
 };
 
-export default TeacherProgressReport;
+export default TeacherChats;
