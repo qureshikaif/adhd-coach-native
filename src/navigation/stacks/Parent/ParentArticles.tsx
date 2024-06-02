@@ -11,7 +11,7 @@ const ParentArticles = () => {
       initialRouteName="ParentArticleList"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#DBC9E1',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="ParentArticleList" component={ParentArticleList} />

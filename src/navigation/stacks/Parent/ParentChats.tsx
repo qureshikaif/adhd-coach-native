@@ -11,7 +11,7 @@ const ParentChats = () => {
       initialRouteName="ParentChat"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#DBC9E1',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="ParentChat" component={ParentChat} />
