@@ -9,7 +9,7 @@ interface AddNewButtonProps extends ButtonProps {
   text: string;
 }
 
-const SideScreenButton = ({
+const SideButton = ({
   buttonProps,
   imageProps,
   text,
@@ -21,11 +21,15 @@ const SideScreenButton = ({
       onPress={onPress}
       {...buttonProps}
       bgColor="#EDECD7"
-      p={'$3'}
-      hardShadow="3"
-      softShadow="4"
-      borderRadius={10}>
-      <HStack justifyContent="space-between" alignItems="center">
+      p={'$1'}
+      hardShadow="2"
+      softShadow="2"
+      borderRadius={15}>
+      <HStack
+        justifyContent="space-between"
+        alignItems="center"
+        paddingVertical={'$2'}
+        paddingHorizontal={'$3'}>
         <TextSemibold text={text} fontSize={'$xl'} />
         <Image
           source={sideIcon}
@@ -40,4 +44,4 @@ const SideScreenButton = ({
   );
 };
 
-export default SideScreenButton;
+export default SideButton;

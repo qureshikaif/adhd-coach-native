@@ -12,6 +12,7 @@ import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
 import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
 import {useStore} from '../../store';
+import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
@@ -22,6 +23,7 @@ const TeacherProfile = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
+      <StatusBarTeacher text=' Profile' />
         <Box height={'$20'} />
         <ScrollView paddingHorizontal={'$4'}>
           <Center>

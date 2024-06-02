@@ -5,6 +5,7 @@ import TextBold from '../../components/atoms/Text/TextBold';
 
 import ChatBoxNew from '../../components/ChatBoxNew';
 import TeacherTop from '../../components/molecules/ChatBoxTopTeacher';
+import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
 const BackgroundImage = require('../../assets/images/TeacherChat.png');
 
@@ -13,6 +14,7 @@ const TeacherChatbox = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
+      <StatusBarTeacher text='Chat'/>
         <ScrollView style={{ paddingHorizontal: 16 }}>
           <TextBold text="Chat" fontSize={32} style={{ padding: 20 }} />
           <TeacherTop/>

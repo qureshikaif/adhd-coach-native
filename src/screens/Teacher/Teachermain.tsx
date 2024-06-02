@@ -1,8 +1,10 @@
 import { View, ImageBackground, ScrollView, Box, VStack } from '@gluestack-ui/themed';
 import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
-import SideButton from '../../components/atoms/Buttons/VORDoctor';
+
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import SideButton from '../../components/atoms/Buttons/SideButton';
+import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
 const BackgroundImage = require('../../assets/images/TeacherMain.png');
 
@@ -13,6 +15,7 @@ const TeacherMain = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
+      <StatusBarTeacher text='Home' />
         <Box height={'$10'} />
         <ScrollView paddingHorizontal={'$5'}>
           <TextBold text="Morning" fontSize={'$2xl'} />
