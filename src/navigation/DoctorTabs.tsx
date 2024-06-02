@@ -1,11 +1,11 @@
 import React from 'react';
 import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import AdminAppAnalytics from './stacks/Admin/AdminAppAnalytics';
-import AdminFeedback from './stacks/Admin/AdminFeedback';
-import AdminAccountManagement from './stacks/Admin/AdminAccountManagement';
 import DoctorHome from './stacks/Doctor/DoctorHome';
 import DoctorPatientProfile from './stacks/Doctor/DoctorPatientProfile';
+import DoctorPatientPrescription from './stacks/Doctor/DoctorPatientPrescription';
+import DoctorChats from './stacks/Doctor/DoctorChat';
+import DoctorProfileManagement from './stacks/Doctor/DoctorProfileManagement';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,9 +42,9 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
 const screens = [
   {name: 'DoctorHome', component: DoctorHome},
   {name: 'DoctorPatientProfile', component: DoctorPatientProfile},
-  {name: 'DoctorPatientPrescription', component: AdminAppAnalytics},
-  {name: 'DoctorChat', component: AdminFeedback},
-  {name: 'DoctorProfile', component: AdminAccountManagement},
+  {name: 'DoctorPatientPrescription', component: DoctorPatientPrescription},
+  {name: 'DoctorChat', component: DoctorChats},
+  {name: 'DoctorProfile', component: DoctorProfileManagement},
 ];
 
 export const DoctorTabs = () => {

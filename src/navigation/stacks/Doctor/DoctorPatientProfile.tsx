@@ -1,6 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import PatientProfileHistory from '../../../screens/Doctor/PatientProfileHistory';
+import PatientMedicalHistory from '../../../screens/Doctor/PatientMedicalHistory';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,10 @@ const DoctorPatientProfile = () => {
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="PatientProfile" component={PatientProfileHistory} />
+      <Stack.Screen
+        name="PatientMedicalHistory"
+        component={PatientMedicalHistory}
+      />
     </Stack.Navigator>
   );
 };
