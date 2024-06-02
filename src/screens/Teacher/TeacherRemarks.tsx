@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ImageBackground, ScrollView, Box, VStack, Button, HStack, Text } from '@gluestack-ui/themed';
 import { TextInput } from 'react-native';
 import Svg, { Rect, Text as SvgText } from 'react-native-svg'; // Import Svg, Rect, and Text from react-native-svg
 
 import TextBold from '../../components/atoms/Text/TextBold';
+import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
-const ChildProgressReport = () => {
-  // Static values for quiz marks and teacher remarks
-  const quizMarks = 75; // Example value
-  const teacherRemarks = "Great progress this term! Keep up the good work."; // Example value
+const TeacherRemarks = () => {
+  const [quizMarks, setQuizMarks] = useState(0);
 
   const calculateProgress = () => {
     return quizMarks / 100;
+  };
+
+  const handleQuizMarksChange = (value: string) => {
+    // Ensure the value is not empty
+    if (value.trim() === '') {
+      setQuizMarks(0); // Set quizMarks to 0 if input is empty
+      return;
+    }
+
+    // Ensure the value is a valid integer between 0 and 100
+    const marks = parseInt(value, 10);
+    if (isNaN(marks) || marks < 0 || marks > 100) {
+      // If the input is not a valid integer or is out of range, set quizMarks to 0
+      setQuizMarks(0);
+      return;
+    }
+
+    // Set quizMarks to the parsed integer value
+    setQuizMarks(marks);
   };
 
   return (
@@ -22,16 +40,16 @@ const ChildProgressReport = () => {
       <ImageBackground source={BackgroundImage} style={{ flex: 1 }}>
         <StatusBarTeacher text='Child Report' isSettingsVisible />
         <ScrollView contentContainerStyle={{ padding: 10 }}>
-          <Box height={'$5'} />
-          
+        <Box height={'$5'} />
+         
           <Svg height="60" width="100%" viewBox="0 0 200 60">
-            {/* Outer Border with border radius */}
+         
             <Rect x="0" y="0" width="200" height="40" fill="none" stroke="black" strokeWidth="2" rx="10" />
-            
-            {/* Inner Bar with border radius */}
+
+          
             <Rect x="2" y="2" width={calculateProgress() * 196} height="36" fill="#4CAF50" rx="10" />
 
-            {/* Scale Markings */}
+         
             <SvgText x="0" y="45" fill="black" fontSize="10">0</SvgText>
             <SvgText x="40" y="45" fill="black" fontSize="10">20</SvgText>
             <SvgText x="80" y="45" fill="black" fontSize="10">40</SvgText>
@@ -39,14 +57,28 @@ const ChildProgressReport = () => {
             <SvgText x="160" y="45" fill="black" fontSize="10">80</SvgText>
             <SvgText x="200" y="45" fill="black" fontSize="10">100</SvgText>
           </Svg>
-
           <Box height={'$5'} />
 
           <TextBold text="Quiz Marks" fontSize={'$xl'} />
-          <Text style={{ fontSize: 20, marginBottom: 10 }}>{quizMarks}</Text> {/* Static quiz marks */}
 
-          <Box height={'$5'} />
-          <TextBold text="Teacher Remarks" fontSize={'$xl'} />
+          <TextInput
+            style={{
+              height: 40,
+              backgroundColor: 'grey',
+              borderWidth: 1,
+              borderColor: 'black',
+              borderRadius: 10,
+              padding: 10,
+              marginBottom: 10
+              
+            }}
+            placeholder="Enter quiz marks (out of 100)"
+            keyboardType="numeric"
+            onChangeText={handleQuizMarksChange} 
+            value={quizMarks.toString()} 
+          />
+           <Box height={'$5'} />
+ <TextBold text="Teacher Remarks" fontSize={'$xl'} />
           <TextInput
             style={{
               height: 150,
@@ -58,14 +90,11 @@ const ChildProgressReport = () => {
               padding: 15,
               marginBottom: 10
             }}
-            placeholder="Enter your Remarks here..."
-            placeholderTextColor={'white'}
+            placeholder="Enter your Remarks  here..."
+            
             multiline
-            editable={false} // Make the input read-only
-            value={teacherRemarks} // Static teacher remarks
           />
-
-          <Box height={'$5'} />
+            <Box height={'$5'} />
           <HStack space="3xl">
             <Button
               android_ripple={{ color: 'grey' }}
@@ -96,4 +125,4 @@ const ChildProgressReport = () => {
   );
 };
 
-export default ChildProgressReport;
+export default TeacherRemarks;

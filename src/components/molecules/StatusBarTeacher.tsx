@@ -5,6 +5,7 @@ import TextSemibold from '../atoms/Text/TextSemibold';
 
 type StatusBarTeacherProps = {
   text: string;
+  isSettingsVisible?: boolean;
 };
 
 const StatusBarTeacher = ({text}: StatusBarTeacherProps) => {
