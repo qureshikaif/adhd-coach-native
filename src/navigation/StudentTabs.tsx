@@ -13,8 +13,8 @@ const icons: {[index: string]: any} = {
   Home: require('../assets/images/navigation/Home.png'),
   Courses: require('../assets/images/navigation/Courses.png'),
   Activities: require('../assets/images/navigation/Games.png'),
-  Quizzes: require('../assets/images/navigation/Profile.png'),
-  Health: require('../assets/images/navigation/Settings.png'),
+  Quizzes: require('../assets/images/navigation/Quiz.png'),
+  Health: require('../assets/images/navigation/Health.png'),
 };
 
 export const tabBarStyle = {
