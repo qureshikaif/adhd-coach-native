@@ -9,7 +9,7 @@ type StatusBarTeacherProps = {
   isSettingsVisible?: boolean;
 };
 
-const StatusBarParent = ({text, isSettingsVisible}: StatusBarTeacherProps) => {
+const StatusBarDoctor = ({text, isSettingsVisible}: StatusBarTeacherProps) => {
   return (
     <HStack
       bgColor="#DEB5B5"
@@ -38,4 +38,4 @@ const StatusBarParent = ({text, isSettingsVisible}: StatusBarTeacherProps) => {
   );
 };
 
-export default StatusBarParent;
+export default StatusBarDoctor;
