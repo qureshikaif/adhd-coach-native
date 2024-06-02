@@ -11,9 +11,9 @@ const Tab = createBottomTabNavigator();
 
 const icons: {[index: string]: any} = {
   DoctorHome: require('../assets/images/navigation/Home.png'),
-  DoctorPatientProfile: require('../assets/images/navigation/Courses.png'),
-  DoctorPatientPrescription: require('../assets/images/navigation/Analytics.png'),
-  DoctorChat: require('../assets/images/navigation/Feedback.png'),
+  DoctorPatientProfile: require('../assets/images/navigation/Patient.png'),
+  DoctorPatientPrescription: require('../assets/images/navigation/Prescription.png'),
+  DoctorChat: require('../assets/images/navigation/Chat.png'),
   DoctorProfile: require('../assets/images/navigation/Profile.png'),
 };
 
@@ -29,7 +29,7 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
   const iconSource = icons[routeName];
   if (focused) {
     return (
-      <View bg="#A3BACD" rounded={'$full'} padding={'$2'}>
+      <View bg="#DEB5B5" rounded={'$full'} padding={'$2'}>
         <Image source={iconSource} alt="Tab Bar Icons" width={30} height={30} />
       </View>
     );

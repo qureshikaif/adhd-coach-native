@@ -10,7 +10,7 @@ const DoctorPatientProfile = () => {
       initialRouteName="PatientProfile"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#DEB5B5',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="PatientProfile" component={PatientProfileHistory} />
