@@ -14,6 +14,7 @@ import Svg, {Rect, Text as SvgText} from 'react-native-svg'; // Import Svg, Rect
 
 import TextBold from '../../components/atoms/Text/TextBold';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import StatusBarParent from '../../components/molecules/StatusBarParent';
 
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
@@ -29,7 +30,7 @@ const ChildProgressReport = () => {
   return (
     <View h="$full">
       <ImageBackground source={BackgroundImage} h="$full">
-        <StatusBarTeacher text="Child Report" />
+        <StatusBarParent text="Child Report" />
         <ScrollView paddingHorizontal={'$4'}>
           <Box height={'$5'} />
           <Svg height="60" width="100%" viewBox="0 0 200 60">

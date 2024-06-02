@@ -10,11 +10,11 @@ import {
 } from '@gluestack-ui/themed';
 import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
-import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {useStore} from '../../store';
 import {handleLogout} from '../../helpers/handleLogout';
+import StatusBarParent from '../../components/molecules/StatusBarParent';
 const TeacherPic = require('../../assets/images/icons/ProfilePicSana.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
@@ -24,7 +24,7 @@ const ParentPersonalProfile = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarTeacher text="Profile" />
+        <StatusBarParent text="Profile" />
 
         <ScrollView paddingHorizontal={'$4'}>
           <Box height={'$10'} />

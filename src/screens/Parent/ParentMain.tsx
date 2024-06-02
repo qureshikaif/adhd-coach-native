@@ -4,6 +4,7 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import ParentMainTable from '../../components/molecules/ParentMainTable';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import StatusBarParent from '../../components/molecules/StatusBarParent';
 
 const BackgroundImage = require('../../assets/images/parent-main-bg.png');
 
@@ -11,7 +12,7 @@ const ParentMain = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h="$full">
-        <StatusBarTeacher text="Home" />
+        <StatusBarParent text="Home" />
         <ScrollView paddingHorizontal={'$5'}>
           <Box height={'$10'} />
           <TextBold text="Morning" fontSize={'$2xl'} />

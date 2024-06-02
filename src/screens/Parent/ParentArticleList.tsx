@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
 import SideButton from '../../components/atoms/Buttons/SideButton';
-import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import StatusBarParent from '../../components/molecules/StatusBarParent';
 
 const BackgroundImage = require('../../assets/images/parent-main-bg.png');
 
@@ -16,7 +16,7 @@ const ParentArticleList = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarTeacher text="Articles" />
+        <StatusBarParent text="Articles" />
 
         <ScrollView paddingHorizontal={'$5'}>
           <Box height={'$10'} />
