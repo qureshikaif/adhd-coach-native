@@ -4,9 +4,13 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
-import PatientMedicalHistory from './src/screens/Doctor/PatientMedicalHistory';
-import TeacherRemarks from './src/screens/Teacher/TeacherRemarks';
 import ChildProgressReport from './src/screens/Parent/ChildProgressReport';
+import ParentChatbox from './src/screens/Parent/ParentChat';
+import TeacherRemarks from './src/screens/Teacher/TeacherRemarks';
+import ChildReport from './src/screens/Parent/ChildProgressReport';
+import ParentMain from './src/screens/Parent/ParentMain';
+import TeacherMain from './src/screens/Teacher/Teachermain';
+import DoctorMain from './src/screens/Doctor/DoctorMain';
 
 
 const config = createConfig({
@@ -31,7 +35,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-          <ChildProgressReport/>
+          <DoctorMain/>
           {/* <TicTacToeGame /> */}
         </GluestackUIProvider>
       </QueryClientProvider>

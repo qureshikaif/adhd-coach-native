@@ -4,7 +4,7 @@ import { TextInput } from 'react-native';
 import Svg, { Rect, Text as SvgText } from 'react-native-svg'; // Import Svg, Rect, and Text from react-native-svg
 
 import TextBold from '../../components/atoms/Text/TextBold';
-import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
+
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
