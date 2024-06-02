@@ -1,10 +1,10 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import StudentActivity from '../../../screens/StudentModule/StudentActivity';
+import StudentHealth from '../../../screens/StudentModule/StudentHealth';
 
 const Stack = createNativeStackNavigator();
 
-const StudentHealth = () => {
+const StudentHealthStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="StudentHealth"
@@ -13,9 +13,9 @@ const StudentHealth = () => {
         statusBarColor: '#A3BACD',
         statusBarStyle: 'light',
       }}>
-      <Stack.Screen name="StudentHealth" component={StudentActivity} />
+      <Stack.Screen name="StudentHealth" component={StudentHealth} />
     </Stack.Navigator>
   );
 };
 
-export default StudentHealth;
+export default StudentHealthStack;
