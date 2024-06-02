@@ -7,6 +7,8 @@ import MathsCourses from '../../../screens/StudentModule/MathsCourses';
 import MathsCounting from '../../../screens/StudentModule/MathsCounting';
 import MathsBasicOpt from '../../../screens/StudentModule/MathsBasicOperations';
 import ShapesEnglish from '../../../screens/StudentModule/ShapesEnglish';
+import RockPaperScissorStart from '../../../screens/StudentModule/RockPaperScissorStart';
+import RockPaperScissor from '../../../screens/StudentModule/RockPaperScissor';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +28,11 @@ const StudentActivities = () => {
       <Stack.Screen name="MathsCounting" component={MathsCounting} />
       <Stack.Screen name="MathsBasicOperation" component={MathsBasicOpt} />
       <Stack.Screen name="ShapesEnglish" component={ShapesEnglish} />
+      <Stack.Screen
+        name="RockPaperScissorStart"
+        component={RockPaperScissorStart}
+      />
+      <Stack.Screen name="RockPaperScissor" component={RockPaperScissor} />
     </Stack.Navigator>
   );
 };
