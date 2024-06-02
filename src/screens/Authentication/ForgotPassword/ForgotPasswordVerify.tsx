@@ -15,7 +15,6 @@ import TextRegular from '../../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import React from 'react';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import TextBold from '../../../components/atoms/Text/TextBold';
 
 const BackgroundImage = require('../../../assets/images/signup-bg.png');
 const Avatar = require('../../../assets/images/avatars/forgotpassword.png');
@@ -157,14 +156,14 @@ const ForgotPasswordVerify = () => {
                     </Input>
                   </HStack>
                 ))}
-                <VStack>
+                {/* <VStack>
                   <TextRegular text="Didnt Receive it?" fontSize={'$sm'} />
                   <HStack>
                     <Pressable onPress={() => navigation.navigate('Resend')}>
                       <TextBold fontSize={'$sm'} text={`${' '}Resend`} />
                     </Pressable>
                   </HStack>
-                </VStack>
+                </VStack> */}
               </VStack>
               <Box height={'$10'} />
               <Pressable

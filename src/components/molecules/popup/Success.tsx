@@ -18,7 +18,18 @@ import TextRegular from '../../atoms/Text/TextRegular';
 const SuccessIcon = require('../../../assets/images/icons/success.png');
 // const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
-const Success = ({showModal, setShowModal, ref}: ModalProps) => {
+interface SuccessProps extends ModalProps {
+  text?: string;
+  bgColor?: string;
+}
+
+const Success = ({
+  showModal,
+  setShowModal,
+  ref,
+  text,
+  bgColor,
+}: SuccessProps) => {
   return (
     <Center>
       <Modal
@@ -29,7 +40,7 @@ const Success = ({showModal, setShowModal, ref}: ModalProps) => {
         size="lg"
         finalFocusRef={ref}>
         <ModalBackdrop />
-        <ModalContent bgColor="#A3BACD" rounded={'$2xl'}>
+        <ModalContent bgColor={bgColor ? bgColor : '#A3BACD'} rounded={'$2xl'}>
           <ModalHeader borderBottomWidth={1} borderBottomColor="#DDDDDD">
             <TextSemibold
               text="Success"
@@ -50,7 +61,7 @@ const Success = ({showModal, setShowModal, ref}: ModalProps) => {
                 resizeMode="contain"
               />
               <TextSemibold
-                text="Article added successfully"
+                text={text ? text : 'Article added successfully'}
                 color="white"
                 fontSize="$2xl"
                 textAlign="center"
