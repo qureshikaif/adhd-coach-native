@@ -26,6 +26,7 @@ const getRandomOption = () => {
     const randomIndex = Math.floor(Math.random() * options.length);
     return options[randomIndex];
 };
+declare function alert(message: string): void;
 
 const RockPaperScissor = () => {
     const [showPoint, setShowPoint] = useState(false);
@@ -43,15 +44,18 @@ const RockPaperScissor = () => {
             setTimeout(() => {
                 setShowPoint(false);
             }, 1000); // Adjust the delay as needed (1000 ms = 1 second)
+        } else {
+            // Show the notification for wrong pick
+            alert("Oops! Wrong pick.");
+            // Restart the point counter
+            setPoints(0);
         }
         setCurrentOption(getRandomOption());
     };
 
     return (
         <View height={'$full'}>
-
             <ImageBackground source={BackgroundImage} h="$full">
-
                 <StatusBarStudent
                     text=" Rock Paper Scissor"
                     bgColor='#8D5A39'
