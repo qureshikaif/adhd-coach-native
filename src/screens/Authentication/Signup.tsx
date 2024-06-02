@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {
   View,
@@ -33,6 +33,7 @@ import {Lock, Mail, User, ChevronDown, Key} from 'lucide-react-native';
 import {useStore} from '../../store';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import axios from 'axios';
+import Error from '../../components/molecules/popup/Error';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/signup.png');
@@ -76,6 +77,9 @@ const fields = [
 ];
 
 const Signup = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [error, setError] = React.useState('');
+  const ref = React.useRef(null);
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const handleRole = (role: string) => store.setRole(role);
@@ -86,7 +90,10 @@ const Signup = () => {
     formState: {errors, isLoading},
   } = useForm();
 
+  console.log(errors);
+
   const onSubmit = (data: any) => {
+    console.log(data);
     let id = '';
 
     if (
@@ -112,6 +119,8 @@ const Signup = () => {
       .catch(err => {
         if (err.response) {
           console.log('Error Response Data:', err.response.data);
+          setError(err.response.data.message);
+          setShowModal(true);
         } else if (err.request) {
           console.log('Error Request:', err.request);
         } else {
@@ -151,50 +160,60 @@ const Signup = () => {
           <Box height={'$5'} />
           <VStack width={'$full'} rowGap={'$3'}>
             {fields.map((field, index) => (
-              <HStack space="sm" key={index}>
-                <Controller
-                  control={control}
-                  name={field.title.replace(' ', '').toLowerCase()}
-                  rules={field.validation}
-                  render={({field: {onChange, onBlur, value}}) => (
-                    <Input
-                      bgColor="#DC9F72"
-                      height={'$12'}
-                      rounded={'$2xl'}
-                      width={'$full'}
-                      borderWidth={0}
-                      isInvalid={Boolean(
-                        errors[field.title.replace(' ', '').toLowerCase()],
-                      )}>
-                      <InputSlot pl="$4">
-                        <field.icon size={25} color="black" />
-                      </InputSlot>
-                      <InputField
-                        autoCapitalize={
-                          field.title === 'Email' ? 'none' : 'words'
-                        }
-                        type={field.type as 'text' | 'password'}
-                        fontFamily="Poppins-Regular"
-                        placeholder={field.title}
-                        paddingHorizontal={'$6'}
-                        placeholderTextColor={'black'}
-                        onBlur={onBlur}
-                        onChangeText={onChange}
-                        value={value}
-                      />
-                    </Input>
-                  )}
-                />
-                {/* {errors[field.title.replace(' ', '').toLowerCase()] && (
+              <VStack key={index}>
+                <HStack space="sm">
+                  <Controller
+                    control={control}
+                    name={field.title.replace(' ', '').toLowerCase()}
+                    rules={field.validation}
+                    render={({field: {onChange, onBlur, value}}) => (
+                      <Input
+                        bgColor="#DC9F72"
+                        height={'$12'}
+                        rounded={'$2xl'}
+                        width={'$full'}
+                        borderWidth={0}
+                        isInvalid={Boolean(
+                          errors[field.title.replace(' ', '').toLowerCase()],
+                        )}>
+                        <InputSlot pl="$4">
+                          <field.icon size={25} color="black" />
+                        </InputSlot>
+                        <InputField
+                          autoCapitalize={
+                            field.title === 'Email' ? 'none' : 'words'
+                          }
+                          type={field.type as 'text' | 'password'}
+                          fontFamily="Poppins-Regular"
+                          placeholder={field.title}
+                          paddingHorizontal={'$6'}
+                          placeholderTextColor={'black'}
+                          onBlur={onBlur}
+                          onChangeText={onChange}
+                          value={value}
+                        />
+                      </Input>
+                    )}
+                  />
+                </HStack>
+                {errors[field.title.replace(' ', '').toLowerCase()] && (
                   <TextRegular
-                    color="red"
                     text={
                       errors[field.title.replace(' ', '').toLowerCase()]
-                        ?.message
+                        ?.message as ReactNode
                     }
+                    fontSize={'$xs'}
+                    ml={'$1'}
+                    color="red"
+                  />
+                )}
+                {/* {errors.fullname && (
+                  <TextRegular
+                    text={errors.fullname.message as ReactNode}
+                    color="red"
                   />
                 )} */}
-              </HStack>
+              </VStack>
             ))}
             <Controller
               control={control}
@@ -309,6 +328,13 @@ const Signup = () => {
           </HStack>
         </Center>
       </ImageBackground>
+      <Error
+        bgColor="#DC9F72"
+        text={error}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        ref={ref}
+      />
     </View>
   );
 };

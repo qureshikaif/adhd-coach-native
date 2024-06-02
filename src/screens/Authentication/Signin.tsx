@@ -32,6 +32,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {ChevronDown, Lock, Mail, User} from 'lucide-react-native';
 import {useStore} from '../../store';
 import axios from 'axios';
+import Error from '../../components/molecules/popup/Error';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/login.png');
@@ -58,6 +59,9 @@ type NavigationType = {
 };
 
 const Signin = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [error, setError] = React.useState('');
+  const ref = React.useRef(null);
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const {
@@ -84,6 +88,8 @@ const Signin = () => {
       .catch(err => {
         if (err.response) {
           console.log('Error Response Data:', err.response.data);
+          setError(err.response.data.message);
+          setShowModal(true);
         } else if (err.request) {
           console.log('Error Request:', err.request);
         } else {
@@ -235,6 +241,13 @@ const Signin = () => {
           </Pressable>
         </Center>
       </ImageBackground>
+      <Error
+        bgColor="#DC9F72"
+        text={error}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        ref={ref}
+      />
     </View>
   );
 };
