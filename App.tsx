@@ -8,7 +8,6 @@ import PatientMedicalHistory from './src/screens/Doctor/PatientMedicalHistory';
 import TeacherRemarks from './src/screens/Teacher/TeacherRemarks';
 import ChildProgressReport from './src/screens/Parent/ChildProgressReport';
 
-
 const config = createConfig({
   ...defaultConfig,
   tokens: {
@@ -31,7 +30,8 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-          <ChildProgressReport/>
+          {/* <ChildProgressReport /> */}
+          <MainNavigator />
           {/* <TicTacToeGame /> */}
         </GluestackUIProvider>
       </QueryClientProvider>
