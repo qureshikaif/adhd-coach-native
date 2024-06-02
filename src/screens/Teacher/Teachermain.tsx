@@ -6,8 +6,6 @@ import {
   VStack,
 } from '@gluestack-ui/themed';
 import React from 'react';
-import TextBold from '../../components/atoms/Text/TextBold';
-
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import SideButton from '../../components/atoms/Buttons/SideButton';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
@@ -30,8 +28,8 @@ const TeacherMain = () => {
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
         <StatusBarTeacher text="Home" />
-        <Box height={'$10'} />
         <ScrollView paddingHorizontal={'$5'}>
+          <Box height={'$10'} />
           <TextSemibold text="Good Morning," fontSize={'$3xl'} />
           <TextSemibold text="Abubakar" fontSize={'$2xl'} />
           <Box height={'$8'} />
