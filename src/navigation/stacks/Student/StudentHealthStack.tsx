@@ -10,7 +10,7 @@ const StudentHealthStack = () => {
       initialRouteName="StudentHealth"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#FFA360',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="StudentHealth" component={StudentHealth} />
