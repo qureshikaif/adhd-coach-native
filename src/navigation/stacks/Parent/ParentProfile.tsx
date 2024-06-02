@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ParentProfileSetting from '../../../screens/Parent/ProfileSetting';
 import ParentPersonalProfile from '../../../screens/Parent/ParentPersonaProfile';
+import ParentPersonalInfo from '../../../screens/Parent/ParentPersonalInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const ParentProfile = () => {
         name="ParentProfileSettings"
         component={ParentProfileSetting}
       />
+      <Stack.Screen name="ParentPersonalInfo" component={ParentPersonalInfo} />
     </Stack.Navigator>
   );
 };

@@ -48,7 +48,7 @@ const ParentProfileSetting = () => {
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
         <StatusBarTeacher text="Profile Settings" />
         <Box height={'$8'} />
-        <ScrollView paddingHorizontal={'$4'}>
+        <ScrollView paddingHorizontal={'$5'}>
           <Center>
             <Box
               rounded={'$full'}
@@ -64,9 +64,7 @@ const ParentProfileSetting = () => {
                 h="$full"
               />
             </Box>
-            <Text mt={4} fontFamily="Poppins-Regular">
-              Mrs Ahmed
-            </Text>
+            <TextSemibold mt={4} text="Sana Zehra" />
           </Center>
           <Box height={'$8'} />
           {fields.map((field, index) => (
@@ -76,7 +74,7 @@ const ParentProfileSetting = () => {
                 bgColor="#BEADC3"
                 height={'$12'}
                 rounded={'$lg'}
-                width={'95%'}
+                width={'100%'}
                 borderWidth={0}>
                 <InputField
                   type="text"
@@ -92,8 +90,8 @@ const ParentProfileSetting = () => {
           <Box height={'$10'} />
           <HStack space="lg">
             <Button
+              flex={1}
               android_ripple={{color: '#DEB5B5'}}
-              //   onPress={() => navigation.navigate('ForgotPassword')}
               hardShadow="5"
               size="xl"
               borderColor="black"
@@ -103,6 +101,7 @@ const ParentProfileSetting = () => {
               <TextBold text="Cancel" />
             </Button>
             <Button
+              flex={1}
               android_ripple={{color: '#DEB5B5'}}
               hardShadow="3"
               size="xl"
@@ -110,7 +109,7 @@ const ParentProfileSetting = () => {
               bg={'#B597B8'}
               borderWidth={1}
               borderRadius={'$lg'}>
-              <TextBold text="Save Changes" />
+              <TextBold text="Save" />
             </Button>
           </HStack>
         </ScrollView>
