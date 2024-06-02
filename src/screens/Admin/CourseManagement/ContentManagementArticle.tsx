@@ -1,7 +1,6 @@
 import {ImageBackground, ScrollView, Box, VStack} from '@gluestack-ui/themed';
 import React from 'react';
 import AddNewButton from '../../../components/atoms/Buttons/AddNewButton';
-import AddDoctor from '../../../components/molecules/popup/AddDoctor';
 import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
@@ -41,7 +40,6 @@ const ContentManagementArticle = () => {
         <VStack space="xs">
           <AddNewButton
             text="Add a new article"
-            ModalComponent={AddDoctor}
             onPress={() => navigation.navigate('AddNewArticle')}
           />
           <TextSemibold text="Modify" fontSize={'$xl'} />
