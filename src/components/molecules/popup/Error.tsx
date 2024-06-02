@@ -1,19 +1,15 @@
 import {
-  ModalFooter,
   Modal,
   ModalBackdrop,
   ModalBody,
   ModalContent,
   ModalHeader,
-  Button,
   Center,
   Image,
-  HStack,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
 import TextSemibold from '../../atoms/Text/TextSemibold';
-import TextRegular from '../../atoms/Text/TextRegular';
 
 const WarningIcon = require('../../../assets/images/icons/warning.png');
 
@@ -30,7 +26,7 @@ const Error = ({showModal, setShowModal, ref, text, bgColor}: ErrorProps) => {
         onClose={() => {
           setShowModal(false);
         }}
-        size="lg"
+        size="sm"
         finalFocusRef={ref}>
         <ModalBackdrop />
         <ModalContent bgColor={bgColor ? bgColor : '#A3BACD'} rounded={'$2xl'}>
@@ -38,7 +34,7 @@ const Error = ({showModal, setShowModal, ref, text, bgColor}: ErrorProps) => {
             <TextSemibold
               text="An error occured"
               color="white"
-              fontSize="$2xl"
+              fontSize="$xl"
               w="$full"
               textAlign="center"
             />
@@ -61,7 +57,7 @@ const Error = ({showModal, setShowModal, ref, text, bgColor}: ErrorProps) => {
               />
             </Center>
           </ModalBody>
-          <ModalFooter>
+          {/* <ModalFooter>
             <HStack space="sm">
               <Button
                 flex={1}
@@ -73,7 +69,7 @@ const Error = ({showModal, setShowModal, ref, text, bgColor}: ErrorProps) => {
                 <TextRegular text="Close" color="white" />
               </Button>
             </HStack>
-          </ModalFooter>
+          </ModalFooter> */}
         </ModalContent>
       </Modal>
     </Center>
