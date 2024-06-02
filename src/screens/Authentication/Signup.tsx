@@ -207,12 +207,6 @@ const Signup = () => {
                     color="red"
                   />
                 )}
-                {/* {errors.fullname && (
-                  <TextRegular
-                    text={errors.fullname.message as ReactNode}
-                    color="red"
-                  />
-                )} */}
               </VStack>
             ))}
             <Controller
