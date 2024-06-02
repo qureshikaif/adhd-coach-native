@@ -17,7 +17,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 const BackgroundImage = require('../../assets/images/parent-main-bg.png');
 
 type NavigationType = {
-  ParentArticle: undefined;
+  ParentArticle: {article: Article};
 };
 
 const ParentArticleList = () => {
@@ -47,7 +47,7 @@ const ParentArticleList = () => {
               <SideButton
                 key={index}
                 content={article}
-                onPress={() => navigation.navigate('ParentArticle')}
+                onPress={() => navigation.navigate('ParentArticle', {article})}
               />
             ))}
           </VStack>
