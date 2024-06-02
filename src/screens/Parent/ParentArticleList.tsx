@@ -1,12 +1,17 @@
-import { View, ImageBackground, ScrollView, Box, VStack } from '@gluestack-ui/themed';
+import {
+  View,
+  ImageBackground,
+  ScrollView,
+  Box,
+  VStack,
+} from '@gluestack-ui/themed';
 import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
 import SideButton from '../../components/atoms/Buttons/VORDoctor';
 
-
 const BackgroundImage = require('../../assets/images/parent-main-bg.png');
 
-const ParentArticleView = () => {
+const ParentArticleList = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
@@ -30,4 +35,4 @@ const ParentArticleView = () => {
   );
 };
 
-export default ParentArticleView;
+export default ParentArticleList;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, ImageBackground, Text, StyleSheet, FlatList } from 'react-native';
-import { Box } from '@gluestack-ui/themed';
+import {View, ImageBackground, Text, StyleSheet, FlatList} from 'react-native';
+import {Box} from '@gluestack-ui/themed';
 import StatusBarChatParent from '../../components/molecules/StatusBarChatParent';
 import ChatBoxBottom from '../../components/ChatDialogueboxAlternative';
 import ChatInput from '../../components/molecules/ChatInput';
@@ -45,12 +45,10 @@ const messages: Message[] = [
     text: 'They’re doing well in activities like Rock Paper Scissors. However, they struggle more with recognizing tasks like shape recognition. Make sure he does practice exercises.',
     time: '4:44 pm',
   },
- 
 ];
 
-const ParentChatBoxOpen: React.FC = () => {
-
-  const renderItem = ({ item }: { item: Message }) => (
+const ParentChatOpen: React.FC = () => {
+  const renderItem = ({item}: {item: Message}) => (
     <View
       style={[
         styles.messageContainer,
@@ -62,8 +60,8 @@ const ParentChatBoxOpen: React.FC = () => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
-      <ImageBackground source={BackgroundImage} style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
+      <ImageBackground source={BackgroundImage} style={{flex: 1}}>
         <StatusBarChatParent text="Sana Zehra" isSettingsVisible />
         <Box height={8} />
         <FlatList
@@ -72,7 +70,7 @@ const ParentChatBoxOpen: React.FC = () => {
           keyExtractor={item => item.id}
           contentContainerStyle={styles.chatContainer}
         />
-        <ChatInput/>
+        <ChatInput />
       </ImageBackground>
     </View>
   );
@@ -106,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ParentChatBoxOpen;
+export default ParentChatOpen;
