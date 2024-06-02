@@ -14,6 +14,7 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import Error from '../../components/molecules/popup/Error';
 
 const BackgroundImage = require('../../assets/images/TeacherChat.png');
 
@@ -24,10 +25,13 @@ interface QuizInputProps {
 
 const AddQuiz = () => {
   const height = useBottomTabBarHeight();
+  const [showError, setShowError] = React.useState(false);
+  const refError = React.useRef(null);
+
   return (
     <View h={'$full'}>
       <ImageBackground source={BackgroundImage} h={'$full'}>
-        <StatusBarTeacher text="Add Quiz " />
+        <StatusBarTeacher text="Add Quiz" />
         <ScrollView padding={'$4'}>
           <QuizInput label="Question:" placeholder="Enter your question here" />
           <QuizInput label="Option 1:" placeholder="Enter option text here" />
@@ -53,6 +57,7 @@ const AddQuiz = () => {
               <TextBold text="Add new Question" />
             </Button>
             <Button
+              onPress={() => setShowError(true)}
               flex={1}
               android_ripple={{color: 'grey'}}
               hardShadow="3"
@@ -67,6 +72,13 @@ const AddQuiz = () => {
           <Box height={height} />
         </ScrollView>
       </ImageBackground>
+      <Error
+        bgColor="#F0CCCC"
+        setShowModal={setShowError}
+        showModal={showError}
+        ref={refError}
+        text="Error saving quiz. Please try again."
+      />
     </View>
   );
 };

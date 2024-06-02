@@ -15,33 +15,42 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {VStack} from '@gluestack-ui/themed';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
+import {useStore} from '../../store';
+import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
-const fields = [
-  {
-    title: 'Email',
-    placeholder: '.sanaD11@adhdcoach.com',
-    icon: '',
-  },
-  {
-    title: 'Username',
-    placeholder: 'sanaD11',
-    icon: '',
-  },
-
-  {
-    title: 'Password',
-    placeholder: 'Sana123',
-    icon: '',
-  },
-];
 // type NavigationType = {
 //   ForgotPasswordVerify: undefined;
 // };
 
 const ParentProfileSetting = () => {
+  const store = useStore();
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
+
+  if (!store.user) {
+    return null;
+  }
+
+  const fields = [
+    {
+      title: 'Email',
+      placeholder: '.sanaD11@adhdcoach.com',
+      value: store.user.user.email,
+    },
+    {
+      title: 'Username',
+      placeholder: 'sanaD11',
+      value: store.user.user.full_name,
+    },
+
+    {
+      title: 'Password',
+      placeholder: 'Sana123',
+      value: store.user.user.password,
+    },
+  ];
+
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
@@ -63,7 +72,12 @@ const ParentProfileSetting = () => {
                 h="$full"
               />
             </Box>
-            <TextSemibold mt={4} text="Sana Zehra" />
+            <TextSemibold
+              mt={4}
+              text={capitalizeFirstLetter(
+                store.user ? store.user.user.full_name : 'John Doe',
+              )}
+            />
           </Center>
           <Box height={'$8'} />
           {fields.map((field, index) => (
@@ -74,9 +88,11 @@ const ParentProfileSetting = () => {
                 height={'$12'}
                 rounded={'$lg'}
                 width={'100%'}
+                // isDisabled={field.title === 'Email'}
                 borderWidth={0}>
                 <InputField
-                  type="text"
+                  type={field.title === 'Password' ? 'password' : 'text'}
+                  value={field.value}
                   fontFamily="Poppins-Regular"
                   placeholder={field.placeholder}
                   paddingHorizontal={'$6'}

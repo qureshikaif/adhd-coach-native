@@ -3,6 +3,7 @@ import {config as defaultConfig} from '@gluestack-ui/config';
 import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import MainNavigator from './src/navigation/MainNavigator';
 // import MainNavigator from './src/navigation/MainNavigator';
 // import RockPaperScissor from './src/screens/StudentModule/RockPaperScissor';
 // import MainNavigator from './src/navigation/MainNavigator';
@@ -34,6 +35,9 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
+         
+         
+          <MainNavigator />
           {/* <MainNavigator /> */}
           {/* <MainNavigator /> */}
           {/* <RockPaperScissor /> */}

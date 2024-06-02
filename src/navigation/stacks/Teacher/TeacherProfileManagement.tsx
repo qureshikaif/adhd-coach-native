@@ -17,7 +17,7 @@ const TeacherProfileManagement = () => {
       }}>
       <Stack.Screen name="TeacherProfile" component={TeacherProfile} />
       <Stack.Screen
-        name="TeacherProfileSetting"
+        name="TeacherProfileSettings"
         component={TeacherProfileSetting}
       />
       <Stack.Screen

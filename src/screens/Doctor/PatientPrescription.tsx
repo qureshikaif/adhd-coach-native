@@ -11,18 +11,56 @@ import {TextInput} from 'react-native';
 import TextBold from '../../components/atoms/Text/TextBold';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 import {Picker} from '@react-native-picker/picker';
+import {useQuery} from '@tanstack/react-query';
+import axios from 'axios';
+import Loading from '../Loading';
+import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
+import {useStore} from '../../store';
+import Success from '../../components/molecules/popup/Success';
+import Error from '../../components/molecules/popup/Error';
 
 const BackgroundImage = require('../../assets/images/patienthistory.png');
 const TeacherPic = require('../../assets/images/icons/Doctor.png');
 
 const PatientPrescription = () => {
   const [selectedPatient, setSelectedPatient] = useState('');
+  const [prescription, setPrescription] = useState('');
+  const store = useStore();
+  const [showSuccess, setShowSuccess] = useState(false);
+  const refSuccess = React.useRef(null);
+  const [showError, setShowError] = useState(false);
+  const refError = React.useRef(null);
 
-  const patients = [
-    {label: 'Patient1', value: 'Patient1'},
-    {label: 'Patient 2', value: 'Patient 2'},
-    {label: 'Patient 3', value: 'Patient 3'},
-  ];
+  const {data: patients, isLoading} = useQuery({
+    queryKey: ['patients'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.0.107:8080/student/get-students',
+      );
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading bgImage={BackgroundImage} />;
+  }
+
+  const onSubmit = async () => {
+    await axios
+      .post('http://192.168.0.107:8080/doctor/prescription', {
+        prescription,
+        patientId: selectedPatient,
+        doctorId: store.user?.user.id_assigned,
+      })
+      .then(res => {
+        console.log(res.data);
+        setShowSuccess(true);
+      })
+      .catch(err => {
+        console.log(err);
+        setShowError(true);
+      });
+  };
 
   return (
     <View h="$full">
@@ -50,20 +88,21 @@ const PatientPrescription = () => {
               style={{height: 50, width: '100%'}}
               itemStyle={{color: 'black'}}>
               <Picker.Item label="Select a patient" value="" />
-              {patients.map(patient => (
+              {patients.map((patient: any) => (
                 <Picker.Item
-                  key={patient.value}
-                  label={patient.label}
-                  value={patient.value}
+                  key={patient.id}
+                  label={capitalizeFirstLetter(patient.full_name)}
+                  value={patient.id_assigned}
                 />
               ))}
             </Picker>
           </View>
 
-          <TextBold text="Patient Prescription" fontSize={'$xl'} />
+          <TextBold text="Patient Prescription" fontSize={'$xl'} mt={'$4'} />
           <TextInput
             placeholder="Enter patient Prescription"
             multiline
+            onChange={e => setPrescription(e.nativeEvent.text)}
             style={{
               borderWidth: 3,
               borderRadius: 15,
@@ -80,7 +119,6 @@ const PatientPrescription = () => {
             <Button
               flex={1}
               android_ripple={{color: 'grey'}}
-              //   onPress={() => navigation.navigate('ForgotPassword')}
               hardShadow="3"
               size="xl"
               borderColor="black"
@@ -94,7 +132,7 @@ const PatientPrescription = () => {
             <Button
               flex={1}
               android_ripple={{color: 'grey'}}
-              //   onPress={() => navigation.navigate('ForgotPassword')}
+              onPress={() => onSubmit()}
               hardShadow="3"
               size="xl"
               borderColor="black"
@@ -106,6 +144,20 @@ const PatientPrescription = () => {
           </HStack>
         </ScrollView>
       </ImageBackground>
+      <Success
+        ref={refSuccess}
+        showModal={showSuccess}
+        setShowModal={setShowSuccess}
+        text="Prescription added successfully"
+        bgColor="#EAC5C5"
+      />
+      <Error
+        ref={refError}
+        showModal={showError}
+        setShowModal={setShowError}
+        text="An error occurred"
+        bgColor="#EAC5C5"
+      />
     </View>
   );
 };

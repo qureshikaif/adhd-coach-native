@@ -12,10 +12,18 @@ import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../Loading';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
+import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const BackgroundImage = require('../../assets/images/PatientProfile-bg.png');
 
+type NavigationType = {
+  PatientMedicalHistory: undefined;
+};
+
 const PatientProfileHistory = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
+
   const {data: patients, isLoading} = useQuery({
     queryKey: ['patients'],
     queryFn: async () => {
@@ -39,9 +47,9 @@ const PatientProfileHistory = () => {
           <VStack space={'2xl'}>
             {patients.map((patient: any, index: number) => (
               <SideButton
+                onPress={() => navigation.navigate('PatientMedicalHistory')}
                 key={index}
-                text={patient.full_name}
-                isPatient={true}
+                text={capitalizeFirstLetter(patient.full_name)}
               />
             ))}
           </VStack>

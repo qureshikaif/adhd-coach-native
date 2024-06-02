@@ -4,21 +4,9 @@ import {
   ScrollView,
   Text,
   Box,
-  Center,
   Image,
-  HStack,
-  Input,
-  InputField,
-  Button,
 } from '@gluestack-ui/themed';
 import React from 'react';
-
-import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
-import {VStack} from '@gluestack-ui/themed';
-import BackButton from '../../components/atoms/Buttons/BackButton';
-
-import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
-import SideBackButton from '../../components/atoms/Buttons/SideBackButton';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
 
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
@@ -29,7 +17,7 @@ const ParentPersonalInfo = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      <StatusBarParent text='Personal Info'/>
+        <StatusBarParent text="Personal Info" />
         <Box height={'$2'} />
         <ScrollView paddingHorizontal={'$4'}>
           <Box flexDirection="row" alignItems="center">

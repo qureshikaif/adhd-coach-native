@@ -24,10 +24,10 @@ const TotalPatientsEnrolled = ({count}: TotalStudentsEnrolledProps) => {
           rounded={'$full'}
           w="$32"
           h="$32"
-          borderColor="#AC7F7F">
+          borderColor="$coolGray700">
           <TextBold
             text={`${count}+`}
-            color="#AC7F7F"
+            color="$coolGray700"
             fontSize={'$4xl'}
             mt={'$2'}
           />

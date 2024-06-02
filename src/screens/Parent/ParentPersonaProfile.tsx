@@ -15,6 +15,7 @@ import {useStore} from '../../store';
 import {handleLogout} from '../../helpers/handleLogout';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
 const TeacherPic = require('../../assets/images/icons/ProfilePicSana.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
@@ -26,6 +27,8 @@ type NavigationType = {
 const ParentPersonalProfile = () => {
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
+
+  console.log(store.user);
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
@@ -58,7 +61,12 @@ const ParentPersonalProfile = () => {
                     h="$full"
                   />
                 </Box>
-                <TextSemibold mt={4} text="Sana Zehra" />
+                <TextSemibold
+                  mt={4}
+                  text={capitalizeFirstLetter(
+                    store.user ? store.user.user.full_name : 'John Doe',
+                  )}
+                />
               </Center>
               <Box height={'$10'} />
               <SideScreenButton
