@@ -7,7 +7,7 @@ import {
 } from '@gluestack-ui/themed';
 import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
-import SideButton from '../../components/atoms/Buttons/VORDoctor';
+import SideButton from '../../components/atoms/Buttons/SideButton';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
 const BackgroundImage = require('../../assets/images/parent-main-bg.png');
