@@ -3,7 +3,6 @@ import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import ChatSupport1 from '../../components/molecules/ChatSupport1';
-import ChatSupport2 from '../../components/molecules/ChatSupport2';
 import Reviews from '../../components/molecules/Reviews';
 import ViewAllMsg from '../../components/molecules/ViewAllMsg';
 
@@ -31,9 +30,9 @@ const FeedbackAndSupport = () => {
         </VStack>
         <Box height={'$6'} />
         <VStack space="lg">
-          {Array.from({length: 1}).map((_, index) => (
+          {/* {Array.from({length: 1}).map((_, index) => (
             <ChatSupport2 key={index} />
-          ))}
+          ))} */}
           <ViewAllMsg />
         </VStack>
       </ScrollView>

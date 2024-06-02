@@ -14,22 +14,19 @@ import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
 import TextSemibold from '../../atoms/Text/TextSemibold';
 import TextRegular from '../../atoms/Text/TextRegular';
+import {User} from '../../../types/User';
 
-const SuccessIcon = require('../../../assets/images/icons/success.png');
-// const CloseIcon = require('../../../assets/images/icons/close-white.png');
+const WarningIcon = require('../../../assets/images/icons/warning.png');
 
-interface SuccessProps extends ModalProps {
-  text?: string;
-  bgColor?: string;
+interface AccountDeletionProps extends ModalProps {
+  user?: User;
 }
 
-const Success = ({
+const ContentDeletion = ({
   showModal,
   setShowModal,
   ref,
-  text,
-  bgColor,
-}: SuccessProps) => {
+}: AccountDeletionProps) => {
   return (
     <Center>
       <Modal
@@ -40,10 +37,10 @@ const Success = ({
         size="lg"
         finalFocusRef={ref}>
         <ModalBackdrop />
-        <ModalContent bgColor={bgColor ? bgColor : '#A3BACD'} rounded={'$2xl'}>
+        <ModalContent bgColor="#A3BACD" rounded={'$2xl'}>
           <ModalHeader borderBottomWidth={1} borderBottomColor="#DDDDDD">
             <TextSemibold
-              text="Success"
+              text="Content Deletion"
               color="white"
               fontSize="$2xl"
               w="$full"
@@ -53,17 +50,17 @@ const Success = ({
           <ModalBody>
             <Center>
               <Image
-                source={SuccessIcon}
-                alt="Success Icon"
+                source={WarningIcon}
+                alt="Add Doctor Illustration"
                 w={'$1/3'}
                 h={'$24'}
                 marginVertical={'$4'}
                 resizeMode="contain"
               />
               <TextSemibold
-                text={text ? text : 'Article added successfully'}
+                text="Are you sure you want to delete this content?"
                 color="white"
-                fontSize="$2xl"
+                fontSize="$xl"
                 textAlign="center"
               />
             </Center>
@@ -72,13 +69,21 @@ const Success = ({
             <HStack space="sm">
               <Button
                 flex={1}
-                h={'$12'}
                 bgColor="#666666"
                 rounded={'$lg'}
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                <TextRegular text="Close" color="white" />
+                <TextRegular text="Cancel" color="white" />
+              </Button>
+              <Button
+                flex={1}
+                bgColor="#648DA0"
+                rounded={'$lg'}
+                onPress={() => {
+                  setShowModal(false);
+                }}>
+                <TextRegular text="Confirm" color="white" />
               </Button>
             </HStack>
           </ModalFooter>
@@ -88,4 +93,4 @@ const Success = ({
   );
 };
 
-export default Success;
+export default ContentDeletion;
