@@ -1,13 +1,5 @@
-import {
-  View,
-  ImageBackground,
-  ScrollView,
-  Text,
-  Box,
-} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView, Box} from '@gluestack-ui/themed';
 import React from 'react';
-import TextBold from '../../components/atoms/Text/TextBold';
-import ImageTextBox from '../../components/ChatDialoguebox';
 import ChatBoxAlternative from '../../components/ChatDialogueboxAlternative';
 import DoctorTop from '../../components/molecules/ChatBoxTopDoctor';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';

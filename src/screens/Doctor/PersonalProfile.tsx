@@ -13,10 +13,9 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
-const Avatar = require('../../assets/images/avatars/login.png');
-const BoxImage = require('../../assets/images/TeacherProfileSettings.png');
 
 type NavigationType = {
   DoctorPersonalInfo: undefined;

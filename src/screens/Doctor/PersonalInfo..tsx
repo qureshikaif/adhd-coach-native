@@ -4,20 +4,10 @@ import {
   ScrollView,
   Text,
   Box,
-  Center,
   Image,
-  HStack,
-  Input,
-  InputField,
-  Button,
 } from '@gluestack-ui/themed';
 import React from 'react';
 
-import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
-import {VStack} from '@gluestack-ui/themed';
-import BackButton from '../../components/atoms/Buttons/BackButton';
-
-import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 
 const BackgroundImage = require('../../assets/images/doctor-bg.png');
