@@ -4,12 +4,14 @@ import {ButtonProps} from '../../../types/ButtonProps';
 import TextSemibold from '../Text/TextSemibold';
 import {Article} from '../../../types/Article';
 import {Course} from '../../../types/Course';
+import {Student} from '../../../types/Student';
 
 const sideIcon = require('../../../assets/images/icons/side.png');
 
 interface AddNewButtonProps extends ButtonProps {
   text?: string;
-  content?: Article | Course;
+  content?: Article | Course | Student;
+  isPatient?: boolean;
 }
 
 const SideButton = ({
@@ -18,6 +20,7 @@ const SideButton = ({
   text,
   onPress,
   content,
+  isPatient,
 }: AddNewButtonProps) => {
   return (
     <Pressable
@@ -34,7 +37,10 @@ const SideButton = ({
         alignItems="center"
         paddingVertical={'$2'}
         paddingHorizontal={'$3'}>
-        <TextSemibold text={text ? text : content?.title} fontSize={'$xl'} />
+        <TextSemibold
+          text={isPatient ? isPatient : text ? text : content?.title}
+          fontSize={'$xl'}
+        />
         <Image
           source={sideIcon}
           alt={text ? text : content?.title}

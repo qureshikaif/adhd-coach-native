@@ -1,5 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import PatientPrescription from '../../../screens/Doctor/PatientPrescription';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +15,7 @@ const DoctorPatientPrescription = () => {
       }}>
       <Stack.Screen
         name="PatientPrescriptionMain"
-        component={DoctorPatientPrescription}
+        component={PatientPrescription}
       />
     </Stack.Navigator>
   );
