@@ -6,25 +6,45 @@ import {
     Center,
     Pressable,
 } from '@gluestack-ui/themed';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 import TextBold from '../../components/atoms/Text/TextBold';
 
 const BackgroundImage = require('../../assets/images/tictactoe-bg.png');
 const Rock = require('../../assets/images/rock.png');
 const Paper = require('../../assets/images/paper.png');
+const Scissors = require('../../assets/images/Scissor.png');
 const Point = require('../../assets/images/1point.png');
+
+const options = [
+    { choice1: Rock, choice2: Paper, correct: Paper },
+    { choice1: Rock, choice2: Scissors, correct: Rock },
+    { choice1: Paper, choice2: Scissors, correct: Scissors },
+];
+
+const getRandomOption = () => {
+    const randomIndex = Math.floor(Math.random() * options.length);
+    return options[randomIndex];
+};
 
 const RockPaperScissor = () => {
     const [showPoint, setShowPoint] = useState(false);
     const [points, setPoints] = useState(0);
+    const [currentOption, setCurrentOption] = useState(getRandomOption());
 
-    const handlePress = () => {
-        setShowPoint(true);
-        setPoints(prevPoints => prevPoints + 1);
-        setTimeout(() => {
-            setShowPoint(false);
-        }, 1000); // Adjust the delay as needed (1000 ms = 1 second)
+    useEffect(() => {
+        setCurrentOption(getRandomOption());
+    }, []);
+
+    const handlePress = (choice: any) => {
+        if (choice === currentOption.correct) {
+            setShowPoint(true);
+            setPoints(prevPoints => prevPoints + 1);
+            setTimeout(() => {
+                setShowPoint(false);
+            }, 1000); // Adjust the delay as needed (1000 ms = 1 second)
+        }
+        setCurrentOption(getRandomOption());
     };
 
     return (
@@ -37,20 +57,22 @@ const RockPaperScissor = () => {
                     bgColor='#8D5A39'
                     textColor="black"
                 />
-                <Box height={'$4'} />
+                <Box height={'$6'} />
                 <Center>
-                    <Box borderRadius={10}
-                        borderColor='black'
-                        borderWidth={5}
-                        height={200}
-                        width={200}
-                        justifyContent='center'
-                        alignItems='center'
-                        marginLeft={5}>
-                        <Image source={Rock} alt='rock' resizeMode='contain' size='lg' h={'$40'} w={'$40'} />
-                    </Box>
+                    <Pressable onPress={() => handlePress(currentOption.choice1)}>
+                        <Box borderRadius={10}
+                            borderColor='black'
+                            borderWidth={5}
+                            height={200}
+                            width={200}
+                            justifyContent='center'
+                            alignItems='center'
+                            marginLeft={5}>
+                            <Image source={currentOption.choice1} alt='choice1' resizeMode='contain' size='lg' h={'$40'} w={'$40'} />
+                        </Box>
+                    </Pressable>
 
-                    <Box height={'$3'} />
+                    <Box height={'$4'} />
                     <Pressable
                         bgColor='#C36C6C'
                         height={50}
@@ -66,7 +88,7 @@ const RockPaperScissor = () => {
                             alignContent='center'
                         />
                     </Pressable>
-                    <Box height={'$2'} />
+                    <Box height={'$4'} />
                     <Box
                         borderRadius={10}
                         borderColor='black'
@@ -80,19 +102,20 @@ const RockPaperScissor = () => {
                             fontSize={'$md'}
                         />
                     </Box>
-                    <Box height={'$2'} />
-                    <Pressable
-                        borderRadius={10}
-                        borderColor='black'
-                        borderWidth={5}
-                        height={210}
-                        width={200}
-                        justifyContent='center'
-                        alignItems='center'
-                        onPress={handlePress}
-                    >
-                        <Image source={Paper} alt='paper' resizeMode='contain' size='lg' h={'$40'} w={'$40'} />
+
+                    <Box height={'$4'} />
+                    <Pressable onPress={() => handlePress(currentOption.choice2)}>
+                        <Box borderRadius={10}
+                            borderColor='black'
+                            borderWidth={5}
+                            height={210}
+                            width={200}
+                            justifyContent='center'
+                            alignItems='center'>
+                            <Image source={currentOption.choice2} alt='choice2' resizeMode='contain' size='lg' h={'$40'} w={'$40'} />
+                        </Box>
                     </Pressable>
+                    <Box height={'$2'} />
                     {showPoint && (
                         <Box w={'$full'}
                             justifyContent='center'
@@ -101,7 +124,7 @@ const RockPaperScissor = () => {
                             <Image source={Point} alt='point' resizeMode='contain' size='xs' h={'$32'} w={'$32'} />
                         </Box>
                     )}
-                    <Box height={'$4'} />
+                    <Box height={'$6'} />
                 </Center>
             </ImageBackground>
         </View>
