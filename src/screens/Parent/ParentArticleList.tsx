@@ -12,10 +12,16 @@ import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../Loading';
 import {Article} from '../../types/Article';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const BackgroundImage = require('../../assets/images/parent-main-bg.png');
 
+type NavigationType = {
+  ParentArticle: undefined;
+};
+
 const ParentArticleList = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
   const {data: articles, isLoading} = useQuery({
     queryKey: ['articles'],
     queryFn: async () => {
@@ -38,7 +44,11 @@ const ParentArticleList = () => {
           <Box height={'$12'} />
           <VStack space={'2xl'}>
             {articles.map((article: Article, index: number) => (
-              <SideButton key={index} content={article} />
+              <SideButton
+                key={index}
+                content={article}
+                onPress={() => navigation.navigate('ParentArticle')}
+              />
             ))}
           </VStack>
         </ScrollView>
