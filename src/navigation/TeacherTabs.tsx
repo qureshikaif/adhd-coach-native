@@ -1,20 +1,20 @@
 import React from 'react';
 import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import AdminAppAnalytics from './stacks/Admin/AdminAppAnalytics';
-import AdminFeedback from './stacks/Admin/AdminFeedback';
-import AdminAccountManagement from './stacks/Admin/AdminAccountManagement';
 import TeacherHome from '../navigation/stacks/Teacher/TeacherHome';
-import DoctorPatientProfile from './stacks/Doctor/DoctorPatientProfile';
+import TeacherCourses from './stacks/Teacher/TeacherCourses';
+import TeacherProgressReport from './stacks/Teacher/TeacherProgressReport';
+import TeacherChats from './stacks/Teacher/TeacherChats';
+import TeacherProfileManagement from './stacks/Teacher/TeacherProfileManagement';
 
 const Tab = createBottomTabNavigator();
 
 const icons: {[index: string]: any} = {
   TeacherHome: require('../assets/images/navigation/Home.png'),
-  DoctorPatientProfile: require('../assets/images/navigation/Courses.png'),
-  DoctorPatientPrescription: require('../assets/images/navigation/Analytics.png'),
-  DoctorChat: require('../assets/images/navigation/Feedback.png'),
-  DoctorProfile: require('../assets/images/navigation/Profile.png'),
+  TeacherCourses: require('../assets/images/navigation/Courses.png'),
+  TeacherProgressReport: require('../assets/images/navigation/Analytics.png'),
+  TeacherChats: require('../assets/images/navigation/Feedback.png'),
+  TeacherProfileManagement: require('../assets/images/navigation/Profile.png'),
 };
 
 export const tabBarStyle = {
@@ -41,10 +41,10 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
 
 const screens = [
   {name: 'TeacherHome', component: TeacherHome},
-  {name: 'DoctorPatientProfile', component: DoctorPatientProfile},
-  {name: 'DoctorPatientPrescription', component: AdminAppAnalytics},
-  {name: 'DoctorChat', component: AdminFeedback},
-  {name: 'DoctorProfile', component: AdminAccountManagement},
+  {name: 'TeacherCourses', component: TeacherCourses},
+  {name: 'TeacherProgressReport', component: TeacherProgressReport},
+  {name: 'TeacherChats', component: TeacherChats},
+  {name: 'TeacherProfileManagement', component: TeacherProfileManagement},
 ];
 
 export const TeacherTabs = () => {

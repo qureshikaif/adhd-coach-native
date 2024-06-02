@@ -1,4 +1,10 @@
-import { View, ImageBackground, ScrollView, Box, VStack } from '@gluestack-ui/themed';
+import {
+  View,
+  ImageBackground,
+  ScrollView,
+  Box,
+  VStack,
+} from '@gluestack-ui/themed';
 import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
 
@@ -6,16 +12,16 @@ import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import SideButton from '../../components/atoms/Buttons/SideButton';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
-const BackgroundImage = require('../../assets/images/TeacherMain.png');
+// const BackgroundImage = require('../../assets/images/TeacherMain.png');
+const BackgroundImage = require('../../assets/images/teachercourse.png');
 
 const TeacherMain = () => {
-  
   const enrolledStudents = [1, 2, 3, 4];
 
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      <StatusBarTeacher text='Home' />
+        <StatusBarTeacher text="Home" />
         <Box height={'$10'} />
         <ScrollView paddingHorizontal={'$5'}>
           <TextBold text="Morning" fontSize={'$2xl'} />
@@ -24,11 +30,10 @@ const TeacherMain = () => {
           <Box height={'$12'} />
           <TextBold text="Courses" fontSize={'$xl'} />
           <Box height={'$8'} />
-          
+
           <VStack space={'2xl'}>
-            <SideButton text="course 1" />
-            <SideButton text="course 2" />
-          
+            <SideButton text="Course 1" />
+            <SideButton text="Course 2" />
           </VStack>
 
           <Box height={'$8'} />
@@ -37,14 +42,13 @@ const TeacherMain = () => {
 
           <VStack space={'md'}>
             {enrolledStudents.map((student, index) => (
-              <Box 
-                key={index} 
-                padding={'$3'} 
-                backgroundColor={'#f0f0f0'} 
+              <Box
+                key={index}
+                padding={'$3'}
+                backgroundColor={'#f0f0f0'}
                 borderRadius={15} // Adjust border radius
-                borderWidth={1} 
-                borderColor={'#ccc'}
-              >
+                borderWidth={1}
+                borderColor={'#ccc'}>
                 <TextSemibold text={student} fontSize={'$md'} />
               </Box>
             ))}

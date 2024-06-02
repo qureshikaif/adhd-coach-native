@@ -2,7 +2,6 @@ import {
   View,
   ImageBackground,
   ScrollView,
-  Text,
   Box,
   Center,
   Image,

@@ -1,30 +1,31 @@
-import {
-  View,
-  ImageBackground,
-  ScrollView,
-  Box,
-  HStack,
-} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView, Box} from '@gluestack-ui/themed';
 import React from 'react';
-import TextBold from '../../components/atoms/Text/TextBold';
 import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
-import BackButton from '../../components/atoms/Buttons/BackButton';
 import UploadButton from '../../components/atoms/Buttons/Uploadbutton';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const BackgroundImage = require('../../assets/images/teachercourse.png');
-// const BackArrow = require('../../../assets/images/BackArrow.png');
+
+type NavigationType = {
+  AddQuiz: undefined;
+};
 
 const TeacherCourse = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      <StatusBarTeacher text='Course' />
+        <StatusBarTeacher text="Course" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
-          <AddNewButton text="Add a new lecture" />
+          <AddNewButton text="Add a new lecture" bgColor="#F0CCCC" />
           <Box height={'$8'} />
-          <AddNewButton text="Add Quiz" />
+          <AddNewButton
+            text="Add Quiz"
+            bgColor="#F0CCCC"
+            onPress={() => navigation.navigate('AddQuiz')}
+          />
           <Box height={'$8'} />
 
           <UploadButton text="lecture1" />
