@@ -31,8 +31,6 @@ function App(): React.JSX.Element {
           {/* <MainNavigator /> */}
           {/* <RockPaperScissor /> */}
           <MainNavigator />
-          {/* <RockPaperScissor /> */}
-          {/* <RockPaperScissor/> */}
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>
