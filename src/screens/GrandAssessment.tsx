@@ -19,26 +19,26 @@ import TextRegular from '../components/atoms/Text/TextRegular';
 import StatusBarStudent from '../components/molecules/StatusBarStudent';
 import grandAssessment from '../utils/grandAssessment';
 import {Button} from '@gluestack-ui/themed';
-import {Alert} from 'react-native';
 import {RadioIcon} from '@gluestack-ui/themed';
 import {Circle} from 'lucide-react-native';
 import {useStore} from '../store';
+import Error from '../components/molecules/popup/Error';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const BackgroundImage = require('../assets/images/grand-assessment-bg.png');
 const Clock = require('../assets/images/assessment/clock.png');
 
-// type NavigationType = {
-//   Signin: undefined;
-//   Signup: undefined;
-//   ForgotPassword: undefined;
-//   GrandAssessment: {questionIndex: number};
-// };
+type NavigationType = {
+  StudentMain: undefined;
+};
 
 const GrandAssessment = () => {
-  const [timeLeft, setTimeLeft] = React.useState(900);
+  const [timeLeft, setTimeLeft] = React.useState(10);
   const {grandAssessmentAnswers, setGrandAssessmentAnswer} = useStore();
+  const [showError, setShowError] = React.useState(false);
+  const refError = React.useRef(null);
 
-  // const navigation = useNavigation<NavigationProp<NavigationType>>();
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
 
   React.useEffect(() => {
     const timer = setInterval(() => {
@@ -47,7 +47,7 @@ const GrandAssessment = () => {
           return prevTime - 1;
         } else {
           clearInterval(timer);
-          Alert.alert("Oops. Time's up");
+          setShowError(true);
           return 0;
         }
       });
@@ -163,6 +163,19 @@ const GrandAssessment = () => {
           </Button>
         </VStack>
       </ScrollView>
+      <Error
+        heading="Time`s Up!"
+        text="Oops. Time expired"
+        showModal={showError}
+        bgColor="#FFA360"
+        setShowModal={value => {
+          setShowError(value);
+          if (!value) {
+            navigation.navigate('StudentMain');
+          }
+        }}
+        ref={refError}
+      />
     </ImageBackground>
   );
 };

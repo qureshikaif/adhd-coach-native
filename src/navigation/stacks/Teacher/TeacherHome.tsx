@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import TeacherMain from '../../../screens/Teacher/Teachermain';
+import TeacherMain from '../../../screens/Teacher/TeacherMain';
 
 const Stack = createNativeStackNavigator();
 

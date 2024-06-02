@@ -5,14 +5,15 @@ import {
   ImageBackground,
   ScrollView,
   Box,
-  VStack,
   Button,
-  HStack,
+  VStack,
 } from '@gluestack-ui/themed';
 
 import TextBold from '../../components/atoms/Text/TextBold';
 
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import TextSemibold from '../../components/atoms/Text/TextSemibold';
 
 const BackgroundImage = require('../../assets/images/TeacherChat.png');
 
@@ -22,11 +23,12 @@ interface QuizInputProps {
 }
 
 const AddQuiz = () => {
+  const height = useBottomTabBarHeight();
   return (
-    <View style={{flex: 1}}>
-      <ImageBackground source={BackgroundImage} style={{flex: 1}}>
+    <View h={'$full'}>
+      <ImageBackground source={BackgroundImage} h={'$full'}>
         <StatusBarTeacher text="Add Quiz " />
-        <ScrollView contentContainerStyle={{padding: 20}}>
+        <ScrollView padding={'$4'}>
           <QuizInput label="Question:" placeholder="Enter your question here" />
           <QuizInput label="Option 1:" placeholder="Enter option text here" />
           <QuizInput label="Option 2:" placeholder="Enter option text here" />
@@ -37,16 +39,16 @@ const AddQuiz = () => {
             label="Correct Answer:"
             placeholder="Enter correct answer here"
           />
-          <Box height={'$10'} />
-          <HStack space="2xl">
+          <Box height={'$6'} />
+          <VStack space="2xl">
             <Button
-              flex={3}
+              flex={1}
               android_ripple={{color: 'grey'}}
               hardShadow="3"
               size="xl"
               borderColor="black"
               bg={'#DEB5B5'}
-              borderWidth={1}
+              borderWidth={0}
               borderRadius={'$lg'}>
               <TextBold text="Add new Question" />
             </Button>
@@ -61,7 +63,8 @@ const AddQuiz = () => {
               borderRadius={'$lg'}>
               <TextBold text="Save" />
             </Button>
-          </HStack>
+          </VStack>
+          <Box height={height} />
         </ScrollView>
       </ImageBackground>
     </View>
@@ -70,16 +73,9 @@ const AddQuiz = () => {
 
 const QuizInput: React.FC<QuizInputProps> = ({label, placeholder}) => {
   return (
-    <View style={{marginBottom: 20}}>
-      <Text
-        style={{
-          fontWeight: 'bold',
-          fontSize: 18,
-          marginBottom: 5,
-          color: 'black',
-        }}>
-        {label}
-      </Text>
+    <View mb={'$6'}>
+      <TextSemibold text={label} />
+
       <TextInput
         style={{
           borderWidth: 1,

@@ -1,104 +1,41 @@
-import {
-  View,
-  ImageBackground,
-  ScrollView,
-  Text,
-  Box,
-  Center,
-  Image,
-  HStack,
-  Input,
-  InputField,
-  Button,
-} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView, Box} from '@gluestack-ui/themed';
 import React from 'react';
 
 import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 
-import {VStack} from '@gluestack-ui/themed';
-import StatusBarParent from '../../components/molecules/StatusBarParent';
+import TextRegular from '../../components/atoms/Text/TextRegular';
+import {RouteProp} from '@react-navigation/native';
+import {Article} from '../../types/Article';
 
 const BackgroundImage = require('../../assets/images/ParentArticle.png');
 
-const ParentArticle = () => {
+type NavigationType = {
+  ParentArticle: {article: Article};
+};
+
+type RouteType = RouteProp<NavigationType, 'ParentArticle'>;
+
+const ParentArticle = ({route}: {route: RouteType}) => {
+  const {article} = route.params;
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarParent text='Articles'/>
-        <View style={{paddingHorizontal: 20, paddingTop: 20}}>
-          <Text style={{fontSize: 24, fontWeight: 'bold', color: 'black'}}>
-            Parenting Style and Effect on Children
-          </Text>
-          <Box height={'$5'} />
-        </View>
-        <ScrollView
-          contentContainerStyle={{paddingHorizontal: 20, paddingBottom: 20}}>
-          <View style={{marginBottom: 20}}>
-            <Text
-              style={{
-                fontSize: 18,
-                fontWeight: 'bold',
-                color: 'black',
-                marginBottom: 5,
-              }}>
-              Authoritative Parenting:
-            </Text>
-            <Text style={{fontSize: 16, color: 'black', paddingHorizontal: 10}}>
-              Effect: Improved self-regulation and behavior, better social
-              skills, and academic performance.
-            </Text>
-          </View>
-
-          <View style={{marginBottom: 20}}>
-            <Text
-              style={{
-                fontSize: 18,
-                fontWeight: 'bold',
-                color: 'black',
-                marginBottom: 5,
-              }}>
-              Authoritarian Parenting:
-            </Text>
-            <Text style={{fontSize: 16, color: 'black', paddingHorizontal: 10}}>
-              Effect: Low self-esteem, compliance issues, more oppositional
-              behavior, and difficulty regulating emotions.
-            </Text>
-          </View>
-
-          <View style={{marginBottom: 20}}>
-            <Text
-              style={{
-                fontSize: 18,
-                fontWeight: 'bold',
-                color: 'black',
-                marginBottom: 5,
-              }}>
-              Permissive Parenting:
-            </Text>
-            <Text style={{fontSize: 16, color: 'black', paddingHorizontal: 10}}>
-              Effect: Struggle with impulse control, difficulty following rules,
-              and lack of self-discipline skills.
-            </Text>
-          </View>
-
-          <View style={{marginBottom: 20}}>
-            <Text
-              style={{
-                fontSize: 18,
-                fontWeight: 'bold',
-                color: 'black',
-                marginBottom: 5,
-              }}>
-              Neglectful/Uninvolved Parenting:
-            </Text>
-            <Text style={{fontSize: 16, color: 'black', paddingHorizontal: 10}}>
-              Effect: Worsened symptoms and behavioral problems, low
-              self-esteem, struggle with emotional regulation, and social
-              interactions.
-            </Text>
-          </View>
+        <ScrollView paddingHorizontal={'$6'}>
+          <Box height={'$10'} />
+          <TextBold text={article.title} fontSize={'$3xl'} />
+          <TextSemibold text={article.subtitle} fontSize={'$2xl'} />
+          <Box height={'$3'} />
+          <TextRegular
+            text={article.tags}
+            fontSize={'$sm'}
+            fontStyle="italic"
+          />
+          <Box height={'$6'} />
+          <TextRegular text={article.content} fontSize={'$md'} />
+          <Box height={'$6'} />
+          <TextRegular text={article.summary} fontSize={'$md'} />
         </ScrollView>
       </ImageBackground>
     </View>

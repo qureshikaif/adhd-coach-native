@@ -2,11 +2,16 @@ import React from 'react';
 import {Image, Pressable, HStack} from '@gluestack-ui/themed';
 import {ButtonProps} from '../../../types/ButtonProps';
 import TextSemibold from '../Text/TextSemibold';
+import {Article} from '../../../types/Article';
+import {Course} from '../../../types/Course';
+import {Student} from '../../../types/Student';
 
 const sideIcon = require('../../../assets/images/icons/side.png');
 
 interface AddNewButtonProps extends ButtonProps {
-  text: string;
+  text?: string;
+  content?: Article | Course | Student;
+  isPatient?: boolean;
 }
 
 const SideButton = ({
@@ -14,6 +19,7 @@ const SideButton = ({
   imageProps,
   text,
   onPress,
+  content,
 }: AddNewButtonProps) => {
   return (
     <Pressable
@@ -30,10 +36,10 @@ const SideButton = ({
         alignItems="center"
         paddingVertical={'$2'}
         paddingHorizontal={'$3'}>
-        <TextSemibold text={text} fontSize={'$xl'} />
+        <TextSemibold text={text ? text : content?.title} fontSize={'$xl'} />
         <Image
           source={sideIcon}
-          alt={text}
+          alt={text ? text : content?.title}
           {...imageProps}
           width={30}
           rounded={'$full'}

@@ -13,7 +13,7 @@ const icons: {[index: string]: any} = {
   TeacherHome: require('../assets/images/navigation/Home.png'),
   TeacherCourses: require('../assets/images/navigation/Courses.png'),
   TeacherProgressReport: require('../assets/images/navigation/Analytics.png'),
-  TeacherChats: require('../assets/images/navigation/Feedback.png'),
+  TeacherChats: require('../assets/images/navigation/Chat.png'),
   TeacherProfileManagement: require('../assets/images/navigation/Profile.png'),
 };
 

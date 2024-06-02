@@ -14,7 +14,7 @@ import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {VStack} from '@gluestack-ui/themed';
-import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import StatusBarParent from '../../components/molecules/StatusBarParent';
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
@@ -45,7 +45,7 @@ const ParentProfileSetting = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarTeacher text="Profile Settings" />
+        <StatusBarParent text="Profile Settings" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$5'}>
           <Center>
