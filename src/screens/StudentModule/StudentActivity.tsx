@@ -16,6 +16,7 @@ type NavigationType = {
   TicTacToe: undefined;
   EnglishCourses: undefined;
   MathsCourses: undefined;
+  RockPaperScissorStart: undefined;
 };
 
 const StudentActivity = () => {
@@ -33,7 +34,6 @@ const StudentActivity = () => {
         />
         <Box height={'$10'} />
 
-        {/* Tic Tace Toe */}
         <Pressable
           onPress={() => navigation.navigate('EnglishCourses')}
           bgColor="#FFA169"
@@ -52,7 +52,6 @@ const StudentActivity = () => {
           />
         </Pressable>
         <Box height={'$10'} />
-        {/* Make A Face */}
         <Pressable
           onPress={() => navigation.navigate('MathsCourses')}
           bgColor="#FFA169"
@@ -118,7 +117,8 @@ const StudentActivity = () => {
 
         <Box height={'$10'} />
         {/* Rock Paper Scissors */}
-        <Box
+        <Pressable
+          onPress={() => navigation.navigate('RockPaperScissorStart')}
           bgColor="#FFA169"
           height={60}
           w={'93%'}
@@ -133,7 +133,7 @@ const StudentActivity = () => {
             marginLeft={'$12'}
             padding={'$1.5'}
           />
-        </Box>
+        </Pressable>
         <Box height={useBottomTabBarHeight()} />
       </ScrollView>
     </ImageBackground>

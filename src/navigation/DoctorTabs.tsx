@@ -1,19 +1,19 @@
 import React from 'react';
 import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import AdminAppAnalytics from './stacks/Admin/AdminAppAnalytics';
-import AdminFeedback from './stacks/Admin/AdminFeedback';
-import AdminAccountManagement from './stacks/Admin/AdminAccountManagement';
 import DoctorHome from './stacks/Doctor/DoctorHome';
 import DoctorPatientProfile from './stacks/Doctor/DoctorPatientProfile';
+import DoctorPatientPrescription from './stacks/Doctor/DoctorPatientPrescription';
+import DoctorChats from './stacks/Doctor/DoctorChat';
+import DoctorProfileManagement from './stacks/Doctor/DoctorProfileManagement';
 
 const Tab = createBottomTabNavigator();
 
 const icons: {[index: string]: any} = {
   DoctorHome: require('../assets/images/navigation/Home.png'),
-  DoctorPatientProfile: require('../assets/images/navigation/Courses.png'),
-  DoctorPatientPrescription: require('../assets/images/navigation/Analytics.png'),
-  DoctorChat: require('../assets/images/navigation/Feedback.png'),
+  DoctorPatientProfile: require('../assets/images/navigation/Patient.png'),
+  DoctorPatientPrescription: require('../assets/images/navigation/Prescription.png'),
+  DoctorChat: require('../assets/images/navigation/Chat.png'),
   DoctorProfile: require('../assets/images/navigation/Profile.png'),
 };
 
@@ -29,7 +29,7 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
   const iconSource = icons[routeName];
   if (focused) {
     return (
-      <View bg="#A3BACD" rounded={'$full'} padding={'$2'}>
+      <View bg="#DEB5B5" rounded={'$full'} padding={'$2'}>
         <Image source={iconSource} alt="Tab Bar Icons" width={30} height={30} />
       </View>
     );
@@ -42,9 +42,9 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
 const screens = [
   {name: 'DoctorHome', component: DoctorHome},
   {name: 'DoctorPatientProfile', component: DoctorPatientProfile},
-  {name: 'DoctorPatientPrescription', component: AdminAppAnalytics},
-  {name: 'DoctorChat', component: AdminFeedback},
-  {name: 'DoctorProfile', component: AdminAccountManagement},
+  {name: 'DoctorPatientPrescription', component: DoctorPatientPrescription},
+  {name: 'DoctorChat', component: DoctorChats},
+  {name: 'DoctorProfile', component: DoctorProfileManagement},
 ];
 
 export const DoctorTabs = () => {

@@ -31,7 +31,7 @@ const StatusBarStudent = ({
       alignItems="center"
       justifyContent={gap ? 'flex-start' : 'space-between'}
       paddingHorizontal={'$4'}
-      paddingVertical={'$4'}
+      paddingVertical={'$3'}
       gap={gap ? gap : '$0'}>
       <BackButton
         variant={variant}

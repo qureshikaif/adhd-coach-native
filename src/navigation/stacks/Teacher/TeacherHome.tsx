@@ -1,19 +1,19 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import TeacherProfile from '../../../screens/Teacher/TeacherProfile';
+import TeacherMain from '../../../screens/Teacher/TeacherMain';
 
 const Stack = createNativeStackNavigator();
 
 const TeacherHome = () => {
   return (
     <Stack.Navigator
-      initialRouteName="TeacherHome"
+      initialRouteName="TeacherMain"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#F0CCCC',
         statusBarStyle: 'light',
       }}>
-      <Stack.Screen name="TeacherHome" component={TeacherProfile} />
+      <Stack.Screen name="TeacherMain" component={TeacherMain} />
     </Stack.Navigator>
   );
 };

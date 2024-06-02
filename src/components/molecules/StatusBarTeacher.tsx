@@ -12,7 +12,7 @@ type StatusBarTeacherProps = {
 const StatusBarTeacher = ({text, isSettingsVisible}: StatusBarTeacherProps) => {
   return (
     <HStack
-      bgColor="#DBC9E1"
+      bgColor="#F0CCCC"
       alignItems="center"
       justifyContent={'space-between'}
       paddingHorizontal={'$4'}

@@ -11,9 +11,9 @@ const Tab = createBottomTabNavigator();
 
 const icons: {[index: string]: any} = {
   ParentHome: require('../assets/images/navigation/Home.png'),
-  ParentChildReport: require('../assets/images/navigation/Courses.png'),
-  ParentArticles: require('../assets/images/navigation/Analytics.png'),
-  ParentChats: require('../assets/images/navigation/Feedback.png'),
+  ParentChildReport: require('../assets/images/navigation/Progress.png'),
+  ParentArticles: require('../assets/images/navigation/Article.png'),
+  ParentChats: require('../assets/images/navigation/Chat.png'),
   ParentProfile: require('../assets/images/navigation/Profile.png'),
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import DoctorMain from '../../../screens/Doctor/DoctorMain';
+import PatientPrescription from '../../../screens/Doctor/PatientPrescription';
 
 const Stack = createNativeStackNavigator();
 
@@ -10,10 +10,13 @@ const DoctorPatientPrescription = () => {
       initialRouteName="PatientPrescriptionMain"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#DEB5B5',
         statusBarStyle: 'light',
       }}>
-      <Stack.Screen name="PatientPrescriptionMain" component={DoctorMain} />
+      <Stack.Screen
+        name="PatientPrescriptionMain"
+        component={PatientPrescription}
+      />
     </Stack.Navigator>
   );
 };

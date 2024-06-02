@@ -15,7 +15,6 @@ import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 import {VStack} from '@gluestack-ui/themed';
 import React from 'react';
-import StatusBarParent from '../../components/molecules/StatusBarParent';
 
 const BackgroundImage = require('../../assets/images/doctor-bg.png');
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
@@ -39,13 +38,12 @@ const fields = [
   },
 ];
 
-const DoctorProfile = () => {
+const ProfileSetting = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        
-        <StatusBarDoctor text="Profile Settings" isSettingsVisible />
+        <StatusBarDoctor text="Profile Settings" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <Center>
@@ -58,7 +56,7 @@ const DoctorProfile = () => {
                 bgColor="#DEADAD"
                 height={'$12'}
                 rounded={'$lg'}
-                width={'95%'}
+                width={'100%'}
                 borderWidth={0}>
                 <InputField
                   type="text"
@@ -74,6 +72,7 @@ const DoctorProfile = () => {
           <Box height={'$10'} />
           <HStack space="lg">
             <Button
+              flex={1}
               android_ripple={{color: '#DEB5B5'}}
               //   onPress={() => navigation.navigate('ForgotPassword')}
               hardShadow="3"
@@ -85,16 +84,16 @@ const DoctorProfile = () => {
               <TextBold text="Cancel" />
             </Button>
             <Button
-            android_ripple={{color: '#DEB5B5'}}
+              android_ripple={{color: '#DEB5B5'}}
               //   onPress={() => navigation.navigate('Signup')}
-              
+              flex={1}
               hardShadow="3"
               size="xl"
               borderColor="black"
               bg={'#DEB5B5'}
               borderWidth={1}
               borderRadius={'$lg'}>
-              <TextBold text="Save Changes" />
+              <TextBold text="Save" />
             </Button>
           </HStack>
         </ScrollView>
@@ -103,4 +102,4 @@ const DoctorProfile = () => {
   );
 };
 
-export default DoctorProfile;
+export default ProfileSetting;
