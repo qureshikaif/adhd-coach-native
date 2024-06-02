@@ -5,7 +5,6 @@ import {
   Box,
   VStack,
   Button,
-  Text,
 } from '@gluestack-ui/themed';
 import React, {useState} from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
@@ -18,15 +17,17 @@ import {useQuery} from '@tanstack/react-query';
 import Loading from '../Loading';
 import axios from 'axios';
 import {Course} from '../../types/Course';
+import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
+import {useStore} from '../../store';
 
 const BackgroundImage = require('../../assets/images/parent-main-bg.png');
 
 const ParentMain = () => {
-  const enrolledStudents = [1, 2];
+  const store = useStore();
   const [feedbackRating, setFeedbackRating] = useState<string>('');
   const height = useBottomTabBarHeight();
 
-  const {data: courses, isLoading} = useQuery({
+  const {data: courses} = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
@@ -35,6 +36,18 @@ const ParentMain = () => {
       return data;
     },
   });
+
+  const {data: prescriptions, isLoading} = useQuery({
+    queryKey: ['prescriptions'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        `http://192.168.0.107:8080/parent/get-prescriptions/${store.user?.user.child_id}`,
+      );
+      return data;
+    },
+  });
+
+  console.log(prescriptions);
 
   if (isLoading) {
     return <Loading bgImage={BackgroundImage} />;
@@ -59,7 +72,12 @@ const ParentMain = () => {
         <ScrollView paddingHorizontal={'$4'}>
           <Box height={'$10'} />
           <TextSemibold text="Good Morning," fontSize={'$3xl'} />
-          <TextSemibold text="Mrs. Ahmed" fontSize={'$2xl'} />
+          <TextSemibold
+            fontSize={'$2xl'}
+            text={capitalizeFirstLetter(
+              store.user ? store.user.user.full_name : 'John Doe',
+            )}
+          />
           <Box height={'$8'} />
           <TextSemibold
             textAlign="center"
@@ -89,7 +107,29 @@ const ParentMain = () => {
           <TextSemibold text="Child's Prescription: " fontSize={'$2xl'} />
 
           <ScrollView>
-            <Box
+            {prescriptions.map((prescription: any, index: number) => (
+              <Box
+                key={index}
+                backgroundColor={'#f0f0f0'}
+                padding={'$3'}
+                mb={'$4'}
+                borderRadius={15}
+                borderWidth={1}
+                borderColor={'#ccc'}>
+                <VStack space={'md'}>
+                  <TextSemibold
+                    text={`Given by Dr. ${capitalizeFirstLetter(
+                      prescription.doctor_name,
+                    )}`}
+                  />
+                  <TextRegular
+                    fontSize={'$md'}
+                    text={prescription.prescription}
+                  />
+                </VStack>
+              </Box>
+            ))}
+            {/* <Box
               height={'$40'}
               backgroundColor={'#f0f0f0'}
               padding={'$3'}
@@ -97,11 +137,13 @@ const ParentMain = () => {
               borderWidth={1}
               borderColor={'#ccc'}>
               <VStack space={'md'}>
-                {prescriptionNames.map((name, index) => (
-                  <TextRegular key={index} fontSize={'$md'} text={name} />
-                ))}
+                <TextRegular
+                  key={index}
+                  fontSize={'$md'}
+                  text={prescription.prescription}
+                />
               </VStack>
-            </Box>
+            </Box> */}
 
             <Box height={'$8'} />
             <TextSemibold text="Feedback" fontSize={'$2xl'} />

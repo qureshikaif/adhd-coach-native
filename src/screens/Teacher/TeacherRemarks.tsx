@@ -4,10 +4,8 @@ import {
   ImageBackground,
   ScrollView,
   Box,
-  VStack,
   Button,
   HStack,
-  Text,
 } from '@gluestack-ui/themed';
 import {TextInput} from 'react-native';
 import Svg, {Rect, Text as SvgText} from 'react-native-svg'; // Import Svg, Rect, and Text from react-native-svg
@@ -15,41 +13,40 @@ import Svg, {Rect, Text as SvgText} from 'react-native-svg'; // Import Svg, Rect
 import TextBold from '../../components/atoms/Text/TextBold';
 
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import Error from '../../components/molecules/popup/Error';
 
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
 const TeacherRemarks = () => {
   const [quizMarks, setQuizMarks] = useState(0);
+  const [showError, setShowError] = useState(false);
+  const refError = React.useRef(null);
 
   const calculateProgress = () => {
     return quizMarks / 100;
   };
 
   const handleQuizMarksChange = (value: string) => {
-    // Ensure the value is not empty
     if (value.trim() === '') {
       setQuizMarks(0); // Set quizMarks to 0 if input is empty
       return;
     }
 
-    // Ensure the value is a valid integer between 0 and 100
     const marks = parseInt(value, 10);
     if (isNaN(marks) || marks < 0 || marks > 100) {
-      // If the input is not a valid integer or is out of range, set quizMarks to 0
       setQuizMarks(0);
       return;
     }
 
-    // Set quizMarks to the parsed integer value
     setQuizMarks(marks);
   };
 
   return (
-    <View style={{flex: 1}}>
-      <ImageBackground source={BackgroundImage} style={{flex: 1}}>
+    <View h="$full">
+      <ImageBackground source={BackgroundImage} h="$full">
         <StatusBarTeacher text="Give Remarks" />
-        <ScrollView contentContainerStyle={{padding: 10}}>
-          <Box height={'$5'} />
+        <ScrollView paddingHorizontal={'$4'}>
+          <Box height={'$10'} />
 
           <Svg height="60" width="100%" viewBox="0 0 200 60">
             <Rect
@@ -116,19 +113,20 @@ const TeacherRemarks = () => {
             style={{
               height: 150,
               backgroundColor: 'grey',
-              borderWidth: 5,
+              borderWidth: 2,
               textAlignVertical: 'top',
               color: 'white',
               borderRadius: 20,
               padding: 15,
               marginBottom: 10,
             }}
-            placeholder="Enter your Remarks  here..."
+            placeholder="Enter your Remarks here..."
             multiline
           />
           <Box height={'$5'} />
           <HStack space="3xl">
             <Button
+              flex={1}
               android_ripple={{color: 'grey'}}
               //   onPress={() => navigation.navigate('ForgotPassword')}
               hardShadow="3"
@@ -140,19 +138,27 @@ const TeacherRemarks = () => {
               <TextBold text="Cancel" />
             </Button>
             <Button
+              flex={1}
               android_ripple={{color: 'grey'}}
-              //   onPress={() => navigation.navigate('Signup')}
+              onPress={() => setShowError(true)}
               hardShadow="3"
               size="xl"
               borderColor="black"
               bg={'#DBC9E1'}
               borderWidth={1}
               borderRadius={'$lg'}>
-              <TextBold text="Save changes " />
+              <TextBold text="Save" />
             </Button>
           </HStack>
         </ScrollView>
       </ImageBackground>
+      <Error
+        bgColor="#DBC9E1"
+        setShowModal={setShowError}
+        showModal={showError}
+        ref={refError}
+        text="Remarks can`t be empty"
+      />
     </View>
   );
 };

@@ -2,7 +2,6 @@ import {
   View,
   ImageBackground,
   ScrollView,
-  Text,
   Box,
   Center,
   Image,
@@ -14,13 +13,21 @@ import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
 import {useStore} from '../../store';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import {handleLogout} from '../../helpers/handleLogout';
+import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
+type NavigationType = {
+  TeacherProfileSettings: undefined;
+  TeacherEditPersonalInfo: undefined;
+};
+
 const TeacherProfile = () => {
   const store = useStore();
-  //   const navigation = useNavigation<NavigationProp<NavigationType>>();
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
@@ -42,9 +49,12 @@ const TeacherProfile = () => {
                 h={'$full'}
               />
             </Box>
-            <Text mt={4} fontFamily="Poppins-Regular">
-              Mr ABUBAKAR
-            </Text>
+            <TextSemibold
+              mt={4}
+              text={capitalizeFirstLetter(
+                store.user ? store.user.user.full_name : 'John Doe',
+              )}
+            />
           </Center>
           <Box height={'$20'} />
 
@@ -54,9 +64,15 @@ const TeacherProfile = () => {
               bgColor="#CDAAAA"
               justifyContent="flex-start"
               padding={20}>
-              <SideScreenButton text="Personal Info" />
+              <SideScreenButton
+                text="Personal Info"
+                onPress={() => navigation.navigate('TeacherEditPersonalInfo')}
+              />
               <Box height={'$5'} />
-              <SideScreenButton text="Edit Peronal Info" />
+              <SideScreenButton
+                text="Profile Settings"
+                onPress={() => navigation.navigate('TeacherProfileSettings')}
+              />
 
               <Box flex={1} justifyContent="center" alignItems="center">
                 <Button

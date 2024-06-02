@@ -83,6 +83,7 @@ const Signin = () => {
       })
       .then(res => {
         console.log(res.data);
+        store.setUser(res.data);
         store.setAuthenticated(true);
       })
       .catch(err => {

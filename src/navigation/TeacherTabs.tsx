@@ -29,7 +29,7 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
   const iconSource = icons[routeName];
   if (focused) {
     return (
-      <View bg="#A3BACD" rounded={'$full'} padding={'$2'}>
+      <View bg="#F0CCCC" rounded={'$full'} padding={'$2'}>
         <Image source={iconSource} alt="Tab Bar Icons" width={30} height={30} />
       </View>
     );

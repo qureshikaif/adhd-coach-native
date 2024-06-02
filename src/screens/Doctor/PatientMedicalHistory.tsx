@@ -11,23 +11,25 @@ import {TextInput} from 'react-native';
 import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
 const BackgroundImage = require('../../assets/images/patienthistory.png');
 
 const PatientMedicalHistory = () => {
+  const height = useBottomTabBarHeight();
   return (
     <View h="$full">
       <ImageBackground source={BackgroundImage} h="$full">
-        <StatusBarDoctor text="Patient History" isSettingsVisible />
-        <ScrollView contentContainerStyle={{padding: 10}}>
+        <StatusBarDoctor text="Medical History" />
+        <ScrollView paddingHorizontal={'$4'} paddingVertical={'$5'}>
           <Box
             height={450}
             bgColor="#F0D9F3"
             justifyContent="flex-start"
             padding={20}
             borderRadius={20}
-            borderWidth={5}>
-            <ScrollView style={{flex: 1}}>
+            borderWidth={1}>
+            <ScrollView>
               <Text mt={4} fontFamily="Poppins-Regular">
                 Patient Name: Emily Davis {'\n'}
                 Age: 6 Gender: Female {'\n'}
@@ -53,7 +55,7 @@ const PatientMedicalHistory = () => {
             style={{
               height: 150,
               backgroundColor: '#E0E6DE',
-              borderWidth: 5,
+              borderWidth: 1,
               textAlignVertical: 'top',
               color: 'black',
               borderRadius: 20,
@@ -64,8 +66,9 @@ const PatientMedicalHistory = () => {
             multiline
           />
           <Box height={'$10'} />
-          <HStack space="2xl">
+          <HStack space="xl">
             <Button
+              flex={1}
               android_ripple={{color: '#DEB5B5'}}
               //   onPress={() => navigation.navigate('ForgotPassword')}
               hardShadow="3"
@@ -77,6 +80,7 @@ const PatientMedicalHistory = () => {
               <TextBold text="Cancel" />
             </Button>
             <Button
+              flex={1}
               android_ripple={{color: '#DEB5B5'}}
               //   onPress={() => navigation.navigate('Signup')}
 
@@ -86,9 +90,10 @@ const PatientMedicalHistory = () => {
               bg={'#DEB5B5'}
               borderWidth={1}
               borderRadius={'$lg'}>
-              <TextBold text="Save changes " />
+              <TextBold text="Save" />
             </Button>
           </HStack>
+          <Box height={height} />
         </ScrollView>
       </ImageBackground>
     </View>
