@@ -34,6 +34,7 @@ import {useStore} from '../../store';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import Error from '../../components/molecules/popup/Error';
+import Success from '../../components/molecules/popup/Success';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/signup.png');
@@ -77,9 +78,14 @@ const fields = [
 ];
 
 const Signup = () => {
-  const [showModal, setShowModal] = React.useState(false);
+  const [childId, setChildId] = React.useState('Loading...');
+  const [showError, setShowError] = React.useState(false);
+  const [showSuccess, setShowSuccess] = React.useState(false);
+
   const [error, setError] = React.useState('');
-  const ref = React.useRef(null);
+  const refError = React.useRef(null);
+  const refSuccess = React.useRef(null);
+
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const handleRole = (role: string) => store.setRole(role);
@@ -114,13 +120,22 @@ const Signup = () => {
       })
       .then(res => {
         console.log('Response Data:', res.data);
+
+        if (store.role === 'Student') {
+          setChildId(res.data.id_assigned);
+          setShowSuccess(true);
+        } else {
+          setChildId('Loading...');
+          setShowSuccess(true);
+        }
+
         navigation.navigate('Signin');
       })
       .catch(err => {
         if (err.response) {
           console.log('Error Response Data:', err.response.data);
           setError(err.response.data.message);
-          setShowModal(true);
+          setShowError(true);
         } else if (err.request) {
           console.log('Error Request:', err.request);
         } else {
@@ -325,9 +340,18 @@ const Signup = () => {
       <Error
         bgColor="#DC9F72"
         text={error}
-        showModal={showModal}
-        setShowModal={setShowModal}
-        ref={ref}
+        showModal={showError}
+        setShowModal={setShowError}
+        ref={refError}
+      />
+      <Success
+        bgColor="#DC9F72"
+        text={`Account created successfully${
+          childId !== 'Loading...' ? `. Your child ID is ${childId}` : ''
+        }`}
+        showModal={showSuccess}
+        setShowModal={setShowSuccess}
+        ref={refSuccess}
       />
     </View>
   );
