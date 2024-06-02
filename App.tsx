@@ -4,6 +4,7 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
+import RockPaperScissor from './src/screens/StudentModule/RockPaperScissor';
 
 const config = createConfig({
   ...defaultConfig,
@@ -27,8 +28,8 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-          <MainNavigator />
-          {/* <RockPaperScissor /> */}
+          {/* <MainNavigator /> */}
+          <RockPaperScissor />
           {/* <RockPaperScissor/> */}
         </GluestackUIProvider>
       </QueryClientProvider>
