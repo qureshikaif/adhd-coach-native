@@ -10,6 +10,7 @@ import {
 } from '@gluestack-ui/themed';
 import TextBold from '../../components/atoms/Text/TextBold';
 import SideScreenButton from '../../components/atoms/Buttons/SideScreenButton';
+import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 const Avatar = require('../../assets/images/avatars/login.png');
@@ -20,7 +21,7 @@ const PersonalProfile = () => {
   return (
     <View height={'$full'}>
     <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-      
+    <StatusBarDoctor text='Perosnal Info' isSettingsVisible/>
       <Box height={'$20'} />
       <ScrollView paddingHorizontal={'$4'}>
       <Center>

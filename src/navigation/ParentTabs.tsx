@@ -1,20 +1,20 @@
 import React from 'react';
 import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import AdminAppAnalytics from './stacks/Admin/AdminAppAnalytics';
-import AdminFeedback from './stacks/Admin/AdminFeedback';
-import AdminAccountManagement from './stacks/Admin/AdminAccountManagement';
 import ParentHome from '../navigation/stacks/Parent/ParentHome';
-import DoctorPatientProfile from './stacks/Doctor/DoctorPatientProfile';
+import ParentChildProgress from './stacks/Parent/ParentChildProgress';
+import ParentArticles from './stacks/Parent/ParentArticles';
+import ParentChats from './stacks/Parent/ParentChats';
+import ParentProfile from './stacks/Parent/ParentProfile';
 
 const Tab = createBottomTabNavigator();
 
 const icons: {[index: string]: any} = {
   ParentHome: require('../assets/images/navigation/Home.png'),
-  DoctorPatientProfile: require('../assets/images/navigation/Courses.png'),
-  DoctorPatientPrescription: require('../assets/images/navigation/Analytics.png'),
-  DoctorChat: require('../assets/images/navigation/Feedback.png'),
-  DoctorProfile: require('../assets/images/navigation/Profile.png'),
+  ParentChildReport: require('../assets/images/navigation/Courses.png'),
+  ParentArticles: require('../assets/images/navigation/Analytics.png'),
+  ParentChats: require('../assets/images/navigation/Feedback.png'),
+  ParentProfile: require('../assets/images/navigation/Profile.png'),
 };
 
 export const tabBarStyle = {
@@ -41,10 +41,10 @@ const TabBarIcon = (focused: boolean, routeName: string) => {
 
 const screens = [
   {name: 'ParentHome', component: ParentHome},
-  {name: 'DoctorPatientProfile', component: DoctorPatientProfile},
-  {name: 'DoctorPatientPrescription', component: AdminAppAnalytics},
-  {name: 'DoctorChat', component: AdminFeedback},
-  {name: 'DoctorProfile', component: AdminAccountManagement},
+  {name: 'ParentChildReport', component: ParentChildProgress},
+  {name: 'ParentArticles', component: ParentArticles},
+  {name: 'ParentChats', component: ParentChats},
+  {name: 'ParentProfile', component: ParentProfile},
 ];
 
 export const ParentTabs = () => {

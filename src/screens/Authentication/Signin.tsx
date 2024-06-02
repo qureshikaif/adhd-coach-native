@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {useForm, Controller} from 'react-hook-form';
 import {
   View,
@@ -32,6 +32,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {ChevronDown, Lock, Mail, User} from 'lucide-react-native';
 import {useStore} from '../../store';
 import axios from 'axios';
+import Error from '../../components/molecules/popup/Error';
 
 const BackgroundImage = require('../../assets/images/signup-bg.png');
 const Avatar = require('../../assets/images/avatars/login.png');
@@ -58,6 +59,9 @@ type NavigationType = {
 };
 
 const Signin = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [error, setError] = React.useState('');
+  const ref = React.useRef(null);
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const {
@@ -84,6 +88,8 @@ const Signin = () => {
       .catch(err => {
         if (err.response) {
           console.log('Error Response Data:', err.response.data);
+          setError(err.response.data.message);
+          setShowModal(true);
         } else if (err.request) {
           console.log('Error Request:', err.request);
         } else {
@@ -124,41 +130,56 @@ const Signin = () => {
           <Box height={'$5'} />
           <VStack width={'$full'} rowGap={'$4'}>
             {fields.map((field, index) => (
-              <HStack space="sm" key={index}>
-                <Controller
-                  control={control}
-                  name={field.title.replace(' ', '').toLowerCase()}
-                  rules={field.validation}
-                  render={({field: {onChange, onBlur, value}}) => (
-                    <Input
-                      bgColor="#DC9F72"
-                      height={'$12'}
-                      rounded={'$2xl'}
-                      width={'$full'}
-                      borderWidth={0}
-                      isInvalid={Boolean(
-                        errors[field.title.replace(' ', '').toLowerCase()],
-                      )}>
-                      <InputSlot pl="$4">
-                        <field.icon size={25} color={'black'} />
-                      </InputSlot>
-                      <InputField
-                        autoCapitalize={
-                          field.title === 'Email' ? 'none' : 'sentences'
-                        }
-                        type={field.title === 'Password' ? 'password' : 'text'}
-                        fontFamily="Poppins-Regular"
-                        placeholder={field.title}
-                        paddingHorizontal={'$6'}
-                        placeholderTextColor={'black'}
-                        onBlur={onBlur}
-                        onChangeText={onChange}
-                        value={value}
-                      />
-                    </Input>
-                  )}
-                />
-              </HStack>
+              <VStack key={index}>
+                <HStack space="sm">
+                  <Controller
+                    control={control}
+                    name={field.title.replace(' ', '').toLowerCase()}
+                    rules={field.validation}
+                    render={({field: {onChange, onBlur, value}}) => (
+                      <Input
+                        bgColor="#DC9F72"
+                        height={'$12'}
+                        rounded={'$2xl'}
+                        width={'$full'}
+                        borderWidth={0}
+                        isInvalid={Boolean(
+                          errors[field.title.replace(' ', '').toLowerCase()],
+                        )}>
+                        <InputSlot pl="$4">
+                          <field.icon size={25} color={'black'} />
+                        </InputSlot>
+                        <InputField
+                          autoCapitalize={
+                            field.title === 'Email' ? 'none' : 'sentences'
+                          }
+                          type={
+                            field.title === 'Password' ? 'password' : 'text'
+                          }
+                          fontFamily="Poppins-Regular"
+                          placeholder={field.title}
+                          paddingHorizontal={'$6'}
+                          placeholderTextColor={'black'}
+                          onBlur={onBlur}
+                          onChangeText={onChange}
+                          value={value}
+                        />
+                      </Input>
+                    )}
+                  />
+                </HStack>
+                {errors[field.title.replace(' ', '').toLowerCase()] && (
+                  <TextRegular
+                    text={
+                      errors[field.title.replace(' ', '').toLowerCase()]
+                        ?.message as ReactNode
+                    }
+                    fontSize={'$xs'}
+                    ml={'$1'}
+                    color="red"
+                  />
+                )}
+              </VStack>
             ))}
             <Controller
               control={control}
@@ -235,6 +256,13 @@ const Signin = () => {
           </Pressable>
         </Center>
       </ImageBackground>
+      <Error
+        bgColor="#DC9F72"
+        text={error}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        ref={ref}
+      />
     </View>
   );
 };

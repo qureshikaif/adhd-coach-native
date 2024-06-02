@@ -12,6 +12,8 @@ import {
   HStack,
   Input,
   SelectInput,
+  SelectDragIndicatorWrapper,
+  SelectDragIndicator,
 } from '@gluestack-ui/themed';
 import {
   Select,
@@ -21,7 +23,7 @@ import {
   SelectContent,
   SelectItem,
 } from '@gluestack-ui/themed';
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {ModalProps} from '../../../types/ModalProps';
 import TextSemibold from '../../atoms/Text/TextSemibold';
 import TextBold from '../../atoms/Text/TextBold';
@@ -30,6 +32,10 @@ import {InputField} from '@gluestack-ui/themed';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import {Controller, useForm} from 'react-hook-form';
+import {SelectIcon} from '@gluestack-ui/themed';
+import {ChevronDown} from 'lucide-react-native';
+import Success from './Success';
+import Error from './Error';
 
 const AddCourseIcon = require('../../../assets/images/add-course.png');
 
@@ -37,10 +43,16 @@ const fields = [
   {
     name: 'Title',
     placeholder: 'Mathematics',
+    validation: {
+      required: 'Title is required',
+    },
   },
   {
     name: 'Description',
     placeholder: 'Which topics this course contains',
+    validation: {
+      required: 'Description is required',
+    },
   },
   // {
   //   name: 'Instructor',
@@ -49,7 +61,21 @@ const fields = [
 ];
 
 const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
-  const {data: teachers, isLoading} = useQuery({
+  const [showSuccess, setShowSuccess] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
+
+  const refSuccess = React.useRef(null);
+  const refError = React.useRef(null);
+
+  const [error, setError] = React.useState('');
+
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+
+  const {data: teachers} = useQuery({
     queryKey: ['teachers'],
     queryFn: async () => {
       const {data} = await axios.get(
@@ -59,8 +85,26 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
       // return data.filter((teacher: any) => teacher.full_name !== null);
     },
   });
-  const {control} = useForm();
-  console.log(teachers);
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+    axios
+      .post('http://192.168.0.107:8080/admin/course', {
+        title: data.Title,
+        description: data.Description,
+        instructor: data.teacher,
+      })
+      .then(res => {
+        console.log(res.data);
+        setShowSuccess(true);
+        setShowModal(false);
+      })
+      .catch(err => {
+        console.log(err);
+        setError(err.response.data.message);
+      });
+  };
+
   return (
     <Center>
       <Modal
@@ -99,17 +143,35 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
                       fontSize={'$xl'}
                       color="white"
                     />
-                    <Input width={'$full'} bgColor="#D7E6ED">
-                      <InputField
-                        display="flex"
-                        alignContent="center"
-                        type="text"
-                        fontFamily="Poppins-Regular"
-                        placeholder={field.placeholder}
+                    <Controller
+                      control={control}
+                      name={field.name}
+                      rules={field.validation}
+                      render={({field: {onChange, onBlur, value}}) => (
+                        <Input width={'$full'} bgColor="#D7E6ED">
+                          <InputField
+                            display="flex"
+                            alignContent="center"
+                            type="text"
+                            fontFamily="Poppins-Regular"
+                            placeholder={field.placeholder}
+                            fontSize={'$xs'}
+                            placeholderTextColor={'black'}
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                          />
+                        </Input>
+                      )}
+                    />
+                    {errors[field.name] && (
+                      <TextRegular
+                        text={errors[field.name]?.message as ReactNode}
+                        color="red"
                         fontSize={'$xs'}
-                        placeholderTextColor={'black'}
+                        ml={'$1'}
                       />
-                    </Input>
+                    )}
                   </VStack>
                 ))}
                 <TextBold text={'Instructor'} fontSize={'$xl'} color="white" />
@@ -118,26 +180,35 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
                 control={control}
                 name="teacher"
                 render={({field: {onChange, value}}) => (
-                  <Select onValueChange={onChange}>
-                    <SelectTrigger width={'$full'} bgColor="#D7E6ED">
+                  <Select
+                    onValueChange={selectedTeacher => {
+                      onChange(selectedTeacher);
+                    }}>
+                    <SelectTrigger
+                      width={'$full'}
+                      bgColor="#D7E6ED"
+                      paddingEnd={'$3'}>
                       <SelectInput
-                        display="flex"
-                        alignContent="center"
+                        paddingStart={'$5'}
                         fontFamily="Poppins-Regular"
                         fontSize={'$xs'}
                         placeholderTextColor={'black'}
-                        value={value}
+                        value={String(value)}
                       />
+                      <SelectIcon as={ChevronDown} size={'lg'} color="black" />
                     </SelectTrigger>
                     <SelectPortal>
                       <SelectBackdrop />
                       <SelectContent bg="whitesmoke">
+                        <SelectDragIndicatorWrapper>
+                          <SelectDragIndicator />
+                        </SelectDragIndicatorWrapper>
                         {teachers &&
                           teachers.map((teacher: any, index: number) => (
                             <SelectItem
                               key={index}
-                              label={teacher.id}
-                              value={teacher.id}
+                              label={teacher.id_assigned}
+                              value={teacher.id_assigned}
                             />
                           ))}
                       </SelectContent>
@@ -159,18 +230,28 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
                 <TextRegular text="Cancel" color="white" />
               </Button>
               <Button
+                onPress={handleSubmit(onSubmit)}
                 flex={1}
                 bgColor="#648DA0"
-                rounded={'$lg'}
-                onPress={() => {
-                  setShowModal(false);
-                }}>
+                rounded={'$lg'}>
                 <TextRegular text="Confirm" color="white" />
               </Button>
             </HStack>
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <Success
+        showModal={showSuccess}
+        setShowModal={setShowSuccess}
+        ref={refSuccess}
+        text="Course added successfully"
+      />
+      <Error
+        showModal={showError}
+        setShowModal={setShowError}
+        ref={refError}
+        text={error}
+      />
     </Center>
   );
 };

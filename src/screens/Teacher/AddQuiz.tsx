@@ -1,11 +1,11 @@
 import React from 'react';
 import {  TextInput, Text } from 'react-native';
 import { View, ImageBackground, ScrollView, Box, VStack, Button, HStack } from '@gluestack-ui/themed';
-import AddNewButton from '../../components/atoms/Buttons/AddNewButton'; // Importing AddNewButton component
+
 import TextBold from '../../components/atoms/Text/TextBold';
-import StatusBarChatTeacher from '../../components/molecules/StatusBarChatTeacher';
+
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
-import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
+
 
 const BackgroundImage = require('../../assets/images/TeacherChat.png');
 
@@ -18,7 +18,7 @@ const AddQuiz = () => {
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground source={BackgroundImage} style={{ flex: 1 }} >
-       <StatusBarDoctor text='ADD Quiz ' isSettingsVisible/>
+       <StatusBarTeacher text='ADD Quiz '/>
         <ScrollView contentContainerStyle={{ padding: 20 }}>
           <QuizInput label="Question:" placeholder="Enter your question here" />
           <QuizInput label="Option:" placeholder="Enter option text here" />

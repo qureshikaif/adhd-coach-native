@@ -2,12 +2,11 @@ import {Pressable, HStack, Image} from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../Text/TextSemibold';
 import ProfilePreview from '../../molecules/popup/ProfilePreview';
-import AccountDeletion from '../../molecules/popup/AccountDeletion';
 import {Article} from '../../../types/Article';
 import {Course} from '../../../types/Course';
+import ContentDeletion from '../../molecules/popup/ContentDeletion';
 
 const CourseIcon = require('../../../assets/images/icons/course-dark.png');
-// const EditIcon = require('../../../assets/images/icons/edit.png');
 const RemoveIcon = require('../../../assets/images/icons/remove.png');
 
 type ModifyProps = {
@@ -66,7 +65,7 @@ const Modify = ({content}: ModifyProps) => {
         setShowModal={setShowView}
         ref={refView}
       />
-      <AccountDeletion
+      <ContentDeletion
         showModal={showRemove}
         setShowModal={setShowRemove}
         ref={refRemove}

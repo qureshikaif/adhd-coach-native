@@ -1,19 +1,17 @@
-import { View, ImageBackground, ScrollView, Text } from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView} from '@gluestack-ui/themed';
 import React from 'react';
 import CircleRowScrollView from '../../components/molecules/ChatBoxtop';
-import TextBold from '../../components/atoms/Text/TextBold';
-import ImageTextBox from '../../components/ChatDialoguebox';
 import ChatBox from '../../components/ChatDialoguebox';
+import StatusBarParent from '../../components/molecules/StatusBarParent';
 
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
-const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 
-const ParentChatbox = () => {
+const ParentChat = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <ScrollView style={{ paddingHorizontal: 16 }}>
-          <TextBold text="Chat" fontSize={32} style={{ padding: 20 }} />
+        <StatusBarParent text="Chat" />
+        <ScrollView paddingHorizontal={'$4'}>
           <CircleRowScrollView />
           {Array.from({length: 1}).map((_, index) => (
             <ChatBox key={index} />
@@ -24,4 +22,4 @@ const ParentChatbox = () => {
   );
 };
 
-export default ParentChatbox;
+export default ParentChat;

@@ -1,4 +1,4 @@
-import { View, ImageBackground, ScrollView, Box, VStack, Button, HStack } from '@gluestack-ui/themed';
+import { View, ImageBackground, ScrollView, Box, VStack, Button, HStack,Text } from '@gluestack-ui/themed';
 import { TextInput } from 'react-native';
 import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
@@ -12,10 +12,30 @@ const PatientMedicalHistory = () => {
       <ImageBackground source={BackgroundImage} style={{ flex: 1 }}>
         <StatusBarDoctor text='Patient History' isSettingsVisible />
         <ScrollView contentContainerStyle={{ padding: 10 }}>
-          <Box height={'$10'} />
+        
+        <Box height={450} bgColor='#F0D9F3' justifyContent="flex-start" padding={20} borderRadius={20} borderWidth={5}>
+  <ScrollView style={{ flex: 1 }}>
+    <Text mt={4} fontFamily="Poppins-Regular">
+      Patient Name: Emily Davis {'\n'}
+      Age: 6                 Gender: Female {'\n'}
+      Medical History: {'\n\n'}
+      Diagnosis: Attention Deficit Hyperactivity Disorder (ADHD) at age 7. {'\n'}
+      Symptoms: Difficulty concentrating, impulsivity, hyperactivity. {'\n'}
+      Treatment Plan: Combination of behavioral therapy and medication. {'\n'}
+      Therapy: Twice weekly sessions focusing on organizational skills and impulse control. {'\n'}
+      Medication: [Specify medication name, dosage, and frequency]. {'\n'}
+     
+    </Text>
+  </ScrollView>
+</Box>
+<Box height={'$5'} />
+
+<TextBold text="Patient Remarks" fontSize={'$xl'} />
+
+          
           <TextInput
             style={{
-              height: 300,
+              height: 150,
               backgroundColor: '#E0E6DE',
               borderWidth: 5,
               textAlignVertical: 'top',
@@ -23,7 +43,7 @@ const PatientMedicalHistory = () => {
               borderRadius: 20,
               padding: 15
             }}
-            placeholder="Enter medical history here..." // Placeholder text
+            placeholder="Enter medical Remarks here..." 
             placeholderTextColor={'black'}
             multiline
           />

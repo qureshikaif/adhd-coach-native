@@ -10,7 +10,7 @@ const ParentHome = () => {
       initialRouteName="ParentMain"
       screenOptions={{
         headerShown: false,
-        statusBarColor: '#A3BACD',
+        statusBarColor: '#DBC9E1',
         statusBarStyle: 'light',
       }}>
       <Stack.Screen name="ParentMain" component={ParentMain} />

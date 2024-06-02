@@ -1,30 +1,39 @@
-import {HStack} from '@gluestack-ui/themed';
+import {Box, HStack} from '@gluestack-ui/themed';
+import BackButton from '../atoms/Buttons/BackButton';
 import React from 'react';
-import TextRegular from '../atoms/Text/TextRegular';
-import SideBackButton from '../atoms/Buttons/SideBackButton';
+import TextSemibold from '../atoms/Text/TextSemibold';
+import AdminSettingsButton from '../atoms/Buttons/AdminSettingsButton';
 
-type StatusBarParentProps = {
+type StatusBarTeacherProps = {
   text: string;
   isSettingsVisible?: boolean;
 };
 
-const StatusBarParent = ({text}: StatusBarParentProps) => {
+const StatusBarParent = ({text, isSettingsVisible}: StatusBarTeacherProps) => {
   return (
     <HStack
       bgColor="#DBC9E1"
       alignItems="center"
-      //   justifyContent="space-between"
-      gap={'$10'}
+      justifyContent={'space-between'}
       paddingHorizontal={'$4'}
       paddingVertical={'$4'}>
-      <SideBackButton
+      <BackButton
         imageProps={{
           size: 'xs',
         }}
         buttonProps={{}}
       />
-
-      <TextRegular text={text} fontSize={'$2xl'} color="black" />
+      <TextSemibold text={text} fontSize={'$2xl'} color="black" />
+      {isSettingsVisible ? (
+        <AdminSettingsButton
+          imageProps={{
+            width: 35,
+            height: 35,
+          }}
+        />
+      ) : (
+        <Box w={40} h={'$full'} />
+      )}
     </HStack>
   );
 };

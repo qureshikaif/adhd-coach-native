@@ -4,6 +4,10 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
+import ChildProgressReport from './src/screens/Parent/ChildProgressReport';
+import DoctorMain from './src/screens/Doctor/DoctorMain';
+import ParentMain from './src/screens/Parent/ParentMain';
+
 // import RockPaperScissorGame from './src/screens/StudentModule/RockPaperScissorGame';
 import RockPaperScissor from './src/screens/StudentModule/RockPaperScissor';
 import RockPaperScissorStart from './src/screens/StudentModule/RockPaperScissorStart';

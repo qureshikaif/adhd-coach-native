@@ -8,6 +8,7 @@ import {
 } from '@gluestack-ui/themed';
 import React from 'react';
 import BackButton from '../../components/atoms/Buttons/BackButton';
+import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
 const BackgroundImage = require('../../assets/images/TeacherEditPersonal.png');
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
@@ -16,6 +17,7 @@ const TeacherEditPersonalInfo = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
+      <StatusBarTeacher text='Personal Info' />
         <Box height={'$7'} />
         <ScrollView paddingHorizontal={'$4'}>
           <Box flexDirection="row" alignItems="center">

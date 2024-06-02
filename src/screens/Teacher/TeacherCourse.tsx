@@ -10,6 +10,7 @@ import TextBold from '../../components/atoms/Text/TextBold';
 import AddNewButton from '../../components/atoms/Buttons/AddNewButton';
 import BackButton from '../../components/atoms/Buttons/BackButton';
 import UploadButton from '../../components/atoms/Buttons/Uploadbutton';
+import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
 const BackgroundImage = require('../../assets/images/teachercourse.png');
 // const BackArrow = require('../../../assets/images/BackArrow.png');
@@ -18,19 +19,7 @@ const TeacherCourse = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <HStack
-          alignItems="center"
-          width={'$full'}
-          justifyContent="space-between"
-          padding={'$4'}>
-          <BackButton
-            imageProps={{
-              size: 'xs',
-            }}
-          />
-          <TextBold text="Course" paddingRight={'$8'} fontSize={'$3xl'} />
-          <View />
-        </HStack>
+      <StatusBarTeacher text='Course' />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <AddNewButton text="Add a new lecture" />
