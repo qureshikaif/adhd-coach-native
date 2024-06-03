@@ -37,7 +37,7 @@ const Success = ({
         onClose={() => {
           setShowModal(false);
         }}
-        size="lg"
+        size="md"
         finalFocusRef={ref}>
         <ModalBackdrop />
         <ModalContent bgColor={bgColor ? bgColor : '#A3BACD'} rounded={'$2xl'}>
@@ -69,7 +69,7 @@ const Success = ({
             </Center>
           </ModalBody>
           <ModalFooter>
-            <HStack space="sm">
+            {/* <HStack space="sm">
               <Button
                 flex={1}
                 h={'$12'}
@@ -80,7 +80,7 @@ const Success = ({
                 }}>
                 <TextRegular text="Close" color="white" />
               </Button>
-            </HStack>
+            </HStack> */}
           </ModalFooter>
         </ModalContent>
       </Modal>

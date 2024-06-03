@@ -14,6 +14,7 @@ import {
   SelectInput,
   SelectDragIndicatorWrapper,
   SelectDragIndicator,
+  ButtonSpinner,
 } from '@gluestack-ui/themed';
 import {
   Select,
@@ -47,22 +48,12 @@ const fields = [
       required: 'Title is required',
     },
   },
-  {
-    name: 'Description',
-    placeholder: 'Which topics this course contains',
-    validation: {
-      required: 'Description is required',
-    },
-  },
-  // {
-  //   name: 'Instructor',
-  //   placeholder: 'Ahmed = 443201',
-  // },
 ];
 
 const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
   const [showSuccess, setShowSuccess] = React.useState(false);
   const [showError, setShowError] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const refSuccess = React.useRef(null);
   const refError = React.useRef(null);
@@ -82,11 +73,11 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
         'http://192.168.0.107:8080/teacher/get-teachers',
       );
       return data;
-      // return data.filter((teacher: any) => teacher.full_name !== null);
     },
   });
 
   const onSubmit = (data: any) => {
+    setLoading(true);
     axios
       .post('http://192.168.0.107:8080/admin/course', {
         title: data.Title,
@@ -95,11 +86,13 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
       })
       .then(res => {
         console.log(res.data);
+        setLoading(false);
         setShowSuccess(true);
         setShowModal(false);
       })
       .catch(err => {
         console.log(err);
+        setLoading(false);
         setError(err.response.data.message);
         setShowError(true);
       });
@@ -192,8 +185,9 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
                         paddingStart={'$5'}
                         fontFamily="Poppins-Regular"
                         fontSize={'$xs'}
+                        placeholder="Select instructor"
                         placeholderTextColor={'black'}
-                        value={String(value)}
+                        value={value ? String(value) : ''}
                       />
                       <SelectIcon as={ChevronDown} size={'lg'} color="black" />
                     </SelectTrigger>
@@ -234,7 +228,14 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
                 flex={1}
                 bgColor="#648DA0"
                 rounded={'$lg'}>
-                <TextRegular text="Confirm" color="white" />
+                <HStack>
+                  {loading && <ButtonSpinner color="white" />}
+                  <TextRegular
+                    text="Confirm"
+                    color="white"
+                    ml={loading ? '$2' : '$0'}
+                  />
+                </HStack>
               </Button>
             </HStack>
           </ModalFooter>
