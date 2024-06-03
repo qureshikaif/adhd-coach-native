@@ -4,6 +4,7 @@ import {
   Box,
   HStack,
   Pressable,
+  VStack,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
@@ -84,30 +85,30 @@ const StudentCourses = () => {
           fontSize={'$2xl'}
         />
         <Box height={'$10'} />
-        {enrolledCourses.map((enrolledCourse: any, index: number) => (
-          <Pressable
-            key={index}
-            onPress={() => navigation.navigate('StudentCoursesLectures')}>
-            <HStack
-              bgColor="#FFA360"
-              height={60}
-              marginLeft={'-$16'}
-              alignItems="center"
-              padding={'$1'}
-              w={'$3/4'}
-              justifyContent="center"
-              borderRadius={'$3xl'}
-              borderWidth={'$2'}
-              marginRight={'$16'}>
-              <TextSemibold
-                text={enrolledCourse.course_title}
-                fontSize={'$xl'}
-                marginLeft={'$12'}
-              />
-            </HStack>
-            <Box height={'$8'} />
-          </Pressable>
+        {enrolledCourses?.map((enrolledCourse: any, index: number) => (
+          <HStack px={'$4'}>
+            <Pressable
+              key={index}
+              flex={1}
+              onPress={() => navigation.navigate('StudentCoursesLectures')}>
+              <HStack
+                bgColor="#FFA360"
+                height={60}
+                alignItems="center"
+                padding={'$1'}
+                justifyContent="center"
+                borderRadius={'$3xl'}
+                borderWidth={'$2'}>
+                <TextSemibold
+                  text={enrolledCourse.course_title}
+                  fontSize={'$xl'}
+                />
+              </HStack>
+              <Box height={'$2'} />
+            </Pressable>
+          </HStack>
         ))}
+        <Box height={'$10'} />
         <TextSemibold
           text="All Courses"
           textAlign="center"
@@ -115,29 +116,39 @@ const StudentCourses = () => {
           fontSize={'$2xl'}
         />
         <Box height={'$10'} />
-        {courses.map((course: any, index: number) => (
-          <Pressable
-            key={index}
-            onPress={() => navigation.navigate('StudentCoursesLectures')}>
-            <HStack
-              bgColor="#FFA360"
-              height={60}
-              marginLeft={'-$16'}
-              alignItems="center"
-              padding={'$1'}
-              w={'$3/4'}
-              justifyContent="center"
-              borderRadius={'$3xl'}
-              borderWidth={'$2'}
-              marginRight={'$16'}>
-              <TextSemibold
-                text={course.title}
-                fontSize={'$xl'}
-                marginLeft={'$12'}
-              />
-            </HStack>
-            <Box height={'$8'} />
-          </Pressable>
+        {courses?.map((course: any, index: number) => (
+          <VStack key={index} px={'$4'}>
+            <Pressable
+              flex={1}
+              onPress={() => navigation.navigate('StudentCoursesLectures')}>
+              <HStack
+                bgColor="#FFA360"
+                height={60}
+                alignItems="center"
+                padding={'$1'}
+                justifyContent="center"
+                borderRadius={'$3xl'}
+                borderWidth={'$2'}>
+                <TextSemibold text={course.title} fontSize={'$xl'} />
+              </HStack>
+              <Box height={'$2'} />
+            </Pressable>
+            <Pressable
+              flex={1}
+              onPress={() => navigation.navigate('StudentCoursesLectures')}>
+              <HStack
+                bgColor="#FF9990"
+                height={60}
+                alignItems="center"
+                padding={'$1'}
+                justifyContent="center"
+                borderRadius={'$3xl'}
+                borderWidth={'$1'}>
+                <TextSemibold text={'Enroll now'} fontSize={'$md'} />
+              </HStack>
+              <Box height={'$8'} />
+            </Pressable>
+          </VStack>
         ))}
       </ScrollView>
     </ImageBackground>

@@ -17,7 +17,7 @@ const TeacherCourse = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarTeacher text="Course" />
+        <StatusBarTeacher text="Course Plan" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <AddNewButton
@@ -29,7 +29,6 @@ const TeacherCourse = () => {
           {/* <Center>
             <TextSemibold text="OR" fontSize={'$2xl'} />
           </Center> */}
-          <Box height={'$8'} />
 
           <AddNewButton
             text="Add Quiz"
