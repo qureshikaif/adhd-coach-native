@@ -11,6 +11,7 @@ import {
   VStack,
   HStack,
   Input,
+  ButtonSpinner,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
@@ -24,19 +25,28 @@ const AddDoctorIcon = require('../../../assets/images/add-doctor.png');
 
 const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
   const [doctorId, setDoctorId] = React.useState('' as string);
+  const [email, setEmail] = React.useState('' as string);
+  const [loading, setLoading] = React.useState(false);
 
   const handleDoctorId = (text: string) => setDoctorId(text);
+  const handleEmail = (text: string) => setEmail(text);
 
   const onSubmit = () => {
+    setLoading(true);
     axios
       .post('http://192.168.27.131:8080/admin/doctor', {
         doctorId,
+        email,
       })
       .then(res => {
         console.log(res.data.message);
+        setLoading(false);
         setShowModal(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setLoading(false);
+      });
   };
   return (
     <Center>
@@ -82,6 +92,19 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
                     placeholderTextColor={'black'}
                   />
                 </Input>
+                <TextBold text="Doctor Email" fontSize={'$xl'} color="white" />
+                <Input width={'$full'} bgColor="#D7E6ED">
+                  <InputField
+                    onChange={e => handleEmail(e.nativeEvent.text)}
+                    display="flex"
+                    alignContent="center"
+                    type="text"
+                    fontFamily="Poppins-Regular"
+                    placeholder={'9019254'}
+                    fontSize={'$xs'}
+                    placeholderTextColor={'black'}
+                  />
+                </Input>
               </VStack>
             </Center>
           </ModalBody>
@@ -101,7 +124,10 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
                 flex={1}
                 bgColor="#648DA0"
                 rounded={'$lg'}>
-                <TextRegular text="Confirm" color="white" />
+                <HStack>
+                  {loading && <ButtonSpinner color="black" />}
+                  <TextRegular text="Confirm" color="white" />
+                </HStack>
               </Button>
             </HStack>
           </ModalFooter>

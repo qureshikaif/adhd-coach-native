@@ -47,12 +47,17 @@ const AdminProfile = () => {
       placeholder: 'admin',
       value: store.user?.user.full_name,
     },
-
     {
-      title: 'Password',
+      title: 'New Password',
       placeholder: 'admin123',
-      value: store.user?.user.password,
+      value: '**********',
     },
+
+    // {
+    //   title: 'Password',
+    //   placeholder: 'admin123',
+    //   value: store.user?.user.password,
+    // },
   ];
 
   return (

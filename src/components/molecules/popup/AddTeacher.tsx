@@ -6,12 +6,12 @@ import {
   ModalContent,
   ModalHeader,
   Button,
-  ButtonText,
   Center,
   Image,
   VStack,
   HStack,
   Input,
+  ButtonSpinner,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
@@ -25,19 +25,28 @@ const AddTeacherIcon = require('../../../assets/images/add-teacher.png');
 
 const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
   const [teacherId, setTeacherId] = React.useState('' as string);
+  const [email, setEmail] = React.useState('' as string);
+  const [loading, setLoading] = React.useState(false);
 
   const handleTeacherId = (text: string) => setTeacherId(text);
+  const handleEmail = (text: string) => setEmail(text);
 
   const onSubmit = () => {
+    setLoading(true);
     axios
       .post('http://192.168.27.131:8080/admin/teacher', {
         teacherId,
+        email,
       })
       .then(res => {
         console.log(res.data.message);
+        setLoading(false);
         setShowModal(false);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setLoading(false);
+      });
   };
   return (
     <Center>
@@ -83,6 +92,19 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
                     placeholderTextColor={'black'}
                   />
                 </Input>
+                <TextBold text="Teacher Email" fontSize={'$xl'} color="white" />
+                <Input width={'$full'} bgColor="#D7E6ED">
+                  <InputField
+                    onChange={e => handleEmail(e.nativeEvent.text)}
+                    display="flex"
+                    alignContent="center"
+                    type="text"
+                    fontFamily="Poppins-Regular"
+                    placeholder={'29019254'}
+                    fontSize={'$xs'}
+                    placeholderTextColor={'black'}
+                  />
+                </Input>
               </VStack>
             </Center>
           </ModalBody>
@@ -95,14 +117,17 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
                 onPress={() => {
                   setShowModal(false);
                 }}>
-                <ButtonText>Cancel</ButtonText>
+                <TextRegular text="Cancel" color="white" />
               </Button>
               <Button
                 onPress={onSubmit}
                 flex={1}
                 bgColor="#648DA0"
                 rounded={'$lg'}>
-                <TextRegular text="Confirm" color="white" />
+                <HStack>
+                  {loading && <ButtonSpinner color="black" />}
+                  <TextRegular text="Confirm" color="white" />
+                </HStack>
               </Button>
             </HStack>
           </ModalFooter>

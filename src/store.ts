@@ -5,11 +5,12 @@ type User = {
   user: {
     id: number;
     full_name: string;
+    image?: string;
     email: string;
     password: string;
     id_assigned: string;
     child_id?: string;
-    personal_info: string;
+    compulsory_courses_completed?: boolean;
   };
 };
 
