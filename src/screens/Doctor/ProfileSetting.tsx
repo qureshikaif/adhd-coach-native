@@ -15,31 +15,37 @@ import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 import {VStack} from '@gluestack-ui/themed';
 import React from 'react';
+import {useStore} from '../../store';
 
 const BackgroundImage = require('../../assets/images/doctor-bg.png');
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 
-const fields = [
-  {
-    title: 'Email',
-    placeholder: 'sanaD11@adhdcoach.com',
-    icon: '',
-  },
-  {
-    title: 'Username',
-    placeholder: 'sanaD11',
-    icon: '',
-  },
-
-  {
-    title: 'Password',
-    placeholder: 'Sana123',
-    icon: '',
-  },
-];
-
 const ProfileSetting = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
+  const store = useStore();
+
+  if (!store.user) {
+    return null;
+  }
+
+  const fields = [
+    {
+      title: 'Email',
+      placeholder: 'sanaD11@adhdcoach.com',
+      value: store.user?.user.email,
+    },
+    {
+      title: 'Username',
+      placeholder: 'sanaD11',
+      value: store.user?.user.full_name,
+    },
+    {
+      title: 'Password',
+      placeholder: 'Sana123',
+      value: store.user?.user.password,
+    },
+  ];
+
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>

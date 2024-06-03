@@ -4,14 +4,6 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
-// import MainNavigator from './src/navigation/MainNavigator';
-// import RockPaperScissor from './src/screens/StudentModule/RockPaperScissor';
-// import MainNavigator from './src/navigation/MainNavigator';
-import RockPaperScissor from './src/screens/StudentModule/RockPaperScissor';
-import MathsCounting from './src/screens/StudentModule/MathsCounting';
-import EnglishAlphabets from './src/screens/StudentModule/EnglishAlphabets';
-// import EnglishAlphabets from './src/screens/StudentModule/EnglishAlphabets';
-// import RockPaperScissor from './src/screens/StudentModule/RockPaperScissor';
 
 const config = createConfig({
   ...defaultConfig,

@@ -1,10 +1,4 @@
-import {
-  View,
-  ImageBackground,
-  ScrollView,
-  Box,
-  VStack,
-} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView, Box} from '@gluestack-ui/themed';
 import React from 'react';
 import {TextInput} from 'react-native';
 import {useState} from 'react';
@@ -19,6 +13,7 @@ import axios from 'axios';
 import {useStore} from '../../store';
 import Error from '../../components/molecules/popup/Error';
 import Success from '../../components/molecules/popup/Success';
+import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
 
 const BackgroundImage = require('../../assets/images/DoctorMain.png');
 
@@ -72,7 +67,12 @@ const DoctorMain = () => {
         <Box height={'$6'} />
         <ScrollView paddingHorizontal={'$5'}>
           <TextBold text="Good Morning" fontSize={'$2xl'} />
-          <TextSemibold text="Sana Zehra" fontSize={'$xl'} />
+          <TextSemibold
+            text={capitalizeFirstLetter(
+              store.user ? store.user.user.full_name : 'John Doe',
+            )}
+            fontSize={'$xl'}
+          />
           <TextSemibold
             text="Doctor of Medicine (M.D.), Johns Hopkins University "
             fontSize={'$2xs'}

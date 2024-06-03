@@ -127,11 +127,10 @@ const StudentHealth: React.FC = () => {
             my={2}
             mx={4}
             borderRadius={12}
-            alignItems="center" // Center align the content vertically
-            justifyContent="center" // Center align the content horizontally
-            borderColor="black" // Border color
-            borderWidth={2} // Border width
-          >
+            alignItems="center"
+            justifyContent="center"
+            borderColor="black"
+            borderWidth={2}>
             <Text fontWeight="bold">
               Remember, taking care of your health is essential for a happy and
               fulfilling life!
