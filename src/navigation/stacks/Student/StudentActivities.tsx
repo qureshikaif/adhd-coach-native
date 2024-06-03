@@ -9,6 +9,7 @@ import MathsBasicOpt from '../../../screens/StudentModule/MathsBasicOperations';
 import ShapesEnglish from '../../../screens/StudentModule/ShapesEnglish';
 import RockPaperScissorStart from '../../../screens/StudentModule/RockPaperScissorStart';
 import RockPaperScissor from '../../../screens/StudentModule/RockPaperScissor';
+import EnglishAlphabets from '../../../screens/StudentModule/EnglishAlphabets';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ const StudentActivities = () => {
         component={RockPaperScissorStart}
       />
       <Stack.Screen name="RockPaperScissor" component={RockPaperScissor} />
+      <Stack.Screen name="EnglishAlphabets" component={EnglishAlphabets} />
     </Stack.Navigator>
   );
 };

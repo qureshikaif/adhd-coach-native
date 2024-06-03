@@ -16,11 +16,19 @@ import TotalPatientsEnrolled from '../../components/molecules/TotalPatientsEnrol
 import {useQuery} from '@tanstack/react-query';
 import Loading from '../Loading';
 import axios from 'axios';
+import {useStore} from '../../store';
+import Error from '../../components/molecules/popup/Error';
+import Success from '../../components/molecules/popup/Success';
 
 const BackgroundImage = require('../../assets/images/DoctorMain.png');
 
 const DoctorMain = () => {
   const [feedbackRating, setFeedbackRating] = useState<string>('');
+  const store = useStore();
+  const [error, setError] = React.useState(false);
+  const refError = React.useRef(null);
+  const refSuccess = React.useRef(null);
+  const [success, setSuccess] = React.useState(false);
 
   const handleFeedbackChange = (text: string) => {
     const rating = parseInt(text, 10);
@@ -33,11 +41,25 @@ const DoctorMain = () => {
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/student/get-number',
+        'http://192.168.27.131:8080/student/get-number',
       );
       return data;
     },
   });
+
+  const handleSubmitFeedback = async () => {
+    await axios
+      .post('http://192.168.27.131:8080/doctor/add-feedback', {
+        feedback: feedbackRating,
+        userId: store.user?.user.id,
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   if (isLoading) {
     return <Loading bgImage={BackgroundImage} />;
@@ -92,6 +114,7 @@ const DoctorMain = () => {
           <Box height={'$4'} />
           <Box flex={1} justifyContent="center" alignItems="center">
             <Button
+              onPress={handleSubmitFeedback}
               android_ripple={{color: 'grey'}}
               hardShadow="3"
               width={120}
@@ -104,6 +127,18 @@ const DoctorMain = () => {
           </Box>
         </ScrollView>
       </ImageBackground>
+      <Error
+        showModal={error}
+        setShowModal={setError}
+        ref={refError}
+        text="Error occured while submitting feedback"
+      />
+      <Success
+        showModal={success}
+        setShowModal={setSuccess}
+        ref={refSuccess}
+        text="Feedback added successfully"
+      />
     </View>
   );
 };

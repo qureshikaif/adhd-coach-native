@@ -5,14 +5,20 @@ import TextBold from '../atoms/Text/TextBold';
 
 type TotalStudentsEnrolledProps = {
   count: string;
+  bgColor?: string;
+  borderTextColor?: string;
 };
 
-const TotalStudentsEnrolled = ({count}: TotalStudentsEnrolledProps) => {
+const TotalStudentsEnrolled = ({
+  count,
+  bgColor,
+  borderTextColor,
+}: TotalStudentsEnrolledProps) => {
   return (
     <View>
       <TextSemibold text="Total Students Enrolled" fontSize={'$xl'} pb={'$2'} />
       <VStack
-        bg="#D7E6ED"
+        bg={bgColor ? bgColor : '#D7E6ED'}
         w="$full"
         h="$48"
         alignItems="center"
@@ -26,10 +32,10 @@ const TotalStudentsEnrolled = ({count}: TotalStudentsEnrolledProps) => {
           rounded={'$full'}
           w="$32"
           h="$32"
-          borderColor="#46A2CD">
+          borderColor={borderTextColor ? borderTextColor : '#46A2CD'}>
           <TextBold
             text={`${count}+`}
-            color="#46A2CD"
+            color={borderTextColor ? borderTextColor : '#46A2CD'}
             fontSize={'$4xl'}
             mt={'$2'}
           />

@@ -81,7 +81,7 @@ const Signup = () => {
   const [childId, setChildId] = React.useState('Loading...');
   const [showError, setShowError] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
-
+  const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState('');
   const refError = React.useRef(null);
   const refSuccess = React.useRef(null);
@@ -93,12 +93,13 @@ const Signup = () => {
   const {
     control,
     handleSubmit,
-    formState: {errors, isLoading},
+    formState: {errors},
   } = useForm();
 
   console.log(errors);
 
   const onSubmit = (data: any) => {
+    setLoading(true);
     console.log(data);
     let id = '';
 
@@ -111,7 +112,7 @@ const Signup = () => {
     }
 
     axios
-      .post('http://192.168.0.107:8080/auth/signup', {
+      .post('http://192.168.27.131:8080/auth/signup', {
         fullName: data.fullname,
         email: data.email,
         password: data.password,
@@ -128,7 +129,7 @@ const Signup = () => {
           setChildId('Loading...');
           setShowSuccess(true);
         }
-
+        setLoading(false);
         navigation.navigate('Signin');
       })
       .catch(err => {
@@ -136,6 +137,7 @@ const Signup = () => {
           console.log('Error Response Data:', err.response.data);
           setError(err.response.data.message);
           setShowError(true);
+          setLoading(false);
         } else if (err.request) {
           console.log('Error Request:', err.request);
         } else {
@@ -321,11 +323,11 @@ const Signup = () => {
             rounded={'$2xl'}
             onPress={handleSubmit(onSubmit)}>
             <HStack>
-              {isLoading && <ButtonSpinner color="black" />}
+              {loading && <ButtonSpinner color="black" />}
               <TextSemibold
                 text="Sign Up"
                 fontSize={'$lg'}
-                ml={isLoading ? '$2' : '$0'}
+                ml={loading ? '$2' : '$0'}
               />
             </HStack>
           </Pressable>

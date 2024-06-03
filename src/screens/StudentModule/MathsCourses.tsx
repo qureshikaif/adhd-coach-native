@@ -95,7 +95,7 @@ const MathsCourses = () => {
               borderWidth={'$2'}
               marginRight={'$12'}>
               <TextSemibold
-                text="Basic Operations"
+                text="Operations"
                 fontSize={'$2xl'}
                 marginLeft={'$12'}
                 padding={'$1.5'}

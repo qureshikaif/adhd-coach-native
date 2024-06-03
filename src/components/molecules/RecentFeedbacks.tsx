@@ -1,34 +1,50 @@
-import {HStack, Image, View, VStack} from '@gluestack-ui/themed';
+// RecentFeedbacks.tsx
 import React from 'react';
-// import TextSemibold from '../atoms/Text/TextSemibold';
+import {HStack, Image, View, VStack} from '@gluestack-ui/themed';
 import TextRegular from '../atoms/Text/TextRegular';
 import TextSemibold from '../atoms/Text/TextSemibold';
+import {Feedback} from '../../screens/Admin/AdminMain';
 
 const StarFilled = require('../../assets/images/icons/star.png');
 
-const RecentFeedbacks = () => {
+interface RecentFeedbacksProps {
+  feedbacks: Feedback[];
+}
+
+const RecentFeedbacks: React.FC<RecentFeedbacksProps> = ({feedbacks}) => {
   return (
     <View>
       <TextSemibold text="Recent Feedbacks" fontSize={'$xl'} pb={'$2'} />
-      <VStack
-        bg="#D7E6ED"
-        w="$full"
-        h="$40"
-        borderColor="gray"
-        rounded={'$lg'}
-        hardShadow="4"
-        p="$4">
-        <TextRegular text="Kaif Qureshi" fontSize={'$xl'} />
-        <VStack alignItems="center" justifyContent="center">
-          <HStack alignItems="baseline" h="$4/6">
-            <Image source={StarFilled} w={'$8'} h={'$8'} alt="Star Icon" />
-            <Image source={StarFilled} w={'$8'} h={'$8'} alt="Star Icon" />
-            <Image source={StarFilled} w={'$8'} h={'$8'} alt="Star Icon" />
-            <Image source={StarFilled} w={'$8'} h={'$8'} alt="Star Icon" />
-            <Image source={StarFilled} w={'$8'} h={'$8'} alt="Star Icon" />
-          </HStack>
+      {feedbacks.map(feedback => (
+        <VStack
+          key={feedback.feedback_id}
+          bg="#D7E6ED"
+          w="$full"
+          h="$40"
+          borderColor="gray"
+          rounded={'$lg'}
+          hardShadow="4"
+          p="$4"
+          mb="$4">
+          <TextRegular
+            text={feedback.user_name || 'Anonymous'}
+            fontSize={'$xl'}
+          />
+          <VStack alignItems="center" justifyContent="center">
+            <HStack alignItems="baseline" h="$4/6">
+              {Array.from({length: parseInt(feedback.feedback)}, (_, index) => (
+                <Image
+                  key={index}
+                  source={StarFilled}
+                  w={'$8'}
+                  h={'$8'}
+                  alt="Star Icon"
+                />
+              ))}
+            </HStack>
+          </VStack>
         </VStack>
-      </VStack>
+      ))}
     </View>
   );
 };

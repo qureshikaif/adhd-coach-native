@@ -35,15 +35,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-         
-         
           <MainNavigator />
-          {/* <MainNavigator /> */}
-          {/* <MainNavigator /> */}
-          {/* <RockPaperScissor /> */}
-          <EnglishAlphabets/>
-          {/* <MathsCounting/> */}
-          {/* <MainNavigator /> */}
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>

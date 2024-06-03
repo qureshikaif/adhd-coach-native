@@ -36,7 +36,7 @@ const MathsBasicOpt = () => {
             borderWidth={'$1'}
             marginLeft={'$10'}>
             <Center>
-              <TextBold text="Basic Operations" fontSize={'$2xl'} />
+              <TextBold text="Operations" fontSize={'$2xl'} />
             </Center>
           </Box>
 

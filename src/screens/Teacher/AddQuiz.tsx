@@ -8,41 +8,155 @@ import {
   Button,
   VStack,
 } from '@gluestack-ui/themed';
-
+import {useForm, Controller} from 'react-hook-form';
 import TextBold from '../../components/atoms/Text/TextBold';
-
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import Error from '../../components/molecules/popup/Error';
+import {useStore} from '../../store';
+import axios from 'axios';
+import Success from '../../components/molecules/popup/Success';
 
 const BackgroundImage = require('../../assets/images/TeacherChat.png');
 
 interface QuizInputProps {
   label: string;
   placeholder: string;
+  control: any;
+  name: string;
 }
+
+const QuizInput: React.FC<QuizInputProps> = ({
+  label,
+  placeholder,
+  control,
+  name,
+}) => {
+  return (
+    <View mb={'$6'}>
+      <TextSemibold text={label} />
+      <Controller
+        control={control}
+        name={name}
+        render={({field: {onChange, onBlur, value}}) => (
+          <TextInput
+            style={{
+              borderWidth: 1,
+              borderColor: 'black',
+              padding: 10,
+              color: 'black',
+              borderRadius: 15,
+            }}
+            placeholder={placeholder}
+            placeholderTextColor="black"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+      />
+    </View>
+  );
+};
 
 const AddQuiz = () => {
   const height = useBottomTabBarHeight();
   const [showError, setShowError] = React.useState(false);
+  const [showSuccess, setShowSuccess] = React.useState(false);
+
   const refError = React.useRef(null);
+  const refSuccess = React.useRef(null);
+
+  const {control, handleSubmit, reset} = useForm();
+  const [questions, setQuestions] = React.useState([{id: 1}]);
+  const store = useStore();
+
+  const addQuestion = () => {
+    if (questions.length < 3) {
+      setQuestions([...questions, {id: questions.length + 1}]);
+    }
+  };
+
+  const onSubmit = async (data: any) => {
+    const formattedData = {
+      instructorId: store.user?.user.id_assigned, // Replace with actual instructor ID if needed
+      title: data.quizTitle,
+      questions: questions.map(q => ({
+        question: data[`question${q.id}`],
+        option1: data[`question${q.id}_option1`],
+        option2: data[`question${q.id}_option2`],
+        option3: data[`question${q.id}_option3`],
+        option4: data[`question${q.id}_option4`],
+        answer: data[`question${q.id}_correctAnswer`],
+      })),
+    };
+
+    try {
+      const response = await axios.post(
+        'http://192.168.27.131:8080/api/quizzes',
+        formattedData,
+      );
+      console.log(response.data);
+      setShowSuccess(true);
+    } catch (error) {
+      console.error('Error saving quiz:', error);
+      setShowError(true);
+    }
+  };
 
   return (
     <View h={'$full'}>
       <ImageBackground source={BackgroundImage} h={'$full'}>
         <StatusBarTeacher text="Add Quiz" />
         <ScrollView padding={'$4'}>
-          <QuizInput label="Question:" placeholder="Enter your question here" />
-          <QuizInput label="Option 1:" placeholder="Enter option text here" />
-          <QuizInput label="Option 2:" placeholder="Enter option text here" />
-          <QuizInput label="Option 3:" placeholder="Enter option text here" />
-          <QuizInput label="Option 4:" placeholder="Enter option text here" />
-
           <QuizInput
-            label="Correct Answer:"
-            placeholder="Enter correct answer here"
+            label="Quiz Title"
+            placeholder="Enter the quiz title"
+            control={control}
+            name="quizTitle"
           />
+          {questions.map(question => (
+            <React.Fragment key={question.id}>
+              <QuizInput
+                label={`Question ${question.id}:`}
+                placeholder="Enter your question here"
+                control={control}
+                name={`question${question.id}`}
+              />
+              <QuizInput
+                label="Option 1:"
+                placeholder="Enter option text here"
+                control={control}
+                name={`question${question.id}_option1`}
+              />
+              <QuizInput
+                label="Option 2:"
+                placeholder="Enter option text here"
+                control={control}
+                name={`question${question.id}_option2`}
+              />
+              <QuizInput
+                label="Option 3:"
+                placeholder="Enter option text here"
+                control={control}
+                name={`question${question.id}_option3`}
+              />
+              <QuizInput
+                label="Option 4:"
+                placeholder="Enter option text here"
+                control={control}
+                name={`question${question.id}_option4`}
+              />
+              <QuizInput
+                label="Correct Answer:"
+                placeholder="Enter correct answer here"
+                control={control}
+                name={`question${question.id}_correctAnswer`}
+              />
+            </React.Fragment>
+          ))}
+
           <Box height={'$6'} />
           <VStack space="2xl">
             <Button
@@ -53,11 +167,12 @@ const AddQuiz = () => {
               borderColor="black"
               bg={'#DEB5B5'}
               borderWidth={0}
-              borderRadius={'$lg'}>
+              borderRadius={'$lg'}
+              onPress={addQuestion}>
               <TextBold text="Add new Question" />
             </Button>
             <Button
-              onPress={() => setShowError(true)}
+              onPress={handleSubmit(onSubmit)}
               flex={1}
               android_ripple={{color: 'grey'}}
               hardShadow="3"
@@ -72,6 +187,7 @@ const AddQuiz = () => {
           <Box height={height} />
         </ScrollView>
       </ImageBackground>
+
       <Error
         bgColor="#F0CCCC"
         setShowModal={setShowError}
@@ -79,27 +195,13 @@ const AddQuiz = () => {
         ref={refError}
         text="Error saving quiz. Please try again."
       />
-    </View>
-  );
-};
-
-const QuizInput: React.FC<QuizInputProps> = ({label, placeholder}) => {
-  return (
-    <View mb={'$6'}>
-      <TextSemibold text={label} />
-
-      <TextInput
-        style={{
-          borderWidth: 1,
-          borderColor: 'black',
-          padding: 10,
-          color: 'black',
-          borderRadius: 15,
-        }}
-        placeholder={placeholder}
-        placeholderTextColor="black">
-        <Text style={{fontWeight: 'bold'}}>{placeholder}</Text>
-      </TextInput>
+      <Success
+        bgColor="#F0CCCC"
+        setShowModal={setShowSuccess}
+        showModal={showSuccess}
+        ref={refSuccess}
+        text="Quiz added successfully."
+      />
     </View>
   );
 };

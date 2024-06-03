@@ -29,7 +29,7 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
 
   const onSubmit = () => {
     axios
-      .post('http://192.168.0.107:8080/admin/doctor', {
+      .post('http://192.168.27.131:8080/admin/doctor', {
         doctorId,
       })
       .then(res => {

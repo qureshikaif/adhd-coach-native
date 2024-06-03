@@ -33,7 +33,7 @@ type NavigationType = {
 };
 
 const GrandAssessment = () => {
-  const [timeLeft, setTimeLeft] = React.useState(10);
+  const [timeLeft, setTimeLeft] = React.useState(900);
   const {grandAssessmentAnswers, setGrandAssessmentAnswer} = useStore();
   const [showError, setShowError] = React.useState(false);
   const refError = React.useRef(null);

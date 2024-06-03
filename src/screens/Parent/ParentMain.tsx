@@ -19,6 +19,8 @@ import axios from 'axios';
 import {Course} from '../../types/Course';
 import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
 import {useStore} from '../../store';
+import Error from '../../components/molecules/popup/Error';
+import Success from '../../components/molecules/popup/Success';
 
 const BackgroundImage = require('../../assets/images/parent-main-bg.png');
 
@@ -26,31 +28,41 @@ const ParentMain = () => {
   const store = useStore();
   const [feedbackRating, setFeedbackRating] = useState<string>('');
   const height = useBottomTabBarHeight();
+  const [error, setError] = React.useState(false);
+  const refError = React.useRef(null);
+  const refSuccess = React.useRef(null);
+  const [success, setSuccess] = React.useState(false);
 
-  const {data: courses} = useQuery({
+  const {data: courses, isLoading: isLoadingCourses} = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/admin/get-courses',
+        'http://192.168.27.131:8080/admin/get-courses',
       );
       return data;
     },
   });
 
-  const {data: prescriptions, isLoading} = useQuery({
+  const {
+    data: prescriptions,
+    isLoading: isLoadingPrescription,
+    isError,
+  } = useQuery({
     queryKey: ['prescriptions'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/parent/get-prescriptions/${store.user?.user.child_id}`,
+        `http://192.168.27.131:8080/parent/get-prescriptions/${store.user?.user.child_id}`,
       );
       return data;
     },
   });
 
-  console.log(prescriptions);
-
-  if (isLoading) {
+  if (isLoadingCourses || isLoadingPrescription) {
     return <Loading bgImage={BackgroundImage} />;
+  }
+
+  if (isError) {
+    return <TextSemibold text="Error fetching data" />;
   }
 
   const handleFeedbackChange = (text: string) => {
@@ -58,6 +70,20 @@ const ParentMain = () => {
     if (!isNaN(rating) && rating >= 0 && rating <= 5) {
       setFeedbackRating(text);
     }
+  };
+
+  const handleSubmitFeedback = async () => {
+    await axios
+      .post('http://192.168.27.131:8080/teacher/add-feedback', {
+        feedback: feedbackRating,
+        userId: store.user?.user.id,
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const prescriptionNames = [
@@ -165,6 +191,7 @@ const ParentMain = () => {
             <Box height={'$6'} />
             <Box flex={1} justifyContent="center" alignItems="center">
               <Button
+                onPress={handleSubmitFeedback}
                 android_ripple={{color: 'grey'}}
                 hardShadow="3"
                 width={120}
@@ -179,6 +206,18 @@ const ParentMain = () => {
           </ScrollView>
         </ScrollView>
       </ImageBackground>
+      <Error
+        showModal={error}
+        setShowModal={setError}
+        ref={refError}
+        text="Error occured while submitting feedback"
+      />
+      <Success
+        showModal={success}
+        setShowModal={setSuccess}
+        ref={refSuccess}
+        text="Feedback added successfully"
+      />
     </View>
   );
 };

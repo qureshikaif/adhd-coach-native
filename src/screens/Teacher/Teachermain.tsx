@@ -16,6 +16,7 @@ import Loading from '../Loading';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import TotalStudentsEnrolled from '../../components/molecules/TotalStudentsEnrolled';
 
 const BackgroundImage = require('../../assets/images/teachercourse.png');
 
@@ -28,11 +29,29 @@ const TeacherMain = () => {
   const height = useBottomTabBarHeight();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
 
-  const {data: courses, isLoading} = useQuery({
+  const {
+    data: courses,
+    isLoading,
+    isError: isErrorCourses,
+  } = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/teacher/get-courses/${store.user?.user.id_assigned}`,
+        `http://192.168.27.131:8080/teacher/get-courses/${store.user?.user.id_assigned}`,
+      );
+      return data;
+    },
+  });
+
+  const {
+    data: count,
+    isLoading: isLoadingCount,
+    isError: isErrorStudents,
+  } = useQuery({
+    queryKey: ['totalStudentsEnrolled'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.27.131:8080/student/get-number',
       );
       return data;
     },
@@ -40,8 +59,12 @@ const TeacherMain = () => {
 
   console.log(courses);
 
-  if (isLoading) {
+  if (isLoading || isLoadingCount) {
     return <Loading bgImage={BackgroundImage} />;
+  }
+
+  if (isErrorStudents || isErrorCourses) {
+    return <TextSemibold text="Error fetching data" />;
   }
 
   const enrolledStudents = [
@@ -80,10 +103,14 @@ const TeacherMain = () => {
           </VStack>
 
           <Box height={'$8'} />
-          <TextSemibold text="Enrolled Students" fontSize={'$2xl'} />
           <Box height={'$2'} />
+          <TotalStudentsEnrolled
+            bgColor="#F0CCCC"
+            borderTextColor="$coolGray800"
+            count={count}
+          />
 
-          <VStack space={'md'}>
+          {/* <VStack space={'md'}>
             {enrolledStudents.map((student, index) => (
               <Box
                 key={index}
@@ -95,7 +122,7 @@ const TeacherMain = () => {
                 <TextSemibold text={student} fontSize={'$md'} />
               </Box>
             ))}
-          </VStack>
+          </VStack> */}
           <Box height={height * 2} />
         </ScrollView>
       </ImageBackground>

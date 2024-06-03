@@ -22,6 +22,7 @@ import {
   SelectInput,
   SelectItem,
   SelectPortal,
+  ButtonSpinner,
 } from '@gluestack-ui/themed';
 import BackButton from '../../components/atoms/Buttons/BackButton';
 import TextBold from '../../components/atoms/Text/TextBold';
@@ -61,6 +62,8 @@ type NavigationType = {
 const Signin = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [error, setError] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+
   const ref = React.useRef(null);
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
@@ -73,22 +76,25 @@ const Signin = () => {
   const handleRole = (role: string) => store.setRole(role);
 
   const onSubmit = async (data: any) => {
+    setLoading(true);
     console.log(data);
 
     await axios
-      .post('http://192.168.0.107:8080/auth/signin', {
+      .post('http://192.168.27.131:8080/auth/signin', {
         email: data.email,
         password: data.password,
         role: data.role,
       })
       .then(res => {
         console.log(res.data);
+        setLoading(false);
         store.setUser(res.data);
         store.setAuthenticated(true);
       })
       .catch(err => {
         if (err.response) {
           console.log('Error Response Data:', err.response.data);
+          setLoading(false);
           setError(err.response.data.message);
           setShowModal(true);
         } else if (err.request) {
@@ -248,12 +254,19 @@ const Signin = () => {
           </VStack>
           <Box height={'$10'} />
           <Pressable
-            onPress={handleSubmit(onSubmit)}
             bgColor="#DC9F72"
             paddingHorizontal={'$8'}
             paddingVertical={'$2'}
-            rounded={'$2xl'}>
-            <TextSemibold text="Log In" fontSize={'$lg'} />
+            rounded={'$2xl'}
+            onPress={handleSubmit(onSubmit)}>
+            <HStack>
+              {loading && <ButtonSpinner color="black" />}
+              <TextSemibold
+                text="Log In"
+                fontSize={'$lg'}
+                ml={loading ? '$2' : '$0'}
+              />
+            </HStack>
           </Pressable>
         </Center>
       </ImageBackground>

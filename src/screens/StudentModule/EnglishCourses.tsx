@@ -16,6 +16,7 @@ const ShapesImage = require('../../assets/images/kids-shapes.png');
 const BackgroundImage = require('../../assets/images/English-course-bg.png');
 
 type NavigationType = {
+  EnglishAlphabets: undefined;
   ShapesEnglish: undefined;
 };
 
@@ -31,7 +32,8 @@ const EnglishCourses = () => {
           marginRight={'$16'}
           marginLeft={'-$16'}>
           <Box height={'$10'} />
-          <Box
+          <Pressable
+            onPress={() => navigation.navigate('EnglishAlphabets')}
             bgColor="#C5977A"
             height={70}
             padding={'$1'}
@@ -44,7 +46,7 @@ const EnglishCourses = () => {
               marginLeft={'$10'}
               padding={'$1.5'}
             />
-          </Box>
+          </Pressable>
           <HStack paddingLeft={100}>
             <Image source={AbcImage} alt="abc kid" w={'$full'} h={'$40'} />
           </HStack>

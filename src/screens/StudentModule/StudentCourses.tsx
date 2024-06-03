@@ -27,11 +27,15 @@ type NavigationType = {
 const StudentCourses = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
 
-  const {data: courses, isLoading} = useQuery({
+  const {
+    data: courses,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/admin/get-courses',
+        'http://192.168.27.131:8080/admin/get-courses',
       );
       return data;
     },
@@ -39,6 +43,10 @@ const StudentCourses = () => {
 
   if (isLoading) {
     return <Loading bgImage={BackgroundImage} />;
+  }
+
+  if (isError) {
+    return <TextSemibold text="An error occured while fetching data" />;
   }
   return (
     <View height={'$full'}>

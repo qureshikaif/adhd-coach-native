@@ -19,21 +19,39 @@ import Loading from '../Loading';
 
 const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
+export interface Feedback {
+  feedback_id: number;
+  feedback: string;
+  role: string;
+  user_name: string | null;
+}
+
 const AdminMain = () => {
   const height = useBottomTabBarHeight();
-  const {data: count, isLoading} = useQuery({
+  const {data: count, isLoading: isLoadingCount} = useQuery({
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/student/get-number',
+        'http://192.168.27.131:8080/student/get-number',
       );
       return data;
     },
   });
 
-  if (isLoading) {
+  const {data: reviews, isLoading: isLoadingReviews} = useQuery<Feedback[]>({
+    queryKey: ['reviews'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.27.131:8080/admin/all-feedbacks',
+      );
+      return data;
+    },
+  });
+
+  if (isLoadingCount || isLoadingReviews) {
     return <Loading bgImage={BackgroundImage} />;
   }
+  console.log(reviews);
 
   return (
     <View height={'$full'}>
@@ -45,7 +63,7 @@ const AdminMain = () => {
             <TextBold text="Dashboard" fontSize={'$2xl'} />
             <AppStatistics />
             <TotalStudentsEnrolled count={count} />
-            <RecentFeedbacks />
+            <RecentFeedbacks feedbacks={reviews as Feedback[]} />
             <CourseStatistics />
           </VStack>
           <Box height={height * 2} />
