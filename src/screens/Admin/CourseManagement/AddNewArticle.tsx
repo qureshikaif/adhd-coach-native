@@ -3,6 +3,7 @@ import {Controller, useForm} from 'react-hook-form';
 import {
   Box,
   Button,
+  ButtonSpinner,
   HStack,
   ImageBackground,
   Input,
@@ -53,6 +54,7 @@ const fieldstextarea = [
 const Add = () => {
   const [showModal, setShowModal] = React.useState(false);
   const ref = React.useRef(null);
+  const [loading, setLoading] = React.useState(false);
 
   const {
     control,
@@ -61,6 +63,7 @@ const Add = () => {
   } = useForm();
 
   const onSubmit = (data: any) => {
+    setLoading(true);
     console.log(data);
     axios
       .post('http://192.168.0.107:8080/admin/article', {
@@ -72,9 +75,13 @@ const Add = () => {
       })
       .then(res => {
         console.log(res.data.message);
+        setLoading(false);
         setShowModal(true);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setLoading(false);
+      });
     setShowModal(true);
   };
 
@@ -168,7 +175,14 @@ const Add = () => {
               bgColor="#648DA0"
               rounded={'$lg'}
               h={'$12'}>
-              <TextRegular text="Save" color="white" />
+              <HStack>
+                {loading && <ButtonSpinner color="white" />}
+                <TextRegular
+                  text="Save"
+                  color="white"
+                  ml={loading ? '$2' : '$0'}
+                />
+              </HStack>
             </Button>
           </HStack>
           <Box height={useBottomTabBarHeight()} />
