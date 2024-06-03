@@ -23,25 +23,6 @@ import {handleLogout} from '../../helpers/handleLogout';
 const BackgroundImage = require('../../assets/images/admin-bg-profile.png');
 const Avatar = require('../../assets/images/user-image.png');
 
-const fields = [
-  {
-    title: 'Email',
-    placeholder: 'admin@adhdcoach.com',
-    icon: '',
-  },
-  {
-    title: 'Username',
-    placeholder: 'admin',
-    icon: '',
-  },
-
-  {
-    title: 'Password',
-    placeholder: 'admin123',
-    icon: '',
-  },
-];
-
 type NavigationType = {
   AppAnalytics: undefined;
 };
@@ -49,6 +30,30 @@ type NavigationType = {
 const AdminProfile = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
+  const height = useBottomTabBarHeight();
+
+  if (!store) {
+    return null;
+  }
+
+  const fields = [
+    {
+      title: 'Email',
+      placeholder: 'admin@adhdcoach.com',
+      value: store.user?.user.email,
+    },
+    {
+      title: 'Username',
+      placeholder: 'admin',
+      value: store.user?.user.full_name,
+    },
+
+    {
+      title: 'Password',
+      placeholder: 'admin123',
+      value: store.user?.user.password,
+    },
+  ];
 
   return (
     <View height={'$full'}>
@@ -114,7 +119,7 @@ const AdminProfile = () => {
             borderRadius={'$lg'}>
             <TextRegular text="Sign Out" color="white" />
           </Button>
-          <Box height={useBottomTabBarHeight()} />
+          <Box height={height} />
         </ScrollView>
       </ImageBackground>
     </View>
