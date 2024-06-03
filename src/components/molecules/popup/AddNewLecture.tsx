@@ -36,7 +36,7 @@ const AddNewLecture = ({showModal, setShowModal}: ModalProps) => {
     axios
       .post('http://192.168.0.107:8080/admin/doctor', {
         lectureLink: lecture,
-        instructorId: store.user.user.id_assigned,
+        instructorId: store.user?.user.id_assigned,
       })
       .then(res => {
         console.log(res.data.message);

@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput, Text} from 'react-native';
+import {TextInput} from 'react-native';
 import {
   View,
   ImageBackground,
@@ -69,7 +69,7 @@ const AddQuiz = () => {
   const refError = React.useRef(null);
   const refSuccess = React.useRef(null);
 
-  const {control, handleSubmit, reset} = useForm();
+  const {control, handleSubmit} = useForm();
   const [questions, setQuestions] = React.useState([{id: 1}]);
   const store = useStore();
 
