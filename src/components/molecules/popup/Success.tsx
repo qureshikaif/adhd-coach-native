@@ -5,18 +5,14 @@ import {
   ModalBody,
   ModalContent,
   ModalHeader,
-  Button,
   Center,
   Image,
-  HStack,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
 import TextSemibold from '../../atoms/Text/TextSemibold';
-import TextRegular from '../../atoms/Text/TextRegular';
 
 const SuccessIcon = require('../../../assets/images/icons/success.png');
-// const CloseIcon = require('../../../assets/images/icons/close-white.png');
 
 interface SuccessProps extends ModalProps {
   text?: string;

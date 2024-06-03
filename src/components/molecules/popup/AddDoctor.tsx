@@ -12,6 +12,7 @@ import {
   HStack,
   Input,
   ButtonSpinner,
+  Box,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
@@ -92,15 +93,17 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
                     placeholderTextColor={'black'}
                   />
                 </Input>
+                <Box height={'$4'} />
                 <TextBold text="Doctor Email" fontSize={'$xl'} color="white" />
                 <Input width={'$full'} bgColor="#D7E6ED">
                   <InputField
+                    autoCapitalize="none"
                     onChange={e => handleEmail(e.nativeEvent.text)}
                     display="flex"
                     alignContent="center"
                     type="text"
                     fontFamily="Poppins-Regular"
-                    placeholder={'9019254'}
+                    placeholder={'doctor@adhd.com'}
                     fontSize={'$xs'}
                     placeholderTextColor={'black'}
                   />
@@ -125,8 +128,12 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
                 bgColor="#648DA0"
                 rounded={'$lg'}>
                 <HStack>
-                  {loading && <ButtonSpinner color="black" />}
-                  <TextRegular text="Confirm" color="white" />
+                  {loading && <ButtonSpinner color="white" />}
+                  <TextRegular
+                    text="Confirm"
+                    color="white"
+                    ml={loading ? '$2' : '$0'}
+                  />
                 </HStack>
               </Button>
             </HStack>

@@ -126,7 +126,11 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
                 rounded={'$lg'}>
                 <HStack>
                   {loading && <ButtonSpinner color="black" />}
-                  <TextRegular text="Confirm" color="white" />
+                  <TextRegular
+                    text="Confirm"
+                    color="white"
+                    ml={loading ? '$2' : '$0'}
+                  />
                 </HStack>
               </Button>
             </HStack>
