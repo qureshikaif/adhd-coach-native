@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 const DoctorProfileManagement = () => {
   return (
     <Stack.Navigator
-      initialRouteName="DoctorProfileMain"
+      initialRouteName="DoctorProfileSettings"
       screenOptions={{
         headerShown: false,
         statusBarColor: '#DEB5B5',

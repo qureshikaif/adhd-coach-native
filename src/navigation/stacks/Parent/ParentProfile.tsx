@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 const ParentProfile = () => {
   return (
     <Stack.Navigator
-      initialRouteName="ParentPersonalProfile"
+      initialRouteName="ParentProfileSettings"
       screenOptions={{
         headerShown: false,
         statusBarColor: '#DBC9E1',

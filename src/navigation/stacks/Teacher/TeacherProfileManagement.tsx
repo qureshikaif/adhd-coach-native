@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 const TeacherProfileManagement = () => {
   return (
     <Stack.Navigator
-      initialRouteName="TeacherProfile"
+      initialRouteName="TeacherProfileSettings"
       screenOptions={{
         headerShown: false,
         statusBarColor: '#F0CCCC',

@@ -61,8 +61,8 @@ const TeacherProfileSetting = () => {
             <Box
               rounded={'$full'}
               overflow="hidden"
-              width={100}
-              height={100}
+              width={120}
+              height={120}
               borderWidth={2}
               borderColor="gray.200">
               <Image
@@ -72,17 +72,17 @@ const TeacherProfileSetting = () => {
                 h={'$full'}
               />
             </Box>
-            <TextSemibold
+            {/* <TextSemibold
               mt={4}
               text={capitalizeFirstLetter(
                 store.user ? store.user.user.full_name : 'John Doe',
               )}
-            />
+            /> */}
           </Center>
           <Box height={'$8'} />
           {fields.map((field, index) => (
             <VStack key={index}>
-              <TextSemibold text={field.title} fontSize={'$2xl'} />
+              <TextSemibold text={field.title} fontSize={'$xl'} />
               <Input
                 bgColor="#BEADC3"
                 height={'$12'}
@@ -98,10 +98,10 @@ const TeacherProfileSetting = () => {
                   placeholderTextColor={'black'}
                 />
               </Input>
-              <Box height={'$2'} />
+              <Box height={'$4'} />
             </VStack>
           ))}
-          <Box height={'$10'} />
+          <Box height={'$4'} />
           <HStack space="lg">
             <Button
               flex={1}

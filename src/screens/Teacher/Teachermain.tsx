@@ -51,13 +51,11 @@ const TeacherMain = () => {
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/student/get-number',
+        `http://192.168.0.107:8080/teacher/get-count-students/${store.user?.user.id_assigned}`,
       );
-      return data;
+      return data.count;
     },
   });
-
-  console.log(courses);
 
   if (isLoadingCourses || isLoadingCount) {
     return <Loading bgImage={BackgroundImage} />;
