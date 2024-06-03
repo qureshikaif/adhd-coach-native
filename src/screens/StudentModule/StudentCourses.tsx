@@ -100,7 +100,7 @@ const StudentCourses = () => {
               borderWidth={'$2'}
               marginRight={'$16'}>
               <TextSemibold
-                text={enrolledCourse.title}
+                text={enrolledCourse.course_title}
                 fontSize={'$xl'}
                 marginLeft={'$12'}
               />

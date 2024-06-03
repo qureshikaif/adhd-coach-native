@@ -31,7 +31,7 @@ const TeacherMain = () => {
 
   const {
     data: courses,
-    isLoading,
+    isLoading: isLoadingCourses,
     isError: isErrorCourses,
   } = useQuery({
     queryKey: ['courses'],
@@ -59,21 +59,21 @@ const TeacherMain = () => {
 
   console.log(courses);
 
-  if (isLoading || isLoadingCount) {
+  if (isLoadingCourses || isLoadingCount) {
     return <Loading bgImage={BackgroundImage} />;
   }
 
   if (isErrorStudents || isErrorCourses) {
-    return <TextSemibold text="Error fetching data" />;
+    return (
+      <ImageBackground
+        source={BackgroundImage}
+        h="$full"
+        alignItems="center"
+        justifyContent="center">
+        <TextSemibold text="An error occured while fetching data" />
+      </ImageBackground>
+    );
   }
-
-  const enrolledStudents = [
-    'Kaif Qureshi',
-    'Aleena Ahmed',
-    'Sana Zehra',
-    'Ahmed Siddiqui',
-    'Abubakar',
-  ];
 
   return (
     <View height={'$full'}>

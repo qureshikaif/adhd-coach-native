@@ -18,7 +18,8 @@ import {useStore} from '../../store';
 import axios from 'axios';
 import Success from '../../components/molecules/popup/Success';
 
-const BackgroundImage = require('../../assets/images/TeacherChat.png');
+// const BackgroundImage = require('../../assets/images/TeacherChat.png');
+const BackgroundImage = require('../../assets/images/teachercourse.png');
 
 interface QuizInputProps {
   label: string;
