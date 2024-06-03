@@ -15,6 +15,7 @@ import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {useStore} from '../../store';
 
 const TipOfTheDay = require('../../assets/images/tip-home.png');
 const BackgroundImage = require('../../assets/images/stud-main-bg.png');
@@ -24,6 +25,7 @@ type NavigationType = {
 };
 
 const StudentMain = () => {
+  const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
@@ -60,16 +62,17 @@ const StudentMain = () => {
           <Box height={'$10'} />
           <MoodBoard />
           <Box height={'$10'} />
-
-          <Pressable
-            onPress={() => navigation.navigate('GrandAssessment')}
-            bgColor="#D9981A"
-            borderWidth={'$2'}
-            paddingVertical={'$3'}
-            rounded={'$2xl'}
-            alignItems="center">
-            <TextSemibold text="Grand Assessment" fontSize={'$lg'} />
-          </Pressable>
+          {store.user?.user.compulsory_courses_completed && (
+            <Pressable
+              onPress={() => navigation.navigate('GrandAssessment')}
+              bgColor="#D9981A"
+              borderWidth={'$2'}
+              paddingVertical={'$3'}
+              rounded={'$2xl'}
+              alignItems="center">
+              <TextSemibold text="Grand Assessment" fontSize={'$lg'} />
+            </Pressable>
+          )}
           <Box height={useBottomTabBarHeight()} />
         </ScrollView>
       </ImageBackground>

@@ -37,7 +37,7 @@ const TeacherMain = () => {
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.27.131:8080/teacher/get-courses/${store.user?.user.id_assigned}`,
+        `http://192.168.0.107:8080/teacher/get-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -51,7 +51,7 @@ const TeacherMain = () => {
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.131:8080/student/get-number',
+        'http://192.168.0.107:8080/student/get-number',
       );
       return data;
     },

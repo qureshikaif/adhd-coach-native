@@ -37,7 +37,7 @@ const ParentMain = () => {
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.131:8080/admin/get-courses',
+        'http://192.168.0.107:8080/admin/get-courses',
       );
       return data;
     },
@@ -51,7 +51,7 @@ const ParentMain = () => {
     queryKey: ['prescriptions'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.27.131:8080/parent/get-prescriptions/${store.user?.user.child_id}`,
+        `http://192.168.0.107:8080/parent/get-prescriptions/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -74,7 +74,7 @@ const ParentMain = () => {
 
   const handleSubmitFeedback = async () => {
     await axios
-      .post('http://192.168.27.131:8080/teacher/add-feedback', {
+      .post('http://192.168.0.107:8080/teacher/add-feedback', {
         feedback: feedbackRating,
         userId: store.user?.user.id,
       })

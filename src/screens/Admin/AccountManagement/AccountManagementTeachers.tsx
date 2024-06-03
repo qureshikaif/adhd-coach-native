@@ -19,7 +19,7 @@ const AccountManagementTeachers = () => {
     queryKey: ['teachers'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.131:8080/teacher/get-teachers',
+        'http://192.168.0.107:8080/teacher/get-teachers',
       );
       return data;
     },

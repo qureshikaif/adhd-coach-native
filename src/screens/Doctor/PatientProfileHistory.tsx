@@ -28,7 +28,7 @@ const PatientProfileHistory = () => {
     queryKey: ['patients'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.131:8080/student/get-students',
+        'http://192.168.0.107:8080/student/get-students',
       );
       return data;
     },

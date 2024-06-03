@@ -112,7 +112,7 @@ const Signup = () => {
     }
 
     axios
-      .post('http://192.168.27.131:8080/auth/signup', {
+      .post('http://192.168.0.107:8080/auth/signup', {
         fullName: data.fullname,
         email: data.email,
         password: data.password,
@@ -349,7 +349,7 @@ const Signup = () => {
       <Success
         bgColor="#DC9F72"
         text={`Account created successfully${
-          childId !== 'Loading...' ? `. Your child ID is ${childId}` : ''
+          childId !== 'Loading...' ? `. Your Child ID is ${childId}` : ''
         }`}
         showModal={showSuccess}
         setShowModal={setShowSuccess}

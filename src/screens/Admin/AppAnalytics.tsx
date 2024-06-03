@@ -21,7 +21,7 @@ const AppAnalytics = () => {
     queryKey: ['studentCount'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.131:8080/student/get-number',
+        'http://192.168.0.107:8080/student/get-number',
       );
       return data;
     },
@@ -30,7 +30,7 @@ const AppAnalytics = () => {
     queryKey: ['teacherCount'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.131:8080/teacher/get-number',
+        'http://192.168.0.107:8080/teacher/get-number',
       );
       return data;
     },

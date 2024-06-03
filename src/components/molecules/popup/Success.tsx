@@ -63,7 +63,7 @@ const Success = ({
               <TextSemibold
                 text={text ? text : 'Article added successfully'}
                 color="white"
-                fontSize="$2xl"
+                fontSize="$md"
                 textAlign="center"
               />
             </Center>

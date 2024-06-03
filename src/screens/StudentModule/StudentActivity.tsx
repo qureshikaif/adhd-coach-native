@@ -96,24 +96,7 @@ const StudentActivity = () => {
             padding={'$1.5'}
           />
         </Pressable>
-        <Box height={'$10'} />
         {/* Make A Face */}
-        <Box
-          bgColor="#FFA169"
-          height={60}
-          w={'$3/4'}
-          padding={'$1'}
-          borderRadius={'$3xl'}
-          borderWidth={'$2'}
-          marginLeft={'-$16'}>
-          <TextSemibold
-            textAlign="center"
-            text="Make A Face"
-            fontSize={'$xl'}
-            marginLeft={'$12'}
-            padding={'$1.5'}
-          />
-        </Box>
 
         <Box height={'$10'} />
         {/* Rock Paper Scissors */}

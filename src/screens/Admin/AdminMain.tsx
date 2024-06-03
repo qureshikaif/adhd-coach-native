@@ -32,7 +32,7 @@ const AdminMain = () => {
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.131:8080/student/get-number',
+        'http://192.168.0.107:8080/student/get-number',
       );
       return data;
     },
@@ -42,7 +42,7 @@ const AdminMain = () => {
     queryKey: ['reviews'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.131:8080/admin/all-feedbacks',
+        'http://192.168.0.107:8080/admin/all-feedbacks',
       );
       return data;
     },

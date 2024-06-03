@@ -35,7 +35,7 @@ const PatientPrescription = () => {
     queryKey: ['patients'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.131:8080/student/get-students',
+        'http://192.168.0.107:8080/student/get-students',
       );
       return data;
     },
@@ -47,7 +47,7 @@ const PatientPrescription = () => {
 
   const onSubmit = async () => {
     await axios
-      .post('http://192.168.27.131:8080/doctor/prescription', {
+      .post('http://192.168.0.107:8080/doctor/prescription', {
         prescription,
         patientId: selectedPatient,
         doctorId: store.user?.user.id_assigned,

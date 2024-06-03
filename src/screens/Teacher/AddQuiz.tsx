@@ -94,7 +94,7 @@ const AddQuiz = () => {
 
     try {
       const response = await axios.post(
-        'http://192.168.27.131:8080/api/quizzes',
+        'http://192.168.0.107:8080/api/quizzes',
         formattedData,
       );
       console.log(response.data);
