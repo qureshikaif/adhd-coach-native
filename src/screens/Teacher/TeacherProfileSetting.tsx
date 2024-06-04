@@ -42,7 +42,7 @@ const TeacherProfileSetting = () => {
     {
       title: 'Username',
       placeholder: 'sanaD11',
-      value: store.user.user.full_name,
+      value: capitalizeFirstLetter(store.user?.user.full_name),
     },
 
     {

@@ -22,7 +22,7 @@ const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
 // const EnglishImage = require('../../assets/images/Stud-course-bg.png');
 
 type NavigationType = {
-  StudentCoursesLectures: undefined;
+  StudentCoursesLectures: {course: any};
 };
 
 const StudentCourses = () => {
@@ -55,6 +55,9 @@ const StudentCourses = () => {
       return data;
     },
   });
+
+  console.log(enrolledCourses);
+  console.log(JSON.stringify(courses, null, 2));
 
   if (isLoadingCourses || isLoadingEnrolled) {
     return <Loading bgImage={BackgroundImage} />;
@@ -90,7 +93,11 @@ const StudentCourses = () => {
             <Pressable
               key={index}
               flex={1}
-              onPress={() => navigation.navigate('StudentCoursesLectures')}>
+              onPress={() =>
+                navigation.navigate('StudentCoursesLectures', {
+                  course: enrolledCourse,
+                })
+              }>
               <HStack
                 bgColor="#FFA360"
                 height={60}
@@ -120,7 +127,9 @@ const StudentCourses = () => {
           <VStack key={index} px={'$4'}>
             <Pressable
               flex={1}
-              onPress={() => navigation.navigate('StudentCoursesLectures')}>
+              onPress={() =>
+                navigation.navigate('StudentCoursesLectures', {course: course})
+              }>
               <HStack
                 bgColor="#FFA360"
                 height={60}
@@ -133,9 +142,7 @@ const StudentCourses = () => {
               </HStack>
               <Box height={'$2'} />
             </Pressable>
-            <Pressable
-              flex={1}
-              onPress={() => navigation.navigate('StudentCoursesLectures')}>
+            <Pressable flex={1}>
               <HStack
                 bgColor="#FF9990"
                 height={60}

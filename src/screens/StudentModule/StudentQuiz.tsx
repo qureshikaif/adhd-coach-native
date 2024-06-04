@@ -3,7 +3,6 @@ import {
   ImageBackground,
   ScrollView,
   Box,
-  HStack,
   VStack,
   Pressable,
 } from '@gluestack-ui/themed';

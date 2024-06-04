@@ -4,61 +4,115 @@ import {
   ScrollView,
   Box,
   HStack,
+  Pressable,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
+import {RouteProp} from '@react-navigation/native';
+import TextRegular from '../../components/atoms/Text/TextRegular';
 
 const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
 
-/* Change images path */
-const StudentCoursesLectures = () => {
+type RouteType = {
+  StudentCoursesLectures: {course: any};
+};
+
+const StudentCoursesLectures = ({
+  route,
+}: {
+  route: RouteProp<RouteType, 'StudentCoursesLectures'>;
+}) => {
+  const {course} = route.params;
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h="$full">
         <Box />
         <StatusBarStudent
-          text="Course Name"
+          text={
+            course.course_title
+              ? course.course_title
+              : course.title
+              ? course.title
+              : 'Course'
+          }
           bgColor="#FFA360"
           textColor="black"
         />
-        <ScrollView
-          paddingHorizontal={'$10'}
-          marginRight={'$16'}
-          marginLeft={'-$16'}>
+        <ScrollView paddingHorizontal={'$7'}>
           <Box height={'$10'} />
+          <TextSemibold
+            w="$full"
+            textAlign="center"
+            fontSize={'$2xl'}
+            text={`Course created by ${
+              course.teacher_name ? course.teacher_name : 'Admin'
+            }`}
+          />
           <Box height={'$10'} />
-
-          <HStack
-            bgColor="#FFA360"
-            height={60}
-            alignItems="center"
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$2'}
-            marginRight={'$16'}>
-            <TextSemibold
-              text="Lecture 1"
-              fontSize={'$2xl'}
-              marginLeft={'$12'}
+          {course.lectures && (
+            <TextRegular
+              text="Lectures"
+              w="$full"
+              textAlign="center"
+              fontSize={'$xl'}
             />
-          </HStack>
+          )}
+          <Box height={'$5'} />
+          {course.lectures.map((quiz: any, index: number) => (
+            <Pressable key={index}>
+              <HStack
+                bgColor="#FFA360"
+                height={60}
+                alignItems="center"
+                padding={'$1'}
+                borderRadius={'$3xl'}
+                borderWidth={'$2'}>
+                <TextSemibold
+                  text={quiz.lecture_link}
+                  textAlign="center"
+                  w="$full"
+                />
+              </HStack>
+              <Box height={'$4'} />
+            </Pressable>
+          ))}
+          {course.quizzes.length > 0 && (
+            <TextRegular
+              text="Quiz"
+              w="$full"
+              textAlign="center"
+              fontSize={'$xl'}
+            />
+          )}
+          <Box height={'$5'} />
+
+          {course.quizzes.map((quiz: any, index: number) => (
+            <Pressable key={index}>
+              <HStack
+                bgColor="#FFA360"
+                height={60}
+                alignItems="center"
+                padding={'$1'}
+                borderRadius={'$3xl'}
+                borderWidth={'$2'}>
+                <TextSemibold
+                  text={
+                    quiz.title
+                      ? quiz.title
+                      : quiz.quiz_title
+                      ? quiz.quiz_title
+                      : 'No Quiz Found'
+                  }
+                  textAlign="center"
+                  w="$full"
+                />
+              </HStack>
+              <Box height={'$4'} />
+            </Pressable>
+          ))}
+
           <Box height={'$16'} />
-
-          <HStack
-            alignItems="center"
-            bgColor="#FFA360"
-            height={60}
-            padding={'$1'}
-            borderRadius={'$3xl'}
-            borderWidth={'$2'}
-            marginRight={'$16'}>
-            <TextSemibold
-              text="Lecture 2"
-              fontSize={'$2xl'}
-              marginLeft={'$12'}
-            />
-          </HStack>
         </ScrollView>
       </ImageBackground>
     </View>

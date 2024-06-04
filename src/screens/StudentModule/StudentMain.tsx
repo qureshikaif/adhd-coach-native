@@ -26,7 +26,26 @@ type NavigationType = {
 
 const StudentMain = () => {
   const store = useStore();
+  const [currentTip, setCurrentTip] = React.useState('');
   const navigation = useNavigation<NavigationProp<NavigationType>>();
+
+  const tips = [
+    'Eating Bananas is a natural cure to reduce the effects of stress and anxiety.',
+    'Drinking water first thing in the morning helps kick start your metabolism.',
+    'Taking short breaks while studying improves focus and retention.',
+    'Regular exercise can have a profoundly positive impact on depression and anxiety.',
+    "Getting a good night's sleep is incredibly important for your health.",
+  ];
+
+  React.useEffect(() => {
+    const getRandomTip = () => {
+      const randomIndex = Math.floor(Math.random() * tips.length);
+      setCurrentTip(tips[randomIndex]);
+    };
+    getRandomTip();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h={'$full'}>
@@ -50,11 +69,7 @@ const StudentMain = () => {
               fontSize={'$2xl'}
               padding={'$1.5'}
             />
-            <TextRegular
-              text="Eating Bananas is a natural cure to reduce the effects of stress and anxiety."
-              fontSize={'$md'}
-              padding={'$1'}
-            />
+            <TextRegular text={currentTip} fontSize={'$md'} padding={'$1'} />
             <Center>
               <Image source={TipOfTheDay} alt="tip of the day" />
             </Center>
