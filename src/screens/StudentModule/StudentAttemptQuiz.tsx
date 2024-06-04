@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {
   Box,
+  HStack,
   Image,
   ImageBackground,
   ScrollView,
@@ -17,6 +18,8 @@ import Error from '../../components/molecules/popup/Error';
 import TextBold from '../../components/atoms/Text/TextBold';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {useForm, Controller} from 'react-hook-form';
 
 const BackgroundImage = require('../../assets/images/grand-assessment-bg.png');
 const Clock = require('../../assets/images/assessment/clock.png');
@@ -48,16 +51,18 @@ type Quiz = {
 const OptionButton = ({
   option,
   onPress,
+  isSelected,
 }: {
   option: string;
   onPress: () => void;
+  isSelected: boolean;
 }) => {
   return (
     <Button
       onPress={onPress}
       size="sm"
       borderColor="black"
-      bg="#FFB579"
+      bg={isSelected ? '#FFB579' : '#FFF'}
       borderWidth={0.5}
       borderRadius="$lg"
       paddingHorizontal={12}
@@ -69,10 +74,10 @@ const OptionButton = ({
 
 const QuestionCard = ({
   question,
-  onSelectOption,
+  control,
 }: {
   question: Question;
-  onSelectOption: (optionId: number) => void;
+  control: any;
 }) => {
   return (
     <Box key={question.question_id} marginBottom={20}>
@@ -85,10 +90,23 @@ const QuestionCard = ({
       <Box height={10} />
       <VStack>
         {question.options.map((option, index) => (
-          <OptionButton
+          <Controller
             key={index}
-            option={option}
-            onPress={() => onSelectOption(question.question_id)}
+            control={control}
+            name={`question_${question.question_id}`}
+            rules={{required: 'This question is required'}}
+            render={({field: {onChange, value}, fieldState: {error}}) => (
+              <>
+                <OptionButton
+                  option={option}
+                  onPress={() => onChange(option)}
+                  isSelected={value === option}
+                />
+                {error && (
+                  <TextRegular text={error.message} style={{color: 'red'}} />
+                )}
+              </>
+            )}
           />
         ))}
       </VStack>
@@ -97,15 +115,17 @@ const QuestionCard = ({
 };
 
 const StudentAttemptQuiz = () => {
-  const [timeLeft, setTimeLeft] = useState(10000);
+  const height = useBottomTabBarHeight();
+  const [timeLeft, setTimeLeft] = useState(900);
   const [showError, setShowError] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
+  const {handleSubmit, control, setValue} = useForm();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const route = useRoute();
 
   const {quiz} = route.params as {quiz: Quiz[]};
 
   console.log('Quiz', quiz);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(prevTime => {
@@ -130,6 +150,18 @@ const StudentAttemptQuiz = () => {
     ).padStart(2, '0')}`;
   };
 
+  const onSubmit = (data: any) => {
+    let score = 0;
+    quiz.questions.forEach((question, index) => {
+      if (
+        data[`question_${question.question_id}`] === question.correct_answer
+      ) {
+        score += 1;
+      }
+    });
+    console.log('Score:', score);
+  };
+
   return (
     <ImageBackground source={BackgroundImage} h={'$full'}>
       <StatusBarStudent
@@ -137,23 +169,39 @@ const StudentAttemptQuiz = () => {
         textColor="black"
         bgColor="#FFA360"
       />
-      <ScrollView paddingHorizontal={'$5'} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        paddingHorizontal={'$5'}
+        paddingVertical={'$5'}
+        showsVerticalScrollIndicator={false}>
         <VStack>
-          <Box>
+          <HStack space="lg">
             <Image source={Clock} alt="Clock" size="lg" />
             <VStack>
               <TextSemibold text="Time Left:" fontSize={'$xl'} />
               <TextBold text={formatTime(timeLeft)} fontSize={'$2xl'} />
             </VStack>
-          </Box>
+          </HStack>
+          <Box height={'$10'} />
           {quiz.questions.map(question => (
             <QuestionCard
               key={question.question_id}
               question={question}
-              onSelectOption={() => console.log('Pressed')}
+              control={control}
             />
           ))}
+          <Button
+            onPress={handleSubmit(onSubmit)}
+            size="sm"
+            borderColor="black"
+            bg="#FFA360"
+            borderWidth={0.5}
+            borderRadius="$lg"
+            paddingHorizontal={12}
+            marginBottom={10}>
+            <TextSemibold text="Submit Quiz" />
+          </Button>
         </VStack>
+        <Box height={height} />
       </ScrollView>
       <Error
         heading="Time's Up!"
