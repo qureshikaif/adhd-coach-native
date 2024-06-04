@@ -17,6 +17,8 @@ import {VStack} from '@gluestack-ui/themed';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
 import {useStore} from '../../store';
 import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
+import TextRegular from '../../components/atoms/Text/TextRegular';
+import { handleLogout } from '../../helpers/handleLogout';
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
@@ -28,26 +30,26 @@ const ParentProfileSetting = () => {
   const store = useStore();
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
 
-  // if (!store.user) {
-  //   return null;
-  // }
+  if (!store.user) {
+    return null;
+  }
 
   const fields = [
     {
       title: 'Email',
       placeholder: '.sanaD11@adhdcoach.com',
-      value: store.user?.user.email,
+      value: store.user.user.email,
     },
     {
       title: 'Username',
       placeholder: 'sanaD11',
-      value: store.user?.user.full_name,
+      value: store.user.user.full_name,
     },
 
     {
       title: 'Password',
       placeholder: 'Sana123',
-      value: store.user?.user.password,
+      value: store.user.user.password,
     },
   ];
 
@@ -126,6 +128,17 @@ const ParentProfileSetting = () => {
               borderRadius={'$lg'}>
               <TextBold text="Save" />
             </Button>
+            <Box height={'$3'} />
+          <Button
+            onPress={() => handleLogout(store)}
+            flex={1}
+            hardShadow="3"
+            size="xl"
+            borderColor="black"
+            bg={'#A3BACD'}
+            borderRadius={'$lg'}>
+            <TextRegular text="Sign Out" color="white" />
+          </Button>
           </HStack>
         </ScrollView>
       </ImageBackground>
