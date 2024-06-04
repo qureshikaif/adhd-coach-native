@@ -33,6 +33,7 @@ const StudentCoursesLectures = ({
 }) => {
   const {course} = route.params;
   const navigation = useNavigation<NavigationProp<NavigationType>>();
+
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h="$full">

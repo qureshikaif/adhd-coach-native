@@ -17,10 +17,6 @@ import {useStore} from '../../store';
 
 const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
 
-/* Change images path */
-// const MathsImage = require('../../assets/images/Stud-course-bg.png');
-// const EnglishImage = require('../../assets/images/Stud-course-bg.png');
-
 type NavigationType = {
   StudentCoursesLectures: {course: any};
 };
@@ -42,6 +38,7 @@ const StudentCourses = () => {
       return data;
     },
   });
+
   const {
     data: courses,
     isLoading: isLoadingCourses,
@@ -56,14 +53,25 @@ const StudentCourses = () => {
     },
   });
 
-  console.log(enrolledCourses);
-  console.log(JSON.stringify(courses, null, 2));
+  const {
+    data: compulsoryCourses,
+    isLoading: isLoadingCompulsory,
+    isError: isErrorCompulsory,
+  } = useQuery({
+    queryKey: ['compulsoryCourses'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.0.107:8080/student/get-compulsory-courses',
+      );
+      return data;
+    },
+  });
 
-  if (isLoadingCourses || isLoadingEnrolled) {
+  if (isLoadingCourses || isLoadingEnrolled || isLoadingCompulsory) {
     return <Loading bgImage={BackgroundImage} />;
   }
 
-  if (isErrorCourses || isErrorEnrolled) {
+  if (isErrorCourses || isErrorEnrolled || isErrorCompulsory) {
     return (
       <ImageBackground
         source={BackgroundImage}
@@ -75,6 +83,9 @@ const StudentCourses = () => {
     );
   }
 
+  console.log(JSON.stringify(compulsoryCourses, null, 2));
+  console.log(JSON.stringify(enrolledCourses, null, 2));
+
   return (
     <ImageBackground source={BackgroundImage} h="$full">
       <Box />
@@ -82,12 +93,44 @@ const StudentCourses = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Box height={'$10'} />
         <TextSemibold
+          text="Compulsory Courses"
+          textAlign="center"
+          w="$full"
+          fontSize={'$2xl'}
+        />
+        <Box height={'$5'} />
+        {compulsoryCourses?.map((compulsoryCourse: any, index: number) => (
+          <HStack px={'$4'} key={index}>
+            <Pressable
+              flex={1}
+              onPress={() =>
+                navigation.navigate('StudentCoursesLectures', {
+                  course: compulsoryCourse,
+                })
+              }>
+              <HStack
+                bgColor="#FFA360"
+                height={60}
+                alignItems="center"
+                padding={'$1'}
+                justifyContent="center"
+                borderRadius={'$3xl'}
+                borderWidth={'$2'}>
+                <TextSemibold text={compulsoryCourse.title} fontSize={'$xl'} />
+              </HStack>
+              <Box height={'$2'} />
+            </Pressable>
+          </HStack>
+        ))}
+        <Box height={'$10'} />
+
+        <TextSemibold
           text="Enrolled Courses"
           textAlign="center"
           w="$full"
           fontSize={'$2xl'}
         />
-        <Box height={'$10'} />
+        <Box height={'$5'} />
         {enrolledCourses?.map((enrolledCourse: any, index: number) => (
           <HStack px={'$4'} key={index}>
             <Pressable
@@ -105,10 +148,7 @@ const StudentCourses = () => {
                 justifyContent="center"
                 borderRadius={'$3xl'}
                 borderWidth={'$2'}>
-                <TextSemibold
-                  text={enrolledCourse.course_title}
-                  fontSize={'$xl'}
-                />
+                <TextSemibold text={enrolledCourse.title} fontSize={'$xl'} />
               </HStack>
               <Box height={'$2'} />
             </Pressable>
@@ -121,7 +161,7 @@ const StudentCourses = () => {
           w="$full"
           fontSize={'$2xl'}
         />
-        <Box height={'$10'} />
+        <Box height={'$5'} />
         {courses?.map((course: any, index: number) => (
           <VStack key={index} px={'$4'}>
             <Pressable
