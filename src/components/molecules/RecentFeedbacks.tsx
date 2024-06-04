@@ -12,6 +12,9 @@ interface RecentFeedbacksProps {
 }
 
 const RecentFeedbacks: React.FC<RecentFeedbacksProps> = ({feedbacks}) => {
+  if (feedbacks.length === 0) {
+    return null;
+  }
   return (
     <View>
       <TextSemibold text="Recent Feedbacks" fontSize={'$xl'} pb={'$2'} />

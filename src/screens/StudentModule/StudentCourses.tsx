@@ -47,7 +47,7 @@ const StudentCourses = () => {
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/admin/get-courses',
+        'http://192.168.0.107:8080/student/get-all-optional-courses',
       );
       return data;
     },
