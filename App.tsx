@@ -4,7 +4,7 @@ import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
-import AdminProfile from './src/screens/Admin/AdminProfile';
+// import AdminProfile from './src/screens/Admin/AdminProfile';
 
 const config = createConfig({
   ...defaultConfig,
@@ -28,8 +28,8 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-          {/* <MainNavigator /> */}
-          <AdminProfile />
+          <MainNavigator />
+          {/* <AdminProfile /> */}
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>

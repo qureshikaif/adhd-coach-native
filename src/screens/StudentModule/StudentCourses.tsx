@@ -14,6 +14,7 @@ import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../Loading';
 import {useStore} from '../../store';
+import {ButtonSpinner} from '@gluestack-ui/themed';
 
 const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
 
@@ -23,6 +24,7 @@ type NavigationType = {
 
 const StudentCourses = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
+  const [loading, setLoading] = React.useState(false);
   const store = useStore();
 
   const {
@@ -83,13 +85,31 @@ const StudentCourses = () => {
     );
   }
 
+  const handleEnroll = async (courseId: string, teacherId: string) => {
+    setLoading(true);
+    axios
+      .post('http://192.168.0.107:8080/student/enroll', {
+        studentId: store.user?.user.id_assigned,
+        courseId,
+        teacherId,
+      })
+      .then(res => {
+        console.log(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.log(err.response.data);
+        setLoading(false);
+      });
+  };
+
   console.log(JSON.stringify(compulsoryCourses, null, 2));
   console.log(JSON.stringify(enrolledCourses, null, 2));
 
   return (
     <ImageBackground source={BackgroundImage} h="$full">
       <Box />
-      <StatusBarStudent text="Courses" bgColor="#FFA360" textColor="black" />
+      <StatusBarStudent text="Course" bgColor="#FFA360" textColor="black" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Box height={'$10'} />
         <TextSemibold
@@ -181,7 +201,10 @@ const StudentCourses = () => {
               </HStack>
               <Box height={'$2'} />
             </Pressable>
-            <Pressable flex={1} disabled={course.is_enrolled}>
+            <Pressable
+              flex={1}
+              disabled={course.is_enrolled}
+              onPress={() => handleEnroll(course.id, course.teacher_id)}>
               <HStack
                 bgColor="#FF9990"
                 height={60}
@@ -190,7 +213,9 @@ const StudentCourses = () => {
                 justifyContent="center"
                 borderRadius={'$3xl'}
                 borderWidth={'$1'}>
+                <HStack>{loading && <ButtonSpinner color="black" />}</HStack>
                 <TextSemibold
+                  ml={loading ? '$2' : '$0'}
                   text={course.is_enrolled ? 'Already Enrolled' : 'Enroll Now'}
                   fontSize={'$md'}
                 />

@@ -15,6 +15,7 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import TextRegular from '../../components/atoms/Text/TextRegular';
+import {Linking} from 'react-native';
 
 const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
 
@@ -69,8 +70,10 @@ const StudentCoursesLectures = ({
             />
           )}
           <Box height={'$5'} />
-          {course.lectures.map((quiz: any, index: number) => (
-            <Pressable key={index}>
+          {course.lectures.map((lecture: any, index: number) => (
+            <Pressable
+              key={index}
+              onPress={() => Linking.openURL(lecture.lecture_link)}>
               <HStack
                 bgColor="#FFA360"
                 height={60}
@@ -79,7 +82,7 @@ const StudentCoursesLectures = ({
                 borderRadius={'$3xl'}
                 borderWidth={'$2'}>
                 <TextSemibold
-                  text={quiz.lecture_link}
+                  text={`Lecture ${index + 1}`}
                   textAlign="center"
                   w="$full"
                 />
