@@ -1,0 +1,87 @@
+import {
+  View,
+  ImageBackground,
+  ScrollView,
+  Box,
+  VStack,
+} from '@gluestack-ui/themed';
+import React from 'react';
+import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import AddNewLecture from '../../components/molecules/popup/AddNewLecture';
+import {useQuery} from '@tanstack/react-query';
+import axios from 'axios';
+import Loading from '../Loading';
+import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import {useStore} from '../../store';
+import SideButton from '../../components/atoms/Buttons/SideButton';
+
+const BackgroundImage = require('../../assets/images/teachercourse.png');
+
+type NavigationType = {
+  TeacherCourse: {course: any};
+};
+
+const TeacherCourseList = () => {
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
+  const [showModal, setShowModal] = React.useState(false);
+  const store = useStore();
+
+  const {
+    data: courses,
+    isLoading: isLoadingCourses,
+    isError: isErrorCourses,
+  } = useQuery({
+    queryKey: ['courses'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        `http://192.168.0.107:8080/teacher/get-courses/${store.user?.user.id_assigned}`,
+      );
+      return data;
+    },
+  });
+
+  if (isLoadingCourses) {
+    return <Loading bgImage={BackgroundImage} />;
+  }
+
+  if (isErrorCourses) {
+    return (
+      <ImageBackground
+        source={BackgroundImage}
+        h="$full"
+        alignItems="center"
+        justifyContent="center">
+        <TextSemibold text="An error occured while fetching data" />
+      </ImageBackground>
+    );
+  }
+
+  return (
+    <View height={'$full'}>
+      <ImageBackground source={BackgroundImage} minHeight={'$full'}>
+        <StatusBarTeacher text="Course Plan" />
+        <ScrollView paddingHorizontal={'$4'}>
+          <Box height={'$8'} />
+          <TextSemibold text="Your Courses" fontSize={'$2xl'} />
+          <Box height={'$4'} />
+          <VStack space={'2xl'}>
+            {courses.courses.map((course: any, index: number) => (
+              <SideButton
+                key={index}
+                text={course.title}
+                onPress={() =>
+                  navigation.navigate('TeacherCourse', {course: course})
+                }
+              />
+            ))}
+          </VStack>
+          <Box height={'$8'} />
+        </ScrollView>
+      </ImageBackground>
+      <AddNewLecture showModal={showModal} setShowModal={setShowModal} />
+    </View>
+  );
+};
+
+export default TeacherCourseList;

@@ -24,7 +24,15 @@ import {useStore} from '../../../store';
 
 const AddCourseIcon = require('../../../assets/images/add-course.png');
 
-const AddNewLecture = ({showModal, setShowModal}: ModalProps) => {
+interface AddNewLectureProps extends ModalProps {
+  courseId: number;
+}
+
+const AddNewLecture = ({
+  showModal,
+  setShowModal,
+  courseId,
+}: AddNewLectureProps) => {
   const [lecture, setLecture] = React.useState('' as string);
   const [loading, setLoading] = React.useState(false);
   const store = useStore();
@@ -34,8 +42,9 @@ const AddNewLecture = ({showModal, setShowModal}: ModalProps) => {
   const onSubmit = () => {
     setLoading(true);
     axios
-      .post('http://192.168.0.107:8080/admin/doctor', {
-        lectureLink: lecture,
+      .post('http://192.168.0.107:8080/teacher/add-lecture', {
+        lecture,
+        courseId,
         instructorId: store.user?.user.id_assigned,
       })
       .then(res => {

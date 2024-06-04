@@ -86,11 +86,11 @@ const TeacherMain = () => {
               store.user ? store.user.user.full_name : 'John Doe',
             )}
           />
-          <Box height={'$8'} />
+          {/* <Box height={'$8'} />
           <TextSemibold text="Your Courses" fontSize={'$2xl'} />
-          <Box height={'$4'} />
+          <Box height={'$4'} /> */}
 
-          <VStack space={'2xl'}>
+          {/* <VStack space={'2xl'}>
             {courses.courses.map((course: any, index: number) => (
               <SideButton
                 key={index}
@@ -98,7 +98,7 @@ const TeacherMain = () => {
                 onPress={() => navigation.navigate('TeacherCourse')}
               />
             ))}
-          </VStack>
+          </VStack> */}
 
           <Box height={'$8'} />
           <Box height={'$2'} />

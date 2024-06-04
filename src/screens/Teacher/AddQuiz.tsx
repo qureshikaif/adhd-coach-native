@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   VStack,
+  ButtonSpinner,
 } from '@gluestack-ui/themed';
 import {useForm, Controller} from 'react-hook-form';
 import TextBold from '../../components/atoms/Text/TextBold';
@@ -17,9 +18,18 @@ import Error from '../../components/molecules/popup/Error';
 import {useStore} from '../../store';
 import axios from 'axios';
 import Success from '../../components/molecules/popup/Success';
+import {RouteProp} from '@react-navigation/native';
+import {HStack} from '@gluestack-ui/themed';
 
 // const BackgroundImage = require('../../assets/images/TeacherChat.png');
 const BackgroundImage = require('../../assets/images/teachercourse.png');
+
+type NavigationType = {
+  TeacherCourse: {course: any};
+  AddQuiz: {courseId: any};
+};
+
+type RouteType = RouteProp<NavigationType, 'AddQuiz'>;
 
 interface QuizInputProps {
   label: string;
@@ -61,16 +71,20 @@ const QuizInput: React.FC<QuizInputProps> = ({
   );
 };
 
-const AddQuiz = () => {
+const AddQuiz = ({route}: {route: RouteType}) => {
   const height = useBottomTabBarHeight();
+  const {courseId} = route.params;
+
   const [showError, setShowError] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const refError = React.useRef(null);
   const refSuccess = React.useRef(null);
 
   const {control, handleSubmit} = useForm();
   const [questions, setQuestions] = React.useState([{id: 1}]);
+
   const store = useStore();
 
   const addQuestion = () => {
@@ -80,8 +94,10 @@ const AddQuiz = () => {
   };
 
   const onSubmit = async (data: any) => {
+    setLoading(true);
     const formattedData = {
-      instructorId: store.user?.user.id_assigned, // Replace with actual instructor ID if needed
+      instructor: store.user?.user.id_assigned,
+      courseId,
       title: data.quizTitle,
       questions: questions.map(q => ({
         question: data[`question${q.id}`],
@@ -95,13 +111,15 @@ const AddQuiz = () => {
 
     try {
       const response = await axios.post(
-        'http://192.168.0.107:8080/api/quizzes',
+        'http://192.168.0.107:8080/teacher/add-quiz',
         formattedData,
       );
       console.log(response.data);
+      setLoading(false);
       setShowSuccess(true);
     } catch (error) {
       console.error('Error saving quiz:', error);
+      setLoading(false);
       setShowError(true);
     }
   };
@@ -182,7 +200,10 @@ const AddQuiz = () => {
               bg={'#DEB5B5'}
               borderWidth={1}
               borderRadius={'$lg'}>
-              <TextBold text="Save" />
+              <HStack>
+                {loading && <ButtonSpinner color="black" />}
+                <TextBold text="Save" ml={loading ? '$2' : '$0'} />
+              </HStack>
             </Button>
           </VStack>
           <Box height={height} />
