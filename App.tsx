@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
 import AdminProfile from './src/screens/Admin/AdminProfile';
+import ProfileSetting from './src/screens/Doctor/ProfileSetting';
 
 const config = createConfig({
   ...defaultConfig,
@@ -29,7 +30,7 @@ function App(): React.JSX.Element {
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
           {/* <MainNavigator /> */}
-          <AdminProfile />
+<ProfileSetting/>
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>
