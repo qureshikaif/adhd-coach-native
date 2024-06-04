@@ -8,7 +8,6 @@ import {
 import React from 'react';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import AddNewLecture from '../../components/molecules/popup/AddNewLecture';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../Loading';
@@ -24,7 +23,6 @@ type NavigationType = {
 
 const TeacherCourseList = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
-  const [showModal, setShowModal] = React.useState(false);
   const store = useStore();
 
   const {
@@ -79,7 +77,6 @@ const TeacherCourseList = () => {
           <Box height={'$8'} />
         </ScrollView>
       </ImageBackground>
-      <AddNewLecture showModal={showModal} setShowModal={setShowModal} />
     </View>
   );
 };

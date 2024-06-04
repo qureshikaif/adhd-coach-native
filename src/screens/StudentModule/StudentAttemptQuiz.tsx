@@ -248,7 +248,12 @@ const StudentAttemptQuiz = () => {
         text="Quiz submitted"
         showModal={showSuccess}
         bgColor="#FFA360"
-        setShowModal={setShowSuccess}
+        setShowModal={value => {
+          setShowSuccess(value);
+          if (!value) {
+            navigation.navigate('StudentMain');
+          }
+        }}
       />
     </ImageBackground>
   );
