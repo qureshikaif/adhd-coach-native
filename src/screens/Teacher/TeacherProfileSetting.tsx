@@ -17,6 +17,8 @@ import {VStack} from '@gluestack-ui/themed';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import {useStore} from '../../store';
 import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
+import TextRegular from '../../components/atoms/Text/TextRegular';
+import { handleLogout } from '../../helpers/handleLogout';
 
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
@@ -128,6 +130,17 @@ const TeacherProfileSetting = () => {
               <TextBold text="Save" />
             </Button>
           </HStack>
+          <Box height={'$3'} />
+          <Button
+            onPress={() => handleLogout(store)}
+            flex={1}
+            hardShadow="3"
+            size="xl"
+            borderColor="black"
+            bg={'#A3BACD'}
+            borderRadius={'$lg'}>
+            <TextRegular text="Sign Out" color="white" />
+          </Button>
         </ScrollView>
       </ImageBackground>
     </View>
