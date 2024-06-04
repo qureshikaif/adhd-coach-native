@@ -31,9 +31,9 @@ const TeacherProfileSetting = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
 
-  // if (!store.user) {
-  //   return null;
-  // }
+  if (!store.user) {
+    return null;
+  }
 
   const fields = [
     {
@@ -44,14 +44,14 @@ const TeacherProfileSetting = () => {
     {
       title: 'Username',
       placeholder: 'sanaD11',
-      value: store.user?.user.full_name,
-      // value: capitalizeFirstLetter(store.user?.user.full_name),
+      // value: store.user?.user.full_name,
+      value: capitalizeFirstLetter(store.user?.user.full_name),
     },
 
     {
-      title: 'Password',
+      title: 'Assigned ID',
       placeholder: 'Sana123',
-      value: store.user?.user.password,
+      value: store.user?.user.id_assigned,
     },
   ];
   return (
@@ -85,7 +85,7 @@ const TeacherProfileSetting = () => {
           <Box height={'$8'} />
           {fields.map((field, index) => (
             <VStack key={index}>
-              <TextSemibold text={field.title} fontSize={'$xl'} />
+              <TextSemibold text={field.title} fontSize={'$lg'} />
               <Input
                 bgColor="#BEADC3"
                 height={'$12'}

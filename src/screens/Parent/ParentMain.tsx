@@ -62,7 +62,15 @@ const ParentMain = () => {
   }
 
   if (isError) {
-    return <TextSemibold text="Error fetching data" />;
+    return (
+      <ImageBackground
+        source={BackgroundImage}
+        h="$full"
+        alignItems="center"
+        justifyContent="center">
+        <TextSemibold text="An error occured while fetching data" />
+      </ImageBackground>
+    );
   }
 
   const handleFeedbackChange = (text: string) => {
@@ -86,11 +94,6 @@ const ParentMain = () => {
       });
   };
 
-  const prescriptionNames = [
-    'Adderall         1+0+0',
-    'Vyvanse        0+1+0',
-    'Ritalin            0+0+1',
-  ];
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h="$full">

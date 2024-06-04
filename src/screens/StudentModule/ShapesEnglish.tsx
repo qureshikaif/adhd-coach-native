@@ -3,8 +3,6 @@ import {
   ImageBackground,
   HStack,
   Center,
-  Input,
-  InputField,
   VStack,
   Box,
   Pressable,
@@ -14,10 +12,9 @@ import {
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import React from 'react';
 
-
 const BackgroundImage = require('../../assets/images/shapes-bg.png');
 const Triangle = require('../../assets/images/triangle-red.png');
-const CircleCartoon= require('../../assets/images/cartoon-circle.png');
+const CircleCartoon = require('../../assets/images/cartoon-circle.png');
 
 const ShapesEnglish = () => {
   return (
@@ -32,13 +29,11 @@ const ShapesEnglish = () => {
             width={'$full'}
             justifyContent="space-between"
             padding={'$4'}>
-
             <View />
           </HStack>
           {/* <TextRegular fontSize={'$5xl'} text="Welcome" fontStyle="italic" /> */}
           <VStack h={'85%'} justifyContent="center" alignItems="center">
             <Center>
-
               <Box
                 rounded={'$2xl'}
                 bgColor="#DEB5B5"
@@ -56,25 +51,32 @@ const ShapesEnglish = () => {
 
               <Box height={'$10'} />
               <VStack width={'$full'} rowGap={'$4'}>
-                <Box
-                  rounded={'$2xl'}
-                  bgColor="#DEB5B5"
-                  h={'$12'}
-                  w={'$56'}>
-                  <HStack justifyContent='center' alignItems='center' space='lg'>
-                    <TextSemibold text="Shape: Triangle" fontSize={'$2xl'} padding={'$1'}/>
+                <Box rounded={'$2xl'} bgColor="#DEB5B5" h={'$12'} w={'$56'}>
+                  <HStack
+                    justifyContent="center"
+                    alignItems="center"
+                    space="lg">
+                    <TextSemibold
+                      text="Shape: Triangle"
+                      fontSize={'$2xl'}
+                      padding={'$1'}
+                    />
                   </HStack>
                 </Box>
               </VStack>
               <Box height={'$5'} />
               <VStack width={'$full'} rowGap={'$4'}>
-                <Box
-                  rounded={'$2xl'}
-                  bgColor="#DEB5B5"
-                  h={'$12'}
-                  w={'$56'}>
-                  <HStack justifyContent='center' alignItems='center' space='lg'>
-                    <TextSemibold text="Color: RED " fontSize={'$2xl'} color='$red600' padding={'$1'}/>
+                <Box rounded={'$2xl'} bgColor="#DEB5B5" h={'$12'} w={'$56'}>
+                  <HStack
+                    justifyContent="center"
+                    alignItems="center"
+                    space="lg">
+                    <TextSemibold
+                      text="Color: RED"
+                      fontSize={'$2xl'}
+                      color="$red600"
+                      padding={'$1'}
+                    />
                   </HStack>
                 </Box>
               </VStack>
@@ -87,12 +89,11 @@ const ShapesEnglish = () => {
                 rounded={'$2xl'}>
                 <TextSemibold text="Next" fontSize={'$lg'} />
               </Pressable>
-              <Box height={'$10'}/>
+              <Box height={'$10'} />
               <VStack width={'$full'} rowGap={'$4'}>
-                <Box
-                h={10}>
-              <Image source={CircleCartoon} alt='cartoon circle'/>
-              </Box>
+                <Box h={10}>
+                  <Image source={CircleCartoon} alt="Cartoon circle" />
+                </Box>
               </VStack>
             </Center>
           </VStack>

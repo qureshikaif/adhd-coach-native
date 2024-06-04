@@ -15,7 +15,6 @@ import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import {VStack} from '@gluestack-ui/themed';
 import React from 'react';
 import TextRegular from '../../components/atoms/Text/TextRegular';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {useStore} from '../../store';
 import {handleLogout} from '../../helpers/handleLogout';
@@ -23,18 +22,13 @@ import {handleLogout} from '../../helpers/handleLogout';
 const BackgroundImage = require('../../assets/images/admin-bg-profile.png');
 const Avatar = require('../../assets/images/user-image.png');
 
-type NavigationType = {
-  AppAnalytics: undefined;
-};
-
 const AdminProfile = () => {
-  const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
-  // const height = useBottomTabBarHeight();
+  const height = useBottomTabBarHeight();
 
-  // if (!store) {
-  //   return null;
-  // }
+  if (!store) {
+    return null;
+  }
 
   const fields = [
     {
@@ -104,7 +98,6 @@ const AdminProfile = () => {
               <TextRegular text="Cancel" color="white" />
             </Button>
             <Button
-              onPress={() => navigation.navigate('AppAnalytics')}
               flex={1}
               size="xl"
               borderColor="black"
@@ -124,7 +117,7 @@ const AdminProfile = () => {
             borderRadius={'$lg'}>
             <TextRegular text="Sign Out" color="white" />
           </Button>
-          {/* <Box height={height} /> */}
+          <Box height={height} />
         </ScrollView>
       </ImageBackground>
     </View>

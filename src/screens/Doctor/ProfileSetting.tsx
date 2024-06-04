@@ -50,8 +50,8 @@ const ProfileSetting = () => {
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
         <StatusBarDoctor text="Profile Settings" />
-        <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
+          <Box height={'$8'} />
           <Center>
             <Image source={TeacherPic} alt="Teacher Pic" />
           </Center>
