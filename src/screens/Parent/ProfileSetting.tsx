@@ -41,18 +41,18 @@ const ParentProfileSetting = () => {
       value: store.user.user.full_name,
     },
     {
-      title: 'Password',
+      title: 'Assigned Children Id',
       placeholder: 'Sana123',
-      value: store.user.user.password,
+      value: store.user.user.child_id,
     },
   ];
 
   return (
     <View flex={1}>
-      <ImageBackground source={BackgroundImage} h="$1">
+      <ImageBackground source={BackgroundImage} h="$full">
         <StatusBarParent text="Profile Settings" />
-        <ScrollView
-          contentContainerStyle={{paddingHorizontal: 20, paddingBottom: 40}}>
+        <ScrollView paddingHorizontal={'$4'}>
+          <Box height={'$8'} />
           <Center>
             <Box
               rounded={'$full'}
@@ -68,17 +68,17 @@ const ParentProfileSetting = () => {
                 h="$full"
               />
             </Box>
-            <TextSemibold
+            {/* <TextSemibold
               mt={4}
               text={capitalizeFirstLetter(
                 store.user ? store.user.user.full_name : 'John Doe',
               )}
-            />
+            /> */}
           </Center>
           <Box height={32} />
           {fields.map((field, index) => (
             <VStack key={index} marginBottom={16}>
-              <TextSemibold text={field.title} fontSize={'$2xl'} />
+              <TextSemibold text={field.title} fontSize={'$lg'} />
               <Input
                 bgColor="#BEADC3"
                 height={'$12'}
@@ -96,8 +96,8 @@ const ParentProfileSetting = () => {
               </Input>
             </VStack>
           ))}
-          <Box height={40} />
-          <HStack space="lg" marginBottom={32}>
+          <Box height={'$5'} />
+          <HStack space="lg" marginBottom={15}>
             <Button
               flex={1}
               android_ripple={{color: '#DEB5B5'}}
@@ -127,7 +127,7 @@ const ParentProfileSetting = () => {
             hardShadow="3"
             size="xl"
             borderColor="black"
-            bg={'#A3BACD'}
+            bg={'#BEADC3'}
             borderRadius={'$lg'}>
             <TextRegular text="Sign Out" color="white" />
           </Button>

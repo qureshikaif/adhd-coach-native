@@ -17,6 +17,8 @@ import {VStack} from '@gluestack-ui/themed';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import {useStore} from '../../store';
 import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
+import TextRegular from '../../components/atoms/Text/TextRegular';
+import {handleLogout} from '../../helpers/handleLogout';
 
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
@@ -47,9 +49,9 @@ const TeacherProfileSetting = () => {
     },
 
     {
-      title: 'Password',
+      title: 'Assigned ID',
       placeholder: 'Sana123',
-      value: store.user?.user.password,
+      value: store.user?.user.id_assigned,
     },
   ];
   return (
@@ -73,17 +75,17 @@ const TeacherProfileSetting = () => {
                 h={'$full'}
               />
             </Box>
-            <TextSemibold
+            {/* <TextSemibold
               mt={4}
               text={capitalizeFirstLetter(
                 store.user ? store.user.user.full_name : 'John Doe',
               )}
-            />
+            /> */}
           </Center>
           <Box height={'$8'} />
           {fields.map((field, index) => (
             <VStack key={index}>
-              <TextSemibold text={field.title} fontSize={'$xl'} />
+              <TextSemibold text={field.title} fontSize={'$lg'} />
               <Input
                 bgColor="#BEADC3"
                 height={'$12'}
@@ -128,6 +130,17 @@ const TeacherProfileSetting = () => {
               <TextBold text="Save" />
             </Button>
           </HStack>
+          <Box height={'$4'} />
+          <Button
+            onPress={() => handleLogout(store)}
+            flex={1}
+            hardShadow="3"
+            size="xl"
+            borderColor="black"
+            bg={'#B597B8'}
+            borderRadius={'$lg'}>
+            <TextRegular text="Sign Out" color="white" />
+          </Button>
         </ScrollView>
       </ImageBackground>
     </View>
