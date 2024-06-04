@@ -72,13 +72,7 @@ const OptionButton = ({
   );
 };
 
-const QuestionCard = ({
-  question,
-  control,
-}: {
-  question: Question;
-  control: any;
-}) => {
+const QuestionCard = ({question, control}: {question: any; control: any}) => {
   return (
     <Box key={question.question_id} marginBottom={20}>
       <TextBold
@@ -89,7 +83,7 @@ const QuestionCard = ({
       <TextRegular text={question.title} />
       <Box height={10} />
       <VStack>
-        {question.options.map((option, index) => (
+        {question.options.map((option: any, index: any) => (
           <Controller
             key={index}
             control={control}
@@ -118,13 +112,11 @@ const StudentAttemptQuiz = () => {
   const height = useBottomTabBarHeight();
   const [timeLeft, setTimeLeft] = useState(900);
   const [showError, setShowError] = useState(false);
-  const {handleSubmit, control, setValue} = useForm();
+  const {handleSubmit, control} = useForm();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const route = useRoute();
 
-  const {quiz} = route.params as {quiz: Quiz[]};
-
-  console.log('Quiz', quiz);
+  const {quiz} = route.params as {quiz: any};
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -152,7 +144,7 @@ const StudentAttemptQuiz = () => {
 
   const onSubmit = (data: any) => {
     let score = 0;
-    quiz.questions.forEach((question, index) => {
+    quiz.questions.forEach((question: any, _index: any) => {
       if (
         data[`question_${question.question_id}`] === question.correct_answer
       ) {
@@ -182,7 +174,7 @@ const StudentAttemptQuiz = () => {
             </VStack>
           </HStack>
           <Box height={'$10'} />
-          {quiz.questions.map(question => (
+          {quiz.questions.map((question: any) => (
             <QuestionCard
               key={question.question_id}
               question={question}
