@@ -17,46 +17,42 @@ import {VStack} from '@gluestack-ui/themed';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
 import {useStore} from '../../store';
 import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
+import TextRegular from '../../components/atoms/Text/TextRegular';
+import {handleLogout} from '../../helpers/handleLogout';
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
-// type NavigationType = {
-//   ForgotPasswordVerify: undefined;
-// };
-
 const ParentProfileSetting = () => {
   const store = useStore();
-  //   const navigation = useNavigation<NavigationProp<NavigationType>>();
 
-  // if (!store.user) {
-  //   return null;
-  // }
+  if (!store.user) {
+    return null;
+  }
 
   const fields = [
     {
       title: 'Email',
       placeholder: '.sanaD11@adhdcoach.com',
-      value: store.user?.user.email,
+      value: store.user.user.email,
     },
     {
       title: 'Username',
       placeholder: 'sanaD11',
-      value: store.user?.user.full_name,
+      value: store.user.user.full_name,
     },
-
     {
       title: 'Password',
       placeholder: 'Sana123',
-      value: store.user?.user.password,
+      value: store.user.user.password,
     },
   ];
 
   return (
-    <View height={'$full'}>
-      <ImageBackground source={BackgroundImage} minHeight={'$full'}>
+    <View flex={1}>
+      <ImageBackground source={BackgroundImage} h="$1">
         <StatusBarParent text="Profile Settings" />
-        <Box height={'$8'} />
-        <ScrollView paddingHorizontal={'$5'}>
+        <ScrollView
+          contentContainerStyle={{paddingHorizontal: 20, paddingBottom: 40}}>
           <Center>
             <Box
               rounded={'$full'}
@@ -79,16 +75,15 @@ const ParentProfileSetting = () => {
               )}
             />
           </Center>
-          <Box height={'$8'} />
+          <Box height={32} />
           {fields.map((field, index) => (
-            <VStack key={index}>
+            <VStack key={index} marginBottom={16}>
               <TextSemibold text={field.title} fontSize={'$2xl'} />
               <Input
                 bgColor="#BEADC3"
                 height={'$12'}
                 rounded={'$lg'}
                 width={'100%'}
-                // isDisabled={field.title === 'Email'}
                 borderWidth={0}>
                 <InputField
                   type={field.title === 'Password' ? 'password' : 'text'}
@@ -99,11 +94,10 @@ const ParentProfileSetting = () => {
                   placeholderTextColor={'black'}
                 />
               </Input>
-              <Box height={'$2'} />
             </VStack>
           ))}
-          <Box height={'$10'} />
-          <HStack space="lg">
+          <Box height={40} />
+          <HStack space="lg" marginBottom={32}>
             <Button
               flex={1}
               android_ripple={{color: '#DEB5B5'}}
@@ -127,6 +121,16 @@ const ParentProfileSetting = () => {
               <TextBold text="Save" />
             </Button>
           </HStack>
+          <Button
+            onPress={() => handleLogout(store)}
+            flex={1}
+            hardShadow="3"
+            size="xl"
+            borderColor="black"
+            bg={'#A3BACD'}
+            borderRadius={'$lg'}>
+            <TextRegular text="Sign Out" color="white" />
+          </Button>
         </ScrollView>
       </ImageBackground>
     </View>

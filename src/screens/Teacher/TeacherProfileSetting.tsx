@@ -29,9 +29,9 @@ const TeacherProfileSetting = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
 
-  // if (!store.user) {
-  //   return null;
-  // }
+  if (!store.user) {
+    return null;
+  }
 
   const fields = [
     {
@@ -42,8 +42,8 @@ const TeacherProfileSetting = () => {
     {
       title: 'Username',
       placeholder: 'sanaD11',
-      value: store.user?.user.full_name,
-      // value: capitalizeFirstLetter(store.user?.user.full_name),
+      // value: store.user?.user.full_name,
+      value: capitalizeFirstLetter(store.user?.user.full_name),
     },
 
     {
@@ -73,12 +73,12 @@ const TeacherProfileSetting = () => {
                 h={'$full'}
               />
             </Box>
-            {/* <TextSemibold
+            <TextSemibold
               mt={4}
               text={capitalizeFirstLetter(
                 store.user ? store.user.user.full_name : 'John Doe',
               )}
-            /> */}
+            />
           </Center>
           <Box height={'$8'} />
           {fields.map((field, index) => (
