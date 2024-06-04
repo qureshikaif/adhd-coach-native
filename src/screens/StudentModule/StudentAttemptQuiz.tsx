@@ -127,6 +127,7 @@ const StudentAttemptQuiz = () => {
   const {handleSubmit, control} = useForm();
   const [timeLeft, setTimeLeft] = useState(900);
   const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation<NavigationProp<NavigationType>>();
@@ -180,7 +181,8 @@ const StudentAttemptQuiz = () => {
         setShowSuccess(true);
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response.data);
+        setErrorMessage(err.response.data.message);
         setLoading(false);
         setShowError(true);
       });
@@ -233,8 +235,8 @@ const StudentAttemptQuiz = () => {
         <Box height={height} />
       </ScrollView>
       <Error
-        heading="Time's Up!"
-        text="Oops. Time expired"
+        heading={errorMessage ? 'Error' : "Time's Up!"}
+        text={errorMessage ? errorMessage : 'Time Expired!'}
         showModal={showError}
         bgColor="#FFA360"
         setShowModal={value => {
