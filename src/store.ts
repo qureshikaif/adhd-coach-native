@@ -17,6 +17,7 @@ type User = {
 type Store = {
   role: string | null;
   setRole: (role: string) => void;
+  setOtp: (otp: string) => void;
   isAuthenticated: boolean;
   setAuthenticated: (isAuthenticated: boolean) => void;
   user: User | null;
@@ -25,6 +26,7 @@ type Store = {
   setAnswer: (questionId: number, answer: string) => void;
   grandAssessmentAnswers: Record<number, string>;
   setGrandAssessmentAnswer: (questionId: number, answer: string) => void;
+  otp: string | null;
 };
 
 export const useStore = create<Store>(set => ({
@@ -33,7 +35,9 @@ export const useStore = create<Store>(set => ({
   user: null,
   answers: {},
   grandAssessmentAnswers: {},
+  otp: null,
   setRole: role => set(() => ({role})),
+  setOtp: otp => set(() => ({otp})),
   setAuthenticated: isAuthenticated => set(() => ({isAuthenticated})),
   setUser: user => set(() => ({user})),
   setAnswer: (questionId, answer) =>

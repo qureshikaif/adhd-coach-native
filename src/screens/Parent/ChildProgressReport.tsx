@@ -1,28 +1,23 @@
-
 import {
   View,
   ImageBackground,
   ScrollView,
   Box,
-  VStack,
   Button,
   HStack,
   Text,
 } from '@gluestack-ui/themed';
 import {TextInput} from 'react-native';
-import Svg, {Rect, Text as SvgText} from 'react-native-svg'; // Import Svg, Rect, and Text from react-native-svg
-
+import Svg, {Rect} from 'react-native-svg';
+import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
-import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
 
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
 const ChildProgressReport = () => {
-  // Static values for quiz marks and teacher remarks
-  const quizMarks = 75; // Example value
-  const teacherRemarks = 'Great progress this term! Keep up the good work.'; // Example value
-
+  const quizMarks = 75;
+  const teacherRemarks = 'Great progress this term! Keep up the good work.';
 
   const calculateProgress = () => {
     return quizMarks / 100;
@@ -31,7 +26,7 @@ const ChildProgressReport = () => {
   return (
     <View h="$full">
       <ImageBackground source={BackgroundImage} h="$full">
-        <StatusBarParent text="Child Report" />
+        <StatusBarParent text="Child Progress" />
         <ScrollView paddingHorizontal={'$4'}>
           <Box height={'$5'} />
           <Svg height="60" width="100%" viewBox="0 0 200 60">
@@ -46,7 +41,6 @@ const ChildProgressReport = () => {
               rx="10"
             />
 
-
             <Rect
               x="2"
               y="2"
@@ -55,25 +49,6 @@ const ChildProgressReport = () => {
               fill="#4CAF50"
               rx="10"
             />
-
-            <SvgText x="0" y="45" fill="black" fontSize="10">
-              0
-            </SvgText>
-            <SvgText x="40" y="45" fill="black" fontSize="10">
-              20
-            </SvgText>
-            <SvgText x="80" y="45" fill="black" fontSize="10">
-              40
-            </SvgText>
-            <SvgText x="120" y="45" fill="black" fontSize="10">
-              60
-            </SvgText>
-            <SvgText x="160" y="45" fill="black" fontSize="10">
-              80
-            </SvgText>
-            <SvgText x="200" y="45" fill="black" fontSize="10">
-              100
-            </SvgText>
           </Svg>
 
           <Box height={'$5'} />
@@ -126,7 +101,6 @@ const ChildProgressReport = () => {
               <TextBold text="Save" />
             </Button>
           </HStack>
-
         </ScrollView>
       </ImageBackground>
     </View>
