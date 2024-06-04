@@ -30,11 +30,11 @@ type NavigationType = {
 const AdminProfile = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
-  const height = useBottomTabBarHeight();
+  // const height = useBottomTabBarHeight();
 
-  if (!store) {
-    return null;
-  }
+  // if (!store) {
+  //   return null;
+  // }
 
   const fields = [
     {
@@ -124,7 +124,7 @@ const AdminProfile = () => {
             borderRadius={'$lg'}>
             <TextRegular text="Sign Out" color="white" />
           </Button>
-          <Box height={height} />
+          {/* <Box height={height} /> */}
         </ScrollView>
       </ImageBackground>
     </View>

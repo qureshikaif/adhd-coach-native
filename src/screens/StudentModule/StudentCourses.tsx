@@ -47,7 +47,7 @@ const StudentCourses = () => {
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/student/get-all-optional-courses',
+        `http://192.168.0.107:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -181,7 +181,7 @@ const StudentCourses = () => {
               </HStack>
               <Box height={'$2'} />
             </Pressable>
-            <Pressable flex={1}>
+            <Pressable flex={1} disabled={course.is_enrolled}>
               <HStack
                 bgColor="#FF9990"
                 height={60}
@@ -190,7 +190,10 @@ const StudentCourses = () => {
                 justifyContent="center"
                 borderRadius={'$3xl'}
                 borderWidth={'$1'}>
-                <TextSemibold text={'Enroll now'} fontSize={'$md'} />
+                <TextSemibold
+                  text={course.is_enrolled ? 'Already Enrolled' : 'Enroll Now'}
+                  fontSize={'$md'}
+                />
               </HStack>
               <Box height={'$8'} />
             </Pressable>

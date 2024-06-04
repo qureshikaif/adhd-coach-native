@@ -28,7 +28,8 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-          <AdminProfile/>
+          {/* <MainNavigator /> */}
+          <AdminProfile />
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>

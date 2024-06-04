@@ -24,9 +24,9 @@ const ProfileSetting = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
 
-  if (!store.user) {
-    return null;
-  }
+  // if (!store.user) {
+  //   return null;
+  // }
 
   const fields = [
     {
