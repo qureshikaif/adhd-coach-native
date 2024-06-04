@@ -89,9 +89,8 @@ const StudentCourses = () => {
         />
         <Box height={'$10'} />
         {enrolledCourses?.map((enrolledCourse: any, index: number) => (
-          <HStack px={'$4'}>
+          <HStack px={'$4'} key={index}>
             <Pressable
-              key={index}
               flex={1}
               onPress={() =>
                 navigation.navigate('StudentCoursesLectures', {

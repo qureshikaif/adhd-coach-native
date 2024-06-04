@@ -22,26 +22,34 @@ const BackgroundImage = require('../../assets/images/grand-assessment-bg.png');
 const Clock = require('../../assets/images/assessment/clock.png');
 
 type NavigationType = {
-  AttemptQuiz: {quiz: Question[]};
+  AttemptQuiz: {quiz: Quiz[]};
+  StudentMain: undefined;
 };
 
 type Option = {
-  id: number;
-  text: string;
+  option: string;
 };
 
 type Question = {
-  id: number;
-  question: string;
+  correct_answer: string;
   options: Option[];
-  answer: number;
+  question_id: number;
+  title: string;
+};
+
+type Quiz = {
+  course_id: number;
+  id: number;
+  instructor: null;
+  questions: Question[];
+  title: string;
 };
 
 const OptionButton = ({
   option,
   onPress,
 }: {
-  option: Option;
+  option: string;
   onPress: () => void;
 }) => {
   return (
@@ -54,7 +62,7 @@ const OptionButton = ({
       borderRadius="$lg"
       paddingHorizontal={12}
       marginBottom={10}>
-      {option.text}
+      <TextSemibold text={option} />
     </Button>
   );
 };
@@ -67,20 +75,20 @@ const QuestionCard = ({
   onSelectOption: (optionId: number) => void;
 }) => {
   return (
-    <Box key={question.id} marginBottom={20}>
+    <Box key={question.question_id} marginBottom={20}>
       <TextBold
-        text={`Question ${question.id}:`}
+        text={`Question ${question.question_id}:`}
         fontSize="$xl"
         color="#AB4519"
       />
-      <TextRegular text={question.question} />
+      <TextRegular text={question.title} />
       <Box height={10} />
       <VStack>
         {question.options.map((option, index) => (
           <OptionButton
-            key={option.id}
+            key={index}
             option={option}
-            onPress={() => onSelectOption(option.id)}
+            onPress={() => onSelectOption(question.question_id)}
           />
         ))}
       </VStack>
@@ -89,14 +97,15 @@ const QuestionCard = ({
 };
 
 const StudentAttemptQuiz = () => {
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(10000);
   const [showError, setShowError] = useState(false);
   const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const route = useRoute();
 
-  const {quiz} = route.params as {quiz: Question[]};
+  const {quiz} = route.params as {quiz: Quiz[]};
 
+  console.log('Quiz', quiz);
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(prevTime => {
@@ -121,17 +130,6 @@ const StudentAttemptQuiz = () => {
     ).padStart(2, '0')}`;
   };
 
-  const onSelectOption = (optionId: number) => {
-    setSelectedOptions(prevOptions => {
-      const updatedOptions = [...prevOptions];
-      const index = quiz.findIndex(question => question.id === optionId);
-      if (index !== -1) {
-        updatedOptions[index] = optionId;
-      }
-      return updatedOptions;
-    });
-  };
-
   return (
     <ImageBackground source={BackgroundImage} h={'$full'}>
       <StatusBarStudent
@@ -148,31 +146,13 @@ const StudentAttemptQuiz = () => {
               <TextBold text={formatTime(timeLeft)} fontSize={'$2xl'} />
             </VStack>
           </Box>
-          {quiz.map(question => (
+          {quiz.questions.map(question => (
             <QuestionCard
-              key={question.id}
+              key={question.question_id}
               question={question}
-              onSelectOption={onSelectOption}
+              onSelectOption={() => console.log('Pressed')}
             />
           ))}
-          <Button
-            onPress={() => {
-              let score = 0;
-              quiz.forEach((question, index) => {
-                if (selectedOptions[index] === question.answer) {
-                  score += 1;
-                }
-              });
-              console.log(`Score: ${score} out of ${quiz.length}`);
-            }}
-            size="xl"
-            borderColor="black"
-            bg="#FFB579"
-            borderWidth={0.5}
-            borderRadius="$lg"
-            paddingHorizontal={12}>
-            <TextSemibold text="Submit" />
-          </Button>
         </VStack>
       </ScrollView>
       <Error
@@ -186,7 +166,6 @@ const StudentAttemptQuiz = () => {
             navigation.navigate('StudentMain');
           }
         }}
-        ref={refError}
       />
     </ImageBackground>
   );

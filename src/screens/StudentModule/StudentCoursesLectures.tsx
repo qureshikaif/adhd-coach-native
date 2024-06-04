@@ -9,7 +9,11 @@ import {
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
-import {RouteProp} from '@react-navigation/native';
+import {
+  NavigationProp,
+  RouteProp,
+  useNavigation,
+} from '@react-navigation/native';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 
 const BackgroundImage = require('../../assets/images/Stud-course-bg.png');
@@ -18,12 +22,17 @@ type RouteType = {
   StudentCoursesLectures: {course: any};
 };
 
+type NavigationType = {
+  StudentAttemptQuiz: {quiz: any};
+};
+
 const StudentCoursesLectures = ({
   route,
 }: {
   route: RouteProp<RouteType, 'StudentCoursesLectures'>;
 }) => {
   const {course} = route.params;
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} h="$full">
@@ -50,7 +59,7 @@ const StudentCoursesLectures = ({
             }`}
           />
           <Box height={'$10'} />
-          {course.lectures && (
+          {course.lectures.length > 0 && (
             <TextRegular
               text="Lectures"
               w="$full"
@@ -88,7 +97,12 @@ const StudentCoursesLectures = ({
           <Box height={'$5'} />
 
           {course.quizzes.map((quiz: any, index: number) => (
-            <Pressable key={index}>
+            <Pressable
+              key={index}
+              onPress={() => {
+                console.log('Pressed');
+                navigation.navigate('StudentAttemptQuiz', {quiz: quiz});
+              }}>
               <HStack
                 bgColor="#FFA360"
                 height={60}
