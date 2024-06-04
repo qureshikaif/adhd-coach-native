@@ -29,26 +29,27 @@ const TeacherProfileSetting = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
 
-  if (!store.user) {
-    return null;
-  }
+  // if (!store.user) {
+  //   return null;
+  // }
 
   const fields = [
     {
       title: 'Email',
       placeholder: '.sanaD11@adhdcoach.com',
-      value: store.user.user.email,
+      value: store.user?.user.email,
     },
     {
       title: 'Username',
       placeholder: 'sanaD11',
-      value: capitalizeFirstLetter(store.user?.user.full_name),
+      value: store.user?.user.full_name,
+      // value: capitalizeFirstLetter(store.user?.user.full_name),
     },
 
     {
       title: 'Password',
       placeholder: 'Sana123',
-      value: store.user.user.password,
+      value: store.user?.user.password,
     },
   ];
   return (
