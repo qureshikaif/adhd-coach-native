@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {View, ImageBackground, Text, StyleSheet, FlatList} from 'react-native';
 import {Box} from '@gluestack-ui/themed';
 import StatusBarChatParent from '../../components/molecules/StatusBarChatParent';
 import ChatInput from '../../components/molecules/ChatInput';
+import {useNavigation} from '@react-navigation/native';
+import {tabBarStyle} from '../../navigation/AdminTabs';
 
 const BackgroundImage = require('../../assets/images/ParentChatOpen.png');
 
@@ -47,6 +49,15 @@ const messages: Message[] = [
 ];
 
 const ParentChatOpen: React.FC = () => {
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation
+      .getParent()
+      ?.setOptions({tabBarStyle: {display: 'none'}, tabBarVisible: false});
+    return () =>
+      navigation.getParent()?.setOptions({tabBarStyle, tabBarVisible: true});
+  }, [navigation]);
   const renderItem = ({item}: {item: Message}) => (
     <View
       style={[
@@ -61,7 +72,7 @@ const ParentChatOpen: React.FC = () => {
   return (
     <View style={{flex: 1}}>
       <ImageBackground source={BackgroundImage} style={{flex: 1}}>
-        <StatusBarChatParent text="Sana Zehra" isSettingsVisible />
+        <StatusBarChatParent text="Sana Zehra" />
         <Box height={8} />
         <FlatList
           data={messages}
