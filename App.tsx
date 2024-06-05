@@ -1,12 +1,9 @@
 import React from 'react';
-import { config as defaultConfig } from '@gluestack-ui/config';
-import { GluestackUIProvider, createConfig } from '@gluestack-ui/themed';
-import { NavigationContainer } from '@react-navigation/native';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import TeacherProfileSetting from './src/screens/Teacher/TeacherProfileSetting';
+import {config as defaultConfig} from '@gluestack-ui/config';
+import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
+import {NavigationContainer} from '@react-navigation/native';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import MainNavigator from './src/navigation/MainNavigator';
-import DoctorsList from './src/screens/Parent/DoctorList';
-import ChildProgressList from './src/screens/Parent/ChildProgressList';
 
 const config = createConfig({
   ...defaultConfig,
@@ -30,9 +27,7 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-          {/* <MainNavigator /> */}
-          {/* <TeacherProfileSetting/> */}
-          <ChildProgressList />
+          <MainNavigator />
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>
