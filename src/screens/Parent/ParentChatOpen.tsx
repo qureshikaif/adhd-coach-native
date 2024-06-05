@@ -1,10 +1,15 @@
 import React, {useLayoutEffect} from 'react';
 import {View, ImageBackground, Text, StyleSheet, FlatList} from 'react-native';
-import {Box} from '@gluestack-ui/themed';
+import {Box, HStack, Input, Pressable} from '@gluestack-ui/themed';
 import StatusBarChatParent from '../../components/molecules/StatusBarChatParent';
 import ChatInput from '../../components/molecules/ChatInput';
 import {useNavigation} from '@react-navigation/native';
 import {tabBarStyle} from '../../navigation/AdminTabs';
+import axios from 'axios';
+import io from 'socket.io-client';
+import {useStore} from '../../store';
+import {InputField} from '@gluestack-ui/themed';
+import {SendHorizonal} from 'lucide-react-native';
 
 const BackgroundImage = require('../../assets/images/ParentChatOpen.png');
 
@@ -15,41 +20,12 @@ interface Message {
   time: string;
 }
 
-const messages: Message[] = [
-  {
-    id: '1',
-    sender: 'mom',
-    text: 'Good Afternoon!  Ms. Sana,  this is Ali’s mom. I hope you re doing well.',
-    time: '4:34 pm',
-  },
-  {
-    id: '2',
-    sender: 'mom',
-    text: ' I want to discuss my childs progress. How are they doing in your class?',
-    time: '4:35 pm',
-  },
-  {
-    id: '3',
-    sender: 'teacher',
-    text: 'Hello Mrs. Ahmed, I’m glad you reached out. Ali has been doing quite well overall. We’ve been working on strategies to help them stay focused and organized.',
-    time: '4:42 pm',
-  },
-  {
-    id: '4',
-    sender: 'mom',
-    text: 'Thanks for the update. Are there any areas they’re excelling in or struggling with?',
-    time: '4:43 pm',
-  },
-  {
-    id: '5',
-    sender: 'teacher',
-    text: 'They’re doing well in activities like Rock Paper Scissors. However, they struggle more with recognizing tasks like shape recognition. Make sure he does practice exercises.',
-    time: '4:44 pm',
-  },
-];
-
 const ParentChatOpen: React.FC = () => {
   const navigation = useNavigation();
+  const store = useStore();
+  const [messages, setMessages] = React.useState<Message[]>([]);
+  const socket = io('http://192.168.0.107:8080');
+  const [newMessage, setNewMessage] = React.useState('');
 
   useLayoutEffect(() => {
     navigation
@@ -64,10 +40,47 @@ const ParentChatOpen: React.FC = () => {
         styles.messageContainer,
         item.sender === 'teacher' ? styles.teacherMessage : styles.momMessage,
       ]}>
-      <Text style={styles.messageText}>{item.text}</Text>
+      <Text style={styles.messageText}>{item.message}</Text>
       <Text style={styles.timeText}>{item.time}</Text>
     </View>
   );
+
+  useLayoutEffect(() => {
+    // Fetch chat history
+    axios
+      .get(`http://192.168.0.107:8080/chat/chat-history/${201}/${101}`)
+      .then(response => {
+        console.log(response.data);
+        setMessages(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching chat history', error);
+      });
+
+    socket.on('receiveMessage', (newMessage: Message) => {
+      setMessages(prevMessages => [...prevMessages, newMessage]);
+    });
+
+    // Cleanup
+    return () => {
+      socket.off('receiveMessage');
+    };
+  }, []);
+
+  const handleSendMessage = () => {
+    axios
+      .post('http://192.168.0.107:8080/chat/send-message', {
+        sender_id: 201, // replace with the actual senderId
+        receiver_id: 101, // replace with the actual receiverId
+        message: newMessage,
+      })
+      .then(response => {
+        setNewMessage('');
+      })
+      .catch(error => {
+        console.error('Error sending message', error);
+      });
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -80,7 +93,29 @@ const ParentChatOpen: React.FC = () => {
           keyExtractor={item => item.id}
           contentContainerStyle={styles.chatContainer}
         />
-        <ChatInput />
+        <HStack bg="#000000" w="$full" h="$16" p="$4">
+          <HStack alignItems="center" space="md">
+            <Input
+              bgColor="white"
+              height={'$11'}
+              rounded={'$full'}
+              w="$5/6"
+              borderWidth={0}>
+              <InputField
+                value={newMessage}
+                onChangeText={setNewMessage}
+                type="text"
+                fontFamily="Poppins-Regular"
+                placeholder="Type to send"
+                paddingHorizontal={'$6'}
+                placeholderTextColor={'black'}
+              />
+            </Input>
+          </HStack>
+          <Pressable onPress={handleSendMessage}>
+            <SendHorizonal size={24} color="white" />
+          </Pressable>
+        </HStack>
       </ImageBackground>
     </View>
   );
