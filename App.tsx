@@ -30,10 +30,10 @@ function App(): React.JSX.Element {
     <NavigationContainer>
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
-          {/* <MainNavigator /> */}
+          <MainNavigator />
           {/* <TeacherProfileSetting/> */}
           {/* <ChildProgressList /> */}
-          <ShapesEnglish/>
+          {/* <ShapesEnglish/> */}
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>

@@ -20,7 +20,7 @@ import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import {handleLogout} from '../../helpers/handleLogout';
 
-const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
+const TeacherPic = require('../../assets/images/user-image.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
 // type NavigationType = {
@@ -61,18 +61,19 @@ const TeacherProfileSetting = () => {
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <Center>
-            <Box
+          <Box
               rounded={'$full'}
               overflow="hidden"
-              width={120}
-              height={120}
+              width={90}
+              height={90}
               borderWidth={2}
               borderColor="gray.200">
               <Image
                 source={TeacherPic}
                 alt="Teacher Icon"
-                w={'$full'}
-                h={'$full'}
+                w="$full"
+                h={90}
+                resizeMode='cover'
               />
             </Box>
             {/* <TextSemibold
