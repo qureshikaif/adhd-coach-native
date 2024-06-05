@@ -3,10 +3,8 @@ import {config as defaultConfig} from '@gluestack-ui/config';
 import {GluestackUIProvider, createConfig} from '@gluestack-ui/themed';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import MainNavigator from './src/navigation/MainNavigator';
-import AdminProfile from './src/screens/Admin/AdminProfile';
-import ProfileSetting from './src/screens/Doctor/ProfileSetting';
 import TeacherProfileSetting from './src/screens/Teacher/TeacherProfileSetting';
+import MainNavigator from './src/navigation/MainNavigator';
 
 const config = createConfig({
   ...defaultConfig,
