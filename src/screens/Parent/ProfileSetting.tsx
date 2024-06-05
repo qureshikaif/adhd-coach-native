@@ -38,7 +38,7 @@ const ParentProfileSetting = () => {
     {
       title: 'Username',
       placeholder: 'sanaD11',
-      value: store.user.user.full_name,
+      value: capitalizeFirstLetter(store.user.user.full_name),
     },
     {
       title: 'Assigned Children Id',
@@ -87,7 +87,7 @@ const ParentProfileSetting = () => {
                 borderWidth={0}>
                 <InputField
                   type={field.title === 'Password' ? 'password' : 'text'}
-                  value={field.value}
+                  value={String(field.value)}
                   fontFamily="Poppins-Regular"
                   placeholder={field.placeholder}
                   paddingHorizontal={'$6'}

@@ -2,7 +2,6 @@ import React from 'react';
 import {View, ImageBackground, Text, StyleSheet, FlatList} from 'react-native';
 import {Box} from '@gluestack-ui/themed';
 import StatusBarChatParent from '../../components/molecules/StatusBarChatParent';
-import ChatBoxBottom from '../../components/ChatDialogueboxAlternative';
 import ChatInput from '../../components/molecules/ChatInput';
 
 const BackgroundImage = require('../../assets/images/ParentChatOpen.png');

@@ -21,13 +21,19 @@ import TextBold from '../../atoms/Text/TextBold';
 import TextRegular from '../../atoms/Text/TextRegular';
 import {InputField} from '@gluestack-ui/themed';
 import axios from 'axios';
+import Error from './Error';
+import Success from './Success';
 
 const AddDoctorIcon = require('../../../assets/images/add-doctor.png');
 
 const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
   const [doctorId, setDoctorId] = React.useState('' as string);
   const [email, setEmail] = React.useState('' as string);
+
   const [loading, setLoading] = React.useState(false);
+
+  const [showSuccess, setShowSuccess] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
 
   const handleDoctorId = (text: string) => setDoctorId(text);
   const handleEmail = (text: string) => setEmail(text);
@@ -35,7 +41,7 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
   const onSubmit = () => {
     setLoading(true);
     axios
-      .post('http://13.127.65.203:8080/admin/doctor', {
+      .post('http://192.168.0.107:8080/admin/doctor', {
         doctorId,
         email,
       })
@@ -43,10 +49,13 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
         console.log(res.data.message);
         setLoading(false);
         setShowModal(false);
+        setShowSuccess(true);
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response.data);
         setLoading(false);
+        setShowModal(false);
+        setShowError(true);
       });
   };
   return (
@@ -140,6 +149,16 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <Error
+        showModal={showError}
+        setShowModal={setShowError}
+        text="An error occured while adding doctor"
+      />
+      <Success
+        showModal={showSuccess}
+        setShowModal={setShowSuccess}
+        text="Doctor added successfully"
+      />
     </Center>
   );
 };

@@ -42,7 +42,7 @@ const AddNewLecture = ({
   const onSubmit = () => {
     setLoading(true);
     axios
-      .post('http://13.127.65.203:8080/teacher/add-lecture', {
+      .post('http://192.168.0.107:8080/teacher/add-lecture', {
         lecture,
         courseId,
         instructorId: store.user?.user.id_assigned,
