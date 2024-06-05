@@ -31,11 +31,12 @@ const StudentCourses = () => {
     data: enrolledCourses,
     isLoading: isLoadingEnrolled,
     isError: isErrorEnrolled,
+    refetch: refetchEnrolledCourses,
   } = useQuery({
     queryKey: ['enrolledCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/student/get-courses/${store.user?.user.id_assigned}`,
+        `http://192.168.0.107:8080/student/get-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -45,11 +46,12 @@ const StudentCourses = () => {
     data: courses,
     isLoading: isLoadingCourses,
     isError: isErrorCourses,
+    refetch: refetchAllCourses,
   } = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
+        `http://192.168.0.107:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -63,11 +65,15 @@ const StudentCourses = () => {
     queryKey: ['compulsoryCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-compulsory-courses',
+        'http://192.168.0.107:8080/student/get-compulsory-courses',
       );
       return data;
     },
   });
+
+  console.log('Courses', courses);
+  console.log('Enrolled Courses', enrolledCourses);
+  console.log('Compulsory Courses', compulsoryCourses);
 
   if (isLoadingCourses || isLoadingEnrolled || isLoadingCompulsory) {
     return <Loading bgImage={BackgroundImage} />;
@@ -80,27 +86,27 @@ const StudentCourses = () => {
         h="$full"
         alignItems="center"
         justifyContent="center">
-        <TextSemibold text="An error occured while fetching data" />
+        <TextSemibold text="An error occurred while fetching data" />
       </ImageBackground>
     );
   }
 
   const handleEnroll = async (courseId: string, teacherId: string) => {
     setLoading(true);
-    axios
-      .post('http://13.127.65.203:8080/student/enroll', {
+    try {
+      const res = await axios.post('http://13.127.65.203:8080/student/enroll', {
         studentId: store.user?.user.id_assigned,
         courseId,
         teacherId,
-      })
-      .then(res => {
-        console.log(res.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.log(err.response.data);
-        setLoading(false);
       });
+      console.log(res.data);
+      await refetchEnrolledCourses();
+      await refetchAllCourses();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   console.log(JSON.stringify(compulsoryCourses, null, 2));
