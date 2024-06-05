@@ -7,6 +7,7 @@ import TeacherProfileSetting from './src/screens/Teacher/TeacherProfileSetting';
 import MainNavigator from './src/navigation/MainNavigator';
 import DoctorsList from './src/screens/Parent/DoctorList';
 import ChildProgressList from './src/screens/Parent/ChildProgressList';
+import ShapesEnglish from './src/screens/StudentModule/ShapesEnglish';
 
 const config = createConfig({
   ...defaultConfig,
@@ -32,7 +33,8 @@ function App(): React.JSX.Element {
         <GluestackUIProvider config={config}>
           {/* <MainNavigator /> */}
           {/* <TeacherProfileSetting/> */}
-          <ChildProgressList />
+          {/* <ChildProgressList /> */}
+          <ShapesEnglish/>
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>
