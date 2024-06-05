@@ -4,6 +4,7 @@ import React from 'react';
 import {GapValues} from '../../types/GapValues';
 import TextSemibold from '../atoms/Text/TextSemibold';
 import SideBackButton from '../atoms/Buttons/SideBackButton';
+import {ChevronLeft} from 'lucide-react-native';
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const ProfilePic = require('../../assets/images//icons/ProfilePicSana.png');
 const PhoneIcon = require('../../assets/images/icons/phone.png');
@@ -24,29 +25,27 @@ const StatusBarChatParent = ({text, gap}: StatusBarChatProps) => {
       paddingHorizontal={'$4'}
       paddingVertical={'$4'}
       gap={gap ? gap : '$0'}>
-      <SideBackButton
+      <ChevronLeft size={35} color="black" />
+      {/* <SideBackButton
         variant="white"
-
         imageProps={{
           size: 'xs',
         }}
         buttonProps={{}}
-      />
+      /> */}
       <HStack alignItems="center" space="lg" justifyContent="space-between">
         <HStack alignItems="center" space="lg" paddingHorizontal={'$4'}>
           <Image source={ProfilePic} alt="Profle Pic" width={40} height={40} />
-          <TextSemibold text={text} fontSize={'$2xl'} color="white" />
+          <TextSemibold text={text} fontSize={'$2xl'} />
         </HStack>
         <HStack
           justifyContent="space-between"
           alignItems="baseline"
           h="$4/6"
           space="lg"
-          paddingHorizontal={'$4'}>
-          <Image source={PhoneIcon} w={'$6'} h={'$6'} alt="Phone Icon" />
-        </HStack>
+          paddingHorizontal={'$4'}
+        />
       </HStack>
-
     </HStack>
   );
 };

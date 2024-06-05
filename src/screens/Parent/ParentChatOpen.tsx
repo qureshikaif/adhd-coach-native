@@ -21,10 +21,10 @@ interface Message {
 }
 
 const ParentChatOpen: React.FC = () => {
+  const socket = io('http://192.168.0.107:8080');
   const navigation = useNavigation();
   const store = useStore();
   const [messages, setMessages] = React.useState<Message[]>([]);
-  const socket = io('http://192.168.0.107:8080');
   const [newMessage, setNewMessage] = React.useState('');
 
   useLayoutEffect(() => {
@@ -99,7 +99,7 @@ const ParentChatOpen: React.FC = () => {
               bgColor="white"
               height={'$11'}
               rounded={'$full'}
-              w="$5/6"
+              w="92%"
               borderWidth={0}>
               <InputField
                 value={newMessage}
