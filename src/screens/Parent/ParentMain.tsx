@@ -53,11 +53,25 @@ const ParentMain = () => {
     },
   });
 
-  if (isLoadingPrescription) {
+  const {
+    data: checkDoctors,
+    isLoading: isLoadingCheck,
+    isFetched: isFetchedCheck,
+  } = useQuery({
+    queryKey: ['checkDoctors'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        `http://192.168.0.107:8080/parent/check-doctor/${store.user?.user.child_id}`,
+      );
+      return data;
+    },
+  });
+
+  if (isLoadingPrescription || isLoadingCheck) {
     return <Loading bgImage={BackgroundImage} />;
   }
 
-  if (!isFetched) {
+  if (!isFetched || !isFetchedCheck) {
     return (
       <ImageBackground
         source={BackgroundImage}
@@ -122,6 +136,7 @@ const ParentMain = () => {
             bg="#DBC9E1"
             w="$full"
             h="$20"
+            disabled={checkDoctors.isDoctorAssigned}
             onPress={() => navigation.navigate('DoctorsList')}
             android_ripple={{color: 'gray'}}>
             <VStack
@@ -129,7 +144,13 @@ const ParentMain = () => {
               alignItems="center"
               justifyContent="center"
               h="$20">
-              <TextSemibold text="Assign doctor" />
+              <TextSemibold
+                text={
+                  checkDoctors.isDoctorAssigned
+                    ? 'Already Assigned'
+                    : 'Assign a doctor'
+                }
+              />
             </VStack>
           </Pressable>
 

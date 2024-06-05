@@ -22,7 +22,7 @@ import {useStore} from '../../store';
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
 const DoctorsList = () => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const store = useStore();
   const [loadingDoctorId, setLoadingDoctorId] = React.useState(null); // State to track which button is loading
 
@@ -34,7 +34,21 @@ const DoctorsList = () => {
     queryKey: ['doctors'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/parent/get-doctors`,
+        'http://192.168.0.107:8080/parent/get-doctors',
+      );
+      return data;
+    },
+  });
+
+  const {
+    data: checkDoctors,
+    isLoading: isLoadingCheck,
+    isFetched: isFetchedCheck,
+  } = useQuery({
+    queryKey: ['checkDoctors'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        `http://192.168.0.107:8080/parent/check-doctor/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -52,25 +66,37 @@ const DoctorsList = () => {
         },
       );
       console.log(response.data);
-      setLoadingDoctorId(null); // Reset the loading state
+      setLoadingDoctorId(null);
     } catch (error: any) {
       console.log(error.response.data);
-      setLoadingDoctorId(null); // Reset the loading state
+      setLoadingDoctorId(null);
     }
   };
 
-  if (isLoading) {
+  if (isLoading || isLoadingCheck) {
     return <Loading bgImage={BackgroundImage} />;
   }
 
-  if (!isFetched) {
+  if (!isFetched || !isFetchedCheck) {
     return (
       <ImageBackground
         source={BackgroundImage}
         h="$full"
         alignItems="center"
         justifyContent="center">
-        <TextSemibold text="An error occured while fetching data" />
+        <TextSemibold text="An error occurred while fetching data" />
+      </ImageBackground>
+    );
+  }
+
+  if (checkDoctors.isDoctorAssigned) {
+    return (
+      <ImageBackground
+        source={BackgroundImage}
+        h="$full"
+        alignItems="center"
+        justifyContent="center">
+        <TextSemibold text="Doctor is already assigned to your child" />
       </ImageBackground>
     );
   }
@@ -98,12 +124,12 @@ const DoctorsList = () => {
                   </Text>
                   <Text color="black">{doctor.specialization}</Text>
                 </Box>
-                {loadingDoctorId === doctor.id ? (
+                {loadingDoctorId === doctor.id_assigned ? (
                   <ButtonSpinner />
                 ) : (
                   <Button
                     bg="transparent"
-                    onPress={() => handleAssignment(doctor.id)}
+                    onPress={() => handleAssignment(doctor.id_assigned)}
                     p={2}>
                     <Plus absoluteStrokeWidth color={'black'} />
                   </Button>
