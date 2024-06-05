@@ -35,7 +35,7 @@ const StudentCourses = () => {
     queryKey: ['enrolledCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/student/get-courses/${store.user?.user.id_assigned}`,
+        `http://13.127.65.203:8080/student/get-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -49,7 +49,7 @@ const StudentCourses = () => {
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
+        `http://13.127.65.203:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -63,7 +63,7 @@ const StudentCourses = () => {
     queryKey: ['compulsoryCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/student/get-compulsory-courses',
+        'http://13.127.65.203:8080/student/get-compulsory-courses',
       );
       return data;
     },
@@ -88,7 +88,7 @@ const StudentCourses = () => {
   const handleEnroll = async (courseId: string, teacherId: string) => {
     setLoading(true);
     axios
-      .post('http://192.168.0.107:8080/student/enroll', {
+      .post('http://13.127.65.203:8080/student/enroll', {
         studentId: store.user?.user.id_assigned,
         courseId,
         teacherId,

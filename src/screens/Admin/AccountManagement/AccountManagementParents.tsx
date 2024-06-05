@@ -17,7 +17,7 @@ const AccountManagementParents = () => {
     queryKey: ['parents'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/parent/get-parents',
+        'http://13.127.65.203:8080/parent/get-parents',
       );
       return data;
     },
