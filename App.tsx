@@ -28,6 +28,9 @@ function App(): React.JSX.Element {
       <QueryClientProvider client={queryClient}>
         <GluestackUIProvider config={config}>
           <MainNavigator />
+          {/* <TeacherProfileSetting/> */}
+          {/* <ChildProgressList /> */}
+          {/* <ShapesEnglish/> */}
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>

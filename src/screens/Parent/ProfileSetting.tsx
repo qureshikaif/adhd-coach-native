@@ -19,7 +19,7 @@ import {useStore} from '../../store';
 import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
 import TextRegular from '../../components/atoms/Text/TextRegular';
 import {handleLogout} from '../../helpers/handleLogout';
-const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
+const TeacherPic = require('../../assets/images/user-image.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
 const ParentProfileSetting = () => {
@@ -57,15 +57,16 @@ const ParentProfileSetting = () => {
             <Box
               rounded={'$full'}
               overflow="hidden"
-              width={100}
-              height={100}
+              width={90}
+              height={90}
               borderWidth={2}
               borderColor="gray.200">
               <Image
                 source={TeacherPic}
                 alt="Teacher Icon"
                 w="$full"
-                h="$full"
+                h={90}
+                resizeMode='cover'
               />
             </Box>
             {/* <TextSemibold
