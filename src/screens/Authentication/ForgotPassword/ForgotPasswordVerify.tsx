@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {
   View,
   ImageBackground,
@@ -13,21 +14,11 @@ import {
 import BackButton from '../../../components/atoms/Buttons/BackButton';
 import TextRegular from '../../../components/atoms/Text/TextRegular';
 import TextSemibold from '../../../components/atoms/Text/TextSemibold';
-import React from 'react';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {useStore} from '../../../store';
 
 const BackgroundImage = require('../../../assets/images/signup-bg.png');
 const Avatar = require('../../../assets/images/avatars/forgotpassword.png');
-const EmailIcon = require('../../../assets/images/icons/email.png');
-// const PasswordIcon = require('../../assets/images/icons/password.png');
-// const RoleIcon = require('../../assets/images/icons/chevron-down.png');
-
-const fields = [
-  {
-    title: 'Email',
-    icon: EmailIcon,
-  },
-];
 
 type NavigationType = {
   ForgotPasswordLast: undefined;
@@ -36,6 +27,29 @@ type NavigationType = {
 
 const ForgotPasswordVerify = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
+  const store = useStore();
+
+  const [otp, setOtp] = useState(['', '', '', '']);
+  const [error, setError] = useState('');
+
+  const handleOtpChange = (index: number, value: string) => {
+    if (/^\d$/.test(value) || value === '') {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp);
+    }
+  };
+
+  const verifyOtp = () => {
+    const enteredOtp = otp.join('');
+    const storedOtp = store.otp;
+
+    if (enteredOtp === storedOtp) {
+      navigation.navigate('ForgotPasswordLast');
+    } else {
+      setError('Invalid OTP. Please try again.');
+    }
+  };
 
   return (
     <View height={'$full'}>
@@ -79,9 +93,10 @@ const ForgotPasswordVerify = () => {
 
               <Box height={'$5'} />
               <VStack width={'$full'} rowGap={'$4'}>
-                {fields.map((field, index) => (
-                  <HStack space="sm" key={index} justifyContent="center">
+                <HStack space="sm" justifyContent="center">
+                  {otp.map((value, index) => (
                     <Input
+                      key={index}
                       bgColor="#DC9F72"
                       height={'$16'}
                       rounded={'$2xl'}
@@ -92,82 +107,31 @@ const ForgotPasswordVerify = () => {
                         alignItems="center"
                         justifyContent="center">
                         <InputField
+                          inputMode="numeric"
                           type="text"
                           fontSize={'$2xl'}
                           fontFamily="Poppins-Bold"
                           placeholderTextColor={'black'}
+                          maxLength={1}
+                          value={value}
+                          onChangeText={text => handleOtpChange(index, text)}
                         />
                       </VStack>
                     </Input>
-                    <Input
-                      bgColor="#DC9F72"
-                      height={'$16'}
-                      rounded={'$2xl'}
-                      width={'20%'}
-                      borderWidth={0}>
-                      <VStack
-                        w="$full"
-                        alignItems="center"
-                        justifyContent="center">
-                        <InputField
-                          type="text"
-                          fontSize={'$2xl'}
-                          fontFamily="Poppins-Bold"
-                          placeholderTextColor={'black'}
-                        />
-                      </VStack>
-                    </Input>
-                    <Input
-                      bgColor="#DC9F72"
-                      height={'$16'}
-                      rounded={'$2xl'}
-                      width={'20%'}
-                      borderWidth={0}>
-                      <VStack
-                        w="$full"
-                        alignItems="center"
-                        justifyContent="center">
-                        <InputField
-                          type="text"
-                          fontSize={'$2xl'}
-                          fontFamily="Poppins-Bold"
-                          placeholderTextColor={'black'}
-                        />
-                      </VStack>
-                    </Input>
-                    <Input
-                      bgColor="#DC9F72"
-                      height={'$16'}
-                      rounded={'$2xl'}
-                      width={'20%'}
-                      borderWidth={0}>
-                      <VStack
-                        w="$full"
-                        alignItems="center"
-                        justifyContent="center">
-                        <InputField
-                          type="text"
-                          fontSize={'$2xl'}
-                          fontFamily="Poppins-Bold"
-                          // paddingHorizontal={'$10'}
-                          placeholderTextColor={'black'}
-                        />
-                      </VStack>
-                    </Input>
-                  </HStack>
-                ))}
-                {/* <VStack>
-                  <TextRegular text="Didnt Receive it?" fontSize={'$sm'} />
-                  <HStack>
-                    <Pressable onPress={() => navigation.navigate('Resend')}>
-                      <TextBold fontSize={'$sm'} text={`${' '}Resend`} />
-                    </Pressable>
-                  </HStack>
-                </VStack> */}
+                  ))}
+                </HStack>
+                {error && (
+                  <TextRegular
+                    text={error}
+                    fontSize={'$sm'}
+                    color="red"
+                    textAlign="center"
+                  />
+                )}
               </VStack>
               <Box height={'$10'} />
               <Pressable
-                onPress={() => navigation.navigate('ForgotPasswordLast')}
+                onPress={verifyOtp}
                 bgColor="#DC9F72"
                 paddingHorizontal={'$8'}
                 paddingVertical={'$2'}

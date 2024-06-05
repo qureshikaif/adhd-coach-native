@@ -13,6 +13,7 @@ import axios from 'axios';
 import Loading from '../Loading';
 import {Article} from '../../types/Article';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import TextSemibold from '../../components/atoms/Text/TextSemibold';
 
 const BackgroundImage = require('../../assets/images/parent-main-bg.png');
 
@@ -35,6 +36,19 @@ const ParentArticleList = () => {
   if (isLoading) {
     return <Loading bgImage={BackgroundImage} />;
   }
+
+  if (articles.length === 0) {
+    return (
+      <ImageBackground
+        source={BackgroundImage}
+        h="$full"
+        alignItems="center"
+        justifyContent="center">
+        <TextSemibold text="No articles uploaded yet. Check back later!" />
+      </ImageBackground>
+    );
+  }
+
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>

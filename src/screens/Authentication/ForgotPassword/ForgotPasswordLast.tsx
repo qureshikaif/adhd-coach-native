@@ -9,29 +9,67 @@ import {
   Box,
   Pressable,
   Image,
+  SelectItem,
+  Select,
+  SelectBackdrop,
+  SelectContent,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectIcon,
+  SelectInput,
+  SelectPortal,
+  SelectTrigger,
+  InputSlot,
 } from '@gluestack-ui/themed';
 import BackButton from '../../../components/atoms/Buttons/BackButton';
 import TextSemibold from '../../../components/atoms/Text/TextSemibold';
 import React from 'react';
+import {Controller, useForm} from 'react-hook-form';
+import {useStore} from '../../../store';
+import axios from 'axios';
+import {User, ChevronDown, Mail, Lock} from 'lucide-react-native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {ButtonSpinner} from '@gluestack-ui/themed';
 
 const BackgroundImage = require('../../../assets/images/signup-bg.png');
 const Avatar = require('../../../assets/images/avatars/forgotpassword.png');
-const LockIcon = require('../../../assets/images/icons/Lock.png');
-// const PasswordIcon = require('../../assets/images/icons/password.png');
-// const RoleIcon = require('../../assets/images/icons/chevron-down.png');
 
-const fields = [
-  {
-    title: 'Enter New Password',
-    icon: LockIcon,
-  },
-  {
-    title: 'Re-Enter New Password',
-    icon: LockIcon,
-  },
-];
+type NavigationType = {
+  Signin: undefined;
+};
 
 const ForgotPasswordLast = () => {
+  const store = useStore();
+  const {control} = useForm();
+  const navigation = useNavigation<NavigationProp<NavigationType>>();
+
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+
+  const handleRole = (role: string) => store.setRole(role);
+
+  const onSubmit = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        'http://192.168.0.107:8080/auth/send-otp',
+        {
+          email,
+          password,
+          role: store.role,
+        },
+      );
+      console.log(response.data);
+      store.setOtp(response.data.otp);
+      setLoading(false);
+      navigation.navigate('Signin');
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   return (
     <View height={'$full'}>
       <ImageBackground
@@ -56,7 +94,6 @@ const ForgotPasswordLast = () => {
             />
             <View />
           </HStack>
-          {/* <TextRegular fontSize={'$5xl'} text="Welcome" fontStyle="italic" /> */}
           <VStack h={'85%'} justifyContent="center" alignItems="center">
             <Center>
               <Image
@@ -73,47 +110,104 @@ const ForgotPasswordLast = () => {
 
               <Box height={'$5'} />
               <VStack width={'$full'} rowGap={'$4'}>
-                {fields.map((field, index) => (
-                  <HStack space="sm" key={index}>
-                    <Input
+                <Input
+                  bgColor="#DC9F72"
+                  height={'$12'}
+                  rounded={'$2xl'}
+                  width={'100%'}
+                  borderWidth={0}>
+                  <InputSlot pl="$4">
+                    <Mail size={25} color="black" />
+                  </InputSlot>
+                  <InputField
+                    autoCapitalize="none"
+                    onChangeText={setEmail}
+                    type="text"
+                    fontFamily="Poppins-Regular"
+                    placeholder={'Email'}
+                    paddingHorizontal={'$6'}
+                    placeholderTextColor={'black'}
+                  />
+                </Input>
+                <Input
+                  bgColor="#DC9F72"
+                  height={'$12'}
+                  rounded={'$2xl'}
+                  width={'100%'}
+                  borderWidth={0}>
+                  <InputSlot pl="$4">
+                    <Lock size={25} color="black" />
+                  </InputSlot>
+                  <InputField
+                    autoCapitalize="none"
+                    onChangeText={setPassword}
+                    type="password"
+                    fontFamily="Poppins-Regular"
+                    placeholder={'New Password'}
+                    paddingHorizontal={'$6'}
+                    placeholderTextColor={'black'}
+                  />
+                </Input>
+              </VStack>
+              <Box height={'$4'} />
+              <Controller
+                control={control}
+                name="role"
+                render={({field: {onChange, value}}) => (
+                  <Select
+                    onValueChange={selectedRole => {
+                      onChange(selectedRole);
+                      handleRole(selectedRole);
+                    }}>
+                    <SelectTrigger
                       bgColor="#DC9F72"
                       height={'$12'}
+                      paddingStart={'$4'}
+                      paddingEnd={'$3'}
                       rounded={'$2xl'}
-                      width={'85%'}
-                      borderWidth={0}>
-                      <InputField
-                        type="password"
+                      width={'$full'}>
+                      <User size={25} color={'black'} />
+                      <SelectInput
+                        paddingStart={'$5'}
+                        mt={'$1'}
+                        placeholder="Role"
                         fontFamily="Poppins-Regular"
-                        placeholder={field.title}
-                        paddingHorizontal={'$6'}
                         placeholderTextColor={'black'}
+                        value={value}
                       />
-                    </Input>
-                    <Box
-                      width={'13%'}
-                      borderRadius={'$full'}
-                      bg="#DC9F72"
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center">
-                      <Image
-                        source={field.icon}
-                        alt="User Icon"
-                        resizeMode="contain"
-                        size="2xs"
-                      />
-                    </Box>
-                  </HStack>
-                ))}
-              </VStack>
-
+                      <SelectIcon as={ChevronDown} size={'xl'} color="black" />
+                    </SelectTrigger>
+                    <SelectPortal>
+                      <SelectBackdrop />
+                      <SelectContent bg="whitesmoke">
+                        <SelectDragIndicatorWrapper>
+                          <SelectDragIndicator />
+                        </SelectDragIndicatorWrapper>
+                        <SelectItem label="Admin" value="Admin" />
+                        <SelectItem label="Doctor" value="Doctor" />
+                        <SelectItem label="Teacher" value="Teacher" />
+                        <SelectItem label="Parent" value="Parent" />
+                        <SelectItem label="Student" value="Student" />
+                      </SelectContent>
+                    </SelectPortal>
+                  </Select>
+                )}
+              />
               <Box height={'$10'} />
               <Pressable
+                onPress={onSubmit}
                 bgColor="#DC9F72"
                 paddingHorizontal={'$8'}
                 paddingVertical={'$2'}
                 rounded={'$2xl'}>
-                <TextSemibold text="Confirm" fontSize={'$lg'} />
+                <HStack>
+                  {loading && <ButtonSpinner color="black" />}
+                  <TextSemibold
+                    text="Confirm"
+                    fontSize={'$lg'}
+                    ml={loading ? '$2' : '$0'}
+                  />
+                </HStack>
               </Pressable>
             </Center>
           </VStack>
