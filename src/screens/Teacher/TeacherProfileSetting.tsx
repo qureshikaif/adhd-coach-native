@@ -18,7 +18,7 @@ import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import {useStore} from '../../store';
 import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
 import TextRegular from '../../components/atoms/Text/TextRegular';
-import { handleLogout } from '../../helpers/handleLogout';
+import {handleLogout} from '../../helpers/handleLogout';
 
 const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
@@ -94,7 +94,7 @@ const TeacherProfileSetting = () => {
                 borderWidth={0}>
                 <InputField
                   type={field.title === 'Password' ? 'password' : 'text'}
-                  value={field.value}
+                  value={String(field.value)}
                   fontFamily="Poppins-Regular"
                   placeholder={field.placeholder}
                   paddingHorizontal={'$6'}
@@ -137,9 +137,9 @@ const TeacherProfileSetting = () => {
             hardShadow="3"
             size="xl"
             borderColor="black"
-            bg={'#A3BACD'}
+            bg={'#B597B8'}
             borderRadius={'$lg'}>
-            <TextRegular text="Sign Out" color="white" />
+            <TextRegular text="Sign Out" />
           </Button>
         </ScrollView>
       </ImageBackground>

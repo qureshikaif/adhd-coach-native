@@ -64,7 +64,7 @@ const Signin = () => {
   const [error, setError] = React.useState('');
   const [loading, setLoading] = React.useState(false);
 
-  const ref = React.useRef(null);
+  // const ref = React.useRef(null);
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const {
@@ -86,7 +86,7 @@ const Signin = () => {
         role: data.role,
       })
       .then(res => {
-        console.log(res.data);
+        console.log('Login DATA:', res.data);
         setLoading(false);
         store.setUser(res.data);
         store.setAuthenticated(true);
@@ -275,7 +275,7 @@ const Signin = () => {
         text={error}
         showModal={showModal}
         setShowModal={setShowModal}
-        ref={ref}
+        // ref={ref}
       />
     </View>
   );

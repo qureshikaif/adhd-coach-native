@@ -85,8 +85,8 @@ const Signup = () => {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState('');
 
-  const refError = React.useRef(null);
-  const refSuccess = React.useRef(null);
+  // const refError = React.useRef(null);
+  // const refSuccess = React.useRef(null);
 
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
@@ -386,14 +386,14 @@ const Signup = () => {
         </ScrollView>
       </ImageBackground>
       <Error
-        ref={refError}
+        // ref={refError}
         bgColor="#DC9F72"
         text={error}
         showModal={showError}
         setShowModal={setShowError}
       />
       <Success
-        ref={refSuccess}
+        // ref={refSuccess}
         bgColor="#DC9F72"
         text={`Account created successfully${
           childId !== 'Loading...' ? `. Your Child ID is ${childId}` : ''
