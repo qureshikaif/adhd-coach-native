@@ -34,7 +34,7 @@ const LastWeekStatistics = ({
               h={'$32'}
               borderColor="#46A2CD">
               <TextBold
-                text={`${studentCount}+`}
+                text={`${studentCount}`}
                 color="#46A2CD"
                 fontSize={'$4xl'}
                 mt={'$1'}
@@ -54,7 +54,7 @@ const LastWeekStatistics = ({
               h={'$32'}
               borderColor="#46A2CD">
               <TextBold
-                text={`${teacherCount}+`}
+                text={`${teacherCount}`}
                 color="#46A2CD"
                 fontSize={'$4xl'}
                 mt={'$1'}

@@ -1,13 +1,12 @@
 import React from 'react';
 import {HStack, Input, InputField, View} from '@gluestack-ui/themed';
-import {Camera, Plus} from 'lucide-react-native';
+import {Camera, Plus, SendHorizonal} from 'lucide-react-native';
 
 const ChatInput = () => {
   return (
     <View>
       <HStack bg="#000000" w="$full" h="$16" p="$4">
         <HStack alignItems="center" space="md">
-          <Plus color={'white'} size={30} />
           <Input
             bgColor="white"
             height={'$11'}
@@ -23,7 +22,7 @@ const ChatInput = () => {
             />
           </Input>
         </HStack>
-        <Camera color={'white'} size={30} />
+        <SendHorizonal size={24} color="white" />
       </HStack>
     </View>
   );

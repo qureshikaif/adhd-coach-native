@@ -70,7 +70,7 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
     queryKey: ['teachers'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/teacher/get-teachers',
+        'http://192.168.0.107:8080/teacher/get-teachers',
       );
       return data;
     },
@@ -79,7 +79,7 @@ const AddCourse = ({showModal, setShowModal, ref}: ModalProps) => {
   const onSubmit = (data: any) => {
     setLoading(true);
     axios
-      .post('http://13.127.65.203:8080/admin/course', {
+      .post('http://192.168.0.107:8080/admin/course', {
         title: data.Title,
         description: data.Description,
         instructor: data.teacher,

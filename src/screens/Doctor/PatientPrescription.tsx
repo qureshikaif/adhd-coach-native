@@ -18,24 +18,24 @@ import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
 import {useStore} from '../../store';
 import Success from '../../components/molecules/popup/Success';
 import Error from '../../components/molecules/popup/Error';
+import {ButtonSpinner} from '@gluestack-ui/themed';
 
 const BackgroundImage = require('../../assets/images/patienthistory.png');
 const TeacherPic = require('../../assets/images/icons/Doctor.png');
 
 const PatientPrescription = () => {
+  const store = useStore();
+  const [loading, setLoading] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState('');
   const [prescription, setPrescription] = useState('');
-  const store = useStore();
   const [showSuccess, setShowSuccess] = useState(false);
-  const refSuccess = React.useRef(null);
   const [showError, setShowError] = useState(false);
-  const refError = React.useRef(null);
 
   const {data: patients, isLoading} = useQuery({
     queryKey: ['patients'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-students',
+        'http://192.168.0.107:8080/student/get-students',
       );
       return data;
     },
@@ -46,18 +46,21 @@ const PatientPrescription = () => {
   }
 
   const onSubmit = async () => {
+    setLoading(true);
     await axios
-      .post('http://13.127.65.203:8080/doctor/prescription', {
+      .post('http://192.168.0.107:8080/doctor/prescription', {
         prescription,
         patientId: selectedPatient,
         doctorId: store.user?.user.id_assigned,
       })
       .then(res => {
         console.log(res.data);
+        setLoading(false);
         setShowSuccess(true);
       })
       .catch(err => {
         console.log(err);
+        setLoading(false);
         setShowError(true);
       });
   };
@@ -76,7 +79,7 @@ const PatientPrescription = () => {
           <TextBold text="Patient" fontSize={'$xl'} />
           <View
             style={{
-              borderWidth: 3,
+              borderWidth: 2,
               borderRadius: 15,
               padding: 5,
               marginTop: 10,
@@ -104,7 +107,7 @@ const PatientPrescription = () => {
             multiline
             onChange={e => setPrescription(e.nativeEvent.text)}
             style={{
-              borderWidth: 3,
+              borderWidth: 2,
               borderRadius: 15,
               padding: 10,
               height: 150,
@@ -112,23 +115,11 @@ const PatientPrescription = () => {
               backgroundColor: 'grey',
               color: 'white',
               marginBottom: 20,
+              fontFamily: 'Poppins-Regular',
             }}
           />
 
           <HStack space="lg">
-            <Button
-              flex={1}
-              android_ripple={{color: 'grey'}}
-              hardShadow="3"
-              size="xl"
-              borderColor="black"
-              bg={'#EAC5C5'}
-              borderWidth={1}
-              borderRadius={'$lg'}
-              style={{marginBottom: 20}} // Add margin bottom to create a gap
-            >
-              <TextBold text="Add new" />
-            </Button>
             <Button
               flex={1}
               android_ripple={{color: 'grey'}}
@@ -139,20 +130,21 @@ const PatientPrescription = () => {
               bg={'#EAC5C5'}
               borderWidth={1}
               borderRadius={'$lg'}>
-              <TextBold text="Save" />
+              <HStack>
+                {loading && <ButtonSpinner color="black" />}
+                <TextBold text="Save" ml={loading ? '$2' : '$0'} />
+              </HStack>
             </Button>
           </HStack>
         </ScrollView>
       </ImageBackground>
       <Success
-        ref={refSuccess}
         showModal={showSuccess}
         setShowModal={setShowSuccess}
         text="Prescription added successfully"
         bgColor="#EAC5C5"
       />
       <Error
-        ref={refError}
         showModal={showError}
         setShowModal={setShowError}
         text="An error occurred"

@@ -1,26 +1,25 @@
-import {
-  View,
-  ImageBackground,
-  ScrollView,
-  Box,
-  Button,
-  HStack,
-  Text,
-} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView, Box} from '@gluestack-ui/themed';
 import {TextInput} from 'react-native';
 import Svg, {Rect} from 'react-native-svg';
 import React from 'react';
-import TextBold from '../../components/atoms/Text/TextBold';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
+import TextSemibold from '../../components/atoms/Text/TextSemibold';
+import TextRegular from '../../components/atoms/Text/TextRegular';
+import {RouteProp} from '@react-navigation/native';
+
+type NavigationType = {
+  ChildProgressReport: {content: any};
+};
+
+type RouteType = RouteProp<NavigationType, 'ChildProgressReport'>;
 
 const BackgroundImage = require('../../assets/images/TeacherProfileSetting.png');
 
-const ChildProgressReport = () => {
-  const quizMarks = 75;
-  const teacherRemarks = 'Great progress this term! Keep up the good work.';
+const ChildProgressReport = ({route}: {route: RouteType}) => {
+  const {content: teacher} = route.params;
 
   const calculateProgress = () => {
-    return quizMarks / 100;
+    return teacher.score / 100;
   };
 
   return (
@@ -52,30 +51,41 @@ const ChildProgressReport = () => {
           </Svg>
 
           <Box height={'$5'} />
-          <TextBold text="Quiz Marks" fontSize={'$xl'} />
-          <Text style={{fontSize: 20, marginBottom: 10}}>{quizMarks}</Text>
+          <TextSemibold text="Course Name" fontSize={'$xl'} />
+          <TextRegular text={teacher.course_name} />
+          <Box height={'$5'} />
+          <TextSemibold text="Teacher's Name" fontSize={'$xl'} />
+          <TextRegular text={teacher.teacher_name} />
+          <Box height={'$5'} />
+          <TextSemibold text="Date" fontSize={'$xl'} />
+          <TextRegular text={teacher.date} />
+          <Box height={'$5'} />
+          <TextSemibold text="Child's Score" fontSize={'$xl'} />
+          <TextRegular text={`${teacher.score}/100`} />
+          {/* <Text style={{fontSize: 20, marginBottom: 10}}>{quizMarks}</Text> */}
           {/* Static quiz marks */}
           <Box height={'$5'} />
-          <TextBold text="Teacher Remarks" fontSize={'$xl'} />
+          <TextSemibold text="Teacher Remarks" fontSize={'$xl'} />
           <TextInput
             style={{
               height: 150,
               backgroundColor: 'grey',
-              borderWidth: 5,
+              borderWidth: 1,
               textAlignVertical: 'top',
               color: 'white',
-              borderRadius: 20,
+              borderRadius: 10,
               padding: 15,
               marginBottom: 10,
+              fontFamily: 'Poppins-Regular',
             }}
-            placeholder="Enter your Remarks here..."
+            placeholder="Remarks"
             placeholderTextColor={'white'}
             multiline
             editable={false} // Make the input read-only
-            value={teacherRemarks} // Static teacher remarks
+            value={teacher.remarks} // Static teacher remarks
           />
           <Box height={'$5'} />
-          <HStack space="xl">
+          {/* <HStack space="xl">
             <Button
               flex={1}
               android_ripple={{color: 'grey'}}
@@ -100,7 +110,7 @@ const ChildProgressReport = () => {
               borderRadius={'$lg'}>
               <TextBold text="Save" />
             </Button>
-          </HStack>
+          </HStack> */}
         </ScrollView>
       </ImageBackground>
     </View>

@@ -39,7 +39,7 @@ const SideButton = ({
         <TextSemibold text={text ? text : content?.title} fontSize={'$xl'} />
         <Image
           source={sideIcon}
-          alt={text ? text : content?.title}
+          alt={text ? text : content?.title ? content.title : 'Arrow Icon'}
           {...imageProps}
           width={30}
           rounded={'$full'}

@@ -16,6 +16,9 @@ import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {useStore} from '../../store';
+import {useQuery} from '@tanstack/react-query';
+import axios from 'axios';
+import Loading from '../Loading';
 
 const TipOfTheDay = require('../../assets/images/tip-home.png');
 const BackgroundImage = require('../../assets/images/stud-main-bg.png');
@@ -26,6 +29,7 @@ type NavigationType = {
 
 const StudentMain = () => {
   const store = useStore();
+  const height = useBottomTabBarHeight();
   const [currentTip, setCurrentTip] = React.useState('');
   const navigation = useNavigation<NavigationProp<NavigationType>>();
 
@@ -45,6 +49,41 @@ const StudentMain = () => {
     getRandomTip();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const {
+    data: isCompulsory,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['isCompulsory'],
+    queryFn: async () => {
+      const {data} = await axios.post(
+        'http://192.168.0.107:8080/student/check-compulsory',
+        {
+          studentId: store.user?.user.id_assigned,
+        },
+      );
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading bgImage={BackgroundImage} />;
+  }
+
+  if (isError) {
+    return (
+      <ImageBackground
+        source={BackgroundImage}
+        h="$full"
+        alignItems="center"
+        justifyContent="center">
+        <TextSemibold text="An error occured while fetching data" />
+      </ImageBackground>
+    );
+  }
+
+  console.log(isCompulsory);
 
   return (
     <View height={'$full'}>
@@ -77,7 +116,9 @@ const StudentMain = () => {
           <Box height={'$10'} />
           <MoodBoard />
           <Box height={'$10'} />
-          {store.user?.user.compulsory_courses_completed && (
+          <TextSemibold text={isCompulsory.message} textAlign="center" />
+          <Box height={'$3'} />
+          {isCompulsory.state === true && (
             <Pressable
               onPress={() => navigation.navigate('GrandAssessment')}
               bgColor="#D9981A"
@@ -88,7 +129,7 @@ const StudentMain = () => {
               <TextSemibold text="Grand Assessment" fontSize={'$lg'} />
             </Pressable>
           )}
-          <Box height={useBottomTabBarHeight()} />
+          <Box height={height} />
         </ScrollView>
       </ImageBackground>
     </View>

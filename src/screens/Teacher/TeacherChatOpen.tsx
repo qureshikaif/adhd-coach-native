@@ -19,7 +19,7 @@ import {InputField} from '@gluestack-ui/themed';
 import {SendHorizonal} from 'lucide-react-native';
 import {RouteProp} from '@react-navigation/native';
 
-const BackgroundImage = require('../../assets/images/DoctorChatOpen.png');
+const BackgroundImage = require('../../assets/images/TeacherChat.png');
 
 interface Message {
   id: string;
@@ -30,12 +30,12 @@ interface Message {
 }
 
 type NavigationType = {
-  DoctorChat: {users: any};
+  TeacherChat: {users: any};
 };
 
-type RouteType = RouteProp<NavigationType, 'DoctorChat'>;
+type RouteType = RouteProp<NavigationType, 'TeacherChat'>;
 
-const DoctorChatOpen = ({route}: {route: RouteType}) => {
+const TeacherChatOpen = ({route}: {route: RouteType}) => {
   const store = useStore();
   const socket = io('http://192.168.0.107:8080');
   const navigation = useNavigation();
@@ -177,4 +177,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DoctorChatOpen;
+export default TeacherChatOpen;

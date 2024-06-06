@@ -34,7 +34,7 @@ const TotalStudentsEnrolled = ({
           h="$32"
           borderColor={borderTextColor ? borderTextColor : '#46A2CD'}>
           <TextBold
-            text={`${count}+`}
+            text={`${count}`}
             color={borderTextColor ? borderTextColor : '#46A2CD'}
             fontSize={'$4xl'}
             mt={'$2'}

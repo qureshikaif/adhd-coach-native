@@ -41,7 +41,7 @@ const StudentQuiz = () => {
   } = useQuery({
     queryKey: ['quizzes'],
     queryFn: async () => {
-      const {data} = await axios.get('http://13.127.65.203:8080/api/quizzes');
+      const {data} = await axios.get('http://192.168.0.107:8080/api/quizzes');
       return data.quizzes;
     },
   });

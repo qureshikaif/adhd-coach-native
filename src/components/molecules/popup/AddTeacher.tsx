@@ -12,6 +12,7 @@ import {
   HStack,
   Input,
   ButtonSpinner,
+  Box,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import {ModalProps} from '../../../types/ModalProps';
@@ -34,7 +35,7 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
   const onSubmit = () => {
     setLoading(true);
     axios
-      .post('http://13.127.65.203:8080/admin/teacher', {
+      .post('http://192.168.0.107:8080/admin/teacher', {
         teacherId,
         email,
       })
@@ -92,6 +93,7 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
                     placeholderTextColor={'black'}
                   />
                 </Input>
+                <Box height={'$4'} />
                 <TextBold text="Teacher Email" fontSize={'$xl'} color="white" />
                 <Input width={'$full'} bgColor="#D7E6ED">
                   <InputField
@@ -100,7 +102,7 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
                     alignContent="center"
                     type="text"
                     fontFamily="Poppins-Regular"
-                    placeholder={'29019254'}
+                    placeholder={'teacher@adhd.com'}
                     fontSize={'$xs'}
                     placeholderTextColor={'black'}
                   />
@@ -125,7 +127,7 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
                 bgColor="#648DA0"
                 rounded={'$lg'}>
                 <HStack>
-                  {loading && <ButtonSpinner color="black" />}
+                  {loading && <ButtonSpinner color="white" />}
                   <TextRegular
                     text="Confirm"
                     color="white"

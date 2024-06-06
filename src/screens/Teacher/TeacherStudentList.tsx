@@ -34,7 +34,7 @@ const TeacherStudentList = () => {
     queryKey: ['studentCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/teacher/get-student-courses/${store.user?.user.id_assigned}`,
+        `http://192.168.0.107:8080/teacher/get-student-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -44,17 +44,17 @@ const TeacherStudentList = () => {
     return <Loading bgImage={BackgroundImage} />;
   }
 
-  if (isErrorCourses) {
-    return (
-      <ImageBackground
-        source={BackgroundImage}
-        h="$full"
-        alignItems="center"
-        justifyContent="center">
-        <TextSemibold text="An error occured while fetching data" />
-      </ImageBackground>
-    );
-  }
+  // if (isErrorCourses) {
+  //   return (
+  //     <ImageBackground
+  //       source={BackgroundImage}
+  //       h="$full"
+  //       alignItems="center"
+  //       justifyContent="center">
+  //       <TextSemibold text="An error occured while fetching data" />
+  //     </ImageBackground>
+  //   );
+  // }
 
   console.log(studentCourses);
 
@@ -72,7 +72,8 @@ const TeacherStudentList = () => {
 
           <Box height={'$4'} />
           <VStack space={'2xl'}>
-            {studentCourses.map((course: any, index: number) => (
+            {!studentCourses && <TextRegular text="No students found" />}
+            {studentCourses?.map((course: any, index: number) => (
               <SideButton
                 key={index}
                 text={course.student_name}
