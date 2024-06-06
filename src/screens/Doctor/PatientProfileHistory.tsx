@@ -26,13 +26,8 @@ type NavigationType = {
 const PatientProfileHistory = () => {
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
-
-  const {
-    data: patients,
-    isLoading,
-    isFetched,
-  } = useQuery({
-    queryKey: ['patients'],
+  const {data: patients, isLoading} = useQuery({
+    queryKey: ['patientsDoctor'],
     queryFn: async () => {
       const {data} = await axios.get(
         `http://192.168.0.107:8080/doctor/students/${store.user?.user.id_assigned}`,
@@ -60,7 +55,7 @@ const PatientProfileHistory = () => {
           <Box height={'$5'} />
 
           <VStack space={'2xl'}>
-            {!Array.isArray(patients) ? (
+            {Array.isArray(patients) && patients.length === 0 ? (
               <TextRegular text="No patients assigned yet" fontSize={'$lg'} />
             ) : (
               patients?.map((patient: any, index: number) => (

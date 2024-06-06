@@ -6,6 +6,8 @@ import {
   VStack,
   Button,
   Pressable,
+  HStack,
+  ButtonSpinner,
 } from '@gluestack-ui/themed';
 import React, {useState} from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
@@ -35,9 +37,8 @@ const ParentMain = () => {
   const [feedbackRating, setFeedbackRating] = useState<string>('');
   const height = useBottomTabBarHeight();
   const [error, setError] = React.useState(false);
-  const refError = React.useRef(null);
-  const refSuccess = React.useRef(null);
   const [success, setSuccess] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const {
     data: prescriptions,
@@ -91,16 +92,25 @@ const ParentMain = () => {
   };
 
   const handleSubmitFeedback = async () => {
+    if (feedbackRating === '') {
+      setError(true);
+      return;
+    }
+    setLoading(true);
     await axios
-      .post('http://192.168.0.107:8080/teacher/add-feedback', {
+      .post('http://192.168.0.107:8080/parent/add-feedback', {
         feedback: feedbackRating,
         userId: store.user?.user.id,
       })
       .then(res => {
         console.log(res.data);
+        setLoading(false);
+        setSuccess(true);
       })
       .catch(err => {
         console.log(err);
+        setLoading(false);
+        setError(true);
       });
   };
 
@@ -191,21 +201,6 @@ const ParentMain = () => {
                 </VStack>
               </Box>
             ))}
-            {/* <Box
-              height={'$40'}
-              backgroundColor={'#f0f0f0'}
-              padding={'$3'}
-              borderRadius={15}
-              borderWidth={1}
-              borderColor={'#ccc'}>
-              <VStack space={'md'}>
-                <TextRegular
-                  key={index}
-                  fontSize={'$md'}
-                  text={prescription.prescription}
-                />
-              </VStack>
-            </Box> */}
 
             <Box height={'$8'} />
             <TextSemibold text="Feedback" fontSize={'$2xl'} />
@@ -235,7 +230,10 @@ const ParentMain = () => {
                 bg={'#EAC5C5'}
                 borderWidth={1}
                 borderRadius={10}>
-                <TextBold text="Submit" />
+                <HStack>
+                  {loading && <ButtonSpinner color="black" />}
+                  <TextBold text="Submit" ml={loading ? '$2' : '$0'} />
+                </HStack>
               </Button>
             </Box>
             <Box height={height} />
@@ -245,13 +243,11 @@ const ParentMain = () => {
       <Error
         showModal={error}
         setShowModal={setError}
-        ref={refError}
         text="Error occured while submitting feedback"
       />
       <Success
         showModal={success}
         setShowModal={setSuccess}
-        ref={refSuccess}
         text="Feedback added successfully"
       />
     </View>
