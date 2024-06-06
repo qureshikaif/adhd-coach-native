@@ -30,7 +30,7 @@ function App(): React.JSX.Element {
           <MainNavigator />
           {/* <TeacherProfileSetting/> */}
           {/* <ChildProgressList /> */}
-          {/* <ShapesEnglish/> */}
+          {/* <ShDDapesEnglish/> */}
         </GluestackUIProvider>
       </QueryClientProvider>
     </NavigationContainer>

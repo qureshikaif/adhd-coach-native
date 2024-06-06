@@ -16,7 +16,7 @@ interface Students {
 const data: Students[] = [
   { SR: '1', Course: 'Maths', Teacher: 'Kaif Qureshi', Lesson: 'Counting', Username: 'Kaif123', Grade: 'A+', Marks : '5/5', Attempt : 5 },
   { SR: '2', Course: 'English', Teacher: 'Ahmed Suhaib', Lesson: 'Alphabets', Username: 'Ahmed123' , Grade: 'B+', Marks : '5/5', Attempt : 2},
-  { SR: '3', Course: 'Activity', Teacher: 'Sana   Zehra', Lesson: 'Make A Face', Username: 'Teacher911' , Grade: 'A+', Marks : '5/5' , Attempt : 1},
+  { SR: '3', Course: 'Activity', Teacher: 'Sana Zehra', Lesson: 'Make A Face', Username: 'Teacher911' , Grade: 'A+', Marks : '5/5' , Attempt : 1},
   
 ];
 
