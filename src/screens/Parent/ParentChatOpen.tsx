@@ -37,7 +37,7 @@ type RouteType = RouteProp<NavigationType, 'ParentChat'>;
 
 const ParentChatOpen = ({route}: {route: RouteType}) => {
   const store = useStore();
-  const socket = io('http://192.168.0.107:8080');
+  const socket = io('http://13.127.65.203:8080');
   const navigation = useNavigation();
   const [messages, setMessages] = React.useState<Message[]>([]);
   const [newMessage, setNewMessage] = React.useState('');
@@ -57,7 +57,7 @@ const ParentChatOpen = ({route}: {route: RouteType}) => {
     // Fetch chat history
     axios
       .get(
-        `http://192.168.0.107:8080/chat/chat-history/${
+        `http://13.127.65.203:8080/chat/chat-history/${
           store.user?.user.child_id
         }/${users.id_assigned ? users.id_assigned : users.child_id}`,
       )
@@ -82,7 +82,7 @@ const ParentChatOpen = ({route}: {route: RouteType}) => {
 
   const handleSendMessage = () => {
     axios
-      .post('http://192.168.0.107:8080/chat/send-message', {
+      .post('http://13.127.65.203:8080/chat/send-message', {
         sender_id: store.user?.user.child_id,
         receiver_id: users.id_assigned ? users.id_assigned : users.child_id,
         message: newMessage,

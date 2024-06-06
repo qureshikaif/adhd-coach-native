@@ -4,24 +4,20 @@ import {
   ScrollView,
   Box,
   Center,
-  Image,
-  HStack,
   Input,
   InputField,
   Button,
 } from '@gluestack-ui/themed';
 import React from 'react';
-import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {VStack} from '@gluestack-ui/themed';
 import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 import {useStore} from '../../store';
 import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
-import TextRegular from '../../components/atoms/Text/TextRegular';
 import {handleLogout} from '../../helpers/handleLogout';
+import {UserCircle} from 'lucide-react-native';
 
-const TeacherPic = require('../../assets/images/user-image.png');
-const BackgroundImage = require('../../assets/images/TeacherProfile.png');
+const BackgroundImage = require('../../assets/images/PatientProfile-bg.png');
 
 // type NavigationType = {
 //   ForgotPasswordVerify: undefined;
@@ -57,11 +53,12 @@ const TeacherProfileSetting = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarTeacher text="Profile Settings" />
+        <StatusBarTeacher text="Profile Info" />
         <Box height={'$8'} />
         <ScrollView paddingHorizontal={'$4'}>
           <Center>
-          <Box
+            <UserCircle size={100} color="#555" />
+            {/* <Box
               rounded={'$full'}
               overflow="hidden"
               width={90}
@@ -73,22 +70,16 @@ const TeacherProfileSetting = () => {
                 alt="Teacher Icon"
                 w="$full"
                 h={90}
-                resizeMode='cover'
+                resizeMode="cover"
               />
-            </Box>
-            {/* <TextSemibold
-              mt={4}
-              text={capitalizeFirstLetter(
-                store.user ? store.user.user.full_name : 'John Doe',
-              )}
-            /> */}
+            </Box> */}
           </Center>
           <Box height={'$8'} />
           {fields.map((field, index) => (
             <VStack key={index}>
               <TextSemibold text={field.title} fontSize={'$lg'} />
               <Input
-                bgColor="#BEADC3"
+                bgColor="#F0CCCC"
                 height={'$12'}
                 rounded={'$lg'}
                 width={'100%'}
@@ -106,7 +97,7 @@ const TeacherProfileSetting = () => {
             </VStack>
           ))}
           <Box height={'$4'} />
-          <HStack space="lg">
+          {/* <HStack space="lg">
             <Button
               flex={1}
               android_ripple={{color: '#DEB5B5'}}
@@ -130,17 +121,18 @@ const TeacherProfileSetting = () => {
               borderRadius={'$lg'}>
               <TextBold text="Save" />
             </Button>
-          </HStack>
-          <Box height={'$3'} />
+          </HStack> */}
           <Button
+            android_ripple={{color: 'gray'}}
             onPress={() => handleLogout(store)}
             flex={1}
+            borderWidth={1}
             hardShadow="3"
             size="xl"
             borderColor="black"
-            bg={'#B597B8'}
+            bg={'#F0CCCC'}
             borderRadius={'$lg'}>
-            <TextRegular text="Sign Out" />
+            <TextSemibold text="Sign Out" />
           </Button>
         </ScrollView>
       </ImageBackground>

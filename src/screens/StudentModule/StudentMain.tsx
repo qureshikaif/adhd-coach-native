@@ -58,7 +58,7 @@ const StudentMain = () => {
     queryKey: ['isCompulsory'],
     queryFn: async () => {
       const {data} = await axios.post(
-        'http://192.168.0.107:8080/student/check-compulsory',
+        'http://13.127.65.203:8080/student/check-compulsory',
         {
           studentId: store.user?.user.id_assigned,
         },

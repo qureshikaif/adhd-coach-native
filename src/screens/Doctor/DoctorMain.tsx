@@ -28,8 +28,6 @@ const DoctorMain = () => {
   const [feedbackRating, setFeedbackRating] = useState<string>('');
   const store = useStore();
   const [error, setError] = React.useState(false);
-  const refError = React.useRef(null);
-  const refSuccess = React.useRef(null);
   const [success, setSuccess] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
@@ -44,7 +42,7 @@ const DoctorMain = () => {
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/student/get-number',
+        'http://13.127.65.203:8080/student/get-number',
       );
       return data;
     },
@@ -57,7 +55,7 @@ const DoctorMain = () => {
     }
     setLoading(true);
     await axios
-      .post('http://192.168.0.107:8080/doctor/add-feedback', {
+      .post('http://13.127.65.203:8080/doctor/add-feedback', {
         feedback: feedbackRating,
         userId: store.user?.user.id,
       })
@@ -83,17 +81,14 @@ const DoctorMain = () => {
         <StatusBarDoctor text="Home" />
         <Box height={'$6'} />
         <ScrollView paddingHorizontal={'$5'}>
-          <TextBold text="Good Morning" fontSize={'$2xl'} />
+          <TextBold text="Good Morning," fontSize={'$2xl'} />
           <TextSemibold
             text={capitalizeFirstLetter(
               store.user ? store.user.user.full_name : 'John Doe',
             )}
             fontSize={'$xl'}
           />
-          <TextSemibold
-            text="Doctor of Medicine (M.D.), Johns Hopkins University "
-            fontSize={'$2xs'}
-          />
+
           <Box height={'$12'} />
           <TextBold text="Total Patients Enrolled" fontSize={'$xl'} />
           <Box height={'$2'} />
@@ -151,14 +146,12 @@ const DoctorMain = () => {
         bgColor="#EAC5C5"
         showModal={error}
         setShowModal={setError}
-        ref={refError}
         text="Error occured while submitting feedback"
       />
       <Success
         bgColor="#EAC5C5"
         showModal={success}
         setShowModal={setSuccess}
-        ref={refSuccess}
         text="Feedback added successfully"
       />
     </View>

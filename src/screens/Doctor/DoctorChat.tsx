@@ -8,8 +8,9 @@ import axios from 'axios';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import Loading from '../Loading';
+import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 
-const BackgroundImage = require('../../assets/images/TeacherProfile.png');
+const BackgroundImage = require('../../assets/images/TeacherEditPersonal.png');
 
 type NavigationType = {
   DoctorChatOpen: {users: any};
@@ -22,7 +23,7 @@ const DoctorChat = () => {
   //   queryKey: ['chats'],
   //   queryFn: async () => {
   //     const {data} = await axios.get(
-  //       `http://192.168.0.107:8080/chat/check-chat/${store.user?.user.child_id}`,
+  //       `http://13.127.65.203:8080/chat/check-chat/${store.user?.user.child_id}`,
   //     );
   //     return data;
   //   },
@@ -32,7 +33,7 @@ const DoctorChat = () => {
     queryKey: ['usersDoctor'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/chat/get-users',
+        'http://13.127.65.203:8080/chat/get-users',
       );
       return data;
     },
@@ -59,7 +60,7 @@ const DoctorChat = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarParent text="Chats" />
+        <StatusBarDoctor text="Chats" />
         <ScrollView paddingHorizontal={'$4'}>
           {usersDoctor.map((user: any, index: any) => (
             <ChatBox

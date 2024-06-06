@@ -22,7 +22,7 @@ const FeedbackAndSupport = () => {
     queryKey: ['reviewsFeedback'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/admin/all-feedbacks',
+        'http://13.127.65.203:8080/admin/all-feedbacks',
       );
       return data;
     },

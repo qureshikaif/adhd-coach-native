@@ -1,7 +1,6 @@
 import io from 'socket.io-client';
 import axios from 'axios';
 import React, {useLayoutEffect} from 'react';
-import StatusBarChatParent from '../../components/molecules/StatusBarChatParent';
 import {FlatList, StyleSheet} from 'react-native';
 import {
   Box,
@@ -18,6 +17,7 @@ import {useStore} from '../../store';
 import {InputField} from '@gluestack-ui/themed';
 import {SendHorizonal} from 'lucide-react-native';
 import {RouteProp} from '@react-navigation/native';
+import StatusBarChatDoctor from '../../components/molecules/StatusBarChatDoctor';
 
 const BackgroundImage = require('../../assets/images/DoctorChatOpen.png');
 
@@ -37,7 +37,7 @@ type RouteType = RouteProp<NavigationType, 'DoctorChat'>;
 
 const DoctorChatOpen = ({route}: {route: RouteType}) => {
   const store = useStore();
-  const socket = io('http://192.168.0.107:8080');
+  const socket = io('http://13.127.65.203:8080');
   const navigation = useNavigation();
   const [messages, setMessages] = React.useState<Message[]>([]);
   const [newMessage, setNewMessage] = React.useState('');
@@ -57,7 +57,7 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
     // Fetch chat history
     axios
       .get(
-        `http://192.168.0.107:8080/chat/chat-history/${
+        `http://13.127.65.203:8080/chat/chat-history/${
           store.user?.user.id_assigned
         }/${users.child_id ? users.child_id : users.id_assigned}`,
       )
@@ -82,7 +82,7 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
 
   const handleSendMessage = () => {
     axios
-      .post('http://192.168.0.107:8080/chat/send-message', {
+      .post('http://13.127.65.203:8080/chat/send-message', {
         sender_id: store.user?.user.id_assigned,
         receiver_id: users.child_id ? users.child_id : users.id_assigned,
         message: newMessage,
@@ -112,7 +112,7 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
   return (
     <View h="$full">
       <ImageBackground source={BackgroundImage} h="$full">
-        <StatusBarChatParent text={users.full_name} />
+        <StatusBarChatDoctor text={users.full_name} />
         <Box height={8} />
         <FlatList
           data={messages}

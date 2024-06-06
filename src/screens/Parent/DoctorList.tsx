@@ -34,7 +34,7 @@ const DoctorsList = () => {
     queryKey: ['doctors'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/parent/get-doctors',
+        'http://13.127.65.203:8080/parent/get-doctors',
       );
       return data;
     },
@@ -48,7 +48,7 @@ const DoctorsList = () => {
     queryKey: ['checkDoctors'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/parent/check-doctor/${store.user?.user.child_id}`,
+        `http://13.127.65.203:8080/parent/check-doctor/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -58,7 +58,7 @@ const DoctorsList = () => {
     setLoadingDoctorId(doctorId);
     try {
       const response = await axios.post(
-        'http://192.168.0.107:8080/parent/assign-doctor',
+        'http://13.127.65.203:8080/parent/assign-doctor',
         {
           parentId: store.user?.user.id,
           studentId: store.user?.user.child_id,
