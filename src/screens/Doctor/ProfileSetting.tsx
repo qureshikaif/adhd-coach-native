@@ -20,7 +20,7 @@ import TextRegular from '../../components/atoms/Text/TextRegular';
 import {handleLogout} from '../../helpers/handleLogout';
 
 const BackgroundImage = require('../../assets/images/doctor-bg.png');
-const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
+const TeacherPic = require('../../assets/images/user-image.png');
 
 const ProfileSetting = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
