@@ -4,14 +4,12 @@ import {
   View,
   ImageBackground,
   ScrollView,
-  VStack,
   Pressable,
 } from '@gluestack-ui/themed';
 import ChatBox from '../../components/ChatDialoguebox';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
-import {useStore} from '../../store';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import Loading from '../Loading';
@@ -24,16 +22,16 @@ type NavigationType = {
 
 const ParentChat = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
-  const store = useStore();
-  const {data: chats, isLoading} = useQuery({
-    queryKey: ['chats'],
-    queryFn: async () => {
-      const {data} = await axios.get(
-        `http://192.168.0.107:8080/chat/check-chat/${store.user?.user.child_id}`,
-      );
-      return data;
-    },
-  });
+  // const store = useStore();
+  // const {data: chats, isLoading} = useQuery({
+  //   queryKey: ['chats'],
+  //   queryFn: async () => {
+  //     const {data} = await axios.get(
+  //       `http://192.168.0.107:8080/chat/check-chat/${store.user?.user.child_id}`,
+  //     );
+  //     return data;
+  //   },
+  // });
 
   const {data: users, isLoading: isLoadingUsers} = useQuery({
     queryKey: ['users'],
@@ -45,7 +43,7 @@ const ParentChat = () => {
     },
   });
 
-  if (isLoading || isLoadingUsers) {
+  if (isLoadingUsers) {
     return <Loading bgImage={BackgroundImage} />;
   }
 
@@ -80,7 +78,6 @@ const ParentChat = () => {
             <ChatBox
               key={index}
               name={user.full_name}
-              // imageSource={user.imageSource}
               text={user.text}
               time={user.time}
               onPress={() =>

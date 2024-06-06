@@ -51,6 +51,7 @@ const ParentChatOpen = ({route}: {route: RouteType}) => {
     return () =>
       navigation.getParent()?.setOptions({tabBarStyle, tabBarVisible: true});
   }, [navigation]);
+
   const renderItem = ({item}: {item: Message}) => (
     <View
       style={[

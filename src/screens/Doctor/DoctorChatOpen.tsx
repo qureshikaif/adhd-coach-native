@@ -1,70 +1,115 @@
-import React from 'react';
-import { View, ImageBackground, Text, StyleSheet, FlatList } from 'react-native';
-import { Box } from '@gluestack-ui/themed';
-import StatusBarChatDoctor from '../../components/molecules/StatusBarChat';
-import ChatBoxBottom from '../../components/ChatDialogueboxAlternative';
-import ChatInput from '../../components/molecules/ChatInput';
+import io from 'socket.io-client';
+import axios from 'axios';
+import React, {useLayoutEffect} from 'react';
+import StatusBarChatParent from '../../components/molecules/StatusBarChatParent';
+import {FlatList, StyleSheet} from 'react-native';
+import {
+  Box,
+  HStack,
+  Input,
+  Pressable,
+  View,
+  ImageBackground,
+  Text,
+} from '@gluestack-ui/themed';
+import {useNavigation} from '@react-navigation/native';
+import {tabBarStyle} from '../../navigation/AdminTabs';
+import {useStore} from '../../store';
+import {InputField} from '@gluestack-ui/themed';
+import {SendHorizonal} from 'lucide-react-native';
+import {RouteProp} from '@react-navigation/native';
 
 const BackgroundImage = require('../../assets/images/DoctorChatOpen.png');
 
 interface Message {
   id: string;
-  sender: string;
+  sender_id: string; // Changed from `sender` to `sender_id`
   text: string;
   time: string;
 }
 
-const messages: Message[] = [
-  {
-    id: '1',
-    sender: 'mom',
-    text: 'Good Afternoon!  Ms. Sana,  this is Ali’s mom. I hope you re doing well.',
-    time: '4:34 pm',
-  },
-  {
-    id: '2',
-    sender: 'mom',
-    text: ' I want to discuss my childs progress. How are they doing in your class?',
-    time: '4:35 pm',
-  },
-  {
-    id: '3',
-    sender: 'teacher',
-    text: 'Hello Mrs. Ahmed, I’m glad you reached out. Ali has been doing quite well overall. We’ve been working on strategies to help them stay focused and organized.',
-    time: '4:42 pm',
-  },
-  {
-    id: '4',
-    sender: 'mom',
-    text: 'Thanks for the update. Are there any areas they’re excelling in or struggling with?',
-    time: '4:43 pm',
-  },
-  {
-    id: '5',
-    sender: 'teacher',
-    text: 'They’re doing well in activities like Rock Paper Scissors. However, they struggle more with recognizing tasks like shape recognition. Make sure he does practice exercises.',
-    time: '4:44 pm',
-  },
- 
-];
+type NavigationType = {
+  DoctorChat: {users: any};
+};
 
-const DoctorChatBoxOpen: React.FC = () => {
+type RouteType = RouteProp<NavigationType, 'DoctorChat'>;
 
-  const renderItem = ({ item }: { item: Message }) => (
+const DoctorChatOpen = ({route}: {route: RouteType}) => {
+  const store = useStore();
+  const socket = io('http://192.168.0.107:8080');
+  const navigation = useNavigation();
+  const [messages, setMessages] = React.useState<Message[]>([]);
+  const [newMessage, setNewMessage] = React.useState('');
+  const {users} = route.params;
+
+  console.log('USERS', users);
+
+  useLayoutEffect(() => {
+    navigation
+      .getParent()
+      ?.setOptions({tabBarStyle: {display: 'none'}, tabBarVisible: false});
+    return () =>
+      navigation.getParent()?.setOptions({tabBarStyle, tabBarVisible: true});
+  }, [navigation]);
+
+  useLayoutEffect(() => {
+    // Fetch chat history
+    axios
+      .get(
+        `http://192.168.0.107:8080/chat/chat-history/${store.user?.user.id_assigned}/${users.child_id}`,
+      )
+      .then(response => {
+        console.log(response.data);
+        setMessages(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching chat history', error);
+      });
+
+    socket.on('receiveMessage', (newMessage: Message) => {
+      setMessages(prevMessages => [...prevMessages, newMessage]);
+    });
+
+    // Cleanup
+    return () => {
+      socket.off('receiveMessage');
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleSendMessage = () => {
+    axios
+      .post('http://192.168.0.107:8080/chat/send-message', {
+        sender_id: store.user?.user.id_assigned,
+        receiver_id: users.child_id,
+        message: newMessage,
+      })
+      .then(response => {
+        setNewMessage('');
+        console.log('Message sent', response.data);
+      })
+      .catch(error => {
+        console.error('Error sending message', error);
+      });
+  };
+
+  const renderItem = ({item}: {item: Message}) => (
     <View
       style={[
         styles.messageContainer,
-        item.sender === 'teacher' ? styles.teacherMessage : styles.momMessage,
+        item.sender_id === store.user?.user.id_assigned
+          ? styles.momMessage
+          : styles.teacherMessage,
       ]}>
-      <Text style={styles.messageText}>{item.text}</Text>
+      <Text style={styles.messageText}>{item.message}</Text>
       <Text style={styles.timeText}>{item.time}</Text>
     </View>
   );
 
   return (
-    <View style={{ flex: 1 }}>
-      <ImageBackground source={BackgroundImage} style={{ flex: 1 }}>
-        <StatusBarChatDoctor text="Sana Zehra" isSettingsVisible />
+    <View h="$full">
+      <ImageBackground source={BackgroundImage} h="$full">
+        <StatusBarChatParent text={users.full_name} />
         <Box height={8} />
         <FlatList
           data={messages}
@@ -72,7 +117,29 @@ const DoctorChatBoxOpen: React.FC = () => {
           keyExtractor={item => item.id}
           contentContainerStyle={styles.chatContainer}
         />
-        <ChatInput/>
+        <HStack bg="#000000" w="$full" h="$16" p="$4">
+          <HStack alignItems="center" space="md">
+            <Input
+              bgColor="white"
+              height={'$11'}
+              rounded={'$full'}
+              w="92%"
+              borderWidth={0}>
+              <InputField
+                value={newMessage}
+                onChangeText={setNewMessage}
+                type="text"
+                fontFamily="Poppins-Regular"
+                placeholder="Type to send"
+                paddingHorizontal={'$6'}
+                placeholderTextColor={'black'}
+              />
+            </Input>
+          </HStack>
+          <Pressable onPress={handleSendMessage}>
+            <SendHorizonal size={24} color="white" />
+          </Pressable>
+        </HStack>
       </ImageBackground>
     </View>
   );
@@ -86,6 +153,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     padding: 10,
     borderRadius: 10,
+    maxWidth: '75%', // Limit the width of the message container
   },
   teacherMessage: {
     backgroundColor: '#AEA3B4',
@@ -106,4 +174,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DoctorChatBoxOpen;
+export default DoctorChatOpen;

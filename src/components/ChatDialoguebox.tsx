@@ -2,7 +2,6 @@ import {HStack, VStack, Pressable, Box} from '@gluestack-ui/themed';
 import React from 'react';
 import {User} from 'lucide-react-native';
 import TextSemibold from './atoms/Text/TextSemibold';
-import TextRegular from './atoms/Text/TextRegular';
 
 interface ChatBoxProps {
   name: string;
@@ -11,7 +10,7 @@ interface ChatBoxProps {
   onPress: () => void;
 }
 
-const ChatBox: React.FC<ChatBoxProps> = ({name, text, time, onPress}) => {
+const ChatBox: React.FC<ChatBoxProps> = ({name, onPress}) => {
   return (
     <React.Fragment>
       <Box h="$5" />
@@ -30,7 +29,6 @@ const ChatBox: React.FC<ChatBoxProps> = ({name, text, time, onPress}) => {
               <User color="black" size={32} />
               <TextSemibold text={name} fontSize={'$xl'} />
             </HStack>
-            <TextRegular text={time} fontSize={'$sm'} color="#6B7280" />
           </HStack>
         </VStack>
       </Pressable>

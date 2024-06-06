@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DoctorHome from './stacks/Doctor/DoctorHome';
 import DoctorPatientProfile from './stacks/Doctor/DoctorPatientProfile';
 import DoctorPatientPrescription from './stacks/Doctor/DoctorPatientPrescription';
-import DoctorChats from './stacks/Doctor/DoctorChat';
+import DoctorChats from './stacks/Doctor/DoctorChats';
 import DoctorProfileManagement from './stacks/Doctor/DoctorProfileManagement';
 
 const Tab = createBottomTabNavigator();
