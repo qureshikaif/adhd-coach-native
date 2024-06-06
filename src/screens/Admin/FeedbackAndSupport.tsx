@@ -9,6 +9,7 @@ import Loading from '../Loading';
 import {useQuery} from '@tanstack/react-query';
 import {Feedback} from './AdminMain';
 import axios from 'axios';
+import TextRegular from '../../components/atoms/Text/TextRegular';
 
 const BackgroundImage = require('../../assets/images/admin-content-bg.png');
 
@@ -21,7 +22,7 @@ const FeedbackAndSupport = () => {
     queryKey: ['reviewsFeedback'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://10.133.136.53:8080/admin/all-feedbacks',
+        'http://192.168.0.107:8080/admin/all-feedbacks',
       );
       return data;
     },
@@ -37,26 +38,28 @@ const FeedbackAndSupport = () => {
       <Box height={'$6'} />
       <ScrollView showsVerticalScrollIndicator={false} paddingHorizontal={'$4'}>
         <VStack space="sm">
-          {reviewsFeedback?.length > 0 && (
-            <TextSemibold text=" Reviews" fontSize={'$xl'} />
+          <TextSemibold text="Reviews" fontSize={'$2xl'} />
+          {Array.isArray(reviewsFeedback) && reviewsFeedback.length === 0 && (
+            <TextRegular text="No reviews found." fontSize={'$lg'} />
           )}
+
           {reviewsFeedback?.map((review: any, index: any) => (
             <Reviews key={index} feedbacks={review} />
           ))}
         </VStack>
         <Box height={'$6'} />
-        <VStack space="sm">
+        {/* <VStack space="sm">
           <TextSemibold text=" Chat Support" fontSize={'$xl'} />
           {Array.from({length: 1}).map((_, index) => (
             <ChatSupport1 key={index} />
           ))}
-        </VStack>
+        </VStack> */}
         <Box height={'$6'} />
         <VStack space="lg">
           {/* {Array.from({length: 1}).map((_, index) => (
             <ChatSupport2 key={index} />
           ))} */}
-          <ViewAllMsg />
+          {/* <ViewAllMsg /> */}
         </VStack>
       </ScrollView>
     </ImageBackground>

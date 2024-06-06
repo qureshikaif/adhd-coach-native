@@ -169,7 +169,7 @@ const StudentAttemptQuiz = () => {
     });
 
     axios
-      .post('http://10.133.136.53:8080/student/submit-quiz', {
+      .post('http://192.168.0.107:8080/student/submit-quiz', {
         quizId: quiz.id,
         studentId: store.user?.user.id_assigned,
         teacherId: quiz.instructor,

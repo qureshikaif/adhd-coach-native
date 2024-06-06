@@ -14,6 +14,7 @@ import axios from 'axios';
 import {useStore} from '../../store';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import Loading from '../Loading';
 
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
@@ -28,7 +29,7 @@ const ParentChat = () => {
     queryKey: ['chats'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://10.133.136.53:8080/chat/check-chat/${store.user?.user.child_id}`,
+        `http://192.168.0.107:8080/chat/check-chat/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -38,18 +39,14 @@ const ParentChat = () => {
     queryKey: ['users'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://10.133.136.53:8080/chat/get-users',
+        'http://192.168.0.107:8080/chat/get-users',
       );
       return data;
     },
   });
 
   if (isLoading || isLoadingUsers) {
-    return (
-      <VStack>
-        <TextSemibold text="Loading.." />
-      </VStack>
-    );
+    return <Loading bgImage={BackgroundImage} />;
   }
 
   if (!users || users.length === 0) {
@@ -59,7 +56,7 @@ const ParentChat = () => {
         h="$full"
         alignItems="center"
         justifyContent="center">
-        <TextSemibold text="No chats found. Create a new one?" />
+        <TextSemibold text="No users found. Check back later?" />
         <Pressable
           mt={'$5'}
           bg="#DBC9E1"
@@ -83,11 +80,11 @@ const ParentChat = () => {
             <ChatBox
               key={index}
               name={user.full_name}
-              imageSource={user.imageSource}
+              // imageSource={user.imageSource}
               text={user.text}
               time={user.time}
               onPress={() =>
-                navigation.navigate('ParentChatOpen', {users: users})
+                navigation.navigate('ParentChatOpen', {users: user})
               }
             />
           ))}

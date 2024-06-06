@@ -16,7 +16,7 @@ const AccountManagementStudents = () => {
     queryKey: ['students'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://10.133.136.53:8080/student/get-students',
+        'http://192.168.0.107:8080/student/get-students',
       );
       return data;
     },

@@ -119,7 +119,7 @@ const Signup = () => {
     }
 
     axios
-      .post('http://10.133.136.53:8080/auth/signup', {
+      .post('http://192.168.0.107:8080/auth/signup', {
         fullName: data.fullname,
         email: data.email,
         password: data.password,

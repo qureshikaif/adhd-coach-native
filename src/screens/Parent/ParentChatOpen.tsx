@@ -1,12 +1,19 @@
+import io from 'socket.io-client';
+import axios from 'axios';
 import React, {useLayoutEffect} from 'react';
-import {View, ImageBackground, Text, StyleSheet, FlatList} from 'react-native';
-import {Box, HStack, Input, Pressable} from '@gluestack-ui/themed';
 import StatusBarChatParent from '../../components/molecules/StatusBarChatParent';
-import ChatInput from '../../components/molecules/ChatInput';
+import {FlatList, StyleSheet} from 'react-native';
+import {
+  Box,
+  HStack,
+  Input,
+  Pressable,
+  View,
+  ImageBackground,
+  Text,
+} from '@gluestack-ui/themed';
 import {useNavigation} from '@react-navigation/native';
 import {tabBarStyle} from '../../navigation/AdminTabs';
-import axios from 'axios';
-import io from 'socket.io-client';
 import {useStore} from '../../store';
 import {InputField} from '@gluestack-ui/themed';
 import {SendHorizonal} from 'lucide-react-native';
@@ -29,13 +36,13 @@ type RouteType = RouteProp<NavigationType, 'ParentChat'>;
 
 const ParentChatOpen = ({route}: {route: RouteType}) => {
   const store = useStore();
-  const socket = io('http://10.133.136.53:8080');
+  const socket = io('http://192.168.0.107:8080');
   const navigation = useNavigation();
   const [messages, setMessages] = React.useState<Message[]>([]);
   const [newMessage, setNewMessage] = React.useState('');
   const {users} = route.params;
 
-  console.log(users);
+  console.log('USERS', users);
 
   useLayoutEffect(() => {
     navigation
@@ -59,7 +66,7 @@ const ParentChatOpen = ({route}: {route: RouteType}) => {
     // Fetch chat history
     axios
       .get(
-        `http://10.133.136.53:8080/chat/chat-history/${store.user?.user.child_id}/${users.id_assigned}`,
+        `http://192.168.0.107:8080/chat/chat-history/${store.user?.user.child_id}/${users.id_assigned}`,
       )
       .then(response => {
         console.log(response.data);
@@ -77,17 +84,19 @@ const ParentChatOpen = ({route}: {route: RouteType}) => {
     return () => {
       socket.off('receiveMessage');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSendMessage = () => {
     axios
-      .post('http://10.133.136.53:8080/chat/send-message', {
-        sender_id: 201, // replace with the actual senderId
-        receiver_id: 101, // replace with the actual receiverId
+      .post('http://192.168.0.107:8080/chat/send-message', {
+        sender_id: store.user?.user.child_id,
+        receiver_id: users.id_assigned,
         message: newMessage,
       })
       .then(response => {
         setNewMessage('');
+        console.log('Message sent', response.data);
       })
       .catch(error => {
         console.error('Error sending message', error);
@@ -95,9 +104,9 @@ const ParentChatOpen = ({route}: {route: RouteType}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
-      <ImageBackground source={BackgroundImage} style={{flex: 1}}>
-        <StatusBarChatParent text="Sana Zehra" />
+    <View h="$full">
+      <ImageBackground source={BackgroundImage} h="$full">
+        <StatusBarChatParent text={users.full_name} />
         <Box height={8} />
         <FlatList
           data={messages}

@@ -52,7 +52,7 @@ const ForgotPassword = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        'http://10.133.136.53:8080/auth/send-otp',
+        'http://192.168.0.107:8080/auth/send-otp',
         {
           email,
           role: store.role,

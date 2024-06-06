@@ -66,7 +66,7 @@ const Add = () => {
     setLoading(true);
     console.log(data);
     axios
-      .post('http://10.133.136.53:8080/admin/article', {
+      .post('http://192.168.0.107:8080/admin/article', {
         title: data.title,
         subtitle: data.subtitle,
         tags: data.tags,

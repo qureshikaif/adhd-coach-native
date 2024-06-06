@@ -1,4 +1,11 @@
-import {View, ImageBackground, ScrollView, Box} from '@gluestack-ui/themed';
+import {
+  View,
+  ImageBackground,
+  ScrollView,
+  Box,
+  HStack,
+  ButtonSpinner,
+} from '@gluestack-ui/themed';
 import React from 'react';
 import {TextInput} from 'react-native';
 import {useState} from 'react';
@@ -24,6 +31,7 @@ const DoctorMain = () => {
   const refError = React.useRef(null);
   const refSuccess = React.useRef(null);
   const [success, setSuccess] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const handleFeedbackChange = (text: string) => {
     const rating = parseInt(text, 10);
@@ -36,23 +44,32 @@ const DoctorMain = () => {
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://10.133.136.53:8080/student/get-number',
+        'http://192.168.0.107:8080/student/get-number',
       );
       return data;
     },
   });
 
   const handleSubmitFeedback = async () => {
+    if (feedbackRating === '') {
+      setError(true);
+      return;
+    }
+    setLoading(true);
     await axios
-      .post('http://10.133.136.53:8080/doctor/add-feedback', {
+      .post('http://192.168.0.107:8080/doctor/add-feedback', {
         feedback: feedbackRating,
         userId: store.user?.user.id,
       })
       .then(res => {
         console.log(res.data);
+        setLoading(false);
+        setSuccess(true);
       })
       .catch(err => {
         console.log(err);
+        setLoading(false);
+        setError(true);
       });
   };
 
@@ -122,18 +139,23 @@ const DoctorMain = () => {
               bg={'#EAC5C5'}
               borderWidth={1}
               borderRadius={10}>
-              <TextBold text="Submit" />
+              <HStack>
+                {loading && <ButtonSpinner color="black" />}
+                <TextBold text="Submit" ml={loading ? '$2' : '$0'} />
+              </HStack>
             </Button>
           </Box>
         </ScrollView>
       </ImageBackground>
       <Error
+        bgColor="#EAC5C5"
         showModal={error}
         setShowModal={setError}
         ref={refError}
         text="Error occured while submitting feedback"
       />
       <Success
+        bgColor="#EAC5C5"
         showModal={success}
         setShowModal={setSuccess}
         ref={refSuccess}

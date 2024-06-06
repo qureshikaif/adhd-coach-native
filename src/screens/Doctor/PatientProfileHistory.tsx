@@ -27,11 +27,15 @@ const PatientProfileHistory = () => {
   const store = useStore();
   const navigation = useNavigation<NavigationProp<NavigationType>>();
 
-  const {data: patients, isLoading} = useQuery({
+  const {
+    data: patients,
+    isLoading,
+    isFetched,
+  } = useQuery({
     queryKey: ['patients'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://10.133.136.53:8080/doctor/students/${store.user?.user.id_assigned}`,
+        `http://192.168.0.107:8080/doctor/students/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -56,17 +60,21 @@ const PatientProfileHistory = () => {
           <Box height={'$5'} />
 
           <VStack space={'2xl'}>
-            {patients?.map((patient: any, index: number) => (
-              <SideButton
-                onPress={() =>
-                  navigation.navigate('PatientMedicalHistory', {
-                    patients: patient,
-                  })
-                }
-                key={index}
-                text={capitalizeFirstLetter(patient.full_name)}
-              />
-            ))}
+            {!Array.isArray(patients) ? (
+              <TextRegular text="No patients assigned yet" fontSize={'$lg'} />
+            ) : (
+              patients?.map((patient: any, index: number) => (
+                <SideButton
+                  onPress={() =>
+                    navigation.navigate('PatientMedicalHistory', {
+                      patients: patient,
+                    })
+                  }
+                  key={index}
+                  text={capitalizeFirstLetter(patient.full_name)}
+                />
+              ))
+            )}
           </VStack>
         </ScrollView>
       </ImageBackground>

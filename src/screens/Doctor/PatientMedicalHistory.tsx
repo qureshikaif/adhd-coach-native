@@ -34,7 +34,7 @@ const PatientMedicalHistory = ({route}: {route: RouteType}) => {
   const handleSave = async () => {
     try {
       const response = await axios.post(
-        'http://10.133.136.53:8080/doctor/remarks',
+        'http://192.168.0.107:8080/doctor/remarks',
         {
           doctorId: store.user?.user.id_assigned,
           studentId: patients.id_assigned,

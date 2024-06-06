@@ -32,13 +32,13 @@ const StudentCourses = () => {
   const {
     data: enrolledCourses,
     isLoading: isLoadingEnrolled,
-    isError: isErrorEnrolled,
+    isFetched: isErrorEnrolled,
     refetch: refetchEnrolledCourses,
   } = useQuery({
     queryKey: ['enrolledCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://10.133.136.53:8080/student/get-courses/${store.user?.user.id_assigned}`,
+        `http://192.168.0.107:8080/student/get-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -47,13 +47,13 @@ const StudentCourses = () => {
   const {
     data: courses,
     isLoading: isLoadingCourses,
-    isError: isErrorCourses,
+    isFetched: isErrorCourses,
     refetch: refetchAllCourses,
   } = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://10.133.136.53:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
+        `http://192.168.0.107:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -62,12 +62,12 @@ const StudentCourses = () => {
   const {
     data: compulsoryCourses,
     isLoading: isLoadingCompulsory,
-    isError: isErrorCompulsory,
+    isFetched: isErrorCompulsory,
   } = useQuery({
     queryKey: ['compulsoryCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://10.133.136.53:8080/student/get-compulsory-courses',
+        'http://192.168.0.107:8080/student/get-compulsory-courses',
       );
       return data;
     },
@@ -81,7 +81,7 @@ const StudentCourses = () => {
     return <Loading bgImage={BackgroundImage} />;
   }
 
-  if (isErrorCourses || isErrorEnrolled || isErrorCompulsory) {
+  if (!isErrorCourses || !isErrorEnrolled || !isErrorCompulsory) {
     return (
       <ImageBackground
         source={BackgroundImage}
@@ -96,7 +96,7 @@ const StudentCourses = () => {
   const handleEnroll = async (courseId: string, teacherId: string) => {
     setLoadingCourseId(courseId);
     try {
-      const res = await axios.post('http://10.133.136.53:8080/student/enroll', {
+      const res = await axios.post('http://192.168.0.107:8080/student/enroll', {
         studentId: store.user?.user.id_assigned,
         courseId,
         teacherId,
@@ -291,7 +291,7 @@ export default StudentCourses;
 //     queryKey: ['enrolledCourses'],
 //     queryFn: async () => {
 //       const {data} = await axios.get(
-//         `http://10.133.136.53:8080/student/get-courses/${store.user?.user.id_assigned}`,
+//         `http://192.168.0.107:8080/student/get-courses/${store.user?.user.id_assigned}`,
 //       );
 //       return data;
 //     },
@@ -306,7 +306,7 @@ export default StudentCourses;
 //     queryKey: ['courses'],
 //     queryFn: async () => {
 //       const {data} = await axios.get(
-//         `http://10.133.136.53:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
+//         `http://192.168.0.107:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
 //       );
 //       return data;
 //     },
@@ -320,7 +320,7 @@ export default StudentCourses;
 //     queryKey: ['compulsoryCourses'],
 //     queryFn: async () => {
 //       const {data} = await axios.get(
-//         'http://10.133.136.53:8080/student/get-compulsory-courses',
+//         'http://192.168.0.107:8080/student/get-compulsory-courses',
 //       );
 //       return data;
 //     },
@@ -349,7 +349,7 @@ export default StudentCourses;
 //   const handleEnroll = async (courseId: string, teacherId: string) => {
 //     setLoading(true);
 //     try {
-//       const res = await axios.post('http://10.133.136.53:8080/student/enroll', {
+//       const res = await axios.post('http://192.168.0.107:8080/student/enroll', {
 //         studentId: store.user?.user.id_assigned,
 //         courseId,
 //         teacherId,

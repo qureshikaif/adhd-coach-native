@@ -27,7 +27,7 @@ const ParentArticleList = () => {
     queryKey: ['articles'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://10.133.136.53:8080/admin/get-articles',
+        'http://192.168.0.107:8080/admin/get-articles',
       );
       return data;
     },
