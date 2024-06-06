@@ -4,22 +4,18 @@ import {
   ScrollView,
   Box,
   Center,
-  Image,
-  HStack,
   Input,
   InputField,
   Button,
 } from '@gluestack-ui/themed';
 import React from 'react';
-import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {VStack} from '@gluestack-ui/themed';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
 import {useStore} from '../../store';
 import {capitalizeFirstLetter} from '../../helpers/capitalizeLetter';
-import TextRegular from '../../components/atoms/Text/TextRegular';
 import {handleLogout} from '../../helpers/handleLogout';
-const TeacherPic = require('../../assets/images/user-image.png');
+import {UserCircle} from 'lucide-react-native';
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
 const ParentProfileSetting = () => {
@@ -50,11 +46,13 @@ const ParentProfileSetting = () => {
   return (
     <View flex={1}>
       <ImageBackground source={BackgroundImage} h="$full">
-        <StatusBarParent text="Profile Settings" />
+        <StatusBarParent text="Profile Info" />
         <ScrollView paddingHorizontal={'$4'}>
           <Box height={'$8'} />
           <Center>
-            <Box
+            <UserCircle size={100} color="#555" />
+
+            {/* <Box
               rounded={'$full'}
               overflow="hidden"
               width={90}
@@ -66,9 +64,9 @@ const ParentProfileSetting = () => {
                 alt="Teacher Icon"
                 w="$full"
                 h={90}
-                resizeMode='cover'
+                resizeMode="cover"
               />
-            </Box>
+            </Box> */}
             {/* <TextSemibold
               mt={4}
               text={capitalizeFirstLetter(
@@ -97,8 +95,8 @@ const ParentProfileSetting = () => {
               </Input>
             </VStack>
           ))}
-          <Box height={'$5'} />
-          <HStack space="lg" marginBottom={15}>
+          <Box height={'$4'} />
+          {/* <HStack space="lg" marginBottom={15}>
             <Button
               flex={1}
               android_ripple={{color: '#DEB5B5'}}
@@ -121,16 +119,18 @@ const ParentProfileSetting = () => {
               borderRadius={'$lg'}>
               <TextBold text="Save" />
             </Button>
-          </HStack>
+          </HStack> */}
           <Button
+            android_ripple={{color: 'gray'}}
             onPress={() => handleLogout(store)}
             flex={1}
             hardShadow="3"
             size="xl"
+            borderWidth={1}
             borderColor="black"
             bg={'#BEADC3'}
             borderRadius={'$lg'}>
-            <TextRegular text="Sign Out" color="white" />
+            <TextSemibold text="Sign Out" />
           </Button>
         </ScrollView>
       </ImageBackground>

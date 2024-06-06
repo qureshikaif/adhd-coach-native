@@ -1,12 +1,9 @@
-import {HStack, Image} from '@gluestack-ui/themed';
-import BackButton from '../atoms/Buttons/BackButton';
+import {Box, HStack, Pressable} from '@gluestack-ui/themed';
 import React from 'react';
 import {GapValues} from '../../types/GapValues';
 import TextSemibold from '../atoms/Text/TextSemibold';
-const TeacherPic = require('../../assets/images/icons/TeacherPic.png');
-const ProfilePic = require('../../assets/images//icons/ProfilePicSana.png');
-const PhoneIcon = require('../../assets/images/icons/phone.png');
-const CallPic = require('../../assets/images/icons/call.png');
+import {ChevronLeft, UserCircle} from 'lucide-react-native';
+import {useNavigation} from '@react-navigation/native';
 
 type StatusBarChatProps = {
   text: string;
@@ -14,40 +11,35 @@ type StatusBarChatProps = {
   gap?: GapValues;
 };
 
-const StatusBarChat = ({text, gap}: StatusBarChatProps) => {
+const StatusBarChatDoctor = ({text, gap}: StatusBarChatProps) => {
+  const navigation = useNavigation();
   return (
     <HStack
-      bgColor="#EAC5C5"
+      bgColor="#DEB5B5"
       alignItems="center"
       justifyContent={gap ? 'flex-start' : 'space-between'}
       paddingHorizontal={'$4'}
       paddingVertical={'$4'}
       gap={gap ? gap : '$0'}>
-      <BackButton
-        variant="white"
-
-        imageProps={{
-          size: 'xs',
-        }}
-        buttonProps={{}}
-      />
+      <Pressable onPress={() => navigation.goBack()}>
+        <ChevronLeft size={35} color="black" />
+      </Pressable>
       <HStack alignItems="center" space="lg" justifyContent="space-between">
         <HStack alignItems="center" space="lg" paddingHorizontal={'$4'}>
-          <Image source={ProfilePic} alt="Profle Pic" width={40} height={40} />
-          <TextSemibold text={text} fontSize={'$2xl'} color="white" />
+          <UserCircle size={40} color="black" />
+          <TextSemibold text={text} fontSize={'$2xl'} />
         </HStack>
         <HStack
           justifyContent="space-between"
           alignItems="baseline"
           h="$4/6"
           space="lg"
-          paddingHorizontal={'$4'}>
-          <Image source={PhoneIcon} w={'$6'} h={'$6'} alt="Phone Icon" />
-        </HStack>
+          paddingHorizontal={'$4'}
+        />
       </HStack>
-
+      <Box w={40} h={'$full'} />
     </HStack>
   );
 };
 
-export default StatusBarChat;
+export default StatusBarChatDoctor;

@@ -22,7 +22,7 @@ const ParentChat = () => {
   //   queryKey: ['chats'],
   //   queryFn: async () => {
   //     const {data} = await axios.get(
-  //       `http://192.168.0.107:8080/chat/check-chat/${store.user?.user.child_id}`,
+  //       `http://13.127.65.203:8080/chat/check-chat/${store.user?.user.child_id}`,
   //     );
   //     return data;
   //   },
@@ -32,7 +32,7 @@ const ParentChat = () => {
     queryKey: ['users'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/chat/get-users',
+        'http://13.127.65.203:8080/chat/get-users',
       );
       return data;
     },

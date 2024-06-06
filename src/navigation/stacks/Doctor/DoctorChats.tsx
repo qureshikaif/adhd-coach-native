@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import DoctorChatbox from '../../../screens/Doctor/DoctorChat';
-import DoctorChatBoxOpen from '../../../screens/Doctor/DoctorChatOpen';
+import DoctorChat from '../../../screens/Doctor/DoctorChat';
+import DoctorChatOpen from '../../../screens/Doctor/DoctorChatOpen';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,8 +14,8 @@ const DoctorChats = () => {
         statusBarColor: '#DEB5B5',
         statusBarStyle: 'light',
       }}>
-      <Stack.Screen name="DoctorChat" component={DoctorChatbox} />
-      <Stack.Screen name="DoctorChatOpen" component={DoctorChatBoxOpen} />
+      <Stack.Screen name="DoctorChat" component={DoctorChat} />
+      <Stack.Screen name="DoctorChatOpen" component={DoctorChatOpen} />
     </Stack.Navigator>
   );
 };

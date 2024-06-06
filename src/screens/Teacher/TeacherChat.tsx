@@ -2,14 +2,14 @@
 import React from 'react';
 import {View, ImageBackground, ScrollView} from '@gluestack-ui/themed';
 import ChatBox from '../../components/ChatDialoguebox';
-import StatusBarParent from '../../components/molecules/StatusBarParent';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import Loading from '../Loading';
+import StatusBarTeacher from '../../components/molecules/StatusBarTeacher';
 
-const BackgroundImage = require('../../assets/images/TeacherProfile.png');
+const BackgroundImage = require('../../assets/images/PatientProfile-bg.png');
 
 type NavigationType = {
   TeacherChatOpen: {users: any};
@@ -22,7 +22,7 @@ const TeacherChat = () => {
   //   queryKey: ['chats'],
   //   queryFn: async () => {
   //     const {data} = await axios.get(
-  //       `http://192.168.0.107:8080/chat/check-chat/${store.user?.user.child_id}`,
+  //       `http://13.127.65.203:8080/chat/check-chat/${store.user?.user.child_id}`,
   //     );
   //     return data;
   //   },
@@ -32,7 +32,7 @@ const TeacherChat = () => {
     queryKey: ['usersTeacher'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/chat/get-users',
+        'http://13.127.65.203:8080/chat/get-users',
       );
       return data;
     },
@@ -59,7 +59,7 @@ const TeacherChat = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarParent text="Chats" />
+        <StatusBarTeacher text="Chats" />
         <ScrollView paddingHorizontal={'$4'}>
           {usersTeacher.map((user: any, index: any) => (
             <ChatBox

@@ -19,6 +19,7 @@ import {useStore} from '../../store';
 import Success from '../../components/molecules/popup/Success';
 import Error from '../../components/molecules/popup/Error';
 import {ButtonSpinner} from '@gluestack-ui/themed';
+import TextSemibold from '../../components/atoms/Text/TextSemibold';
 
 const BackgroundImage = require('../../assets/images/patienthistory.png');
 const TeacherPic = require('../../assets/images/icons/Doctor.png');
@@ -35,7 +36,7 @@ const PatientPrescription = () => {
     queryKey: ['patients'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/student/get-students',
+        'http://13.127.65.203:8080/student/get-students',
       );
       return data;
     },
@@ -48,7 +49,7 @@ const PatientPrescription = () => {
   const onSubmit = async () => {
     setLoading(true);
     await axios
-      .post('http://192.168.0.107:8080/doctor/prescription', {
+      .post('http://13.127.65.203:8080/doctor/prescription', {
         prescription,
         patientId: selectedPatient,
         doctorId: store.user?.user.id_assigned,
@@ -76,7 +77,7 @@ const PatientPrescription = () => {
           <Image source={TeacherPic} alt="Avatar" size={'2xl'} />
         </HStack>
         <ScrollView contentContainerStyle={{padding: 20}}>
-          <TextBold text="Patient" fontSize={'$xl'} />
+          <TextSemibold text="Patient" fontSize={'$xl'} />
           <View
             style={{
               borderWidth: 2,
@@ -88,7 +89,7 @@ const PatientPrescription = () => {
             <Picker
               selectedValue={selectedPatient}
               onValueChange={itemValue => setSelectedPatient(itemValue)}
-              style={{height: 50, width: '100%'}}
+              style={{height: 55, width: '100%'}}
               itemStyle={{color: 'black'}}>
               <Picker.Item label="Select a patient" value="" />
               {patients.map((patient: any) => (
@@ -101,7 +102,7 @@ const PatientPrescription = () => {
             </Picker>
           </View>
 
-          <TextBold text="Patient Prescription" fontSize={'$xl'} mt={'$4'} />
+          <TextSemibold text="Prescription" fontSize={'$xl'} mt={'$4'} />
           <TextInput
             placeholder="Enter patient Prescription"
             multiline

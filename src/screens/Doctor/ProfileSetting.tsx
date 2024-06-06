@@ -4,23 +4,19 @@ import {
   ScrollView,
   Box,
   Center,
-  Image,
-  HStack,
   Input,
   InputField,
   Button,
 } from '@gluestack-ui/themed';
-import TextBold from '../../components/atoms/Text/TextBold';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 import {VStack} from '@gluestack-ui/themed';
 import React from 'react';
 import {useStore} from '../../store';
-import TextRegular from '../../components/atoms/Text/TextRegular';
 import {handleLogout} from '../../helpers/handleLogout';
+import {UserCircle} from 'lucide-react-native';
 
 const BackgroundImage = require('../../assets/images/doctor-bg.png');
-const TeacherPic = require('../../assets/images/user-image.png');
 
 const ProfileSetting = () => {
   //   const navigation = useNavigation<NavigationProp<NavigationType>>();
@@ -53,12 +49,11 @@ const ProfileSetting = () => {
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
-        <StatusBarDoctor text="Profile Settings" />
+        <StatusBarDoctor text="Profile Info" />
         <ScrollView paddingHorizontal={'$4'}>
           <Box height={'$10'} />
           <Center>
-            <Image source={TeacherPic} alt="Avatar icon" size="lg" />
-            {/* <TextSemibold text="Admin" fontSize={'$xl'} /> */}
+            <UserCircle size={100} color="#555" />
           </Center>
           <Box height={'$10'} />
 
@@ -84,7 +79,7 @@ const ProfileSetting = () => {
             </VStack>
           ))}
           <Box height={'$5'} />
-          <HStack space="lg">
+          {/* <HStack space="lg">
             <Button
               flex={1}
               android_ripple={{color: '#DEB5B5'}}
@@ -109,17 +104,19 @@ const ProfileSetting = () => {
               borderRadius={'$lg'}>
               <TextBold text="Save" />
             </Button>
-          </HStack>
-          <Box height={'$4'} />
+          </HStack> */}
+          <Box height={'$2'} />
           <Button
+            android_ripple={{color: 'gray'}}
             onPress={() => handleLogout(store)}
             flex={1}
+            borderWidth={1}
             hardShadow="3"
             size="xl"
             borderColor="black"
             bg={'#DEB5B5'}
             borderRadius={'$lg'}>
-            <TextRegular text="Sign Out" />
+            <TextSemibold text="Sign Out" />
           </Button>
         </ScrollView>
       </ImageBackground>

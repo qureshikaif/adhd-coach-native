@@ -48,7 +48,7 @@ const ParentMain = () => {
     queryKey: ['prescriptions'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/parent/get-prescriptions/${store.user?.user.child_id}`,
+        `http://13.127.65.203:8080/parent/get-prescriptions/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -62,7 +62,7 @@ const ParentMain = () => {
     queryKey: ['checkDoctors'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/parent/check-doctor/${store.user?.user.child_id}`,
+        `http://13.127.65.203:8080/parent/check-doctor/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -98,7 +98,7 @@ const ParentMain = () => {
     }
     setLoading(true);
     await axios
-      .post('http://192.168.0.107:8080/parent/add-feedback', {
+      .post('http://13.127.65.203:8080/parent/add-feedback', {
         feedback: feedbackRating,
         userId: store.user?.user.id,
       })
