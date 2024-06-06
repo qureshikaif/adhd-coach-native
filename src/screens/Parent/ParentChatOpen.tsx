@@ -26,6 +26,7 @@ interface Message {
   sender_id: string; // Changed from `sender` to `sender_id`
   text: string;
   time: string;
+  message: string;
 }
 
 type NavigationType = {
