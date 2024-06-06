@@ -37,7 +37,6 @@ type RouteType = RouteProp<NavigationType, 'DoctorChat'>;
 
 const DoctorChatOpen = ({route}: {route: RouteType}) => {
   const store = useStore();
-  const socket = io('http://13.127.65.203:8080');
   const navigation = useNavigation();
   const [messages, setMessages] = React.useState<Message[]>([]);
   const [newMessage, setNewMessage] = React.useState('');
@@ -54,7 +53,7 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
   }, [navigation]);
 
   useLayoutEffect(() => {
-    // Fetch chat history
+    const socket = io('http://13.127.65.203:8080');
     axios
       .get(
         `http://13.127.65.203:8080/chat/chat-history/${
@@ -73,12 +72,11 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
       setMessages(prevMessages => [...prevMessages, newMessage]);
     });
 
-    // Cleanup
     return () => {
       socket.off('receiveMessage');
+      socket.close();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [store.user?.user.id_assigned, users.child_id, users.id_assigned]);
 
   const handleSendMessage = () => {
     axios
