@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TeacherChatbox from '../../../screens/Teacher/TeacherChat';
-import TeacherChatBoxOpen from '../../../screens/Teacher/TeacherChatBoxOpen';
+import TeacherChatBoxOpen from '../../../screens/Teacher/TeacherChatOpen';
 
 const Stack = createNativeStackNavigator();
 

@@ -19,7 +19,7 @@ import {InputField} from '@gluestack-ui/themed';
 import {SendHorizonal} from 'lucide-react-native';
 import {RouteProp} from '@react-navigation/native';
 
-const BackgroundImage = require('../../assets/images/ParentChatOpen.png');
+const BackgroundImage = require('../../assets/images/TeacherChat.png');
 
 interface Message {
   id: string;
@@ -29,12 +29,12 @@ interface Message {
 }
 
 type NavigationType = {
-  ParentChat: {users: any};
+  TeacherChat: {users: any};
 };
 
-type RouteType = RouteProp<NavigationType, 'ParentChat'>;
+type RouteType = RouteProp<NavigationType, 'TeacherChat'>;
 
-const ParentChatOpen = ({route}: {route: RouteType}) => {
+const TeacherChatOpen = ({route}: {route: RouteType}) => {
   const store = useStore();
   const socket = io('http://192.168.0.107:8080');
   const navigation = useNavigation();
@@ -57,8 +57,8 @@ const ParentChatOpen = ({route}: {route: RouteType}) => {
     axios
       .get(
         `http://192.168.0.107:8080/chat/chat-history/${
-          store.user?.user.child_id
-        }/${users.id_assigned ? users.id_assigned : users.child_id}`,
+          store.user?.user.id_assigned
+        }/${users.child_id ? users.child_id : users.id_assigned}`,
       )
       .then(response => {
         console.log(response.data);
@@ -82,8 +82,8 @@ const ParentChatOpen = ({route}: {route: RouteType}) => {
   const handleSendMessage = () => {
     axios
       .post('http://192.168.0.107:8080/chat/send-message', {
-        sender_id: store.user?.user.child_id,
-        receiver_id: users.id_assigned ? users.id_assigned : users.child_id,
+        sender_id: store.user?.user.id_assigned,
+        receiver_id: users.child_id ? users.child_id : users.id_assigned,
         message: newMessage,
       })
       .then(response => {
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     padding: 10,
     borderRadius: 10,
-    maxWidth: '75%',
+    maxWidth: '75%', // Limit the width of the message container
   },
   teacherMessage: {
     backgroundColor: '#AEA3B4',
@@ -176,4 +176,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ParentChatOpen;
+export default TeacherChatOpen;

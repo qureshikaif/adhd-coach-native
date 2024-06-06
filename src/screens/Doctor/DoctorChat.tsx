@@ -1,11 +1,6 @@
 // DoctorChat.js
 import React from 'react';
-import {
-  View,
-  ImageBackground,
-  ScrollView,
-  Pressable,
-} from '@gluestack-ui/themed';
+import {View, ImageBackground, ScrollView} from '@gluestack-ui/themed';
 import ChatBox from '../../components/ChatDialoguebox';
 import StatusBarParent from '../../components/molecules/StatusBarParent';
 import {useQuery} from '@tanstack/react-query';
@@ -55,14 +50,6 @@ const DoctorChat = () => {
         alignItems="center"
         justifyContent="center">
         <TextSemibold text="No users found. Check back later?" />
-        <Pressable
-          mt={'$5'}
-          bg="#DBC9E1"
-          p={'$3'}
-          borderWidth={1}
-          rounded={'$lg'}>
-          <TextSemibold text="Create Chat" />
-        </Pressable>
       </ImageBackground>
     );
   }

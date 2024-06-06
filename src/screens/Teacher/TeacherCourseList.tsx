@@ -14,6 +14,7 @@ import Loading from '../Loading';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {useStore} from '../../store';
 import SideButton from '../../components/atoms/Buttons/SideButton';
+import TextRegular from '../../components/atoms/Text/TextRegular';
 
 const BackgroundImage = require('../../assets/images/teachercourse.png');
 
@@ -30,7 +31,7 @@ const TeacherCourseList = () => {
     isLoading: isLoadingCourses,
     isError: isErrorCourses,
   } = useQuery({
-    queryKey: ['courses'],
+    queryKey: ['coursesTeacherAssigned'],
     queryFn: async () => {
       const {data} = await axios.get(
         `http://192.168.0.107:8080/teacher/get-courses/${store.user?.user.id_assigned}`,
@@ -55,6 +56,8 @@ const TeacherCourseList = () => {
     );
   }
 
+  console.log('COURSES, ', courses);
+
   return (
     <View height={'$full'}>
       <ImageBackground source={BackgroundImage} minHeight={'$full'}>
@@ -64,7 +67,8 @@ const TeacherCourseList = () => {
           <TextSemibold text="Your Courses" fontSize={'$2xl'} />
           <Box height={'$4'} />
           <VStack space={'2xl'}>
-            {courses.courses.map((course: any, index: number) => (
+            {!courses.courses && <TextRegular text="No courses found" />}
+            {courses.courses?.map((course: any, index: number) => (
               <SideButton
                 key={index}
                 text={course.title}

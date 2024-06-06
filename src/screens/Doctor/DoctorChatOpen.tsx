@@ -56,7 +56,9 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
     // Fetch chat history
     axios
       .get(
-        `http://192.168.0.107:8080/chat/chat-history/${store.user?.user.id_assigned}/${users.child_id}`,
+        `http://192.168.0.107:8080/chat/chat-history/${
+          store.user?.user.id_assigned
+        }/${users.child_id ? users.child_id : users.id_assigned}`,
       )
       .then(response => {
         console.log(response.data);
@@ -81,7 +83,7 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
     axios
       .post('http://192.168.0.107:8080/chat/send-message', {
         sender_id: store.user?.user.id_assigned,
-        receiver_id: users.child_id,
+        receiver_id: users.child_id ? users.child_id : users.id_assigned,
         message: newMessage,
       })
       .then(response => {
