@@ -10,6 +10,7 @@ import io from 'socket.io-client';
 import {useStore} from '../../store';
 import {InputField} from '@gluestack-ui/themed';
 import {SendHorizonal} from 'lucide-react-native';
+import {RouteProp} from '@react-navigation/native';
 
 const BackgroundImage = require('../../assets/images/ParentChatOpen.png');
 
@@ -20,12 +21,21 @@ interface Message {
   time: string;
 }
 
-const ParentChatOpen: React.FC = () => {
-  const socket = io('http://192.168.0.107:8080');
-  const navigation = useNavigation();
+type NavigationType = {
+  ParentChat: {users: any};
+};
+
+type RouteType = RouteProp<NavigationType, 'ParentChat'>;
+
+const ParentChatOpen = ({route}: {route: RouteType}) => {
   const store = useStore();
+  const socket = io('http://10.133.136.53:8080');
+  const navigation = useNavigation();
   const [messages, setMessages] = React.useState<Message[]>([]);
   const [newMessage, setNewMessage] = React.useState('');
+  const {users} = route.params;
+
+  console.log(users);
 
   useLayoutEffect(() => {
     navigation
@@ -48,7 +58,9 @@ const ParentChatOpen: React.FC = () => {
   useLayoutEffect(() => {
     // Fetch chat history
     axios
-      .get(`http://192.168.0.107:8080/chat/chat-history/${201}/${101}`)
+      .get(
+        `http://10.133.136.53:8080/chat/chat-history/${store.user?.user.child_id}/${users.id_assigned}`,
+      )
       .then(response => {
         console.log(response.data);
         setMessages(response.data);
@@ -69,7 +81,7 @@ const ParentChatOpen: React.FC = () => {
 
   const handleSendMessage = () => {
     axios
-      .post('http://192.168.0.107:8080/chat/send-message', {
+      .post('http://10.133.136.53:8080/chat/send-message', {
         sender_id: 201, // replace with the actual senderId
         receiver_id: 101, // replace with the actual receiverId
         message: newMessage,

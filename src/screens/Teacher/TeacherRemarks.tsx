@@ -76,7 +76,7 @@ const TeacherRemarks = ({
 
     try {
       const response = await axios.post(
-        'http://13.127.65.203:8080/teacher/progress-report',
+        'http://10.133.136.53:8080/teacher/progress-report',
         {
           student: course.student_id,
           course: selectedCourseId,

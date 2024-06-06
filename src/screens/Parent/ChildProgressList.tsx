@@ -29,7 +29,7 @@ const ChildProgressList = () => {
     queryKey: ['teachers'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/parent/progress-report/${store.user?.user.child_id}`,
+        `http://10.133.136.53:8080/parent/progress-report/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -39,7 +39,7 @@ const ChildProgressList = () => {
     queryKey: ['doctors'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/parent/doctor-remarks/${store.user?.user.child_id}`,
+        `http://10.133.136.53:8080/parent/doctor-remarks/${store.user?.user.child_id}`,
       );
       return data;
     },

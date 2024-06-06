@@ -33,7 +33,7 @@ const TeacherCourseList = () => {
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/teacher/get-courses/${store.user?.user.id_assigned}`,
+        `http://10.133.136.53:8080/teacher/get-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },

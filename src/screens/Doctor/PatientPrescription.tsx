@@ -35,7 +35,7 @@ const PatientPrescription = () => {
     queryKey: ['patients'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-students',
+        'http://10.133.136.53:8080/student/get-students',
       );
       return data;
     },
@@ -47,7 +47,7 @@ const PatientPrescription = () => {
 
   const onSubmit = async () => {
     await axios
-      .post('http://13.127.65.203:8080/doctor/prescription', {
+      .post('http://10.133.136.53:8080/doctor/prescription', {
         prescription,
         patientId: selectedPatient,
         doctorId: store.user?.user.id_assigned,

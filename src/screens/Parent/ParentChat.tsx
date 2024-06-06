@@ -18,7 +18,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 const BackgroundImage = require('../../assets/images/TeacherProfile.png');
 
 type NavigationType = {
-  ParentChatOpen: undefined;
+  ParentChatOpen: {users: any};
 };
 
 const ParentChat = () => {
@@ -28,7 +28,7 @@ const ParentChat = () => {
     queryKey: ['chats'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.0.107:8080/chat/check-chat/${store.user?.user.child_id}`,
+        `http://10.133.136.53:8080/chat/check-chat/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -38,7 +38,7 @@ const ParentChat = () => {
     queryKey: ['users'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.0.107:8080/chat/get-users',
+        'http://10.133.136.53:8080/chat/get-users',
       );
       return data;
     },
@@ -86,7 +86,9 @@ const ParentChat = () => {
               imageSource={user.imageSource}
               text={user.text}
               time={user.time}
-              onPress={() => navigation.navigate('ParentChatOpen')}
+              onPress={() =>
+                navigation.navigate('ParentChatOpen', {users: users})
+              }
             />
           ))}
         </ScrollView>
