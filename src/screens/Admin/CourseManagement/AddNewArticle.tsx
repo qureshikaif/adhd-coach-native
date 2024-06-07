@@ -19,23 +19,24 @@ import TextRegular from '../../../components/atoms/Text/TextRegular';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import Success from '../../../components/molecules/popup/Success';
 import axios from 'axios';
+import Error from '../../../components/molecules/popup/Error';
 
 const BackgroundIcon = require('../../../assets/images/add-article-bg.png');
 
 const fields = [
   {
     title: 'Title',
-    placeholder: 'admin@adhdcoach.com',
+    placeholder: 'Title of your article.',
     icon: '',
   },
   {
     title: 'Subtitle',
-    placeholder: 'admin',
+    placeholder: 'Subtitle of your article.',
     icon: '',
   },
   {
     title: 'Tags',
-    placeholder: 'admin123',
+    placeholder: 'Tags/keywords of your article.',
     icon: '',
   },
 ];
@@ -43,17 +44,17 @@ const fields = [
 const fieldstextarea = [
   {
     title: 'Content',
-    placeholder: 'admin123',
+    placeholder: 'Content of your article.',
   },
   {
     title: 'Summary',
-    placeholder: 'admin123',
+    placeholder: 'Summary of your article.',
   },
 ];
 
 const Add = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const ref = React.useRef(null);
+  const [showSuccess, setShowSuccess] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
   const {
@@ -64,7 +65,6 @@ const Add = () => {
 
   const onSubmit = (data: any) => {
     setLoading(true);
-    console.log(data);
     axios
       .post('http://13.127.65.203:8080/admin/article', {
         title: data.title,
@@ -76,13 +76,13 @@ const Add = () => {
       .then(res => {
         console.log(res.data.message);
         setLoading(false);
-        setShowModal(true);
+        setShowSuccess(true);
       })
       .catch(err => {
         console.log(err);
         setLoading(false);
+        setShowError(true);
       });
-    setShowModal(true);
   };
 
   return (
@@ -187,7 +187,12 @@ const Add = () => {
           </HStack>
           <Box height={useBottomTabBarHeight()} />
         </ScrollView>
-        <Success showModal={showModal} setShowModal={setShowModal} ref={ref} />
+        <Success showModal={showSuccess} setShowModal={setShowSuccess} />
+        <Error
+          showModal={showError}
+          setShowModal={setShowError}
+          text="Error occured while adding article."
+        />
       </ImageBackground>
     </>
   );

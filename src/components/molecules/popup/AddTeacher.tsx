@@ -21,6 +21,8 @@ import TextBold from '../../atoms/Text/TextBold';
 import TextRegular from '../../atoms/Text/TextRegular';
 import {InputField} from '@gluestack-ui/themed';
 import axios from 'axios';
+import Error from './Error';
+import Success from './Success';
 
 const AddTeacherIcon = require('../../../assets/images/add-teacher.png');
 
@@ -28,6 +30,9 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
   const [teacherId, setTeacherId] = React.useState('' as string);
   const [email, setEmail] = React.useState('' as string);
   const [loading, setLoading] = React.useState(false);
+
+  const [showSuccess, setShowSuccess] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
 
   const handleTeacherId = (text: string) => setTeacherId(text);
   const handleEmail = (text: string) => setEmail(text);
@@ -139,6 +144,16 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <Error
+        showModal={showError}
+        setShowModal={setShowError}
+        text="An error occured while adding teacher"
+      />
+      <Success
+        showModal={showSuccess}
+        setShowModal={setShowSuccess}
+        text="Teacher added successfully"
+      />
     </Center>
   );
 };

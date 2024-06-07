@@ -17,7 +17,7 @@ const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
 const AppAnalytics = () => {
   const height = useBottomTabBarHeight();
-  const {data: studentCount, isLoading} = useQuery({
+  const {data: studentCount, isLoading: isLoadingStudent} = useQuery({
     queryKey: ['studentCount'],
     queryFn: async () => {
       const {data} = await axios.get(
@@ -26,7 +26,7 @@ const AppAnalytics = () => {
       return data;
     },
   });
-  const {data: teacherCount} = useQuery({
+  const {data: teacherCount, isLoading: isLoadingTeacher} = useQuery({
     queryKey: ['teacherCount'],
     queryFn: async () => {
       const {data} = await axios.get(
@@ -36,7 +36,7 @@ const AppAnalytics = () => {
     },
   });
 
-  if (isLoading) {
+  if (isLoadingTeacher || isLoadingStudent) {
     return <Loading bgImage={BackgroundImage} />;
   }
 

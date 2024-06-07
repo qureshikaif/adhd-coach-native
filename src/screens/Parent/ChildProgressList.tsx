@@ -27,7 +27,7 @@ const ChildProgressList = () => {
   const navigation = useNavigation<NavigationProp<NavigationType>>();
   const store = useStore();
   const {data: teachers, isLoading: isLoadingTeacher} = useQuery({
-    queryKey: ['teachers'],
+    queryKey: ['teachersChildProgressList'],
     queryFn: async () => {
       const {data} = await axios.get(
         `http://13.127.65.203:8080/parent/progress-report/${store.user?.user.child_id}`,
@@ -37,7 +37,7 @@ const ChildProgressList = () => {
   });
 
   const {data: doctors, isLoading: isLoadingDoctor} = useQuery({
-    queryKey: ['doctors'],
+    queryKey: ['doctorsChildProgressList'],
     queryFn: async () => {
       const {data} = await axios.get(
         `http://13.127.65.203:8080/parent/doctor-remarks/${store.user?.user.child_id}`,
@@ -46,9 +46,8 @@ const ChildProgressList = () => {
     },
   });
 
-  console.log(doctors);
+  console.log('Doctors, ', doctors);
 
-  console.log('ChildProgressList teachers', teachers);
   if (isLoadingTeacher || isLoadingDoctor) {
     return <Loading bgImage={BackgroundImage} />;
   }
@@ -86,8 +85,9 @@ const ChildProgressList = () => {
               <SideButton
                 key={index}
                 text={doctor.doctor_name}
-                // content={doctor}
-                // onPress={() => navigation.navigate('ParentArticle', {article})}
+                onPress={() =>
+                  navigation.navigate('ChildProgressReport', {content: doctor})
+                }
               />
             ))}
           </VStack>

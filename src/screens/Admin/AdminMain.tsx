@@ -10,7 +10,9 @@ import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import TextBold from '../../components/atoms/Text/TextBold';
 import AppStatistics from '../../components/molecules/AppStatistics';
 import RecentFeedbacks from '../../components/molecules/RecentFeedbacks';
-import CourseStatistics from '../../components/molecules/CourseStatistics';
+import CourseStatistics, {
+  CourseStatisticsType,
+} from '../../components/molecules/CourseStatistics';
 import TotalStudentsEnrolled from '../../components/molecules/TotalStudentsEnrolled';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {useQuery} from '@tanstack/react-query';
@@ -39,7 +41,7 @@ const AdminMain = () => {
   });
 
   const {data: reviews, isLoading: isLoadingReviews} = useQuery<Feedback[]>({
-    queryKey: ['reviews'],
+    queryKey: ['homeReviews'],
     queryFn: async () => {
       const {data} = await axios.get(
         'http://13.127.65.203:8080/admin/all-feedbacks',
@@ -48,10 +50,20 @@ const AdminMain = () => {
     },
   });
 
-  if (isLoadingCount || isLoadingReviews) {
+  const {data: studentCount, isLoading: isLoadingStudentCount} = useQuery({
+    queryKey: ['studentCountCourses'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.0.107:8080/admin/course-student',
+      );
+      return data.data;
+    },
+  });
+
+  if (isLoadingCount || isLoadingReviews || isLoadingStudentCount) {
     return <Loading bgImage={BackgroundImage} />;
   }
-  console.log(reviews);
+  console.log(studentCount);
 
   return (
     <View height={'$full'}>
@@ -64,7 +76,9 @@ const AdminMain = () => {
             <AppStatistics />
             <TotalStudentsEnrolled count={count} />
             <RecentFeedbacks feedbacks={reviews as Feedback[]} />
-            <CourseStatistics />
+            <CourseStatistics
+              courses={studentCount as CourseStatisticsType[]}
+            />
           </VStack>
           <Box height={height * 2} />
         </ScrollView>

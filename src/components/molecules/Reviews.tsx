@@ -21,9 +21,9 @@ const Reviews: React.FC<ReviewsProps> = ({feedbacks}) => {
   }
   return (
     <View>
-      {feedbacks.map(feedback => (
+      {feedbacks?.map(feedback => (
         <VStack
-          key={feedback.feedback_id}
+          key={feedback?.feedback_id}
           bg="#D7E6ED"
           w="$full"
           h="$16"
@@ -31,12 +31,13 @@ const Reviews: React.FC<ReviewsProps> = ({feedbacks}) => {
           borderWidth={0.5}
           rounded={'$2xl'}
           hardShadow="4"
+          mb="$4"
           p="$4">
           <HStack alignItems="center" space="lg" justifyContent="space-between">
             <HStack alignItems="center" space="md">
               <Image source={UserIcon} alt="User Icon" width={20} height={20} />
               <TextRegular
-                text={feedback.user_name || 'Anonymous'}
+                text={feedback?.user_name || 'Anonymous'}
                 fontSize={'$xl'}
               />
             </HStack>

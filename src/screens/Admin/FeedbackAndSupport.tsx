@@ -2,9 +2,7 @@ import {ImageBackground, ScrollView, Box, VStack} from '@gluestack-ui/themed';
 import React from 'react';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
-import ChatSupport1 from '../../components/molecules/ChatSupport1';
 import Reviews from '../../components/molecules/Reviews';
-import ViewAllMsg from '../../components/molecules/ViewAllMsg';
 import Loading from '../Loading';
 import {useQuery} from '@tanstack/react-query';
 import {Feedback} from './AdminMain';
@@ -32,6 +30,8 @@ const FeedbackAndSupport = () => {
     return <Loading bgImage={BackgroundImage} />;
   }
 
+  console.log(reviewsFeedback);
+
   return (
     <ImageBackground source={BackgroundImage} minHeight={'$full'}>
       <StatusBarAdmin text=" Feedback & Support" />
@@ -43,9 +43,7 @@ const FeedbackAndSupport = () => {
             <TextRegular text="No reviews found." fontSize={'$lg'} />
           )}
 
-          {reviewsFeedback?.map((review: any, index: any) => (
-            <Reviews key={index} feedbacks={review} />
-          ))}
+          <Reviews feedbacks={reviewsFeedback as any} />
         </VStack>
         <Box height={'$6'} />
         {/* <VStack space="sm">

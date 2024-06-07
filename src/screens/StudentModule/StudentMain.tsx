@@ -6,6 +6,7 @@ import {
   Image,
   Center,
   Pressable,
+  RefreshControl,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import TextBold from '../../components/atoms/Text/TextBold';
@@ -31,6 +32,7 @@ const StudentMain = () => {
   const store = useStore();
   const height = useBottomTabBarHeight();
   const [currentTip, setCurrentTip] = React.useState('');
+  const [refreshing, setRefreshing] = React.useState(false);
   const navigation = useNavigation<NavigationProp<NavigationType>>();
 
   const tips = [
@@ -54,6 +56,7 @@ const StudentMain = () => {
     data: isCompulsory,
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: ['isCompulsory'],
     queryFn: async () => {
@@ -67,6 +70,18 @@ const StudentMain = () => {
     },
   });
 
+  const handleScroll = (event: any) => {
+    const {contentOffset} = event.nativeEvent;
+    if (contentOffset.y <= 0) {
+      refetch();
+    }
+  };
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    refetch().finally(() => setRefreshing(false));
+  }, [refetch]);
+
   if (isLoading) {
     return <Loading bgImage={BackgroundImage} />;
   }
@@ -78,7 +93,7 @@ const StudentMain = () => {
         h="$full"
         alignItems="center"
         justifyContent="center">
-        <TextSemibold text="An error occured while fetching data" />
+        <TextSemibold text="An error occurred while fetching data" />
       </ImageBackground>
     );
   }
@@ -95,7 +110,13 @@ const StudentMain = () => {
           isLogoutVisible
         />
 
-        <ScrollView paddingHorizontal={'$5'}>
+        <ScrollView
+          paddingHorizontal={'$5'}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
           <Box height={'$16'} />
 
           <Box
