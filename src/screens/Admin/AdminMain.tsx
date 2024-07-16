@@ -18,6 +18,7 @@ import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../Loading';
+import TextRegular from '../../components/atoms/Text/TextRegular';
 
 const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
@@ -31,10 +32,10 @@ export interface Feedback {
 const AdminMain = () => {
   const height = useBottomTabBarHeight();
   const {data: count, isLoading: isLoadingCount} = useQuery({
-    queryKey: ['totalStudentsEnrolled'],
+    queryKey: ['totalStudentsEnrolledAdmin'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-number',
+        'http://192.168.27.143:8080/student/get-number',
       );
       return data;
     },
@@ -44,14 +45,14 @@ const AdminMain = () => {
     queryKey: ['homeReviews'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/admin/all-feedbacks',
+        'http://192.168.27.143:8080/admin/all-feedbacks',
       );
       return data;
     },
   });
 
   const {data: studentCount, isLoading: isLoadingStudentCount} = useQuery({
-    queryKey: ['studentCountCourses'],
+    queryKey: ['studentCountCoursesAdmin'],
     queryFn: async () => {
       const {data} = await axios.get(
         'http://192.168.0.107:8080/admin/course-student',
@@ -60,7 +61,7 @@ const AdminMain = () => {
     },
   });
 
-  if (isLoadingCount || isLoadingReviews || isLoadingStudentCount) {
+  if (isLoadingCount || isLoadingReviews) {
     return <Loading bgImage={BackgroundImage} />;
   }
   console.log(studentCount);
@@ -76,9 +77,13 @@ const AdminMain = () => {
             <AppStatistics />
             <TotalStudentsEnrolled count={count} />
             <RecentFeedbacks feedbacks={reviews as Feedback[]} />
-            <CourseStatistics
-              courses={studentCount as CourseStatisticsType[]}
-            />
+            {studentCount ? (
+              <CourseStatistics
+                courses={studentCount as CourseStatisticsType[]}
+              />
+            ) : (
+              <TextRegular text="No courses found" fontSize={'$xl'} />
+            )}
           </VStack>
           <Box height={height * 2} />
         </ScrollView>

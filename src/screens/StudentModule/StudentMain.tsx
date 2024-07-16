@@ -21,7 +21,7 @@ import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../Loading';
 
-const TipOfTheDay = require('../../assets/images/tip-home.png');
+const TipOfTheDay = require('../../assets/images/cat.png');
 const BackgroundImage = require('../../assets/images/stud-main-bg.png');
 
 type NavigationType = {
@@ -41,6 +41,7 @@ const StudentMain = () => {
     'Taking short breaks while studying improves focus and retention.',
     'Regular exercise can have a profoundly positive impact on depression and anxiety.',
     "Getting a good night's sleep is incredibly important for your health.",
+    'always be postive.',
   ];
 
   React.useEffect(() => {
@@ -61,7 +62,7 @@ const StudentMain = () => {
     queryKey: ['isCompulsory'],
     queryFn: async () => {
       const {data} = await axios.post(
-        'http://13.127.65.203:8080/student/check-compulsory',
+        'http://192.168.27.143:8080/student/check-compulsory',
         {
           studentId: store.user?.user.id_assigned,
         },

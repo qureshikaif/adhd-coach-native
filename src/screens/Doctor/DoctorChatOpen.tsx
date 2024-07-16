@@ -53,10 +53,10 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
   }, [navigation]);
 
   useLayoutEffect(() => {
-    const socket = io('http://13.127.65.203:8080');
+    const socket = io('http://192.168.27.143:8080');
     axios
       .get(
-        `http://13.127.65.203:8080/chat/chat-history/${
+        `http://192.168.27.143:8080/chat/chat-history/${
           store.user?.user.id_assigned
         }/${users.child_id ? users.child_id : users.id_assigned}`,
       )
@@ -80,7 +80,7 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
 
   const handleSendMessage = () => {
     axios
-      .post('http://13.127.65.203:8080/chat/send-message', {
+      .post('http://192.168.27.143:8080/chat/send-message', {
         sender_id: store.user?.user.id_assigned,
         receiver_id: users.child_id ? users.child_id : users.id_assigned,
         message: newMessage,

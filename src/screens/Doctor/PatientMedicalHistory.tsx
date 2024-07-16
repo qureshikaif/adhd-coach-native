@@ -7,6 +7,7 @@ import {
   Button,
   HStack,
   Text,
+  ButtonSpinner,
 } from '@gluestack-ui/themed';
 import {TextInput} from 'react-native';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
@@ -16,6 +17,8 @@ import StatusBarDoctor from '../../components/molecules/StatusBarDoctor';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import axios from 'axios';
 import {useStore} from '../../store';
+import Error from '../../components/molecules/popup/Error';
+import Success from '../../components/molecules/popup/Success';
 
 const BackgroundImage = require('../../assets/images/patienthistory.png');
 
@@ -29,12 +32,16 @@ const PatientMedicalHistory = ({route}: {route: RouteType}) => {
   const store = useStore();
   const height = useBottomTabBarHeight();
   const [remark, setRemark] = useState('');
+  const [loading, setLoading] = useState(false);
   const {patients} = route.params;
+  const [success, showSuccess] = useState(false);
+  const [error, showError] = useState(false);
 
   const handleSave = async () => {
     try {
+      setLoading(true);
       const response = await axios.post(
-        'http://13.127.65.203:8080/doctor/remarks',
+        'http://192.168.27.143:8080/doctor/remarks',
         {
           doctorId: store.user?.user.id_assigned,
           studentId: patients.id_assigned,
@@ -43,8 +50,11 @@ const PatientMedicalHistory = ({route}: {route: RouteType}) => {
       );
 
       console.log('Remark saved:', response.data);
+      setRemark('');
+      setLoading(false);
     } catch (error) {
-      console.error('Error saving remark:', error);
+      console.log('Error saving remark:', error);
+      setLoading(false);
     }
   };
 
@@ -113,14 +123,26 @@ const PatientMedicalHistory = ({route}: {route: RouteType}) => {
               bg={'#DEB5B5'}
               borderWidth={1}
               borderRadius={'$lg'}
-              onPress={handleSave} // Save the remark on click
-            >
-              <TextBold text="Save" />
+              onPress={handleSave}>
+              <HStack>
+                {loading && <ButtonSpinner color="black" />}
+                <TextBold text="Save" ml={loading ? '$2' : '$0'} />
+              </HStack>
             </Button>
           </HStack>
           <Box height={height} />
         </ScrollView>
       </ImageBackground>
+      <Error
+        showModal={error}
+        setShowModal={showError}
+        text="An error occured while adding remarks"
+      />
+      <Success
+        showModal={success}
+        setShowModal={showSuccess}
+        text="Remarks added successfully"
+      />
     </View>
   );
 };

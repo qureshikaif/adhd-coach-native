@@ -58,7 +58,7 @@ const MoodBoard = () => {
     console.log(`Mood logged: ${mood}`);
     try {
       const response = await axios.post(
-        'http://13.127.65.203:8080/student/mood',
+        'http://192.168.27.143:8080/student/mood',
         {
           studentId: store.user?.user.id_assigned,
           mood,

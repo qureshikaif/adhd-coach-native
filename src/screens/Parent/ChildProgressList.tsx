@@ -11,7 +11,6 @@ import StatusBarParent from '../../components/molecules/StatusBarParent';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../Loading';
-import {Article} from '../../types/Article';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import TextSemibold from '../../components/atoms/Text/TextSemibold';
 import {useStore} from '../../store';
@@ -30,7 +29,7 @@ const ChildProgressList = () => {
     queryKey: ['teachersChildProgressList'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/parent/progress-report/${store.user?.user.child_id}`,
+        `http://192.168.27.143:8080/parent/progress-report/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -40,7 +39,7 @@ const ChildProgressList = () => {
     queryKey: ['doctorsChildProgressList'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/parent/doctor-remarks/${store.user?.user.child_id}`,
+        `http://192.168.27.143:8080/parent/doctor-remarks/${store.user?.user.child_id}`,
       );
       return data;
     },

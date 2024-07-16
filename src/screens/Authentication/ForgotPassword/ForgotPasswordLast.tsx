@@ -53,7 +53,7 @@ const ForgotPasswordLast = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        'http://13.127.65.203:8080/auth/send-otp',
+        'http://192.168.27.143:8080/auth/send-otp',
         {
           email,
           password,

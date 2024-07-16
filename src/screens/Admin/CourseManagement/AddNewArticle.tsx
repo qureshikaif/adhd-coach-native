@@ -66,7 +66,7 @@ const Add = () => {
   const onSubmit = (data: any) => {
     setLoading(true);
     axios
-      .post('http://13.127.65.203:8080/admin/article', {
+      .post('http://192.168.27.143:8080/admin/article', {
         title: data.title,
         subtitle: data.subtitle,
         tags: data.tags,

@@ -40,7 +40,7 @@ const AddTeacher = ({showModal, setShowModal, ref}: ModalProps) => {
   const onSubmit = () => {
     setLoading(true);
     axios
-      .post('http://13.127.65.203:8080/admin/teacher', {
+      .post('http://192.168.27.143:8080/admin/teacher', {
         teacherId,
         email,
       })

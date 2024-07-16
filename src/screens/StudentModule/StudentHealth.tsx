@@ -136,6 +136,32 @@ const StudentHealth: React.FC = () => {
               fulfilling life!
             </Text>
           </Box>
+
+          <Box height={5} />
+          <Pressable
+            onPress={() => Linking.openURL('https://youtu.be/Ndtv6Yy4Ac8')}>
+            <Box
+              bg="#FFA360"
+              p={4}
+              my={4}
+              mx={4}
+              borderRadius={12}
+              alignItems="center" // Center align the content vertically
+              justifyContent="center" // Center align the content horizontally
+              borderColor="black" // Border color
+              borderWidth={2} // Border width
+            >
+              <TextBold>Chachu benefits</TextBold>
+              <Image
+                source={TeacherPic1}
+                alt="Teacher"
+                width={70} // Adjust the width here
+                height={70}
+                resizeMode="contain"
+              />
+            </Box>
+          </Pressable>
+          <Box height={16} />
           <Box height={height * 4} />
         </ScrollView>
       </ImageBackground>

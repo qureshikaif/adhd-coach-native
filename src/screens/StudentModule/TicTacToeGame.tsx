@@ -38,7 +38,7 @@ const TicTacToeGame = () => {
             margin-left={'$40'}>
             <TextRegular
               text=" Q. Select the following numbers
-              whose sum is 10 to win the game"
+              whose sum is 7 to win the game"
               fontSize={'$md'}
               padding={'$1.5'}
             />

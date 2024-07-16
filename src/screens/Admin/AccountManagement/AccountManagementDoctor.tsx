@@ -19,7 +19,7 @@ const AccountManagementDoctor = () => {
     queryKey: ['doctors'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/doctor/get-doctors',
+        'http://192.168.27.143:8080/doctor/get-doctors',
       );
       return data;
     },

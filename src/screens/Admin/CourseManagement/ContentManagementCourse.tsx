@@ -19,7 +19,7 @@ const ContentManagementCourse = () => {
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/admin/get-courses',
+        'http://192.168.27.143:8080/admin/get-courses',
       );
       return data;
     },

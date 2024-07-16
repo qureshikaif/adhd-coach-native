@@ -33,15 +33,16 @@ const PatientPrescription = () => {
   const [showError, setShowError] = useState(false);
 
   const {data: patients, isLoading} = useQuery({
-    queryKey: ['patients'],
+    queryKey: ['patientsDoctorPrescription'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-students',
+        `http://192.168.27.143:8080/doctor/students/${store.user?.user.id_assigned}`,
       );
       return data;
     },
   });
 
+  console.log('Patient:', patients);
   if (isLoading) {
     return <Loading bgImage={BackgroundImage} />;
   }
@@ -49,7 +50,7 @@ const PatientPrescription = () => {
   const onSubmit = async () => {
     setLoading(true);
     await axios
-      .post('http://13.127.65.203:8080/doctor/prescription', {
+      .post('http://192.168.27.143:8080/doctor/prescription', {
         prescription,
         patientId: selectedPatient,
         doctorId: store.user?.user.id_assigned,
