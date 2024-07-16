@@ -66,7 +66,7 @@ const Add = () => {
   const onSubmit = (data: any) => {
     setLoading(true);
     axios
-      .post('http://192.168.27.143:8080/admin/article', {
+      .post('https://adhd-coach-backend.vercel.app/admin/article', {
         title: data.title,
         subtitle: data.subtitle,
         tags: data.tags,

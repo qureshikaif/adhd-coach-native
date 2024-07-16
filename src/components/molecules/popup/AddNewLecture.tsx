@@ -46,7 +46,7 @@ const AddNewLecture = ({
   const onSubmit = () => {
     setLoading(true);
     axios
-      .post('http://192.168.27.143:8080/teacher/add-lecture', {
+      .post('https://adhd-coach-backend.vercel.app/teacher/add-lecture', {
         lecture,
         courseId,
         instructorId: store.user?.user.id_assigned,

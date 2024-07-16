@@ -53,10 +53,10 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
   }, [navigation]);
 
   useLayoutEffect(() => {
-    const socket = io('http://192.168.27.143:8080');
+    const socket = io('https://adhd-coach-backend.vercel.app');
     axios
       .get(
-        `http://192.168.27.143:8080/chat/chat-history/${
+        `https://adhd-coach-backend.vercel.app/chat/chat-history/${
           store.user?.user.id_assigned
         }/${users.child_id ? users.child_id : users.id_assigned}`,
       )
@@ -80,7 +80,7 @@ const DoctorChatOpen = ({route}: {route: RouteType}) => {
 
   const handleSendMessage = () => {
     axios
-      .post('http://192.168.27.143:8080/chat/send-message', {
+      .post('https://adhd-coach-backend.vercel.app/chat/send-message', {
         sender_id: store.user?.user.id_assigned,
         receiver_id: users.child_id ? users.child_id : users.id_assigned,
         message: newMessage,

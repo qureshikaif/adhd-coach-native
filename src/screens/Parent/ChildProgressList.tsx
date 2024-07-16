@@ -29,7 +29,7 @@ const ChildProgressList = () => {
     queryKey: ['teachersChildProgressList'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.27.143:8080/parent/progress-report/${store.user?.user.child_id}`,
+        `https://adhd-coach-backend.vercel.app/parent/progress-report/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -39,7 +39,7 @@ const ChildProgressList = () => {
     queryKey: ['doctorsChildProgressList'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.27.143:8080/parent/doctor-remarks/${store.user?.user.child_id}`,
+        `https://adhd-coach-backend.vercel.app/parent/doctor-remarks/${store.user?.user.child_id}`,
       );
       return data;
     },

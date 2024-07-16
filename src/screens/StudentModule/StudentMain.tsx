@@ -62,7 +62,7 @@ const StudentMain = () => {
     queryKey: ['isCompulsory'],
     queryFn: async () => {
       const {data} = await axios.post(
-        'http://192.168.27.143:8080/student/check-compulsory',
+        'https://adhd-coach-backend.vercel.app/student/check-compulsory',
         {
           studentId: store.user?.user.id_assigned,
         },

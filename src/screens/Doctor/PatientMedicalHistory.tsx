@@ -41,7 +41,7 @@ const PatientMedicalHistory = ({route}: {route: RouteType}) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        'http://192.168.27.143:8080/doctor/remarks',
+        'https://adhd-coach-backend.vercel.app/doctor/remarks',
         {
           doctorId: store.user?.user.id_assigned,
           studentId: patients.id_assigned,

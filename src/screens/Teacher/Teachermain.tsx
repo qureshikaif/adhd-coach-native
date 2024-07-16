@@ -37,7 +37,7 @@ const TeacherMain = () => {
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.27.143:8080/teacher/get-courses/${store.user?.user.id_assigned}`,
+        `https://adhd-coach-backend.vercel.app/teacher/get-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -51,7 +51,7 @@ const TeacherMain = () => {
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.27.143:8080/teacher/get-count-students/${store.user?.user.id_assigned}`,
+        `https://adhd-coach-backend.vercel.app/teacher/get-count-students/${store.user?.user.id_assigned}`,
       );
       return data.count;
     },

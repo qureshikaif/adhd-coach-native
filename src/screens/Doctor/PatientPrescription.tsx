@@ -36,7 +36,7 @@ const PatientPrescription = () => {
     queryKey: ['patientsDoctorPrescription'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.27.143:8080/doctor/students/${store.user?.user.id_assigned}`,
+        `https://adhd-coach-backend.vercel.app/doctor/students/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -50,7 +50,7 @@ const PatientPrescription = () => {
   const onSubmit = async () => {
     setLoading(true);
     await axios
-      .post('http://192.168.27.143:8080/doctor/prescription', {
+      .post('https://adhd-coach-backend.vercel.app/doctor/prescription', {
         prescription,
         patientId: selectedPatient,
         doctorId: store.user?.user.id_assigned,

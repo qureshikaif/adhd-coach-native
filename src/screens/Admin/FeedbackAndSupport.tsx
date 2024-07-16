@@ -20,7 +20,7 @@ const FeedbackAndSupport = () => {
     queryKey: ['reviewsFeedback'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.143:8080/admin/all-feedbacks',
+        'https://adhd-coach-backend.vercel.app/admin/all-feedbacks',
       );
       return data;
     },

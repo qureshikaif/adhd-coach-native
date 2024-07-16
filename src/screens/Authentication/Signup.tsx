@@ -119,7 +119,7 @@ const Signup = () => {
     }
 
     axios
-      .post('http://192.168.27.143:8080/auth/signup', {
+      .post('https://adhd-coach-backend.vercel.app/auth/signup', {
         fullName: data.fullname,
         email: data.email,
         password: data.password,

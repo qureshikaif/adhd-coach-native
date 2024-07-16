@@ -21,7 +21,7 @@ const AppAnalytics = () => {
     queryKey: ['studentCount'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.143:8080/student/get-number',
+        'https://adhd-coach-backend.vercel.app/student/get-number',
       );
       return data;
     },
@@ -30,7 +30,7 @@ const AppAnalytics = () => {
     queryKey: ['teacherCount'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://192.168.27.143:8080/teacher/get-number',
+        'https://adhd-coach-backend.vercel.app/teacher/get-number',
       );
       return data;
     },

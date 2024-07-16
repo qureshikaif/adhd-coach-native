@@ -34,7 +34,7 @@ const TeacherStudentList = () => {
     queryKey: ['studentCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://192.168.27.143:8080/teacher/get-student-courses/${store.user?.user.id_assigned}`,
+        `https://adhd-coach-backend.vercel.app/teacher/get-student-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
