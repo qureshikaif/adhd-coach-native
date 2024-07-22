@@ -17,7 +17,6 @@ type NavigationType = {
   EnglishCourses: undefined;
   MathsCourses: undefined;
   RockPaperScissorStart: undefined;
-  pacmanstart: undefined;
 };
 
 const StudentGames = () => {
@@ -74,23 +73,7 @@ const StudentGames = () => {
             padding={'$1.5'}
           />
         </Pressable>
-        <Pressable
-          onPress={() => navigation.navigate('pacmanstart')}
-          bgColor="#FFA169"
-          height={60}
-          w={'93%'}
-          padding={'$1'}
-          borderRadius={'$3xl'}
-          borderWidth={'$2'}
-          marginLeft={'-$16'}>
-          <TextSemibold
-            textAlign="center"
-            text="pac man"
-            fontSize={'$xl'}
-            marginLeft={'$12'}
-            padding={'$1.5'}
-          />
-        </Pressable>
+
         <Box height={useBottomTabBarHeight()} />
       </ScrollView>
     </ImageBackground>
