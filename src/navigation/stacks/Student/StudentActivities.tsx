@@ -10,7 +10,6 @@ import ShapesEnglish from '../../../screens/StudentModule/ShapesEnglish';
 import RockPaperScissorStart from '../../../screens/StudentModule/RockPaperScissorStart';
 import RockPaperScissor from '../../../screens/StudentModule/RockPaperScissor';
 import EnglishAlphabets from '../../../screens/StudentModule/EnglishAlphabets';
-import pacmanstart from '../../../screens/StudentModule/pacmanstart';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,7 +33,6 @@ const StudentActivities = () => {
         name="RockPaperScissorStart"
         component={RockPaperScissorStart}
       />
-      <Stack.Screen name="pacmanstart" component={pacmanstart} />
       <Stack.Screen name="RockPaperScissor" component={RockPaperScissor} />
       <Stack.Screen name="EnglishAlphabets" component={EnglishAlphabets} />
     </Stack.Navigator>
