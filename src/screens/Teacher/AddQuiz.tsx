@@ -111,7 +111,7 @@ const AddQuiz = ({route}: {route: RouteType}) => {
 
     try {
       const response = await axios.post(
-        'http://13.127.65.203:8080/teacher/add-quiz',
+        'https://adhd-coach-backend.vercel.app/teacher/add-quiz',
         formattedData,
       );
       console.log(response.data);

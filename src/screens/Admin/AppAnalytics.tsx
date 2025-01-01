@@ -17,26 +17,26 @@ const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
 const AppAnalytics = () => {
   const height = useBottomTabBarHeight();
-  const {data: studentCount, isLoading} = useQuery({
+  const {data: studentCount, isLoading: isLoadingStudent} = useQuery({
     queryKey: ['studentCount'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-number',
+        'https://adhd-coach-backend.vercel.app/student/get-number',
       );
       return data;
     },
   });
-  const {data: teacherCount} = useQuery({
+  const {data: teacherCount, isLoading: isLoadingTeacher} = useQuery({
     queryKey: ['teacherCount'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/teacher/get-number',
+        'https://adhd-coach-backend.vercel.app/teacher/get-number',
       );
       return data;
     },
   });
 
-  if (isLoading) {
+  if (isLoadingTeacher || isLoadingStudent) {
     return <Loading bgImage={BackgroundImage} />;
   }
 

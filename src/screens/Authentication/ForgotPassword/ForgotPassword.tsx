@@ -52,7 +52,7 @@ const ForgotPassword = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        'http://13.127.65.203:8080/auth/send-otp',
+        'https://adhd-coach-backend.vercel.app/auth/send-otp',
         {
           email,
           role: store.role,

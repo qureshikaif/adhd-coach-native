@@ -73,6 +73,7 @@ const StudentGames = () => {
             padding={'$1.5'}
           />
         </Pressable>
+
         <Box height={useBottomTabBarHeight()} />
       </ScrollView>
     </ImageBackground>

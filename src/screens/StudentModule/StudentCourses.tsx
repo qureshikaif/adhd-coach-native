@@ -38,7 +38,7 @@ const StudentCourses = () => {
     queryKey: ['enrolledCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/student/get-courses/${store.user?.user.id_assigned}`,
+        `https://adhd-coach-backend.vercel.app/student/get-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -53,7 +53,7 @@ const StudentCourses = () => {
     queryKey: ['courses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
+        `https://adhd-coach-backend.vercel.app/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
       );
       return data;
     },
@@ -67,7 +67,7 @@ const StudentCourses = () => {
     queryKey: ['compulsoryCourses'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-compulsory-courses',
+        'https://adhd-coach-backend.vercel.app/student/get-compulsory-courses',
       );
       return data;
     },
@@ -96,11 +96,14 @@ const StudentCourses = () => {
   const handleEnroll = async (courseId: string, teacherId: string) => {
     setLoadingCourseId(courseId);
     try {
-      const res = await axios.post('http://13.127.65.203:8080/student/enroll', {
-        studentId: store.user?.user.id_assigned,
-        courseId,
-        teacherId,
-      });
+      const res = await axios.post(
+        'https://adhd-coach-backend.vercel.app/student/enroll',
+        {
+          studentId: store.user?.user.id_assigned,
+          courseId,
+          teacherId,
+        },
+      );
       console.log(res.data);
       await refetchEnrolledCourses();
       await refetchAllCourses();
@@ -198,13 +201,7 @@ const StudentCourses = () => {
         {Array.isArray(courses) &&
           courses?.map((course: any, index: number) => (
             <VStack key={index} px={'$4'}>
-              <Pressable
-                flex={1}
-                onPress={() =>
-                  navigation.navigate('StudentCoursesLectures', {
-                    course: course,
-                  })
-                }>
+              <Pressable flex={1}>
                 <HStack
                   bgColor="#FFA360"
                   height={60}
@@ -291,7 +288,7 @@ export default StudentCourses;
 //     queryKey: ['enrolledCourses'],
 //     queryFn: async () => {
 //       const {data} = await axios.get(
-//         `http://13.127.65.203:8080/student/get-courses/${store.user?.user.id_assigned}`,
+//         `https://adhd-coach-backend.vercel.app/student/get-courses/${store.user?.user.id_assigned}`,
 //       );
 //       return data;
 //     },
@@ -306,7 +303,7 @@ export default StudentCourses;
 //     queryKey: ['courses'],
 //     queryFn: async () => {
 //       const {data} = await axios.get(
-//         `http://13.127.65.203:8080/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
+//         `https://adhd-coach-backend.vercel.app/student/get-all-optional-courses/${store.user?.user.id_assigned}`,
 //       );
 //       return data;
 //     },
@@ -320,7 +317,7 @@ export default StudentCourses;
 //     queryKey: ['compulsoryCourses'],
 //     queryFn: async () => {
 //       const {data} = await axios.get(
-//         'http://13.127.65.203:8080/student/get-compulsory-courses',
+//         'https://adhd-coach-backend.vercel.app/student/get-compulsory-courses',
 //       );
 //       return data;
 //     },
@@ -349,7 +346,7 @@ export default StudentCourses;
 //   const handleEnroll = async (courseId: string, teacherId: string) => {
 //     setLoading(true);
 //     try {
-//       const res = await axios.post('http://13.127.65.203:8080/student/enroll', {
+//       const res = await axios.post('https://adhd-coach-backend.vercel.app/student/enroll', {
 //         studentId: store.user?.user.id_assigned,
 //         courseId,
 //         teacherId,

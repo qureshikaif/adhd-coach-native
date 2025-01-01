@@ -3,7 +3,6 @@ import {Image, View} from '@gluestack-ui/themed';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import StudentHome from './stacks/Student/StudentHome';
 import StudentCourse from './stacks/Student/StudentCourse';
-import StudentHealth from './stacks/Student/StudentHealthStack';
 import StudentActivities from './stacks/Student/StudentActivities';
 import StudentQuizzes from './stacks/Student/StudentQuizzes';
 import StudentHealthStack from './stacks/Student/StudentHealthStack';

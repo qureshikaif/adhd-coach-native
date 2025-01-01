@@ -5,12 +5,14 @@ import {
   Box,
   Image,
   HStack,
+  Pressable,
 } from '@gluestack-ui/themed';
 import React from 'react';
 import StatusBarStudent from '../../components/molecules/StatusBarStudent';
 import TextBold from '../../components/atoms/Text/TextBold';
 import MathsCount from '../../components/molecules/MathsCount';
 import Letters from '../../components/molecules/Letters';
+import {Linking} from 'react-native';
 
 const Apple = require('../../assets/images/apple.png');
 const ball = require('../../assets/images/ball.png');
@@ -109,7 +111,10 @@ const EnglishAlphabets = () => {
           ].map((item, index) => (
             <React.Fragment key={index}>
               <Box height={'$6'} />
-              <Box
+              <Pressable
+                onPress={() =>
+                  Linking.openURL('https://www.youtube.com/watch?v=gHnWkmW6qRI')
+                }
                 bgColor="#FFA360"
                 borderRadius={'$xl'}
                 padding={'$4'}
@@ -128,7 +133,7 @@ const EnglishAlphabets = () => {
                     style={{width: 50, height: 50}} // Adjust the size as needed
                   />
                 </HStack>
-              </Box>
+              </Pressable>
             </React.Fragment>
           ))}
         </ScrollView>

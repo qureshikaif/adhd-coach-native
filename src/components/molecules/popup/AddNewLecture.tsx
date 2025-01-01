@@ -21,6 +21,8 @@ import TextRegular from '../../atoms/Text/TextRegular';
 import {InputField} from '@gluestack-ui/themed';
 import axios from 'axios';
 import {useStore} from '../../../store';
+import Success from './Success';
+import Error from './Error';
 
 const AddCourseIcon = require('../../../assets/images/add-course.png');
 
@@ -35,6 +37,8 @@ const AddNewLecture = ({
 }: AddNewLectureProps) => {
   const [lecture, setLecture] = React.useState('' as string);
   const [loading, setLoading] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
+  const [showSuccess, setShowSuccess] = React.useState(false);
   const store = useStore();
 
   const handleLecture = (text: string) => setLecture(text);
@@ -42,7 +46,7 @@ const AddNewLecture = ({
   const onSubmit = () => {
     setLoading(true);
     axios
-      .post('http://13.127.65.203:8080/teacher/add-lecture', {
+      .post('https://adhd-coach-backend.vercel.app/teacher/add-lecture', {
         lecture,
         courseId,
         instructorId: store.user?.user.id_assigned,
@@ -51,10 +55,13 @@ const AddNewLecture = ({
         console.log(res.data.message);
         setLoading(false);
         setShowModal(false);
+        setShowSuccess(true);
       })
       .catch(err => {
         console.log(err);
         setLoading(false);
+        setShowModal(false);
+        setShowError(true);
       });
   };
   return (
@@ -132,6 +139,18 @@ const AddNewLecture = ({
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <Error
+        bgColor="#C2A3A3"
+        showModal={showError}
+        setShowModal={setShowError}
+        text="An error occured while adding lecture"
+      />
+      <Success
+        bgColor="#C2A3A3"
+        showModal={showSuccess}
+        setShowModal={setShowSuccess}
+        text="Lecture added successfully"
+      />
     </Center>
   );
 };

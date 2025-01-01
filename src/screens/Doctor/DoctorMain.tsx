@@ -42,7 +42,7 @@ const DoctorMain = () => {
     queryKey: ['totalStudentsEnrolled'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-number',
+        'https://adhd-coach-backend.vercel.app/student/get-number',
       );
       return data;
     },
@@ -55,7 +55,7 @@ const DoctorMain = () => {
     }
     setLoading(true);
     await axios
-      .post('http://13.127.65.203:8080/doctor/add-feedback', {
+      .post('https://adhd-coach-backend.vercel.app/doctor/add-feedback', {
         feedback: feedbackRating,
         userId: store.user?.user.id,
       })

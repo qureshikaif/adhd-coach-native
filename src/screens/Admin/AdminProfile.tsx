@@ -5,7 +5,6 @@ import {
   Box,
   Center,
   Image,
-  HStack,
   Input,
   InputField,
   Button,
@@ -82,7 +81,7 @@ const AdminProfile = () => {
             </VStack>
           ))}
           <Box height={'$2'} />
-          <HStack space="lg">
+          {/* <HStack space="lg">
             <Button
               flex={1}
               android_ripple={{color: '#DEB5B5'}}
@@ -100,17 +99,19 @@ const AdminProfile = () => {
               borderRadius={'$lg'}>
               <TextRegular text="Save" color="white" />
             </Button>
-          </HStack>
+          </HStack> */}
           <Box height={'$3'} />
           <Button
+            android_ripple={{color: 'gray'}}
             onPress={() => handleLogout(store)}
             flex={1}
             hardShadow="3"
             size="xl"
             borderColor="black"
             bg={'#A3BACD'}
+            borderWidth={1}
             borderRadius={'$lg'}>
-            <TextRegular text="Sign Out" color="white" />
+            <TextRegular text="Sign Out" color="black" />
           </Button>
           <Box height={height} />
         </ScrollView>

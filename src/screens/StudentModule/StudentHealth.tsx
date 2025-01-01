@@ -17,22 +17,14 @@ const Avatar = require('../../assets/images/avatars/Bhaalooo_jumping.png');
 const TeacherPic = require('../../assets/images/icons/y1.png');
 const TeacherPic1 = require('../../assets/images/icons/y2.png');
 const TeacherPic2 = require('../../assets/images/icons/y3.png');
-
 interface TextBoldProps {
   children: React.ReactNode;
 }
-
 const TextBold: React.FC<TextBoldProps> = ({children}) => (
   <Text fontSize="$xl" fontWeight="bold" color="black" p={4}>
     {children}
   </Text>
 );
-
-interface CourseLinkProps {
-  title: string;
-  url: string;
-}
-
 const StudentHealth: React.FC = () => {
   const height = useBottomTabBarHeight();
   return (
@@ -53,16 +45,15 @@ const StudentHealth: React.FC = () => {
               my={4}
               mx={4}
               borderRadius={12}
-              alignItems="center" // Center align the content vertically
-              justifyContent="center" // Center align the content horizontally
-              borderColor="black" // Border color
-              borderWidth={2} // Border width
-            >
+              alignItems="center"
+              justifyContent="center"
+              borderColor="black"
+              borderWidth={2}>
               <TextBold>Yoga Freeze song</TextBold>
               <Image
                 source={TeacherPic}
                 alt="Teacher"
-                width={70} // Adjust the width here
+                width={70}
                 height={70}
                 resizeMode="contain"
               />
@@ -79,16 +70,15 @@ const StudentHealth: React.FC = () => {
               my={4}
               mx={4}
               borderRadius={12}
-              alignItems="center" // Center align the content vertically
-              justifyContent="center" // Center align the content horizontally
-              borderColor="black" // Border color
-              borderWidth={2} // Border width
-            >
+              alignItems="center"
+              justifyContent="center"
+              borderColor="black"
+              borderWidth={2}>
               <TextBold>Breathing Exercise</TextBold>
               <Image
                 source={TeacherPic2}
                 alt="Teacher"
-                width={70} // Adjust the width here
+                width={70}
                 height={70}
                 resizeMode="contain"
               />
@@ -105,16 +95,15 @@ const StudentHealth: React.FC = () => {
               my={4}
               mx={4}
               borderRadius={12}
-              alignItems="center" // Center align the content vertically
-              justifyContent="center" // Center align the content horizontally
-              borderColor="black" // Border color
-              borderWidth={2} // Border width
-            >
+              alignItems="center"
+              justifyContent="center"
+              borderColor="black"
+              borderWidth={2}>
               <TextBold>Yoga And mindfulllness</TextBold>
               <Image
                 source={TeacherPic1}
                 alt="Teacher"
-                width={70} // Adjust the width here
+                width={70}
                 height={70}
                 resizeMode="contain"
               />
@@ -136,11 +125,11 @@ const StudentHealth: React.FC = () => {
               fulfilling life!
             </Text>
           </Box>
+          <Box height={5} />
           <Box height={height * 4} />
         </ScrollView>
       </ImageBackground>
     </View>
   );
 };
-
 export default StudentHealth;

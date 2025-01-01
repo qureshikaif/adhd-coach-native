@@ -45,10 +45,10 @@ const ParentMain = () => {
     isLoading: isLoadingPrescription,
     isFetched,
   } = useQuery({
-    queryKey: ['prescriptions'],
+    queryKey: ['prescriptionsChildren'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/parent/get-prescriptions/${store.user?.user.child_id}`,
+        `https://adhd-coach-backend.vercel.app/parent/get-prescriptions/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -62,7 +62,7 @@ const ParentMain = () => {
     queryKey: ['checkDoctors'],
     queryFn: async () => {
       const {data} = await axios.get(
-        `http://13.127.65.203:8080/parent/check-doctor/${store.user?.user.child_id}`,
+        `https://adhd-coach-backend.vercel.app/parent/check-doctor/${store.user?.user.child_id}`,
       );
       return data;
     },
@@ -98,7 +98,7 @@ const ParentMain = () => {
     }
     setLoading(true);
     await axios
-      .post('http://13.127.65.203:8080/parent/add-feedback', {
+      .post('https://adhd-coach-backend.vercel.app/parent/add-feedback', {
         feedback: feedbackRating,
         userId: store.user?.user.id,
       })
@@ -113,6 +113,8 @@ const ParentMain = () => {
         setError(true);
       });
   };
+
+  console.log('Prescription', prescriptions);
 
   return (
     <View height={'$full'}>
@@ -190,7 +192,7 @@ const ParentMain = () => {
                 borderColor={'#ccc'}>
                 <VStack space={'md'}>
                   <TextSemibold
-                    text={`Given by Dr. ${capitalizeFirstLetter(
+                    text={`Given by ${capitalizeFirstLetter(
                       prescription.doctor_name,
                     )}`}
                   />

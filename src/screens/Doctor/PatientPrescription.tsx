@@ -33,15 +33,16 @@ const PatientPrescription = () => {
   const [showError, setShowError] = useState(false);
 
   const {data: patients, isLoading} = useQuery({
-    queryKey: ['patients'],
+    queryKey: ['patientsDoctorPrescription'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-students',
+        `https://adhd-coach-backend.vercel.app/doctor/students/${store.user?.user.id_assigned}`,
       );
       return data;
     },
   });
 
+  console.log('Patient:', patients);
   if (isLoading) {
     return <Loading bgImage={BackgroundImage} />;
   }
@@ -49,7 +50,7 @@ const PatientPrescription = () => {
   const onSubmit = async () => {
     setLoading(true);
     await axios
-      .post('http://13.127.65.203:8080/doctor/prescription', {
+      .post('https://adhd-coach-backend.vercel.app/doctor/prescription', {
         prescription,
         patientId: selectedPatient,
         doctorId: store.user?.user.id_assigned,

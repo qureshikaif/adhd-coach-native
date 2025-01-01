@@ -58,7 +58,7 @@ const MoodBoard = () => {
     console.log(`Mood logged: ${mood}`);
     try {
       const response = await axios.post(
-        'http://13.127.65.203:8080/student/mood',
+        'https://adhd-coach-backend.vercel.app/student/mood',
         {
           studentId: store.user?.user.id_assigned,
           mood,

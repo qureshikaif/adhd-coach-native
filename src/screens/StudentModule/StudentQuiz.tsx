@@ -41,7 +41,9 @@ const StudentQuiz = () => {
   } = useQuery({
     queryKey: ['quizzes'],
     queryFn: async () => {
-      const {data} = await axios.get('http://13.127.65.203:8080/api/quizzes');
+      const {data} = await axios.get(
+        'https://adhd-coach-backend.vercel.app/api/quizzes',
+      );
       return data.quizzes;
     },
   });

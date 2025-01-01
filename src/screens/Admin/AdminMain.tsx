@@ -10,12 +10,15 @@ import StatusBarAdmin from '../../components/molecules/StatusBarAdmin';
 import TextBold from '../../components/atoms/Text/TextBold';
 import AppStatistics from '../../components/molecules/AppStatistics';
 import RecentFeedbacks from '../../components/molecules/RecentFeedbacks';
-import CourseStatistics from '../../components/molecules/CourseStatistics';
+import CourseStatistics, {
+  CourseStatisticsType,
+} from '../../components/molecules/CourseStatistics';
 import TotalStudentsEnrolled from '../../components/molecules/TotalStudentsEnrolled';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {useQuery} from '@tanstack/react-query';
 import axios from 'axios';
 import Loading from '../Loading';
+import TextRegular from '../../components/atoms/Text/TextRegular';
 
 const BackgroundImage = require('../../assets/images/admin-bg-main.png');
 
@@ -29,29 +32,39 @@ export interface Feedback {
 const AdminMain = () => {
   const height = useBottomTabBarHeight();
   const {data: count, isLoading: isLoadingCount} = useQuery({
-    queryKey: ['totalStudentsEnrolled'],
+    queryKey: ['totalStudentsEnrolledAdmin'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/student/get-number',
+        'https://adhd-coach-backend.vercel.app/student/get-number',
       );
       return data;
     },
   });
 
   const {data: reviews, isLoading: isLoadingReviews} = useQuery<Feedback[]>({
-    queryKey: ['reviews'],
+    queryKey: ['homeReviews'],
     queryFn: async () => {
       const {data} = await axios.get(
-        'http://13.127.65.203:8080/admin/all-feedbacks',
+        'https://adhd-coach-backend.vercel.app/admin/all-feedbacks',
       );
       return data;
+    },
+  });
+
+  const {data: studentCount, isLoading: isLoadingStudentCount} = useQuery({
+    queryKey: ['studentCountCoursesAdmin'],
+    queryFn: async () => {
+      const {data} = await axios.get(
+        'http://192.168.0.107:8080/admin/course-student',
+      );
+      return data.data;
     },
   });
 
   if (isLoadingCount || isLoadingReviews) {
     return <Loading bgImage={BackgroundImage} />;
   }
-  console.log(reviews);
+  console.log(studentCount);
 
   return (
     <View height={'$full'}>
@@ -64,7 +77,13 @@ const AdminMain = () => {
             <AppStatistics />
             <TotalStudentsEnrolled count={count} />
             <RecentFeedbacks feedbacks={reviews as Feedback[]} />
-            <CourseStatistics />
+            {studentCount ? (
+              <CourseStatistics
+                courses={studentCount as CourseStatisticsType[]}
+              />
+            ) : (
+              <TextRegular text="No courses found" fontSize={'$xl'} />
+            )}
           </VStack>
           <Box height={height * 2} />
         </ScrollView>

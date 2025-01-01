@@ -41,7 +41,7 @@ const AddDoctor = ({showModal, setShowModal, ref}: ModalProps) => {
   const onSubmit = () => {
     setLoading(true);
     axios
-      .post('http://13.127.65.203:8080/admin/doctor', {
+      .post('https://adhd-coach-backend.vercel.app/admin/doctor', {
         doctorId,
         email,
       })

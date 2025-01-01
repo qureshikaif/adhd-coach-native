@@ -37,7 +37,7 @@ type RouteType = RouteProp<NavigationType, 'TeacherChat'>;
 
 const TeacherChatOpen = ({route}: {route: RouteType}) => {
   const store = useStore();
-  const socket = io('http://13.127.65.203:8080');
+  const socket = io('https://adhd-coach-backend.vercel.app');
   const navigation = useNavigation();
   const [messages, setMessages] = React.useState<Message[]>([]);
   const [newMessage, setNewMessage] = React.useState('');
@@ -57,7 +57,7 @@ const TeacherChatOpen = ({route}: {route: RouteType}) => {
     // Fetch chat history
     axios
       .get(
-        `http://13.127.65.203:8080/chat/chat-history/${
+        `https://adhd-coach-backend.vercel.app/chat/chat-history/${
           store.user?.user.id_assigned
         }/${users.child_id ? users.child_id : users.id_assigned}`,
       )
@@ -82,7 +82,7 @@ const TeacherChatOpen = ({route}: {route: RouteType}) => {
 
   const handleSendMessage = () => {
     axios
-      .post('http://13.127.65.203:8080/chat/send-message', {
+      .post('https://adhd-coach-backend.vercel.app/chat/send-message', {
         sender_id: store.user?.user.id_assigned,
         receiver_id: users.child_id ? users.child_id : users.id_assigned,
         message: newMessage,
